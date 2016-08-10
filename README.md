@@ -3,9 +3,9 @@ Semantic framework for front-end ui developers.
 
 Build websites & components with clear html code.
 
-[homepage](http://prettyminimal.com/csstetic/)
-[download](https://github.com/dariuszsikorski/csstetic/tree/master/dist)
-[installation](http://prettyminimal.com/csstetic/docs/#installation)
+- [homepage](http://prettyminimal.com/csstetic/)
+- [download](https://github.com/dariuszsikorski/csstetic/tree/master/dist)
+- [installation](http://prettyminimal.com/csstetic/docs/#installation)
 
 ## What's this?
 
