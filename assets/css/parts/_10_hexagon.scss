@@ -1,0 +1,106 @@
+
+@mixin hexagon(
+  $color: red
+){
+  $width: 100px;
+  width: $width;
+  height: 55px;
+  background: $color;
+  position: relative;
+  transition: all 0.5s;
+  &:before {
+    content: "";
+    position: absolute;
+    top: -24px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: $width*0.5 solid transparent;
+    border-right: $width*0.5 solid transparent;
+    border-bottom: 25px solid $color;
+    transition: all 0.5s;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -24px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: $width*0.5 solid transparent;
+    border-right: $width*0.5 solid transparent;
+    border-top: 25px solid $color;
+    transition: all 0.5s;
+  }
+}
+
+
+
+.fw-logo {
+  .hexagon-out {
+    $normal-border: saturate(lighten(#717d9a, 8%), 10%); // normal border
+    $normal-background: $sidebar-background;
+    $normal-text: saturate(lighten(#8E9DC3, 3%), 5%);
+    $hover-background: #5F6EBD;
+    $hover-text: white;
+    $border-scale: 0.9;
+    margin: 20px auto 20px auto;
+    @include old_media(tablet-portrait){
+      display: none;
+    }
+    @include hexagon($normal-border); // outer border color
+    cursor: pointer;
+    transform: scale(0.7);
+    &:hover {
+      background: $hover-background;
+
+      // transform: scale(0.75);
+      .label {
+        color: $hover-text; // hover label color
+      }
+      &:before {
+        border-bottom-color: $hover-background;
+      }
+      &:after {
+        border-top-color: $hover-background;
+      }
+      .hexagon-in {
+        transform: scale(0);
+      }
+    }
+    .label {
+      color: $normal-text;
+      text-shadow: 0 0 3px rgba(0,0,0,0.5);
+      width: 100%;
+      position: absolute;
+      font-weight: 600;
+      font-size: 24px;
+      z-index: 1;
+      // top: 50%;
+      // transform: translateY(-50%);
+      // -webkit-transform: translateY(-50%);
+      transition: all 0.4s;
+      text-align: center;
+      margin-top: 8px;
+
+
+
+
+    }
+    .hexagon-in {
+      @include hexagon($normal-background);
+      position: absolute;
+      // top: 0;
+      z-index: 1;
+      transform: scale($border-scale);
+      // left: 0;
+    }
+  }
+  .subtitle {
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    // text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+}
+

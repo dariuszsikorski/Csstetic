@@ -1,0 +1,252 @@
+
+<section class="sec-bar">
+  <h3>Bar</h3>
+  <h5>Layout divided into side sections.<br>Height is always adjusted to fit the items.</h5>
+  <div class="fw-tabulators"><span>Example</span><span>Vertical align</span><span>Selected sides</span><span>Breaking sections</span></div>
+  <div class="fw-tabs">
+    <div class="fw-container">
+      <div class="fw-resizable fw-copy bar-demo fw-example">
+        
+        <div class="fw-bar">
+          <div class="fw-bar-center">
+            <div class="fw-bar-item"><span>center item</span></div>
+            <div class="fw-bar-item"><span>center item</span></div>
+          </div>
+          <div class="fw-bar-left">
+            <div class="fw-bar-item"><span>left item</span></div>
+            <div class="fw-bar-item"><span>left item</span></div>
+          </div>
+          <div class="fw-bar-right">
+            <div class="fw-bar-item"><span>right item</span></div>
+            <div class="fw-bar-item"><span>right item</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="fw-resizable fw-copy fw-example bar-demo-without-size demo-mid">
+        <div class="fw-bar">
+          <div class="fw-bar-center">
+            <div class="fw-bar-item fw-size-xxl"><span>center item</span></div>
+          </div>
+          <div class="fw-bar-left">
+            <div class="fw-bar-item fw-size-sm"><span>left item</span></div>
+          </div>
+          <div class="fw-bar-right">
+            <div class="fw-bar-item fw-size-sm"><span>right item</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fw-container">
+      <div class="fw-resizable fw-copy fw-example bar-demo-without-size demo-top">
+        <div class="fw-bar">
+          <div class="fw-bar-center">
+            <div class="fw-bar-item fw-size-lg"><span>top</span></div>
+          </div>
+          <div class="fw-bar-left">
+            <div class="fw-bar-item fw-size-xxl"><span>top</span></div>
+          </div>
+          <div class="fw-bar-right">
+            <div class="fw-bar-item fw-size-xs"><span>top</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="fw-resizable fw-copy fw-example bar-demo-without-size demo-mid">
+        <div class="fw-bar">
+          <div class="fw-bar-center">
+            <div class="fw-bar-item fw-size-lg"><span>middle</span></div>
+          </div>
+          <div class="fw-bar-left">
+            <div class="fw-bar-item fw-size-xxl"><span>middle</span></div>
+          </div>
+          <div class="fw-bar-right">
+            <div class="fw-bar-item fw-size-xs"><span>middle</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="fw-resizable fw-copy fw-example bar-demo-without-size demo-bot">
+        <div class="fw-bar">
+          <div class="fw-bar-center">
+            <div class="fw-bar-item fw-size-lg"><span>bottom</span></div>
+          </div>
+          <div class="fw-bar-left">
+            <div class="fw-bar-item fw-size-xxl"><span>bottom</span></div>
+          </div>
+          <div class="fw-bar-right">
+            <div class="fw-bar-item fw-size-xs"><span>bottom</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="fw-container">Remove sides which are not necessary.</p>
+      <h4>left and right</h4>
+      <div class="fw-resizable fw-copy fw-example bar-demo demo-mid">
+        <div class="fw-bar">
+          <div class="fw-bar-left">
+            <div class="fw-bar-item"><span>left item</span></div>
+          </div>
+          <div class="fw-bar-right">
+            <div class="fw-bar-item"><span>right item</span></div>
+          </div>
+        </div>
+      </div>
+      <h4>left</h4>
+      <div class="fw-resizable fw-copy fw-example bar-demo demo-mid">
+        <div class="fw-bar">
+          <div class="fw-bar-left">
+            <div class="fw-bar-item"><span>left item</span></div>
+          </div>
+        </div>
+      </div>
+      <h4>center</h4>
+      <div class="fw-resizable fw-copy fw-example bar-demo demo-mid">
+        <div class="fw-bar">
+          <div class="fw-bar-center">
+            <div class="fw-bar-item"><span>center item</span></div>
+          </div>
+        </div>
+      </div>
+      <h4>right</h4>
+      <div class="fw-resizable fw-copy fw-example bar-demo demo-mid">
+        <div class="fw-bar">
+          <div class="fw-bar-right">
+            <div class="fw-bar-item"><span>right item</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fw-container">
+      <div class="fw-resizable fw-copy fw-example bar-demo demo-mid">
+        <div class="fw-bar">
+          <div class="fw-bar-center fw-bar-break">
+            <div class="fw-bar-item"><span>center with break</span></div>
+          </div>
+          <div class="fw-bar-left">
+            <div class="fw-bar-item"><span>left item</span></div>
+          </div>
+          <div class="fw-bar-right">
+            <div class="fw-bar-item"><span>right item</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+  <div class="fw-tabs">
+    <div class="fw-container">
+      <div class="fw-separator"><span>Semantic</span></div>
+      <div class="fw-code scss">.my-bar {
+  @include fw-bar;
+  .my-bar-left,
+  .my-bar-center,
+  .my-bar-right {
+    @include fw-bar-side;
+  }
+  .my-bar-left {
+    text-align: left;
+  }
+  .my-bar-center {
+    text-align: center;
+  }
+  .my-bar-right {
+    text-align: right;
+  }
+  .my-bar-item {
+    @include fw-bar-item;
+  }
+}
+      </div>
+      <div class="fw-separator"><span>Classic</span></div>
+      <div class="fw-code">&lt;div class=&quot;fw-bar&quot;&gt;
+  &lt;div class=&quot;fw-bar-center&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-bar-left&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-bar-right&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+      </div>
+    </div>
+    <div class="fw-container">
+      <div class="fw-code">&lt;div class=&quot;my-bar&quot;&gt;
+  &lt;div class=&quot;my-bar-center&quot;&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;my-bar-left&quot;&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;my-bar-right&quot;&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+      </div>
+      <div class="fw-code scss">.my-bar {
+  @include fw-bar;
+  .my-bar-left,
+  .my-bar-center,
+  .my-bar-right {
+    @include fw-bar-side;
+  }
+  .my-bar-left {
+    text-align: left;
+  }
+  .my-bar-center {
+    text-align: center;
+  }
+  .my-bar-right {
+    text-align: right;
+  }
+  .my-bar-item {
+    @include fw-bar-item;
+  }
+
+  // optional - break sections for smaller devices
+  @include fw-media(md){
+    .my-bar-left,
+    .my-bar-center,
+    .my-bar-right {
+      display: block;
+      text-align: left;
+    }
+  }
+
+  // optional - vertical align items
+  .my-bar-left {
+    &amp;, &amp;.my-bar-item {
+      vetical-align: top; // top | middle | bottom
+    }
+  }
+
+}
+
+      </div>
+    </div>
+    <div class="fw-container">
+      <div class="fw-code">&lt;div class=&quot;fw-bar&quot;&gt;
+  &lt;div class=&quot;fw-bar-center&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-bar-left&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-bar-right&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+      </div>
+    </div>
+  </div>
+</section>

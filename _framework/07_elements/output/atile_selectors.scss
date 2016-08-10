@@ -1,0 +1,31 @@
+.fw-tile {
+  @include fw-tile;
+}
+
+.fw-tile-content {
+  @include fw-tile-content;
+}
+
+.fw-tile {
+  &,
+  &-1 { @include fw-tile-height(1); }
+  &-2 { @include fw-tile-height(2); }
+  &-3 { @include fw-tile-height(3); }
+  &-4 { @include fw-tile-height(4); }
+  &-025 { @include fw-tile-height(25%); }
+  &-050 { @include fw-tile-height(50%); }
+  &-075 { @include fw-tile-height(75%); }
+  &-100 { @include fw-tile-height(100%); }
+  &-125 { @include fw-tile-height(125%); }
+  &-150 { @include fw-tile-height(150%); }
+  &-175 { @include fw-tile-height(175%); }
+  &-200 { @include fw-tile-height(200%); }
+  &-225 { @include fw-tile-height(225%); }
+  &-250 { @include fw-tile-height(250%); }
+  &-275 { @include fw-tile-height(275%); }
+  &-300 { @include fw-tile-height(300%); }
+  &-325 { @include fw-tile-height(325%); }
+  &-350 { @include fw-tile-height(350%); }
+  &-375 { @include fw-tile-height(375%); }
+  &-400 { @include fw-tile-height(400%); }
+}

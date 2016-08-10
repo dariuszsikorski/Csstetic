@@ -1,0 +1,433 @@
+
+
+<splitSection output="output/position_section.jade">
+
+  section.sec-position
+    h3 Position
+    h5 Set position of the element relatively to it's parent.<br>Element may be placed in the corner, centered or on the edge of parent.
+
+
+    .fw-tabulators
+      span Inside
+      span On edge
+      span Outside
+      span Custom
+
+    .fw-tabs
+      div
+
+        h4 inside:
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container
+          .fw-relative
+
+            .fw-pos-top-left top-left
+            .fw-pos-left left
+            .fw-pos-bottom-left bottom-left
+            .fw-pos-top top
+            .fw-pos-center center
+            .fw-pos-bottom bottom
+            .fw-pos-top-right top-right
+            .fw-pos-right right
+            .fw-pos-bottom-right bottom-right
+
+        .fw-separator
+          span Positions
+          p.fw-container
+            | top-left,
+            | left,
+            | bottom-left,
+            | top,
+            | center,
+            | bottom,
+            | top-right,
+            | right,
+            | bottom-right
+        .fw-separator
+          span Semantic
+        p.fw-container Please note that positioning always require "position: relative" on parent element.
+        .fw-code
+          :code
+            <div class="my-element">
+              <div class="positioned-item">item</item>
+            </div>
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right);
+              }
+            }
+
+
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-relative">
+              <div class="fw-pos-top-right">item</item>
+            </div>
+
+
+      div
+
+        h4 on edge:
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container
+          .fw-relative
+
+            .fw-pos-top-left-edge top-left-edge
+            .fw-pos-left-edge left-edge
+            .fw-pos-bottom-left-edge bottom-left-edge
+            .fw-pos-top-edge top-edge
+            .fw-pos-bottom-edge bottom-edge
+            .fw-pos-top-right-edge top-right-edge
+            .fw-pos-right-edge right-edge
+            .fw-pos-bottom-right-edge bottom-right-edge
+
+        .fw-separator
+          span Positions
+          p.fw-container
+            | top-left-edge,
+            | left-edge,
+            | bottom-left-edge,
+            | top-edge,
+            | bottom-edge,
+            | top-right-edge,
+            | right-edge,
+            | bottom-right-edge
+        .fw-separator
+          span Semantic
+        .fw-code
+          :code
+            <div class="my-element">
+              <div class="positioned-item">item</item>
+            </div>
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right, edge);
+              }
+            }
+
+
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-relative">
+              <div class="fw-pos-top-right-edge">item</item>
+            </div>
+
+      div
+
+        h4 outside:
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container
+          .fw-relative
+
+            .fw-pos-top-left-out top-left-out
+            .fw-pos-left-out left-out
+            .fw-pos-bottom-left-out bottom-left-out
+            .fw-pos-top-out top-out
+            .fw-pos-bottom-out bottom-out
+            .fw-pos-top-right-out top-right-out
+            .fw-pos-right-out right-out
+            .fw-pos-bottom-right-out bottom-right-out
+        br
+        .fw-separator
+          span Positions
+          p.fw-container
+            | top-left-out,
+            | left-out,
+            | bottom-left-out,
+            | top-out,
+            | bottom-out,
+            | top-right-out,
+            | right-out,
+            | bottom-right-out
+        .fw-separator
+          span Semantic
+        .fw-code
+          :code
+            <div class="my-element">
+              <div class="positioned-item">item</item>
+            </div>
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right, out);
+              }
+            }
+
+
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-relative">
+              <div class="fw-pos-top-right-out">item</item>
+            </div>
+
+      div
+
+        h4 custom
+        p.fw-container Create custom offset of positioned item by using css <b>translate X and Y</b>.
+
+        .fw-separator
+          span Example
+
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container.c-visible
+          .fw-relative
+
+            .fw-pos-top-right(style="transform: translateX(-50%) translateY(100%); -webkit-transform: translateX(-50%) translateY(100%)") Custom offset
+
+        p.fw-container This will move item <b>50%</b> to the <b>left</b> and <b>100%</b> <b>from top</b> (of it's own width and height) from <b>top-right</b> position.<br> You can customize all positions listed in "Inside" Tab.
+
+        .fw-separator
+          span or Semantic
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right);
+                transform: translateX(-50%) translateY(100%);
+                -webkit-transform: translateX(-50%) translateY(100%);
+              }
+            }
+        p.fw-container Please note that for old browsers you may also include prefixed translations such as:<br>
+          | <b>-webkit-</b>transform: ... (Chrome, newer versions of Opera.)<br>
+          | <b>-moz-</b>transform: ... (Firefox)<br>
+          | <b>-o-</b>transform: ... (Old versions of Opera)<br>
+          | <b>-ms-</b>transform: ... (Internet Explorer)
+
+
+</splitSection>
+
+
+<splitSection output="output/position_demo.jade">
+
+//- block meta
+//-   link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+//-   link(rel="stylesheet", href="./position_demo.css" id="mainstyle")
+
+//- block title
+//-   title position Demo
+
+//- block content
+//-   .position-demo
+//-     span demo content
+//-     span demo content
+//-     span demo content
+
+</splitSection>
+
+
+<splitSection output="output/position_section.scss">
+
+.sec-position {
+  .demo-position {
+    padding: 15px;
+    box-sizing: border-box;
+    //- text-align: center;
+    .fw-relative {
+      margin: auto;
+      max-width: 500px;
+      background: fw-color(bluegrey, 50);
+      outline: solid 2px #333;;
+      min-height: 150px;
+      //- margin: 15px;
+      * {
+        outline: solid 1px #333;;
+        background: #fff;
+        padding: 0 5px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/position_semantic.scss">
+
+@mixin fw-position(
+  $position: center,
+  $offset: inner
+){
+
+  // available positions:
+  // top-left
+  // left
+  // bottom-left
+  // top
+  // center
+  // bottom
+  // top-right
+  // right ght
+  // bottom-right
+
+  // available offsets"
+  // inner - inside element
+  // edge - on the edge of element
+  // outer - outside element
+
+  position: absolute;
+
+  @if $position == top-left {
+    top: 0;
+    left: 0;
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(-100%);
+    }
+  }
+
+  @if $position == left {
+    top: 50%;
+    left: 0;
+    @if $offset == inner {
+      transform: translateY(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(-50%);
+    }
+  }
+
+  @if $position == bottom-left {
+    bottom: 0;
+    left: 0;
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(100%);
+    }
+  }
+
+  @if $position == top {
+    top: 0;
+    left: 50%;
+    @if $offset == inner {
+      transform: translateX(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-50%) translateY(-100%);
+    }
+  }
+
+  @if $position == center {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  @if $position == bottom {
+    bottom: 0;
+    left: 50%;
+    @if $offset == inner {
+      transform: translateX(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-50%) translateY(100%);
+    }
+  }
+
+  @if $position == top-right {
+    top: 0;
+    right: 0;
+    @if $offset == edge {
+      transform: translateX(50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(-100%);
+    }
+  }
+
+  @if $position == right {
+    top: 50%;
+    right: 0;
+    @if $offset == inner {
+      transform: translateY(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(-50%);
+    }
+  }
+
+  @if $position == bottom-right {
+    bottom: 0;
+    right: 0;
+    @if $offset == edge {
+      transform: translateX(50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(100%);
+    }
+  }
+
+}
+
+</splitSection>
+
+
+<splitSection output="output/position_selectors.scss">
+
+.fw-relative {
+  position: relative;
+}
+
+.fw-pos {
+
+  &-top-left { @include fw-position(top-left); }
+  &-left { @include fw-position(left); }
+  &-bottom-left { @include fw-position(bottom-left); }
+  &-top { @include fw-position(top); }
+  &-center { @include fw-position(center); }
+  &-bottom { @include fw-position(bottom); }
+  &-top-right { @include fw-position(top-right); }
+  &-right { @include fw-position(right); }
+  &-bottom-right { @include fw-position(bottom-right); }
+
+  &-top-left-edge { @include fw-position(top-left, edge); }
+  &-left-edge { @include fw-position(left, edge); }
+  &-bottom-left-edge { @include fw-position(bottom-left, edge); }
+  &-top-edge { @include fw-position(top, edge); }
+  &-bottom-edge { @include fw-position(bottom, edge); }
+  &-top-right-edge { @include fw-position(top-right, edge); }
+  &-right-edge { @include fw-position(right, edge); }
+  &-bottom-right-edge { @include fw-position(bottom-right, edge); }
+
+  &-top-left-out { @include fw-position(top-left, outer); }
+  &-left-out { @include fw-position(left, outer); }
+  &-bottom-left-out { @include fw-position(bottom-left, outer); }
+  &-top-out { @include fw-position(top, outer); }
+  &-bottom-out { @include fw-position(bottom, outer); }
+  &-top-right-out { @include fw-position(top-right, outer); }
+  &-right-out { @include fw-position(right, outer); }
+  &-bottom-right-out { @include fw-position(bottom-right, outer); }
+
+}
+
+</splitSection>

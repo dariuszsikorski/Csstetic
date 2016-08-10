@@ -1,0 +1,66 @@
+.sec-fillSpace {
+  .demo-fillspace {
+    input {
+      @include fw-input;
+
+      // optional, custom styling
+      @include fw-size-base;
+      @include fw-size(xl);
+      //- border-radius: $fw-rounded-sm;
+      //- border: solid 2px #333;
+      //- border-width: 2px 0;
+      background-color: #fff;
+      color: fw-color(black);
+      display: block;
+      width: 100%;
+    }
+    .fw-space-fill {
+      padding: 10px;
+      background: fw-color(bluegrey, 50);
+      //- border: solid 2px #333;
+      //- border-width: 0 2px;
+    }
+    * {
+      margin: 0;
+    }
+
+    .fw-space-fill,
+    .demo-block-left,
+    .demo-block-right {
+      border: solid #333;
+      border-width: 0 2px;
+    }
+
+
+
+
+    .demo-block-left,
+    .demo-block-right {
+      color: #333;
+      padding: 10px;
+      text-align: center;
+      resize: both;
+      overflow: auto;
+      //- border: solid 2px #333;
+
+    }
+    .demo-block-left {
+      width: 150px;
+      height: 55px;
+      background: fw-color(bluegrey, 50);
+      margin-right: 15px;
+    }
+    .demo-block-right {
+      width: 150px;
+      height: 55px;
+      background: fw-color(bluegrey, 50);
+      margin-left: 15px;
+    }
+    &.demo-space-2 {
+      .fw-space-fill {
+        //- background: none;
+        //- padding: 0;
+      }
+    }
+  }
+}

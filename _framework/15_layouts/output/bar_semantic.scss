@@ -1,0 +1,20 @@
+@mixin fw-bar(){
+  display: block;
+  font-size: 0; // clear gaps
+}
+
+@mixin fw-bar-side {
+  display: inline-block;
+  width: 100%;
+  margin-right: -100%;
+  vertical-align: middle;
+  font-size: 16px; // restore font, with px fallback
+  font-size: 1rem;
+}
+
+@mixin fw-bar-item {
+  position: relative;
+  z-index: 2; // fix items z-order
+  display: inline-block;
+  vertical-align: middle;
+}

@@ -1,0 +1,12 @@
+.fw-space {
+  @include fw-space;
+  .fw-space-left {
+    @include fw-space-left;
+  }
+  .fw-space-right {
+    @include fw-space-right;
+  }
+  .fw-space-fill {
+    @include fw-space-fill;
+  }
+}

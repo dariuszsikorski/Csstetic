@@ -1,0 +1,2012 @@
+// Cssteic Semantic - version 1.0.0
+// Documentation http://prettyminimal.com/csstetic
+
+// ========================
+//    semantic variables
+// ========================
+
+// fw-scale uses breakpoint from xs(min) to xl(max)
+// to retreive breakpoint use map-get()
+$fw-breakpoints: (
+  xxs: 320px,
+  xs:  500px,
+  sm:  768px,
+  md:  1024px,
+  lg:  1280px,
+  xl:  1400px,
+  xxl: 1600px
+);
+
+$fw-media: (
+  watch:   (0, 319px),
+  mobile:  (320px, 767px),
+  tablet:  (768px, 1024px),
+  laptop:  (1025px, 1280px),
+  desktop: (1281px, 9999px)
+);
+
+// rounded edges
+$fw-rounded-sm: 5px;
+$fw-rounded-md: 9px;
+$fw-rounded-lg: 14px;
+$fw-rounded-xl: 20px;
+
+
+// ====================
+//    semantic utils
+// ====================
+
+// source: http://hugogiraudel.com/2014/01/15/sass-string-to-number/
+@function _length($number, $unit) {
+  $strings: 'px' 'cm' 'mm' '%' 'ch' 'pica' 'in' 'em' 'rem' 'pt' 'pc' 'ex' 'vw' 'vh' 'vmin' 'vmax';
+  $units:   1px  1cm  1mm  1%  1ch  1pica  1in  1em  1rem  1pt  1pc  1ex  1vw  1vh  1vmin  1vmax;
+  $index: index($strings, $unit);
+
+  @if not $index {
+    @warn "Unknown unit `#{$unit}`.";
+    @return false;
+  }
+
+  @return $number * nth($units, $index);
+}
+
+@function fw-strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+// source: https://gist.github.com/terkel/4373420
+// Round a number to specified digits.
+// decimal-round(0.333)    => 0
+// decimal-round(0.333, 1) => 0.3
+// decimal-round(0.333, 2) => 0.33
+// decimal-round(0.666)    => 1
+// decimal-round(0.666, 1) => 0.7
+// decimal-round(0.666, 2) => 0.67
+@function decimal-round ($number, $digits: 0, $mode: round) {
+    $n: 1;
+    // $number must be a number
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+    // $digits must be a unitless number
+    @if type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+    @for $i from 1 through $digits {
+        $n: $n * 10;
+    }
+    @if $mode == round {
+        @return round($number * $n) / $n;
+    } @else if $mode == ceil {
+        @return ceil($number * $n) / $n;
+    } @else if $mode == floor {
+        @return floor($number * $n) / $n;
+    } @else {
+        @warn '#{ $mode } is undefined keyword.';
+        @return $number;
+    }
+}
+
+// convert-unit function
+// usage: convert-unit( inputValue, outputUnit )
+// example: convert-unit(32px, rem);
+
+@function fw-convert-unit(
+  $value,
+  $outputUnit: px
+){
+  // default unit sizes measured in px for 1920x1200 (imac 24') screen
+  // http://www.w3schools.com/browsers/browsers_display.asp
+  // http://www.w3schools.com/cssref/css_units.asp
+  $units: (
+    px:   1,
+    em:   16,
+    ex:   9.12656,
+    ch:   9.78827,
+    rem:  16,
+    vw:   17.4545,
+    vh:   9.86364,
+    vmin: 9.86364,
+    vmax: 17.4545,
+    "%":    0.16,
+    cm:   37.7953,
+    mm:   3.77953,
+    in:   96,
+    pt:   1.33333,
+    pc:   16
+  );
+
+  // check if input value is a number
+  @if type-of($value) == number {
+    $inputUnit: unit($value);
+
+    // define variable for value to px conversion
+    $pxValue: 1;
+
+    // define variable for px to output value conversion
+    $outputValue: 1px;
+
+    // if input value was unitless, convert it to pixels
+    @if unitless($value){
+      $value: $value * 1px;
+    }
+
+    // convert input value to px units
+    // @each Key, Value in Map
+    @each $keyUnit, $size in $units {
+      @if $inputUnit == $keyUnit {
+        $pxValue: fw-strip-unit($value) * $size;
+      }
+    }
+
+    // convert pxValue to output value
+    @each $keyUnit, $size in $units {
+      @if $outputUnit == $keyUnit {
+        $outputValue: _length($pxValue / $size,  $outputUnit);
+      }
+    }
+
+    @return $outputValue;
+  }
+
+  // return communicate when $value is not a number
+  @return "value must be a number";
+}
+
+
+// ==========================
+//    semantic convertUnit
+// ==========================
+
+// convert-unit function
+// usage: convert-unit( inputValue, outputUnit )
+// example: convert-unit(32px, rem);
+
+// source: http://hugogiraudel.com/2014/01/15/sass-string-to-number/
+@function fw_length($number, $unit) {
+  $strings: 'px' 'cm' 'mm' '%' 'ch' 'pica' 'in' 'em' 'rem' 'pt' 'pc' 'ex' 'vw' 'vh' 'vmin' 'vmax';
+  $units:   1px  1cm  1mm  1%  1ch  1pica  1in  1em  1rem  1pt  1pc  1ex  1vw  1vh  1vmin  1vmax;
+  $index: index($strings, $unit);
+  @if not $index {
+    @warn "Unknown unit `#{$unit}`.";
+    @return false;
+  }
+  @return $number * nth($units, $index);
+}
+
+@function fw-strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@function fw-convert(
+  $value,
+  $outputUnit: px
+){
+  // default unit sizes measured in px for 1920x1200 (imac 24') screen
+  // http://www.w3schools.com/browsers/browsers_display.asp
+  // http://www.w3schools.com/cssref/css_units.asp
+  $units: (
+    px:   1,
+    em:   16,
+    ex:   9.12656,
+    ch:   9.78827,
+    rem:  16,
+    vw:   17.4545,
+    vh:   9.86364,
+    vmin: 9.86364,
+    vmax: 17.4545,
+    "%":    0.16,
+    cm:   37.7953,
+    mm:   3.77953,
+    in:   96,
+    pt:   1.33333,
+    pc:   16
+  );
+
+  // check if input value is a number
+  @if type-of($value) == number {
+    $inputUnit: unit($value);
+
+    // define variable for value to px conversion
+    $pxValue: 1;
+
+    // define variable for px to output value conversion
+    $outputValue: 1px;
+
+    // if input value was unitless, convert it to pixels
+    @if unitless($value){
+      $value: $value * 1px;
+    }
+
+    // convert input value to px units
+    // @each Key, Value in Map
+    @each $keyUnit, $size in $units {
+      @if $inputUnit == $keyUnit {
+        $pxValue: fw-strip-unit($value) * $size;
+      }
+    }
+
+    // convert pxValue to output value
+    @each $keyUnit, $size in $units {
+      @if $outputUnit == $keyUnit {
+        $outputValue: fw_length($pxValue / $size,  $outputUnit);
+      }
+    }
+
+    @return $outputValue;
+  }
+
+  // return communicate when $value is not a number
+  @return "value must be a number";
+}
+
+
+// =======================
+//    semantic clearfix
+// =======================
+
+%fw-clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin fw-clearfix(){
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+// =======================
+//    semantic ellipsis
+// =======================
+
+@mixin fw-ellipsis {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+// ===========================
+//    semantic mediaQueries
+// ===========================
+
+@mixin fw-media(
+  $arg1: null,
+  $arg2: null
+){
+
+  // case 1: passed name of breakpoint
+  // arg1 is string and is key in fw-breakpoints, $arg2 is null
+  @if type-of($arg1) == string and map-has-key($fw-breakpoints, $arg1) and $arg2 == null {
+    // set media to max-width of breakpoint
+    @media ( max-width: map-get($fw-breakpoints, $arg1) ) {
+      @content;
+    }
+  };
+
+  // case 2: passed name of media
+  // $arg1 is string and is key in fw-media
+  @if type-of($arg1) == string and map-has-key($fw-media, $arg1) and $arg2 == null {
+    // set media between min and max width of picked fw-media
+    @media ( min-width: nth(map-get($fw-media, $arg1), 1) ) and ( max-width: nth(map-get($fw-media, $arg1), 2) ) {
+      @content;
+    }
+  };
+
+  // case 3: passed only max-width
+  // $arg1 is number and $arg2 is null
+  @if type-of($arg1) == number and $arg2 == null {
+    // set max-width to passed number
+    @media ( max-width: $arg1 ) {
+      @content;
+    }
+  };
+
+  // case 4: passed begin-end range
+  // $arg1 is number and $arg2 is number
+  @if type-of($arg1) == number and type-of($arg2) == number {
+    // set media in range between $arg1 and $arg2
+    @media ( min-width: $arg1 ) and ( max-width: $arg2 ) {
+      @content;
+    }
+  };
+
+}
+
+@mixin fw-media-up(
+  $arg1: null
+){
+
+  // case 1: passed name of breakpoint
+  @if type-of($arg1) == string and map-has-key($fw-breakpoints, $arg1) {
+    // set media to min-width of breakpoint
+    @if $arg1 == xxs {
+      @content;
+    } @else {
+      // check $arg1 index in $fw-breakpoints
+      $map-index: 0;
+      @for $i from 1 through length($fw-breakpoints) {
+        $key: nth($fw-breakpoints, $i);
+        @if nth($key, 2) == map-get($fw-breakpoints, $arg1) {
+          $map-index: $i;
+        }
+      }
+      // move $arg1 breakpoint to 1 backwards
+      $arg1: nth(nth($fw-breakpoints, $map-index - 1), 1);
+      @media ( min-width: map-get($fw-breakpoints, $arg1) + 1 ) {
+        @content;
+      }
+    }
+  };
+
+  // case 2: passed name of media
+  @if type-of($arg1) == string and map-has-key($fw-media, $arg1) {
+    // set media to min-width of picked fw-media
+    @media ( min-width: nth(map-get($fw-media, $arg1), 1) ) {
+      @content;
+    }
+  };
+
+  // case 3: passed min-width
+  @if type-of($arg1) == number {
+    // set min-width to passed number
+    @media ( min-width: $arg1 ) {
+      @content;
+    }
+  };
+
+}
+
+@mixin fw-media-down(
+  $arg1: null
+){
+
+  // case 1: passed name of breakpoint
+  @if type-of($arg1) == string and map-has-key($fw-breakpoints, $arg1) {
+    // set media to max-width of breakpoint
+    @media ( max-width: map-get($fw-breakpoints, $arg1) ) {
+      @content;
+    }
+  };
+
+  // case 2: passed name of media
+  @if type-of($arg1) == string and map-has-key($fw-media, $arg1) {
+    // set media to max-width of picked fw-media
+    @media ( max-width: nth(map-get($fw-media, $arg1), 2) ) {
+      @content;
+    }
+  };
+
+  // case 3: passed min-width
+  @if type-of($arg1) == number {
+    // set max-width to passed number
+    @media ( max-width: $arg1 ) {
+      @content;
+    }
+  };
+
+}
+
+@mixin fw-media-info {
+  all: initial;
+  background: #0C3E71;
+  color: #fff;
+  font-size: 12px;
+  font-family: Verdana;
+  display: block;
+  overflow: hidden;
+  @include fw-media(desktop){
+    &:before {
+      content: "media: desktop";
+    }
+  };
+  @include fw-media(laptop){
+    &:before {
+      content: "media: laptop";
+    }
+  };
+  @include fw-media(tablet){
+    &:before {
+      content: "media: tablet";
+    }
+  };
+  @include fw-media(mobile){
+    &:before {
+      content: "media: mobile";
+    }
+  };
+  @include fw-media(watch){
+    &:before {
+      content: "media: watch";
+    }
+  };
+  @include fw-media(xxl){
+    &:after{
+      content: "media: xxl";
+    }
+  };
+  @include fw-media(xl){
+    &:after{
+      content: "media: xl";
+    }
+  };
+  @include fw-media(lg){
+    &:after{
+      content: "media: lg";
+    }
+  };
+  @include fw-media(md){
+    &:after{
+      content: "media: md";
+    }
+  };
+  @include fw-media(sm){
+    &:after{
+      content: "media: sm";
+    }
+  };
+  @include fw-media(xs){
+    &:after{
+      content: "media: xs";
+    }
+  };
+  @include fw-media(xxs){
+    &:after{
+      content: "media: xxs";
+    }
+  };
+  &:before,
+  &:after {
+    float: left;
+  }
+  &:before {
+    padding: 7px 15px 7px 10px;
+  }
+  &:after {
+    padding: 7px 10px 7px 15px;
+  }
+  &:after {
+    float: right;
+  }
+}
+
+
+// ==============================
+//    semantic scaleProperties
+// ==============================
+
+// returns a scale factor between 0 and 1 for given resolution
+@function fw-getResolutionScale(
+  $resolution // best for something between 480px and 1500px
+){
+  $beginScale: 480px;
+  $endScale: 1500px;
+  $scaleSize: $endScale - $beginScale;
+  $currentPoint: $resolution - $beginScale;
+  $scale: $currentPoint / $scaleSize;
+  @return $scale;
+};
+
+
+
+
+// function which find the value multiplied by $scale factor (from 0 to 1)
+@function fw-scaleValues(
+  $begin: null, // for example 50px
+  $end: null,   // for example 100px
+  $scale: null  // for 1 - return 100px, for 0 - return 50px
+){
+  // type check
+  @if type-of($scale) != number {
+    @error "$scale value for scaleValues has to be a number";
+  }
+
+  @if $begin and $end and $scale{
+    $result: "";
+
+    // loop through each value
+    @for $i from 1 through length($begin) {
+      $beginValue: nth($begin, $i);
+      $endValue: nth($end, $i);
+
+      @if type-of($beginValue) != number or type-of($endValue) != number {
+        @warn "error in '#{$key}: (#{$beginValue}) => (#{$endValue})'' - use only number values."
+      }
+
+      @if unit($beginValue) != unit($endValue) {
+        @warn "error in '#{$key}: (#{$beginValue}) => (#{$endValue})' - different unit types."
+      }
+
+      $beginValue: nth($begin, $i);
+      $valueGrowth: decimal-round(((nth($end, $i) - nth($begin, $i)) * $scale), 3);
+      $scaledValue: $beginValue + $valueGrowth;
+      $result: $result + $scaledValue;
+      // add spaces between values
+      @if $i != length($begin){
+        $result: $result + " ";
+      }
+    }
+    @return unquote($result);
+  } @else {
+    @warn "begin values, end values and scale must be defined.";
+  }
+}
+
+// In short: scalePoint generates properties in given map for some resolution.
+// scalePoint takes css properties with begin-end values in sass map
+// and "point" which is resolution between begin and end of scale
+// then a value for each css property in map is calculated according
+// to position of scale point.
+
+// scalePoint
+@mixin fw-scalePoint(
+  $properties: null,
+  $point: null,
+  $beginScale: map-get($fw-breakpoints, xs), // 480px
+  $endScale:   map-get($fw-breakpoints, xl)  // 1400px
+){
+  @if $properties == null {
+    @error "you must define properties to fw-scalePoint.";
+  }
+  @if $point == null {
+    @error "you must define point to fw-scalePoint for example 768px.";
+  }
+  @if $point < $beginScale {
+    @error "defined $point: #{$point} can't be smaller than $beginScale: #{$beginScale}.";
+  }
+  @if $point > $endScale {
+    @error "defined $point: #{$point} can't be bigger than $endScale: #{$endScale}.";
+  }
+  // calculate scale of growth for defined point
+  $scaleSize: $endScale - $beginScale;
+  $currentPoint: $point - $beginScale;
+  $scale: $currentPoint / $scaleSize;
+  @each $property in $properties {
+    $key: nth($property, 1);
+    $value: nth($property, 2);
+    @if type-of($value) != list {
+      @error "value of #{$key} must look like this (start values, end values).";
+    }
+    $begin: nth($value, 1);
+    $end: nth($value, 2);
+    @if length($begin) != length($end) {
+      @error "error in '#{$key}: (#{$begin}) => (#{$end})' - different number of values.";
+    }
+    #{$key}: fw-scaleValues($begin, $end, $scale);
+  }
+}
+
+
+
+// in short: scale generates set of mediaQueries with element scaled properties.
+// scale iterates through media-breakpoints and for each generate scaled
+// properties passed in properties map with begin-end value
+@mixin fw-scale(
+  $properties: null
+){
+  @if $properties == null {
+    @error "scale needs at least one property";
+  }
+  @if type-of($properties) != map {
+    @error "scale must be passed like this:
+  scale((
+    property1: (start, end),
+    property2: (start1 start2, end1 end2),
+    ...
+  ))
+";}
+
+    // full size
+    @include fw-scalePoint($properties, map-get($fw-breakpoints, xl));
+
+    @include fw-media(lg){
+      @include fw-scalePoint($properties, map-get($fw-breakpoints, lg));
+    }
+    @include fw-media(md){
+      @include fw-scalePoint($properties, map-get($fw-breakpoints, md));
+    }
+    @include fw-media(sm){
+      @include fw-scalePoint($properties, map-get($fw-breakpoints, sm));
+    }
+    @include fw-media(xs){ // minimum size
+      @include fw-scalePoint($properties, map-get($fw-breakpoints, xs));
+    }
+
+}
+
+
+// ====================
+//    semantic atile
+// ====================
+
+@mixin fw-tile {
+  position: relative;
+  display: inline-block;
+  vertical-align: top; // remove spacing
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  box-sizing: border-box;
+  &:after {
+    display: block;
+    content: "";
+  }
+}
+
+@mixin fw-tile-height(
+  $height: 100%
+){
+  // check unit types
+  @if type-of($height) != number {
+    @error "tile width must be a number";
+  }
+
+  // convert unitless number (proportion) to percent
+  @if unitless($height) {
+    $height: $height * 100%;
+  }
+
+  // define tile size;
+  &:after {
+    padding-bottom: $height;
+    padding-top: 1px; // subpixel rendering fix when combined with grid
+  }
+
+}
+
+@mixin fw-tile-content(){
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+
+
+// =====================
+//    semantic button
+// =====================
+
+@mixin fw-button(){
+  box-sizing: border-box;
+  display: inline-block;
+  border: none;
+  line-height: 1;
+  text-decoration: none;
+  font-style: normal;
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 1rem; // in case when button-size wasn't defined in 'px'
+  background: fw-color(bluegrey, 200);
+  color: #fff; // default text color
+  > * {
+    // align elements inside button
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+
+// ====================
+//    semantic input
+// ====================
+
+@mixin fw-input{
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+
+// ===================
+//    semantic text
+// ===================
+
+$fw-text-smallest: 12px;
+$fw-text-growth-mobile: 1.4;
+
+$fw-text-line-smallest: 1.4;
+$fw-text-growth-line-mobile: 0.1;
+
+$fw-text-growth-desktop: 1.6;
+$fw-text-growth-line-desktop: 0;
+
+$fw-text-presets: (xxs, xs, sm, md, lg, xl, xxl, xxxl, hg);
+
+@function fw-geometric-sequence-an(
+  $begin: null,
+  $ratio: null,
+  $nth: null
+){
+  $result: $begin;
+  @for $i from 1 through $nth {
+    @if $i > 1 {
+      $result: $result * $ratio;
+    }
+  }
+  @return $result;
+}
+
+// .test-geometry {
+//   nth: fw-geometric-sequence-an(1, 1.5, 5);
+//   // expected results for start: 1, ratio: 1.5.
+//   // 1, 1.5, 2.25, 3.375, 5.0625, 7.59375, 11.390625...
+// }
+
+@function fw-text-ratio(
+  $size: null,
+  $ratio: null
+){
+  $growth: 0;
+  // $unit: type-of(1 + unit($fw-text-smallest));
+  @if $size > 1 {
+    $growth: fw-geometric-sequence-an(1, $ratio, $size);
+  }
+  $result: $fw-text-smallest + $growth;
+  @return $result;
+}
+
+@function fw-text-line-ratio(
+  $size: null,
+  $ratio: null
+){
+  $growth: 0;
+  // $unit: type-of(1 + unit($fw-text-smallest));
+  @if $size > 1 {
+    $growth: fw-geometric-sequence-an(1, $ratio, $size);
+  }
+  $result: $fw-text-line-smallest + $growth;
+  @return $result;
+}
+
+
+@mixin fw-text(
+  $size: null
+){
+  @if type-of($size) == string {
+    $size: index($fw-text-presets, $size);
+  }
+
+  $font-begin: fw-text-ratio($size, $fw-text-growth-mobile);
+  $font-end: fw-text-ratio($size, $fw-text-growth-desktop);
+  $line-begin: fw-text-line-ratio($size, $fw-text-growth-line-mobile);
+  $line-end: fw-text-line-ratio($size, $fw-text-growth-line-desktop);
+
+  // scale font-size andline-height
+  @if $font-begin != $font-end and $line-begin != $line-end {
+    @include fw-scale((
+      font-size: ($font-begin, $font-end),
+      line-height: ($line-begin, $line-end)
+    ));
+  }
+
+  // scale only font-size
+  @if $font-begin != $font-end and $line-begin == $line-end {
+    @include fw-scale((
+      font-size: ($font-begin, $font-end)
+    ));
+    line-height: $line-begin;
+  }
+
+  // scale only line-height
+  @if $font-begin == $font-end and $line-begin != $line-end {
+    font-size: $font-begin;
+    @include fw-scale((
+      line-height: ($line-begin, $line-end)
+    ));
+  }
+
+  // nothing to scale
+  @if $font-begin == $font-end and $line-begin == $line-end {
+    font-size: $font-begin;
+    line-height: $line-begin;
+  }
+}
+
+
+// ==========================
+//    semantic elementSize
+// ==========================
+
+// cast to number:
+// http://hugogiraudel.com/2014/01/15/sass-string-to-number/
+@function fw_length($number, $unit) {
+  $strings: 'px' 'cm' 'mm' '%' 'ch' 'pica' 'in' 'em' 'rem' 'pt' 'pc' 'ex' 'vw' 'vh' 'vmin' 'vmax';
+  $units:   1px  1cm  1mm  1%  1ch  1pica  1in  1em  1rem  1pt  1pc  1ex  1vw  1vh  1vmin  1vmax;
+  $index: index($strings, $unit);
+
+  @if not $index {
+    @warn "Unknown unit `#{$unit}`.";
+    @return false;
+  }
+
+  @return $number * nth($units, $index);
+}
+
+@function fw-number($string) {
+  // Matrices
+  $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+  $numbers:  0   1   2   3   4   5   6   7   8   9;
+
+  // Result
+  $result: 0;
+  $divider: 0;
+  $minus: false;
+
+  // Looping through all characters
+  @for $i from 1 through str-length($string) {
+    $character: str-slice($string, $i, $i);
+    $index: index($strings, $character);
+
+
+    @if $character == '-' {
+      $minus: true;
+    }
+
+    @else if $character == '.' {
+      $divider: 1;
+    }
+
+    @else {
+      @if not $index {
+        $result: if($minus, $result * -1, $result);
+        @return fw_length($result, str-slice($string, $i));
+      }
+
+      $number: nth($numbers, $index);
+
+      @if $divider == 0 {
+        $result: $result * 10;
+      }
+
+      @else {
+        // Move the decimal dot to the left
+        $divider: $divider * 10;
+        $number: $number / $divider;
+      }
+
+      $result: $result + $number;
+    }
+  }
+
+  @return if($minus, $result * -1, $result);
+}
+
+// fw size mixins
+@mixin fw-generate-size(
+  $height: null,
+  $proportion: 0.45
+){
+
+  // in case of custom height
+  @if $height == null {
+    @error "height must be defined for generate size";
+  }
+
+  @if type-of($height) != number {
+    @error "$height: #{$height} must be a number.";
+  }
+
+  // convert height to 'px' if unit wasn't defined
+  @if unitless($height) {
+    $height: $height * 1px;
+  }
+
+  // calculate proportional padding
+  $padding-x: ($height)*$proportion;
+
+  // calculate best font size and weight for the element
+  $unit: unit($height);
+  $base-font: fw-convert-unit(11px, $unit);
+  $base-height: fw-convert-unit(20px, $unit);
+  $font-growth: 0.25;
+  $extra-font: ($height - $base-height) * $font-growth;
+  $font-size: $base-font + $extra-font;
+  $font-weight: null;
+  @if $height <= fw-convert-unit(24px, $unit) {
+    $font-weight: 700;
+  }
+  @if $height <= fw-convert-unit(30px, $unit) and $height > fw-convert-unit(24px, $unit) {
+    $font-weight: 600;
+  }
+
+  //render calculated values as css properties
+  //- height: $height;
+  line-height: $height;
+  height: $height; // ie
+  padding: 0 $padding-x;
+  font-size: $font-size;
+  font-weight: $font-weight;
+
+
+}
+
+@mixin fw-size(
+  $height: null,
+  $responsive: no-responsive,
+  $proportion: 0.45
+){
+
+  // predefined element size
+  @if $height == xxs { $height: 20px; }
+  @if $height == xs  { $height: 24px; }
+  @if $height == sm  { $height: 30px; }
+  @if $height == md  { $height: 38px; }
+  @if $height == lg  { $height: 48px; }
+  @if $height == xl  { $height: 60px; }
+  @if $height == xxl { $height: 74px; }
+  @if $height == xxxl  { $height: 90px; }
+
+  @if type-of($height) == number {
+    @include fw-generate-size($height, $proportion);
+
+    @if $responsive == responsive and fw-convert-unit($height, px) > 31px {
+
+      $end: $height;
+      $begin: fw-convert-unit(30px, unit($height)) + $height * 0.12; // last param is growth factor
+
+      $scale-sm: fw-getResolutionScale(map-get($fw-breakpoints, sm));
+      $scale-md: fw-getResolutionScale(map-get($fw-breakpoints, md));
+      $scale-lg: fw-getResolutionScale(map-get($fw-breakpoints, lg));
+
+      $height-sm: fw-number(fw-scaleValues($begin, $end, $scale-sm));
+      $height-md: fw-number(fw-scaleValues($begin, $end, $scale-md));
+      $height-lg: fw-number(fw-scaleValues($begin, $end, $scale-lg));
+
+      @include fw-media(lg){
+        @include fw-generate-size($height-lg, $proportion);
+      };
+      @include fw-media(md){
+        @include fw-generate-size($height-md, $proportion);
+      };
+      @include fw-media(sm){
+        @include fw-generate-size($height-sm, $proportion);
+      };
+
+
+
+    }
+  }
+}
+
+button%fw-size-button,
+%fw-size-button[type=button]{
+  line-height: normal;
+}
+
+@mixin fw-size-base {
+  box-sizing: border-box;
+  display: inline-block;
+  > * {
+    line-height: inherit;
+  }
+
+  @extend %fw-size-button;
+
+}
+
+
+// =======================
+//    semantic material
+// =======================
+
+// a map of Material Ui Colors
+// https://www.google.com/design/spec/style/color.html
+
+// available colors:
+// red, pink, purple, deeppurple, indigo, blue, lightblue,
+// cyan, teal, green, lightgreen, lime, yellow, amber,
+// orange, deeporange, brown, grey, bluegrey
+// + extra colors: black, white only available in shade 500 which is #000 & #fff
+
+// shade 500 is default color for material colors
+
+// available shades:
+// A-shades are not available in last 3 material colors
+
+// 50
+// 100
+// 200
+// 300
+// 400
+// 500
+// 600
+// 700
+// 800
+// 900
+// A100
+// A200
+// A400
+// A700
+
+$fw-material-colors: (
+  red: (
+    50: #ffebee,
+    100: #ffcdd2,
+    200: #ef9a9a,
+    300: #e57373,
+    400: #ef5350,
+    500: #f44336,
+    600: #e53935,
+    700: #d32f2f,
+    800: #c62828,
+    900: #b71c1c,
+    A100: #ff8a80,
+    A200: #ff5252,
+    A400: #ff1744,
+    A700: #d50000
+  ),
+  pink: (
+    50: #FCE4EC,
+    100: #F8BBD0,
+    200: #F48FB1,
+    300: #F06292,
+    400: #EC407A,
+    500: #E91E63,
+    600: #D81B60,
+    700: #C2185B,
+    800: #AD1457,
+    900: #880E4F,
+    A100: #FF80AB,
+    A200: #FF4081,
+    A400: #F50057,
+    A700: #C51162
+  ),
+  purple: (
+    50: #F3E5F5,
+    100: #E1BEE7,
+    200: #CE93D8,
+    300: #BA68C8,
+    400: #AB47BC,
+    500: #9C27B0,
+    600: #8E24AA,
+    700: #7B1FA2,
+    800: #6A1B9A,
+    900: #4A148C,
+    A100: #EA80FC,
+    A200: #E040FB,
+    A400: #D500F9,
+    A700: #AA00FF
+  ),
+  deeppurple: (
+    50: #EDE7F6,
+    100: #D1C4E9,
+    200: #B39DDB,
+    300: #9575CD,
+    400: #7E57C2,
+    500: #673AB7,
+    600: #5E35B1,
+    700: #512DA8,
+    800: #4527A0,
+    900: #311B92,
+    A100: #B388FF,
+    A200: #7C4DFF,
+    A400: #651FFF,
+    A700: #6200EA
+  ),
+  indigo: (
+    50: #E8EAF6,
+    100: #C5CAE9,
+    200: #9FA8DA,
+    300: #7986CB,
+    400: #5C6BC0,
+    500: #3F51B5,
+    600: #3949AB,
+    700: #303F9F,
+    800: #283593,
+    900: #1A237E,
+    A100: #8C9EFF,
+    A200: #536DFE,
+    A400: #3D5AFE,
+    A700: #304FFE
+  ),
+  blue: (
+    50: #E3F2FD,
+    100: #BBDEFB,
+    200: #90CAF9,
+    300: #64B5F6,
+    400: #42A5F5,
+    500: #2196F3,
+    600: #1E88E5,
+    700: #1976D2,
+    800: #1565C0,
+    900: #0D47A1,
+    A100: #82B1FF,
+    A200: #448AFF,
+    A400: #2979FF,
+    A700: #2962FF
+  ),
+  lightblue: (
+    50: #E1F5FE,
+    100: #B3E5FC,
+    200: #81D4FA,
+    300: #4FC3F7,
+    400: #29B6F6,
+    500: #03A9F4,
+    600: #039BE5,
+    700: #0288D1,
+    800: #0277BD,
+    900: #01579B,
+    A100: #80D8FF,
+    A200: #40C4FF,
+    A400: #00B0FF,
+    A700: #0091EA
+  ),
+  cyan: (
+    50: #E0F7FA,
+    100: #B2EBF2,
+    200: #80DEEA,
+    300: #4DD0E1,
+    400: #26C6DA,
+    500: #00BCD4,
+    600: #00ACC1,
+    700: #0097A7,
+    800: #00838F,
+    900: #006064,
+    A100: #84FFFF,
+    A200: #18FFFF,
+    A400: #00E5FF,
+    A700: #00B8D4
+  ),
+  teal: (
+    50: #E0F2F1,
+    100: #B2DFDB,
+    200: #80CBC4,
+    300: #4DB6AC,
+    400: #26A69A,
+    500: #009688,
+    600: #00897B,
+    700: #00796B,
+    800: #00695C,
+    900: #004D40,
+    A100: #A7FFEB,
+    A200: #64FFDA,
+    A400: #1DE9B6,
+    A700: #00BFA5
+  ),
+  green: (
+    50: #E8F5E9,
+    100: #C8E6C9,
+    200: #A5D6A7,
+    300: #81C784,
+    400: #66BB6A,
+    500: #4CAF50,
+    600: #43A047,
+    700: #388E3C,
+    800: #2E7D32,
+    900: #1B5E20,
+    A100: #B9F6CA,
+    A200: #69F0AE,
+    A400: #00E676,
+    A700: #00C853
+  ),
+  lightgreen: (
+    50: #F1F8E9,
+    100: #DCEDC8,
+    200: #C5E1A5,
+    300: #AED581,
+    400: #9CCC65,
+    500: #8BC34A,
+    600: #7CB342,
+    700: #689F38,
+    800: #558B2F,
+    900: #33691E,
+    A100: #CCFF90,
+    A200: #B2FF59,
+    A400: #76FF03,
+    A700: #64DD17
+  ),
+  lime: (
+    50: #F9FBE7,
+    100: #F0F4C3,
+    200: #E6EE9C,
+    300: #DCE775,
+    400: #D4E157,
+    500: #CDDC39,
+    600: #C0CA33,
+    700: #AFB42B,
+    800: #9E9D24,
+    900: #827717,
+    A100: #F4FF81,
+    A200: #EEFF41,
+    A400: #C6FF00,
+    A700: #AEEA00
+  ),
+  yellow: (
+    50: #FFFDE7,
+    100: #FFF9C4,
+    200: #FFF59D,
+    300: #FFF176,
+    400: #FFEE58,
+    500: #FFEB3B,
+    600: #FDD835,
+    700: #FBC02D,
+    800: #F9A825,
+    900: #F57F17,
+    A100: #FFFF8D,
+    A200: #FFFF00,
+    A400: #FFEA00,
+    A700: #FFD600
+  ),
+  amber: (
+    50: #FFF8E1,
+    100: #FFECB3,
+    200: #FFE082,
+    300: #FFD54F,
+    400: #FFCA28,
+    500: #FFC107,
+    600: #FFB300,
+    700: #FFA000,
+    800: #FF8F00,
+    900: #FF6F00,
+    A100: #FFE57F,
+    A200: #FFD740,
+    A400: #FFC400,
+    A700: #FFAB00
+  ),
+  orange: (
+    50: #FFF3E0,
+    100: #FFE0B2,
+    200: #FFCC80,
+    300: #FFB74D,
+    400: #FFA726,
+    500: #FF9800,
+    600: #FB8C00,
+    700: #F57C00,
+    800: #EF6C00,
+    900: #E65100,
+    A100: #FFD180,
+    A200: #FFAB40,
+    A400: #FF9100,
+    A700: #FF6D00
+  ),
+  deeporange: (
+    50: #FBE9E7,
+    100: #FFCCBC,
+    200: #FFAB91,
+    300: #FF8A65,
+    400: #FF7043,
+    500: #FF5722,
+    600: #F4511E,
+    700: #E64A19,
+    800: #D84315,
+    900: #BF360C,
+    A100: #FF9E80,
+    A200: #FF6E40,
+    A400: #FF3D00,
+    A700: #DD2C00
+  ),
+  brown: (
+    50: #EFEBE9,
+    100: #D7CCC8,
+    200: #BCAAA4,
+    300: #A1887F,
+    400: #8D6E63,
+    500: #795548,
+    600: #6D4C41,
+    700: #5D4037,
+    800: #4E342E,
+    900: #3E2723
+  ),
+  grey: (
+    50: #FAFAFA,
+    100: #F5F5F5,
+    200: #EEEEEE,
+    300: #E0E0E0,
+    400: #BDBDBD,
+    500: #9E9E9E,
+    600: #757575,
+    700: #616161,
+    800: #424242,
+    900: #212121
+  ),
+  bluegrey: (
+    50: #ECEFF1,
+    100: #CFD8DC,
+    200: #B0BEC5,
+    300: #90A4AE,
+    400: #78909C,
+    500: #607D8B,
+    600: #546E7A,
+    700: #455A64,
+    800: #37474F,
+    900: #263238
+  ),
+  black: (
+    500: #000000
+  ),
+  white: (
+    500: #ffffff
+  )
+);
+
+
+
+
+// Fetch nested keys
+@function fw-map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+
+// function for easy retreiving colors from MaterialUi Color Map
+@function fw-color(
+  $name: null,
+  $shade: 500
+){
+  @if ( $name == white ) or ( $name == black ) { $shade: 500 }
+  @return fw-map-deep-get($fw-material-colors, $name, $shade);
+}
+
+
+// =======================
+//    semantic rounding
+// =======================
+
+$fw-rounded: 9px;
+$fw-rounded-sm: 5px;
+$fw-rounded-md: 9px;
+$fw-rounded-lg: 14px;
+$fw-rounded-xl: 20px;
+
+
+// ==================
+//    semantic bar
+// ==================
+
+@mixin fw-bar(){
+  display: block;
+  font-size: 0; // clear gaps
+}
+
+@mixin fw-bar-side {
+  display: inline-block;
+  width: 100%;
+  margin-right: -100%;
+  vertical-align: middle;
+  font-size: 16px; // restore font, with px fallback
+  font-size: 1rem;
+}
+
+@mixin fw-bar-item {
+  position: relative;
+  z-index: 2; // fix items z-order
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+// ========================
+//    semantic fillSpace
+// ========================
+
+@mixin fw-space {
+  width: 100%;
+  @include fw-clearfix;
+}
+@mixin fw-space-left {
+  float: left;
+}
+@mixin fw-space-right {
+  float: right;
+}
+@mixin fw-space-fill {
+  overflow: hidden;
+}
+
+
+// =========================
+//    semantic gridSystem
+// =========================
+
+// ------------------------
+// helper function for grid
+//
+
+// Round a number to specified digits.
+//
+// @param  {Number} $number A number to round
+// @param  {Number} [$digits:0] Digits to output
+// @param  {String} [$mode:round] (round|ceil|floor) How to round a number
+// @return {Number} A rounded number
+// @example
+//     decimal-round(0.333)    => 0
+//     decimal-round(0.333, 1) => 0.3
+//     decimal-round(0.333, 2) => 0.33
+//     decimal-round(0.666)    => 1
+//     decimal-round(0.666, 1) => 0.7
+//     decimal-round(0.666, 2) => 0.67
+//
+@function fw-decimal-round ($number, $digits: 0, $mode: round) {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+  @if $mode == round {
+    @return round($number * $n) / $n;
+  } @else if $mode == ceil {
+    @return ceil($number * $n) / $n;
+  } @else if $mode == floor {
+    @return floor($number * $n) / $n;
+  } @else {
+    @warn '#{ $mode } is undefined keyword.';
+    @return $number;
+  }
+}
+
+// source:
+// http://stackoverflow.com/questions/29901096/sass-scss-rounding-down-with-decimal-places
+@function fw-decimal-round ($number, $digits: 0, $mode: round) {
+    $n: 1;
+    // $number must be a number
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+    // $digits must be a unitless number
+    @if type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+    @for $i from 1 through $digits {
+        $n: $n * 10;
+    }
+    @if $mode == round {
+        @return round($number * $n) / $n;
+    } @else if $mode == ceil {
+        @return ceil($number * $n) / $n;
+    } @else if $mode == floor {
+        @return floor($number * $n) / $n;
+    } @else {
+        @warn '#{ $mode } is undefined keyword.';
+        @return $number;
+    }
+}
+
+// Ceil a number to specified digits.
+//
+// @param  {Number} $number A number to round
+// @param  {Number} [$digits:0] Digits to output
+// @return {Number} A ceiled number
+// @example
+//     decimal-ceil(0.333)    => 1
+//     decimal-ceil(0.333, 1) => 0.4
+//     decimal-ceil(0.333, 2) => 0.34
+//     decimal-ceil(0.666)    => 1
+//     decimal-ceil(0.666, 1) => 0.7
+//     decimal-ceil(0.666, 2) => 0.67
+//
+@function fw-decimal-ceil ($number, $digits: 0) {
+  @return fw-decimal-round($number, $digits, ceil);
+}
+
+// calculate and check grid size settings
+@function fw-grid-calc(
+  $settings: null
+){
+  $columns: map-get($settings, columns);
+  $gridWidth: map-get($settings, gridWidth);
+  $columnWidth: map-get($settings, columnWidth);
+  $spacingX: map-get($settings, spacingX);
+  $spacingY: map-get($settings, spacingY);
+
+  // ---------------
+  // check arguments
+  //
+
+  // force to pass only 2 arguments
+  $args: 0;
+  @if $columns != null { $args: $args+1 }
+  @if $gridWidth != null { $args: $args+1 }
+  @if $columnWidth != null { $args: $args+1 }
+  @if $args != 2 {
+    @error "You have to pass two 'sizing arguments' to generate grid.";
+  }
+
+
+  // if width is unitless proportion - convert to %;
+  @if $gridWidth and type-of($gridWidth) == number {
+    @if unitless($gridWidth) {
+      @if $gridWidth <= 0 or $gridWidth > 1 {
+        @error 'grid: $gridWidth #{$gridWidth} gives you #{$gridWidth * 100%}, $gridWidth must be between 1% and 100%';
+      }
+      $gridWidth: $gridWidth * 100%;
+    }
+  }
+
+  // if column is unitless proportion - convert to %;
+  @if $columnWidth and type-of($columnWidth) == number {
+    @if unitless($columnWidth) {
+      @if $columnWidth<= 0 or $columnWidth > 1 {
+        @error 'grid: $columnWidth #{$columnWidth} gives you #{$columnWidth * 100%}, $columnWidth must be between 1% and 100%';
+      }
+      $columnWidth: $columnWidth * 100%;
+    }
+  }
+
+  // prevent passing number of columns and percentage columnWidth same time
+  @if $columns and type-of($columnWidth) == number {
+    @if unit($columnWidth) == "%" {
+      @error "grid: you can't define number of columns and columnWidth in [%] at the same time.";
+    }
+  }
+
+  // -------------------------
+  // check argument data types
+  //
+
+  // $columns must be a full unitless number, for example: 12
+  // $columns: null;
+  @if $columns {
+    @if type-of($columns) != number or unitless($columns) == false or round($columns) != $columns {
+      @error 'grid: $columns #{$columns} must be a full unitless number, for example: 12';
+    }
+    @if $columns <= 0 {
+      @error 'grid: $columns #{$columns} must be bigger than 0';
+    }
+  }
+
+  // $gridWidth must be a number in [0+]px or [1-100]% or unitless [a/b]proportion, for example: 960px or 80% or 4/5
+  // $gridWidth: 10;
+  @if $gridWidth {
+    @if type-of($gridWidth) != number or
+        unit($gridWidth) != px and
+        unit($gridWidth) != "%" and
+        unitless($gridWidth) != true {
+      @error 'grid: $gridWidth #{$gridWidth} must be a number in px[0+] or %[1-100] or unitless proportion[a/b], for example: 960px or 80% or 4/5';
+    }
+    @if $gridWidth <= 0 {
+      @error 'grid: $gridWidth #{$gridWidth} must be bigger than 0';
+    }
+  }
+
+  // $columnWidth must be a number in px or %, or unitless proportion, for example: 80px or 10%, or 1/12
+  // $columnWidth: 1%;
+  @if $columnWidth {
+    @if type-of($columnWidth) != number or
+        unit($columnWidth) != px and
+        unit($columnWidth) != "%" and
+        unitless($columnWidth) != true {
+      @error 'grid: $columnWidth #{$columnWidth} must be a number in px[0+] or %[1-100] or unitless proportion[a/b], for example: 80px or 10% or 1/12';
+    }
+    @if $columnWidth <= 0 {
+      @error 'grid: $columnWidth #{$columnWidth} must be bigger than 0';
+    }
+  }
+
+  // $spacingX must be a number in px[0+], for example: 20px
+  // $spacingX: 20px;
+  @if $spacingX {
+    @if type-of($spacingX) != number or
+        (unit($spacingX) == px or unitless($spacingX)) == false {
+      @error 'grid: $spacingX #{$spacingX} must be a number in px[0+], for example: 20px';
+    }
+  }
+  // $spacingY must be a number in px[0+], for example: 20px
+  // $spacingY: 12px;
+  @if $spacingY {
+    @if type-of($spacingY) != number or
+        (unit($spacingY) == px or unitless($spacingY)) == false {
+      @error 'grid: $spacingY #{$spacingY} must be a number in px[0+], for example: 20px';
+    }
+  }
+
+  // --------------------------------------
+  // calculate missing third size arguments
+  //
+
+  // automatically calculate third argument of sizing
+  // case calculate size
+  @if $gridWidth and $columnWidth {
+
+    // case 1 width in % column in %
+    @if unit($gridWidth) == "%" and unit($columnWidth) == "%" {
+      $columns: floor(100%/$columnWidth);
+    }
+
+    // case 2 width in % column in px
+    @if unit($gridWidth) == "%" and unit($columnWidth) == px {
+      $columns: 12;
+    }
+
+    // case 3 width in px column in %
+    @if unit($gridWidth) == px and unit($columnWidth) == "%" {
+      $columns: floor(100%/$columnWidth);
+    }
+
+    // check if user passed proper column width for case 1 or 3
+    @if (unit($gridWidth) == "%" and unit($columnWidth) == "%") or
+        (unit($gridWidth) == px and unit($columnWidth) == "%") {
+      $check-width: fw-decimal-ceil($columns * $columnWidth, 5);
+      @if $check-width != 100% {
+        @error 'grid: Wrong column width: #{$columns}cols * #{$columnWidth} = #{$check-width}, a sum of 100% is expected.';
+      }
+    }
+
+    // case 4 width in px column in px
+    @if unit($gridWidth) == px and unit($columnWidth) == px {
+      $columns: floor($gridWidth / $columnWidth);
+      $check-width: fw-decimal-ceil($columns * $columnWidth, 5);
+      @if $check-width != $gridWidth {
+        @error 'grid: Wrong column width: #{$columns}cols * #{$column} = #{$check-width}, #{$gridWidth}(grid width) is expected.';
+      }
+    }
+  }
+  // case calculate width
+  @else if $columns and $columnWidth {
+    // case 5 size and column in %
+    @if unit($columnWidth) == "%" {
+      // you can't define size and column width in % at the same time
+      // $gridWidth has been set to 100% and go to calculations in case 7
+    }
+
+    // case 6 size and column in px
+    @if unit($columnWidth) == px {
+      $gridWidth: $columns * $columnWidth;
+    }
+  }
+
+  // case calculate column
+  @else if $columns and $gridWidth {
+    // case 7 size and grid width in %
+    // calculate column width by dividing 100%/$columns
+    @if unit($gridWidth) == "%" {
+      $columnWidth: 100% / $columns;
+    }
+
+    // case 8 size and width in px
+    @if unit($gridWidth) == px {
+      $columnWidth: $gridWidth / $columns;
+    }
+  }
+
+  @return (
+    columns: $columns,
+    gridWidth: $gridWidth,
+    columnWidth: $columnWidth,
+    spacingX: $spacingX,
+    spacingY: $spacingY
+  )
+}
+
+@mixin fw-generate-grid(
+  $settings: null
+){
+  $grid-calc: fw-grid-calc($settings);
+  $columns: map-get($grid-calc, columns);
+  $gridWidth: map-get($grid-calc, gridWidth);
+  $columnWidth: map-get($grid-calc, columnWidth);
+  $spacingX: map-get($grid-calc, spacingX);
+  $spacingY: map-get($grid-calc, spacingY);
+
+  box-sizing: border-box;
+  margin: auto;
+  width: $gridWidth;
+  @include fw-clearfix;
+
+}
+
+
+
+
+@mixin fw-generate-column(
+  $span: null,
+  $settings: null
+){
+  $grid-calc: fw-grid-calc($settings);
+  $columnWidth: map-get($grid-calc, columnWidth);
+  $columns: map-get($grid-calc, columns);
+  $spacingX: map-get($grid-calc, spacingX);
+  $spanWidth: $span * $columnWidth;
+  // if spacingX is defined - remove it's width from columnWidth
+  @if $spacingX {
+    @if unit($columnWidth) == px or $spacingX == 0 {
+      // PX Width
+      $columnWidth: $columnWidth + $spacingX / $columns;
+      width: -1 * fw-decimal-round($spacingX + $columnWidth * $span, 3, floor);
+    } @else {
+      // % + PX Width
+      width: fw-decimal-round($columnWidth * $span, 3, floor); // old browsers fallback
+      width: calc(#{-1 * $spacingX} + #{fw-decimal-round($columnWidth * $span, 3, floor)});
+    }
+  } @else {
+    width: fw-decimal-round($columnWidth * $span, 3, floor);
+  }
+}
+
+@mixin fw-column-base(
+  $settings: null
+){
+  $grid-calc: fw-grid-calc($settings);
+  $spacingX: map-get($grid-calc, spacingX);
+  $spacingY: map-get($grid-calc, spacingY);
+
+  box-sizing: border-box;
+  float: left;
+
+  @if $spacingX {
+    margin-left: $spacingX;
+  } @else {
+    margin-left: 0;
+  }
+  @if $spacingY {
+    margin-top: $spacingY;
+  } @else {
+    margin-top: 0;
+  }
+
+}
+
+@mixin fw-grid-row(
+  $settings: null
+){
+  $grid-calc: fw-grid-calc($settings);
+  $spacingX: map-get($grid-calc, spacingX);
+  $spacingY: map-get($grid-calc, spacingY);
+  @include fw-clearfix;
+  @if $spacingX {
+    margin-left: #{$spacingX * -1};
+  } @else {
+    margin-left: 0;
+  }
+  @if $spacingY {
+    margin-top: #{$spacingY * -1};
+  } @else {
+    margin-top: 0;
+  }
+
+}
+
+
+// ===========================
+//    semantic justifiedBar
+// ===========================
+
+@mixin fw-justified {
+  text-align: justify;
+  font-size: 0;
+  width: 100%;
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+@mixin fw-just-item {
+  display: inline-block;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+
+// ===================
+//    semantic list
+// ===================
+
+@mixin fw-list {
+  list-style: none;
+  padding: 0;
+  display: block;
+}
+@mixin fw-list-item {
+  display: block;
+  list-style: none;
+}
+
+
+// ===================
+//    semantic pile
+// ===================
+
+@mixin fw-pile {
+  font-size: 0;
+  width: 100%;
+}
+@mixin fw-pile-item {
+  font-size: 16px;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+
+// =======================
+//    semantic position
+// =======================
+
+@mixin fw-position(
+  $position: center,
+  $offset: inner
+){
+
+  // available positions:
+  // top-left
+  // left
+  // bottom-left
+  // top
+  // center
+  // bottom
+  // top-right
+  // right ght
+  // bottom-right
+
+  // available offsets"
+  // inner - inside element
+  // edge - on the edge of element
+  // outer - outside element
+
+  position: absolute;
+
+  @if $position == top-left {
+    top: 0;
+    left: 0;
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(-100%);
+    }
+  }
+
+  @if $position == left {
+    top: 50%;
+    left: 0;
+    @if $offset == inner {
+      transform: translateY(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(-50%);
+    }
+  }
+
+  @if $position == bottom-left {
+    bottom: 0;
+    left: 0;
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(100%);
+    }
+  }
+
+  @if $position == top {
+    top: 0;
+    left: 50%;
+    @if $offset == inner {
+      transform: translateX(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-50%) translateY(-100%);
+    }
+  }
+
+  @if $position == center {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  @if $position == bottom {
+    bottom: 0;
+    left: 50%;
+    @if $offset == inner {
+      transform: translateX(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-50%) translateY(100%);
+    }
+  }
+
+  @if $position == top-right {
+    top: 0;
+    right: 0;
+    @if $offset == edge {
+      transform: translateX(50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(-100%);
+    }
+  }
+
+  @if $position == right {
+    top: 50%;
+    right: 0;
+    @if $offset == inner {
+      transform: translateY(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(-50%);
+    }
+  }
+
+  @if $position == bottom-right {
+    bottom: 0;
+    right: 0;
+    @if $offset == edge {
+      transform: translateX(50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(100%);
+    }
+  }
+
+}
+
+
+// ====================
+//    semantic table
+// ====================
+
+@mixin fw-table{
+  display: table;
+  width: 100%;
+  //- height: 100%; // it is very helpful, for nested tables, but unexpected for developers
+  border-collapse: collapse; // allow to add row borders
+  table-layout: fixed; // set equal size for unstyled cells
+  box-sizing: border-box;
+}
+
+@mixin fw-table-row {
+  display: table-row;
+  height: inherit; // fix row height on ie
+  box-sizing: border-box;
+
+}
+
+@mixin fw-table-column {
+  display: table-cell;
+  vertical-align: top;
+  height: inherit; // fix column height on ie
+  box-sizing: border-box;
+}

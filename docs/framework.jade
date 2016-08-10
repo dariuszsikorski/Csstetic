@@ -1,0 +1,534 @@
+
+extends ./_layout
+
+block title
+  title components
+
+//- block content
+//-   p Hello
+
+block append content
+  aside.fw-sidebar
+    .fw-inner
+      .fw-logo
+        .hexagon-out
+          .hexagon-in
+          p.label cssfw
+        h5.subtitle CSS Framework
+      //- .fw-switch
+      //-   span.lang-scss.active scss
+      //-   span.lang-css css
+
+  .fw-content
+    .fw-inner
+
+
+      .fw-group(data-name='Resizables')
+        //- --------------------------------------------------------
+        section.ready
+          h3 Headers
+
+          h1 H1 Main Page Header
+          h2 H2 Slogan Heading
+          h3 H3 Section header
+          h4 H4 subsection
+          h5 H5 Description
+
+        section.ready
+          h3 Code Blocks
+
+
+          .fw-code.scss
+            :code
+              .fw-code.scss
+                :code
+                  some code...
+
+
+          .fw-code.css
+            :code
+              .fw-code.css
+                :code
+                  some code...
+
+
+          .fw-code.html
+            :code
+              .fw-code.html
+                :code
+                  some code...
+
+
+          .fw-code.js
+            :code
+              .fw-code.js
+                :code
+                  some code...
+
+
+          .fw-code.small
+            :code
+              .fw-code.small
+                :code
+                  some code...
+
+
+
+
+          .fw-code(data-header='SOME CUSTOM HEADING')
+            :code
+              .fw-code(data-header='SOME CUSTOM HEADING')
+                :code
+                  some code...
+
+          .fw-code.scss(data-header='JADE')
+            :code
+              .fw-code.scss(data-header='JADE')
+                :code
+                  some code...
+
+
+          .fw-example.fw-copy.c-visible.fw-resizable
+            span element 1
+            span element 2
+            span element 3
+
+          .fw-code.scss(data-header='JADE')
+            :code
+              .fw-example.fw-copy.c-visible
+                span element 1
+                span element 2
+                span element 3
+
+          .fw-separator
+            span or
+          .fw-code
+            :code
+              .fw-separator
+                span or
+
+        section
+          h3 Content blocks
+
+          p regular text
+
+          div
+            p text nested in div (or any other element, but container)
+
+          .fw-container
+            p text nested in .fw-container
+
+          a(href="sdfs") link
+
+
+
+
+        section.ready
+          h3 Tabulations
+
+
+          .fw-tabulators
+            span tab 1
+            span tab 2
+            span tab 3
+
+          .fw-tabs
+            .fw-container
+              p tab 1 content
+            .fw-container
+              p tab 2 content
+            .fw-container
+              p tab 3 content
+
+          .fw-code.scss(data-header="jade")
+            :code
+              .fw-tabulators
+                span tab 1
+                span tab 2
+                span tab 3
+
+              .fw-tabs
+                .fw-container
+                  p tab 1 content
+                .fw-container
+                  p tab 2 content
+                .fw-container
+                  p tab 3 content
+
+
+
+
+        section.ready
+          h3 Resizable Content
+
+
+          .fw-code
+            :code
+              .fw-resizable
+
+
+
+          .fw-resizable
+            p .fw-resizable
+            p &nbsp;&nbsp;.fw-resizable-content
+
+
+            .fw-resizable-content
+              p resizable contents one line resizable text one line resizable text one line resizable text
+              p resizable contents one line resizable text one line resizable text one line resizable text
+              p resizable contents one line resizable text one line resizable text one line resizable text
+              p resizable contents one line resizable text one line resizable text one line resizable text
+              p resizable contents one line resizable text one line resizable text one line resizable text
+
+        section.ready
+          h3 Random resizable content
+          .fw-resizable
+            p .fw-resizable
+            p one line resizable text one line resizable text one line resizable text one line resizable text
+            p one line resizable text one line resizable text one line resizable text one line resizable text
+            p one line resizable text one line resizable text one line resizable text one line resizable text
+            p one line resizable text one line resizable text one line resizable text one line resizable text
+            p one line resizable text one line resizable text one line resizable text one line resizable text
+
+
+      .fw-group(data-name='Code blocks')
+
+        section.ready
+          h3 blueprint (not implemented css)
+          .fw-code
+            | class="ui-blueprint"
+
+          .fw-example.fw-copy
+            .ui-blueprint <span>some</span> <span>code</span>
+
+        section.ready
+          h3 pure code
+          .fw-code
+            | .fw-code
+            |   content goes here...
+
+
+
+        section.ready
+          h3 un-escaped html
+          .fw-code
+            | <div class="some-example">
+            |   <div class="header">
+            |     <p>this is header!</p>
+            |   </div>
+            |   <p>Lorem <a href="google.com">google link!</a> Some more text</p>
+            |   <p>Lorem ipsum dolor sit amet</p>
+            |   <div class="footer">
+            |     <p>this is footer!</p>
+            |   </div>
+            | </div>
+
+        section.ready
+          h3 escaped html code
+          p html code will always run before JS script's are loaded, so be careful, or use <a href="http://www.htmlescape.net/htmlescape_tool.html"><b>HTML Escape Tool</b></a>
+          .fw-code
+            | &lt;!DOCTYPE&nbsp;html&gt;<br/>&lt;html&nbsp;lang=&quot;en&quot;&gt;<br/>&nbsp;&nbsp;&lt;head&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta&nbsp;charset=&quot;utf-8&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;title&lt;/title&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;link&nbsp;rel=&quot;stylesheet&quot;&nbsp;href=&quot;style.css&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&nbsp;src=&quot;script.js&quot;&gt;&lt;/script&gt;<br/>&nbsp;&nbsp;&lt;/head&gt;<br/>&nbsp;&nbsp;&lt;body&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;page&nbsp;content&nbsp;--&gt;<br/>&nbsp;&nbsp;&lt;/body&gt;<br/>&lt;/html&gt;
+
+        section.ready
+          h3 javascript
+          p W3C invalid
+          .fw-code
+            | function parallaxScroll(){
+            |   var scrolledY = $(window).scrollTop();
+            |   var introHeight = $('.fw-section.ready-intro').innerHeight();
+            |   if(scrolledY <= introHeight){
+            |     var fadeInFactor = 1 - (scrolledY / introHeight);
+            |     var fadeOutFactor = (scrolledY / introHeight) * 6 + "px";
+            |     $('.fw-section.ready-intro').css('top', (scrolledY*0.6)+'px');
+            |     $('.fw-parallax-fade').css({
+            |       'opacity': fadeInFactor,
+            |       'filter': 'blur(' + fadeOutFactor + ')',
+            |       '-webkit-filter': 'blur(' + fadeOutFactor + ')'
+            |     });
+            |   }
+            | }
+
+        section.ready
+          h3 escaped javascript
+          .fw-code
+            | &nbsp;&nbsp;function&nbsp;parallaxScroll(){<br/>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;scrolledY&nbsp;=&nbsp;$(window).scrollTop();<br/>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;introHeight&nbsp;=&nbsp;$('.fw-section.ready-intro').innerHeight();<br/>&nbsp;&nbsp;&nbsp;&nbsp;if(scrolledY&nbsp;&lt;=&nbsp;introHeight){<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;fadeInFactor&nbsp;=&nbsp;1&nbsp;-&nbsp;(scrolledY&nbsp;/&nbsp;introHeight);<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;fadeOutFactor&nbsp;=&nbsp;(scrolledY&nbsp;/&nbsp;introHeight)&nbsp;*&nbsp;6&nbsp;+&nbsp;&quot;px&quot;;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('.fw-section.ready-intro').css('top',&nbsp;(scrolledY*0.6)+'px');<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('.fw-parallax-fade').css({<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'opacity':&nbsp;fadeInFactor,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'filter':&nbsp;'blur('&nbsp;+&nbsp;fadeOutFactor&nbsp;+&nbsp;')',<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'-webkit-filter':&nbsp;'blur('&nbsp;+&nbsp;fadeOutFactor&nbsp;+&nbsp;')'<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;}<br/>;
+
+
+        section.ready
+          h3 SCSS code
+          p W3c invalid
+          .fw-code
+            | .ui-button {
+            |   @include button;
+            |   &.xs {@include button-size(20px);}
+            |   &.sm {@include button-size(24px);}
+            |   &.md {@include button-size(30px);}
+            |   &.lg {@include button-size(38px);}
+            |   &.xl {@include button-size(48px);}
+            |   &.xxl {@include button-size(60px);}
+            | }
+
+        section.ready
+          h3 SCSS escaped
+          p W3c valid
+          .fw-code
+            |.ui-button {<br/>  @include button;<br/>  &amp;.xs {@include button-size(20px);}<br/>  &amp;.sm {@include button-size(24px);}<br/>  &amp;.md {@include button-size(30px);}<br/>  &amp;.lg {@include button-size(38px);}<br/>  &amp;.xl {@include button-size(48px);}<br/>  &amp;.xxl {@include button-size(60px);}<br/>}
+
+
+        section.ready
+          h3 CSS
+          .fw-code
+            | .ui-grid > .ui-col-6 {
+            |   width: 50%;
+            | }
+            | .ui-grid > .ui-col-7 {
+            |   width: 58.33334%;
+            | }
+            | .ui-grid > .ui-col-8 {
+            |   width: 66.66667%;
+            | }
+
+
+      .fw-group(data-name='Show Source Blocks')
+        //- --------------------------------------------------------
+
+        section.ready
+          h3 A1) Container with spoiler
+          .fw-example.fw-copy
+            p .fw-example.fw-copy
+            p content goes here...
+            p.ui-button.xs Button XS
+            p.ui-button.sm Button SM
+            p.ui-button.md Button MD
+            p.ui-button.lg Button LG
+            p.ui-button.xl Button XL
+            p.ui-button.xxl Button XXL
+
+        section.ready
+          h3 A2) container with visible code
+          .fw-example.fw-copy.c-visible
+            p .fw-example.fw-copy.c-visible
+            p content goes here...
+            p.ui-button.xs Button XS
+            p.ui-button.sm Button SM
+            p.ui-button.md Button MD
+            p.ui-button.lg Button LG
+            p.ui-button.xl Button XL
+            p.ui-button.xxl Button XXL
+          .fw-custom-source
+            .fw-scss-code
+              | .ui-grid1 > .ui-col-1 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid2 > .ui-col-2 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid3 > .ui-col-3 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid4 > .ui-col-4 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid5 > .ui-col-5 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid6 > .ui-col-6 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid7 > .ui-col-7 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+
+            .fw-css-code
+              | .cssTile-1 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-2 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-3 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-4 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-5 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-6 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-7 {
+              |   width: 50%;
+              | }
+
+            .fw-html-code
+              | <span>my span to copy 1</span>
+            .fw-html-code
+              | <span>my span to copy 2</span>
+            .fw-html-code
+              | <span>my span to copy 3</span>
+            .fw-html-code
+              | <span>my span to copy 4</span>
+            .fw-html-code
+              | <span>my span to copy 5</span>
+            .fw-html-code
+              | <span>my span to copy 6</span>
+            .fw-html-code
+              | <span>my span to copy 7</span>
+
+            .fw-js-code
+              | $(function(){ console.log("this is block 1") })
+            .fw-js-code
+              | $(function(){ console.log("this is block 2") })
+            .fw-js-code
+              | $(function(){ console.log("this is block 3") })
+            .fw-js-code
+              | $(function(){ console.log("this is block 4") })
+            .fw-js-code
+              | $(function(){ console.log("this is block 5") })
+            .fw-js-code
+              | $(function(){ console.log("this is block 6") })
+
+        section.ready
+          h3 B1) Copy elements with spoiler
+          .fw-example.fw-copy.c-elements
+            p .fw-example.fw-copy.c-elements
+            p content goes here...
+            p.ui-button.xs Button XS
+            p.ui-button.sm Button SM
+            p.ui-button.md Button MD
+            p.ui-button.lg Button LG
+            p.ui-button.xl Button XL
+            p.ui-button.xxl Button XXL
+          .fw-custom-source
+            .fw-scss-code
+              | .ui-grid1 > .ui-col-1 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid2 > .ui-col-2 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid3 > .ui-col-3 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid4 > .ui-col-4 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid5 > .ui-col-5 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid6 > .ui-col-6 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+            .fw-scss-code
+              | .ui-grid7 > .ui-col-7 {
+              |   width: 50%;
+              |   @include grid($something);
+              | }
+
+            .fw-css-code
+              | .cssTile-1 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-2 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-3 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-4 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-5 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-6 {
+              |   width: 50%;
+              | }
+            .fw-css-code
+              | .cssTile-7 {
+              |   width: 50%;
+              | }
+
+            .fw-html-code
+              | <span>my span to copy 1</span>
+            .fw-html-code
+              | <span>my span to copy 2</span>
+            .fw-html-code
+              | <span>my span to copy 3</span>
+
+            .fw-js-code
+              | $(function(){ console.log("this is block 1") })
+            .fw-js-code
+              | $(function(){ console.log("this is block 2") })
+            .fw-js-code
+              | $(function(){ console.log("this is block 3") })
+            .fw-js-code
+              | $(function(){ console.log("this is block 4") })
+            .fw-js-code
+              | $(function(){ console.log("this is block 5") })
+            .fw-js-code
+              | $(function(){ console.log("this is block 6") })
+
+
+        section.ready
+          h3 C1) Iframe with spoiler
+          .fw-resizable.fw-copy
+            iframe(src='../demos/grid-1.html')
+          .fw-code
+            | .fw-resizable.fw-copy
+            | iframe(src='../demos/grid-1.html')
+
+        section.ready
+          h3 C2) Iframe with visible code
+          .fw-resizable.fw-copy.c-visible
+            iframe(src='../demos/grid-1.html')
+          .fw-code
+            | .fw-resizable.fw-copy.c-visible
+            | iframe(src='../demos/grid-1.html')
+
+
+        section.ready
+
+          h3 Iframe
+          .fw-resizable
+            iframe(src='../demos/grid-1.html')
+          .fw-code
+            | .fw-resizable
+            |   iframe(src='../demos/grid-1.html')

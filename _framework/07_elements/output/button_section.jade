@@ -1,0 +1,78 @@
+section.sec-button
+    h3 Button
+    h5 Convert inline element into<br>a button, ready for styling.
+
+
+    .fw-tabulators
+      span Demo button
+      span Demo without button
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        .fw-resizable.fw-copy.c-elements.demo-buttons.fw-example
+
+          a.fw-button(href="#") Anchor as Button
+          p.fw-button Paragraph as Button
+          span.fw-button Span as Button
+          input.fw-button(type="button" value="Input as Button")
+
+        .fw-container
+          .fw-separator
+            span Styled
+        .fw-resizable.fw-copy
+          iframe(src='../demos/button_demo.html')
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements.fw-example
+          //- iframe(src='../demos/button_demo.html')
+          a(href="#") Anchor
+          p Paragraph
+          span Span
+          input(type="button" value="Input")
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-button {
+              @include fw-button;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-button"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-button">Hello!</span>
+        .fw-code.scss
+          :code
+            .my-button {
+              @include fw-button;
+
+              // optional, custom styling
+              @include fw-size-base;
+              @include fw-size(xxl);
+              border-radius: $fw-rounded-md;
+              background-color: fw-color(deeppurple, 500);
+              color: fw-color(white);
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="fw-button">Hello!</span>

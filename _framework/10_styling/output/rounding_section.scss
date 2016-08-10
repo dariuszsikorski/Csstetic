@@ -1,0 +1,17 @@
+.sec-rounding {
+  .round-custom-1 {
+    border-radius: $fw-rounded-xl $fw-rounded-sm $fw-rounded-xl $fw-rounded-sm;
+  }
+  .round-custom-2 {
+    border-radius: 50% 50% 0 0;
+  }
+  .rounding-demo {
+    span {
+      @include fw-size-base;
+      @include fw-size(xl);
+      background: darken(fw-color(bluegrey, 50), 3%);
+      margin: 5px;
+      color: #333;
+    }
+  }
+}

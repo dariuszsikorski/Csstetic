@@ -1,0 +1,114 @@
+$checkColor: fw-color(deeppurple, 600);
+$inactiveCheckColor: rgba(0,0,0,0.15);
+
+
+.se-checkbox {
+  display: block;
+  cursor: pointer;
+  &, & * {
+    transition: all 0.15s;
+  }
+  input {
+    display: none;
+  }
+  .label {
+    // color: green;
+    line-height: 20px;
+    vertical-align: middle;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    color: #444;
+  }
+  input:checked {
+    ~ .label {
+      // color: red;
+      // display: none;
+      .icon {
+        font-size: 12px;
+        background: $checkColor;
+      }
+    }
+  }
+  .icon {
+    margin-right: 5px;
+    position: relative;
+    top: -1px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 3px;
+    background: $inactiveCheckColor;
+    font-size: 0.0000001px;
+    color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    // margin-bottom: 4px;
+  }
+  &:hover {
+    .icon {
+      transform: scale(1.1);
+      -webkit-transform: scale(1.1);
+    }
+  }
+  &:active {
+    .icon {
+      transform: scale(0.9);
+      -webkit-transform: scale(0.9);
+    }
+  }
+}
+
+.se-checkbox {
+  // padding: 30px;
+}
+
+.check-toggle-sidebar {
+  // background: red;
+  position: fixed;
+  // right: -10px;
+  // top: 50px;
+  // z-index: 9999;
+  // transform: translateX(100%);
+  top: 51px;
+  left: 260px;
+  z-index: 9999999999;
+  .icon {
+    color: #6C4CA5;
+    margin: 0;
+    font-size: 24px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    background: #fff;
+    border: solid 1px #DDDCE4;
+    // background: #DDDCE4;
+  }
+  // .label {
+    // line-height: 50px;
+  // }
+  input:checked {
+    ~ .label {
+      // color: red;
+      // display: none;
+      .icon {
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        // background: $checkColor;
+      }
+    }
+  }
+  // input:checked {
+  //   ~ .label {
+  //     // color: red;
+  //     // display: none;
+  //     .icon {
+  //       // font-size: 12px;
+  //       // background: $checkColor;
+  //     }
+  //   }
+  // }
+}

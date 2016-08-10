@@ -1,0 +1,15 @@
+.sec-list {
+  .demo-list {
+    a:hover {
+      background: rgba(0,0,0,0.03);
+    }
+    .fw-list-item {
+      color: #333;
+      border-top: solid 2px #333;
+      padding: 10px;
+      &:first-child {
+      border-top: none;
+      }
+    }
+  }
+}

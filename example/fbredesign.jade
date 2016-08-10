@@ -1,0 +1,318 @@
+doctype html
+html(lang='en-us')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title FB Redesign demo
+    link(href='./assets/css/fbredesign.css', rel='stylesheet')
+
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+
+
+  body
+    .slide-navigator
+      .navi-button.previous<i class="icon ion-android-arrow-dropleft"></i>
+      .navi-button.next<i class="icon ion-android-arrow-dropright"></i>
+      //- .navi-info step 1/10
+
+    .slides
+      div(data-slide="1").slide-1.active
+
+        header.app-bar.topbar
+          .bar-center
+            .bar-item
+              span topbar
+            .bar-item
+              //- span subbar
+          .bar-left
+            .bar-item
+              //- span left item
+            .bar-item
+              //- span left item
+          .bar-right
+            .bar-item
+              //- span right item
+            .bar-item
+              //- span right item
+
+        .app-bar.subbar
+          .bar-center
+            .bar-item
+              span subbar
+            .bar-item
+              //- span subbar
+          .bar-left
+            .bar-item
+              //- span left item
+            .bar-item
+              //- span left item
+          .bar-right
+            .bar-item
+              //- span right item
+            .bar-item
+              //- span right item
+
+        .app-wrapper
+          .app-row
+            aside.app-sidebar.app-col side
+            .app-col
+
+              .tile-grid
+                .tile-row
+                  .tile-col.size-2
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+
+
+
+
+      div(data-slide="2").slide-2.active
+        header.app-bar.topbar
+          .bar-left
+            .bar-item
+              h1 <a href="#">facebook</a>
+            .bar-item
+              .quick-icons
+                .quick-icons-item
+                  span <i class="icon ionicons ion-person-stalker"></i>
+                  span.label 4
+                .quick-icons-item
+                  span <i class="icon ionicons ion-ios-chatboxes"></i>
+                  span.label 4
+                .quick-icons-item
+                  span <i class="icon fa fa-globe"></i>
+                  span.label 4
+
+
+            .bar-item
+              nav.bar-navigation.medium
+                ul
+                  li
+                    a(href="#") News
+                  li
+                    a(href="#") Messages
+                  li
+                    a(href="#") Events
+                  li
+                    a(href="#") Photos
+                  li
+                    a(href="#") Find Friends
+
+
+
+          .bar-right
+            .bar-item
+              label.find-friends Find Friends
+                input(type="text")
+                <i class="icon fa fa-search"></i>
+
+        .app-bar.subbar
+          .bar-left
+            .bar-item.logged-in
+              p <span class="btn-logout"><i class="ionicons ion-android-exit"></i></span><span class="username">Melissa Adams</span>
+            .bar-item
+              .quick-icons.medium
+                .quick-icons-item
+                  span <i class="icon material-icons">view_quilt</i>
+                .quick-icons-item
+                  span <i class="material-icons">view_day</i>
+
+            .bar-item
+              nav.bar-navigation.small
+                ul
+                  li
+                    a(href="#") View All <span class="counter">130</span>
+                  li
+                    a(href="#") Close Friends <span class="counter">19</span>
+                  li
+                    a(href="#") Collegues <span class="counter">12</span>
+
+          .bar-right
+            .bar-item
+              label.status-form <i class="icon material-icons">insert_drive_file</i> Status
+                input(type="text")
+
+
+        .app-wrapper
+          .app-row
+            aside.app-sidebar.app-col
+              section.widget
+                //- p profile
+                p Image
+                p Back to profile
+                p About me
+
+              section.widget
+                //- p navigation
+                p Favourites
+                p Ads
+                p Pages (20+)
+                p Apps (12+)
+
+
+              section.widget
+                //- p sub navigation
+                p App center
+                p Games feed
+                p Music
+                p Notes
+                p Links
+                p Place Editor
+                p Pokes
+              section.widget
+                //- p navigation
+                p Groups
+                p More
+
+
+              section.widget
+                //- p meta links
+                p My Account
+                p Account Settings
+                p Privacy Settings
+
+              section.widget
+                p logout
+
+
+            .app-col
+
+              .tile-grid
+                .tile-row
+                  .tile-col.size-2
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+                  .tile-col
+                    article.tile
+                      .tile-content tile
+
+      div(data-slide="3").slide-3
+        p slide 3
+      div(data-slide="4").slide-4
+        p slide 4
+      div(data-slide="5").slide-5
+        p slide 5
+      div(data-slide="6").slide-6
+        p slide 6
+
+
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.2/jquery.min.js', type='text/javascript')
+  script(src='./assets/js/scripts.js', type='text/javascript')

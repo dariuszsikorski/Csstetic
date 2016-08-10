@@ -1,0 +1,9 @@
+.sec-display {
+  .demo-display {
+    div:not(:last-child) {
+      border: solid 1px #333;
+      margin: 5px 0;
+      padding: 6px 10px
+    }
+  }
+}

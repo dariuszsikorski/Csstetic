@@ -1,0 +1,35 @@
+.sec-material {
+  .demo-background,
+  .demo-background-2 {
+    > * {
+      padding: 10px 20px;
+      box-sizing: border-box;
+      float: left;
+      color: #fff;
+    }
+    .fw-bg-white,
+    .fw-bg-white-500 {
+      outline: solid 2px #ddd;
+      color: #000;
+    }
+  }
+  .demo-background-2 {
+    > * {
+      width: (100/10) * 1%;
+    }
+  }
+  .demo-background {
+    overflow: hidden;
+    > * {
+      width: (100/14) * 1%;
+    }
+  }
+  .demo-text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    font-size: 17px;
+  }
+}

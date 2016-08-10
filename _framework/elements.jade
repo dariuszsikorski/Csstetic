@@ -1,0 +1,395 @@
+section.sec-tile
+    h3 Tiles
+    h5 Create a rectangle of proportional size.<br>Tiles can be used to make responsive metro-style layouts,<br>image thumbnails or galleries.
+
+
+    .fw-tabulators
+      span Colors
+      span Wireframe
+      span Photos
+      span Heights
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        .fw-resizable.fw-copy.tile-demo.tile-demo-photo
+          .fw-tile.fw-tile-2.fw-bg-bluegrey-100(style="max-width: 25%;")
+            .fw-tile-content
+              p Do your <b>best</b>
+          .fw-tile.fw-tile-050.fw-bg-bluegrey-600(style="max-width: 50%;")
+            .fw-tile-content.dimmed
+              p.fw-pos-top-left Live, learn, <b>love</b>
+          .fw-tile.fw-bg-bluegrey-900(style="max-width: 25%;")
+            .fw-tile-content
+              p Don’t regret <b>decisions</b>
+          .fw-tile.fw-bg-bluegrey-200(style="max-width: 25%;")
+            .fw-tile-content
+              .fw-tile.fw-pos-bottom-left.fw-bg-bluegrey-100(style="max-width: 30%; min-width: 40px")
+              p Don’t just <b>think</b>
+          .fw-tile.fw-bg-bluegrey-100(style="max-width: 25%;")
+            .fw-tile-content
+              p <b>Read</b> something new
+          .fw-tile.fw-tile-050.fw-bg-teal(style="max-width: 25%;")
+            .fw-tile-content
+              p Dream, <b>believe</b>
+          .fw-tile.fw-tile-050.fw-bg-deeppurple-600(style="max-width: 25%;")
+            .fw-tile-content
+              p Life is <b>awesome</b>
+
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.tile-demo
+          .fw-tile.fw-tile-2(style="max-width: 25%;")
+            .fw-tile-content
+              p height 200%<br>max-width: 25%
+          .fw-tile.fw-tile-050(style="max-width: 50%;")
+            .fw-tile-content
+              p height: 50%<br>max-width: 50%
+          .fw-tile(style="max-width: 25%;")
+            .fw-tile-content
+              p height: 100%<br>max-width: 25%
+          .fw-tile(style="max-width: 25%;")
+            .fw-tile-content
+              p height: 100%<br>max-width: 25%
+          .fw-tile(style="max-width: 25%;")
+            .fw-tile-content
+              p height: 100%<br>max-width: 25%
+          .fw-tile.fw-tile-050(style="max-width: 25%;")
+            .fw-tile-content
+              p height: 50%<br>max-width: 25%
+          .fw-tile.fw-tile-050(style="max-width: 25%;")
+            .fw-tile-content
+              p height: 50%<br>max-width: 25%
+      div
+        //- p content 1
+
+        .fw-resizable.fw-copy.tile-demo.tile-demo-photo
+          .fw-tile.fw-tile-2(style="max-width: 25%; background-image: url(https://static.pexels.com/photos/7529/pexels-photo-large.jpeg)")
+            .fw-tile-content
+              p Do your <b>best</b>
+          .fw-tile.fw-tile-050(style="max-width: 50%; background-image: url(https://static.pexels.com/photos/36367/pexels-photo-large.jpg)")
+            .fw-tile-content.dimmed
+              p.fw-pos-top-left Live, learn, <b>love</b>
+          .fw-tile.fw-bg-bluegrey-900(style="max-width: 25%;")
+            .fw-tile-content
+              p Don’t regret <b>decisions</b>
+          .fw-tile.fw-bg-bluegrey-200(style="max-width: 25%;")
+            .fw-tile-content
+              .fw-tile.fw-pos-bottom-left(style="max-width: 30%; min-width: 40px; background-image: url(https://static.pexels.com/photos/4952/sky-beach-vacation-summer-medium.jpeg)")
+              p Don’t just <b>think</b>
+          .fw-tile(style="max-width: 25%; background-image: url(https://static.pexels.com/photos/26521/pexels-photo-large.jpg)")
+            .fw-tile-content
+              p <b>Read</b> something new
+          .fw-tile.fw-tile-050(style="max-width: 25%; background-image: url(https://static.pexels.com/photos/54536/pexels-photo-54536.jpeg)")
+            .fw-tile-content
+              p Dream, <b>believe</b>
+          .fw-tile.fw-tile-050.fw-bg-deeppurple-600(style="max-width: 25%; background-image: url()")
+            .fw-tile-content
+              p Life is <b>awesome</b>
+
+      div.fw-container
+        .fw-resizable.fw-copy.tile-demo
+          .fw-tile.fw-tile-025(style="max-width: 25%;")
+            .fw-tile-content
+              p height 25%
+          .fw-tile.fw-tile-050(style="max-width: 25%;")
+            .fw-tile-content
+              p height 50%
+          .fw-tile.fw-tile-075(style="max-width: 25%;")
+            .fw-tile-content
+              p height 75%
+          .fw-tile.fw-tile-100(style="max-width: 25%;")
+            .fw-tile-content
+              p height 125%
+          .fw-tile.fw-tile-125(style="max-width: 25%;")
+            .fw-tile-content
+              p height 150%
+          .fw-tile.fw-tile-150(style="max-width: 25%;")
+            .fw-tile-content
+              p height 175%
+          .fw-tile.fw-tile-175(style="max-width: 25%;")
+            .fw-tile-content
+              p height 175%
+          .fw-tile.fw-tile-200(style="max-width: 25%;")
+            .fw-tile-content
+              p height 200%
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-tile {
+              @include fw-tile;
+              @include fw-tile-height(3/4); // or (75%)
+              max-width: 25%; // optional
+            }
+            .my-tile-content {
+              @include fw-tile-content;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-tile fw-tile-075">
+              <div class="fw-tile-content">content...</div>
+            </div>
+        .fw-separator
+          span Classic heights
+        p .fw-tile<b>-1</b> - 100% (step is every 100%)&nbsp; &nbsp; ... &nbsp; &nbsp;up to .fw-tile<b>-4</b> - 400%<br><br>.fw-tile<b>-025</b> - 25% (step is every 25%)&nbsp; &nbsp; ... &nbsp; &nbsp;up to .fw-tile<b>-400</b> - 400%
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-tile">
+              <div class="my-tile-content">content...</div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-tile {
+              @include fw-tile;
+              @include fw-tile-height(3/4); // or (75%)
+              max-width: 25%; // optional
+            }
+            .my-tile-content {
+              @include fw-tile-content;
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-tile fw-tile-075">
+              <div class="fw-tile-content">content...</div>
+            </div>
+section.sec-button
+    h3 Button
+    h5 Convert inline element into<br>a button, ready for styling.
+
+
+    .fw-tabulators
+      span Demo button
+      span Demo without button
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        .fw-resizable.fw-copy.c-elements.demo-buttons.fw-example
+
+          a.fw-button(href="#") Anchor as Button
+          p.fw-button Paragraph as Button
+          span.fw-button Span as Button
+          input.fw-button(type="button" value="Input as Button")
+
+        .fw-container
+          .fw-separator
+            span Styled
+        .fw-resizable.fw-copy
+          iframe(src='../demos/button_demo.html')
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements.fw-example
+          //- iframe(src='../demos/button_demo.html')
+          a(href="#") Anchor
+          p Paragraph
+          span Span
+          input(type="button" value="Input")
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-button {
+              @include fw-button;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-button"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-button">Hello!</span>
+        .fw-code.scss
+          :code
+            .my-button {
+              @include fw-button;
+
+              // optional, custom styling
+              @include fw-size-base;
+              @include fw-size(xxl);
+              border-radius: $fw-rounded-md;
+              background-color: fw-color(deeppurple, 500);
+              color: fw-color(white);
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="fw-button">Hello!</span>
+section.sec-input
+    h3 Input
+    h5 Reset styling on input element, ready to apply custom style.
+
+
+    .fw-tabulators
+      span Input demo
+      span Browser default
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        h4 Unstyled input
+        .fw-copy.fw-example
+          input.fw-input(type="text" placeholder="type text")
+
+        h4 Custom styling
+        .fw-example.fw-copy.c-elements
+          input.fw-input.fw-bg-bluegrey-50.fw-size-xxl.fw-rounded-md.fw-txt-black(type="text" placeholder="Non semantic input")
+          input.demo-input(type="text" placeholder="Semantic (see code)")
+
+      div.fw-container
+        //- p content 2
+        .fw-copy.fw-example
+          input(type="text" placeholder="type text")
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-input {
+              @include fw-input;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-input"
+
+      div.fw-container
+        .fw-code
+          :code
+            <input class="my-input" placeholder="placeholder text">
+        .fw-code.scss
+          :code
+            .my-input {
+              @include fw-input;
+
+              // optional, custom styling
+              @include fw-size-base;
+              @include fw-size(xxl);
+              border-radius: $fw-rounded-md;
+              background-color: fw-color(grey, 100);
+              color: fw-color(black);
+            }
+
+      div
+        .fw-code
+          :code
+            <input class="fw-input" placeholder="placeholder text">
+
+        h4 Input with custom styling
+        .fw-code
+          :code
+            <input class="fw-input fw-bg-bluegrey-50 fw-size-xxl fw-rounded-md fw-txt-black" placeholder="placeholder text">
+section.sec-text
+    h3 Text (size)
+    h5 Determines size of the text depending on window width.<br>This utility also comes with a set of presets.
+
+
+
+    .fw-tabulators
+      span Demo with text
+      span Demo without text
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        .fw-resizable.fw-copy
+          iframe(src='../demos/text_demo.html')
+          //- p.fw-text Paragraph as text
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable
+          //- iframe(src='../demos/text_demo.html')
+          .text-demo
+            p XXS Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p XS Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p SM Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p MD Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p LG Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p XL Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p XXL Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p XXXL Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p HG Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+
+
+    .fw-tabulators
+      span Short Usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Size presets
+        p xxs, xs, sm, md, lg, xl, xxl, xxxl, hg
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-text {
+              @include fw-text(md);
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-text-md"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-text">Hello!</span>
+        .fw-code.scss
+          :code
+            .my-text {
+              @include fw-text(md);
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="fw-text-md">Hello!</span>
+    p You can also use <a href="#scale-properties">Scale Properties</a> to create scalable text of custom size.

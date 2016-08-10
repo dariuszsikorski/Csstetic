@@ -1,0 +1,397 @@
+section
+    h3 Clearfix
+    h5 Restore height to container with floated elements.
+
+    .fw-tabulators
+      span Demo with clearfix
+      span Demo without clearfix
+
+    .fw-tabs
+      .fw-container
+        .fw-example.fw-copy.demo-clearfix
+          .container.clearfixed
+            div floated element
+            div floated element
+            div floated element
+      .fw-container
+        .fw-example.fw-copy.demo-clearfix
+          .container
+            div floated element
+            div floated element
+            div floated element
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+
+      .fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            @include fw-clearfix;
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-clearfix"
+
+      .fw-container
+        .fw-code
+          :code
+            <div class="my-container">
+              <div>floated element</div>
+              <div>floated element</div>
+              <div>floated element</div>
+            </div>
+        .fw-code
+          :code
+            my-container {
+              @include fw-clearfix;
+            }
+
+      .fw-container
+        .fw-code
+          :code
+            <div class="fw-clearfix">
+              <div>floated element</div>
+              <div>floated element</div>
+              <div>floated element</div>
+            </div>
+section.sec-display
+    h3 Display
+    h5 Change element's display property.
+
+
+    .fw-tabulators
+      span Example
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        .fw-resizable.fw-example.fw-copy.c-elements.demo-display
+          .fw-display-inline inline
+          .fw-display-block block
+          .fw-display-inline-block  inline-block
+          .fw-display-flex flex
+          .fw-display-inline-flex inline-flex<br>
+          .fw-display-inline-table inline-table
+          .fw-display-list-item list-item
+          .fw-display-table table
+          .fw-display-table-caption table-caption
+          .fw-display-table-column-group table-column-group
+          .fw-display-table-header-group table-header-group
+          .fw-display-table-footer-group table-footer-group
+          .fw-display-table-row-group table-row-group
+          .fw-display-table-cell table-cell
+          .fw-display-table-column table-column
+          .fw-display-table-row table-row
+          .fw-display-none none
+
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-element {
+              display: inline-block;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-display-inline-block"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="display-inline">Inline block element</span>
+        .fw-code.scss
+          :code
+            .display-inline {
+              display: inline;
+            }
+            .display-block {
+              display: block;
+            }
+            .display-inline-block  {
+              display: inline-block ;
+            }
+            .display-flex {
+              display: flex;
+            }
+            .display-inline-flex {
+              display: inline-flex;
+            }
+            .display-inline-table {
+              display: inline-table;
+            }
+            .display-list-item {
+              display: list-item;
+            }
+            .display-table {
+              display: table;
+            }
+            .display-table-caption {
+              display: table-caption;
+            }
+            .display-table-column-group {
+              display: table-column-group;
+            }
+            .display-table-header-group {
+              display: table-header-group;
+            }
+            .display-table-footer-group {
+              display: table-footer-group;
+            }
+            .display-table-row-group {
+              display: table-row-group;
+            }
+            .display-table-cell {
+              display: table-cell;
+            }
+            .display-table-column {
+              display: table-column;
+            }
+            .display-table-row {
+              display: table-row;
+            }
+            .display-none {
+              display: none;
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-display-inline">inline</div>
+            <div class="fw-display-block">block</div>
+            <div class="fw-display-inline-block">inline-block</div>
+            <div class="fw-display-flex">flex</div>
+            <div class="fw-display-inline-flex">inline-flex<br></div>
+            <div class="fw-display-inline-table">inline-table</div>
+            <div class="fw-display-list-item">list-item</div>
+            <div class="fw-display-table">table</div>
+            <div class="fw-display-table-caption">table-caption</div>
+            <div class="fw-display-table-column-group">table-column-group</div>
+            <div class="fw-display-table-header-group">table-header-group</div>
+            <div class="fw-display-table-footer-group">table-footer-group</div>
+            <div class="fw-display-table-row-group">table-row-group</div>
+            <div class="fw-display-table-cell">table-cell</div>
+            <div class="fw-display-table-column">table-column</div>
+            <div class="fw-display-table-row">table-row</div>
+            <div class="fw-display-none">none</div>
+section.sec-ellipsis
+    h3 Ellipsis
+    h5 Show three dots at the end of the line if paragraph is too long.
+
+
+    .fw-tabulators
+      span Demo with ellipsis
+      span Demo without ellipsis
+
+    .fw-tabs
+      div.fw-container
+        //- p content 1
+
+        .fw-resizable.fw-copy.c-elements.demo-ellipsis
+          //- iframe(src='../demos/ellipsis_demo.html')
+          p.fw-ellipsis Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam accumsan turpis. Phasellus dignissim felis pharetra orci gravida, et egestas mauris venenatis. Phasellus efficitur ligula lorem, eu fermentum nunc commodo at. Duis quis mi nunc. Nunc molestie augue quis felis consequat cursus. Ut accumsan posuere nunc, ut rutrum dolor consectetur et. Nulla malesuada faucibus tincidunt. In lobortis lacus a leo euismod, et mattis turpis sollicitudin. Duis nec erat at augue volutpat tempus.
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements.demo-ellipsis
+          //- iframe(src='../demos/ellipsis_demo.html')
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam accumsan turpis. Phasellus dignissim felis pharetra orci gravida, et egestas mauris venenatis. Phasellus efficitur ligula lorem, eu fermentum nunc commodo at. Duis quis mi nunc. Nunc molestie augue quis felis consequat cursus. Ut accumsan posuere nunc, ut rutrum dolor consectetur et. Nulla malesuada faucibus tincidunt. In lobortis lacus a leo euismod, et mattis turpis sollicitudin. Duis nec erat at augue volutpat tempus.
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-paragraph {
+              @include fw-ellipsis;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-ellipsis"
+
+      div.fw-container
+        .fw-code
+          :code
+            <p class="my-paragraph">Hello!</p>
+        .fw-code.scss
+          :code
+            .my-paragraph {
+              @include fw-ellipsis;
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <p class="fw-ellipsis">Hello!</p>
+section
+    h3 Media Queries
+    h5 Apply styling for specific screen size.<br> Read more about <a href="https://en.wikipedia.org/wiki/Responsive_web_design">RWD</a>
+
+
+    .fw-tabulators
+      span Media
+      span Media Up
+      span Media Down
+      span Custom Range
+
+    .fw-tabs
+      div
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>maximum screen size</b>:
+        h4 size
+        .fw-resizable
+          iframe(src='../demos/mediaQueries_demo.html')
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>specific device</b>:
+        h4 device
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo2_demo.html')
+
+
+
+        .fw-container
+
+          .fw-separator
+            span Sizes
+
+          p <b>xxs</b>, <b>xs</b>, <b>sm</b>, <b>md</b>, <b>lg</b>, <b>xl</b>, <b>xxl</b>, <b>watch</b>, <b>mobile</b>, <b>tablet</b>, <b>laptop</b>, <b>desktop</b>.
+
+          .fw-separator
+            span Semantic
+          p Media Queries are available only in Semantic version.
+          .fw-code.scss
+            :code
+              .my-element {
+                @include fw-media(tablet){
+                  // ...styling goes here...
+                };
+              }
+          .fw-separator
+            span Alternative nesting
+          .fw-code.scss
+            :code
+              @include fw-media(tablet){
+                .my-element {
+                  // ...styling goes here...
+                }
+              };
+
+
+      div
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>minimum screen size</b>:
+        h4 size (and up)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-up_demo.html')
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>minimum device</b> size:
+        h4 device (and up)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo2-up_demo.html')
+
+
+        .fw-container
+          .fw-separator
+            span Semantic
+          .fw-code.scss
+            :code
+              @include fw-media-up(tablet){
+                // ...styling goes here...
+              };
+          .fw-separator
+            span Custom breakpoint
+          .fw-code.scss
+            :code
+              @include fw-media-up(200px){
+                // ...styling for min-width 200px goes here...
+              };
+
+      div
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>maximum device</b> size:
+        h4 device (and down)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo2-down_demo.html')
+
+
+
+        .fw-container
+          .fw-separator
+            span Semantic
+          .fw-code.scss
+            :code
+              @include fw-media-down(tablet){
+                // ...styling goes here...
+              };
+          .fw-separator
+            span Custom breakpoint
+          .fw-code.scss
+            :code
+              @include fw-media-down(200px){
+                // ...styling for max-width 200px goes here...
+              };
+
+      div
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for custom range <b>begin - end</b> of screen size:
+        h4 range (begin, end)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo-range_demo.html')
+          //- iframe(src='../demos/mediaQueries-demo2-down_demo.html')
+
+
+        .fw-container
+          .fw-separator
+            span Semantic
+          .fw-code.scss
+            :code
+              @include fw-media(200px, 400px){
+                // ...styling goes here...
+              };
+section
+    h3 Scale Properties
+    h5 Scale Css properties relatively to width of the browser window.<br>Example: resizing browser can reduce font-size of the element.
+
+
+    .fw-resizable
+      iframe(src='../demos/scaleProperties_demo.html')
+
+    .fw-separator
+      span Semantic
+    p You can scale properties only in Semantic version.
+    .fw-code.scss
+      :code
+        .my-element {
+          transition: all 0.25s; // optional - for smooth scaling
+          @include fw-scale((
+            padding: (0 10px, 0 50px),
+            font-size: (14px, 30px)
+          ));
+        }
+    p property1: (<b>begin</b> value, <b>end</b> value),<br>property2: (<b>begin</b> value, <b>end</b> value)...<br><b>begin</b> value means size for smallest device while <b>end</b> is for desktop.

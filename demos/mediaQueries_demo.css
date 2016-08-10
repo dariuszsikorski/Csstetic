@@ -1,0 +1,321 @@
+body {
+  padding: 10px;
+}
+
+.fw-demo1:after,
+.fw-demo2:after,
+.fw-demo3:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.fw-demo1 .media-item {
+  width: 14.28571%;
+}
+
+.fw-demo2 .media-item {
+  width: 20%;
+}
+
+.fw-demo3 .media-item {
+  width: 33.33333%;
+}
+
+.media-item {
+  float: left;
+}
+
+span {
+  margin: 7px;
+  display: block;
+  border-radius: 5px;
+  padding: 10px 10px;
+  text-align: center;
+  background: #ECEFF1;
+  border-top-color: rgba(0, 0, 0, 0.05);
+  border-bottom-color: rgba(0, 0, 0, 0.15);
+  font-size: 13px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@media (max-width: 500px) {
+  span {
+    margin: 7px 1px;
+  }
+}
+
+@media (max-width: 320px) {
+  .xxs {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 500px) {
+  .xs {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 768px) {
+  .sm {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 1024px) {
+  .md {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 1280px) {
+  .lg {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 1400px) {
+  .xl {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 1600px) {
+  .xxl {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 0) and (max-width: 319px) {
+  .watch {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .mobile {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tablet {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .laptop {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 9999px) {
+  .desktop {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 400px) {
+  .d200-400 {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 20rem) and (max-width: 45rem) {
+  .d20-45-rem {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 15cm) and (max-width: 30cm) {
+  .d15-30-cm {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+.xxs-up {
+  background: #ACF97E;
+  color: #387700;
+}
+
+@media (min-width: 321px) {
+  .xs-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 501px) {
+  .sm-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 769px) {
+  .md-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 1025px) {
+  .lg-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 1281px) {
+  .xl-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 1401px) {
+  .xxl-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 0) {
+  .watch-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 320px) {
+  .mobile-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 768px) {
+  .tablet-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 1025px) {
+  .laptop-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (min-width: 1281px) {
+  .desktop-up {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 320px) {
+  .xxs-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 500px) {
+  .xs-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 768px) {
+  .sm-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 1024px) {
+  .md-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 1280px) {
+  .lg-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 1400px) {
+  .xl-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 1600px) {
+  .xxl-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 319px) {
+  .watch-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 767px) {
+  .mobile-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tablet-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 1280px) {
+  .laptop-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}
+
+@media (max-width: 9999px) {
+  .desktop-down {
+    background: #ACF97E;
+    color: #387700;
+  }
+}

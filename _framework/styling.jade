@@ -1,0 +1,819 @@
+section.sec-align
+    h3 Align
+    h5 Selectors for align, float and vertical-align.
+
+
+    .fw-tabulators
+      span Example
+
+    .fw-tabs
+      div
+        p.fw-container Please not that each align may require specific element display, width or height.<br>
+          | Vertical-align works best width inline-block or table-cell elements,<br>while
+          | margin: auto align require display block and limited width (such as 50%).
+
+        h4 text align
+        .fw-resizable.fw-example.fw-copy.c-elements.demo-align
+          .fw-text-left
+            p text aligned to left
+          .fw-text-center
+            p centered text
+          .fw-text-right
+            p text aligned to right
+
+        h4 vertical align
+        p.fw-container Example on table cells. Works on inline-block elements as well.
+        .fw-resizable.fw-example.fw-copy.c-elements.demo-align
+          .fw-top.fw-display-table-cell top
+          .fw-middle.fw-display-table-cell middle
+          .fw-bottom.fw-display-table-cell bottom
+
+        h4 float
+        p.fw-container Floating requires clearfix on parent element;
+        .fw-resizable.fw-example.fw-copy.c-elements.demo-align
+          .fw-clearfix
+            .fw-left left floated block
+
+          .fw-clearfix
+            .fw-right right floated block
+
+          .fw-clearfix
+            .fw-left both: left
+            .fw-right and right
+
+        h4 center (margin: auto)
+        .fw-resizable.fw-example.fw-copy.c-elements.demo-align
+          .fw-center(style="max-width: 100px") centered element
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .aligned-element {
+              text-right: center;
+              vertical-align: middle;
+            }
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-text-center"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-align">Hello!</span>
+        .fw-code.scss
+          :code
+            // element has to use display inline-block or table-cell and width: 100%
+            .aligned-element {
+              text-right: center;
+              vertical-align: middle;
+            }
+
+            // VERTICAL ALIGN
+            // element has to be display: inline-block or table-cell
+            .aligned-top {
+              vertical-align: top;
+            }
+            .aligned-middle {
+              vertical-align: middle;
+            }
+            .aligned-bottom {
+              vertical-align: bottom;
+            }
+
+            // TEXT ALIGN
+            // element has to be wider than it's content, add width: 100%
+            .aligned-text-left {
+              text-align: left;
+            }
+            .aligned-text-center {
+              text-align: center;
+            }
+            .aligned-text-right {
+              text-align: right;
+            }
+
+            // FLOAT
+            // float removes element from paren't height, use fw-clearfix to fix that
+            .clearfixed-parent {
+              @include fw-clearfix;
+              .aligned-left {
+                float: left;
+              }
+            }
+
+            .clearfixed-parent {
+              @include fw-clearfix;
+              .aligned-right {
+                float: right;
+              }
+            }
+
+            // CENTER (MARGIN: AUTO)
+            // centered element has to smaller than parent, for example add width: 50%
+            .aligned-center {
+              margin-left: auto;
+              margin-right: auto;
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <!-- TEXT ALIGN -->
+            <div class="fw-text-left">
+              <p>text aligned to left</p>
+            </div>
+
+            <div class="fw-text-center">
+              <p>centered text</p>
+            </div>
+
+            <div class="fw-text-right">
+              <p>text aligned to right</p>
+            </div>
+
+            <!-- VERTICAL ALIGN -->
+            <div class="fw-top fw-display-table-cell">
+              top
+            </div>
+
+            <div class="fw-middle fw-display-table-cell">
+              middle
+            </div>
+
+            <div class="fw-bottom fw-display-table-cell">
+              bottom
+            </div>
+
+            <!-- FLOAT -->
+            <div class="fw-clearfix">
+              <div class="fw-left">
+                left floated block
+              </div>
+            </div>
+
+            <div class="fw-clearfix">
+              <div class="fw-right">
+                right floated block
+              </div>
+            </div>
+
+            <div class="fw-clearfix">
+              <div class="fw-left">
+                both: left
+              </div>
+              <div class="fw-right">
+                and right
+              </div>
+            </div>
+
+            <!-- CENTER (MARGIN: AUTO) -->
+            <div class="fw-center" style="max-width: 100px">
+              centered element
+            </div>
+section.sec-elementSize
+    h3 Element Size
+    h5 Set size of the element. Best for input text, button, select menu.<br>
+     | Size is responsive to browser width and can be customized.
+
+
+
+    .fw-tabulators
+      span Demo with element size
+      span Demo without element size
+      span Custom width proportions
+
+    .fw-tabs
+      div
+        //- p content 1
+        p.fw-container <b>Resize</b> this demo and see how elements adapt to width of the screen.
+        .fw-resizable.fw-copy.c-elements
+          iframe(src='../demos/elementSize_demo.html')
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements.demo-elsize1
+          span xxs
+          span xs
+          span sm
+          span md
+          span lg
+          span xl
+          span xxl
+          span xxxl
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.demo-elsize1
+          span.custom-prop-1 prop 0
+          span.custom-prop-2 prop 0.25
+          span.custom-prop-3 prop 0.5
+          span.custom-prop-4 prop 0.75
+          span.custom-prop-5 prop 1
+          span.custom-prop-6 prop 2
+        .fw-custom-source
+          .fw-scss-code.scss
+            :code
+              .custom-prop-1,
+              .custom-prop-2,
+              .custom-prop-3,
+              .custom-prop-4,
+              .custom-prop-5,
+              .custom-prop-6 {
+                @include fw-size-base;
+              }
+              .custom-prop-1 {
+                @include fw-size(50px, no-responsive, 0);
+              }
+              .custom-prop-2 {
+                @include fw-size(50px, no-responsive, 0.25);
+              }
+              .custom-prop-3 {
+                @include fw-size(50px, no-responsive, 0.5);
+              }
+              .custom-prop-4 {
+                @include fw-size(50px, no-responsive, 0.75);
+              }
+              .custom-prop-5 {
+                @include fw-size(50px, no-responsive, 1);
+              }
+              .custom-prop-6 {
+                @include fw-size(50px, no-responsive, 2);
+              }
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+      span Customization
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Heights
+        p xxs, xs, sm, md, lg, xl, xxl, xxxl
+
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-elementSize {
+              @include fw-size-base;
+              @include fw-size(md);
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-size-lg"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-elementSize">Hello!</span>
+        .fw-code.scss
+          :code
+            .my-elementSize {
+              @include fw-size-base;
+              @include fw-size(md);
+            }
+      div.fw-container
+        .fw-code
+          :code
+            <span class="fw-size-lg">Hello!</span>
+      div.fw-container
+        p Customization is available only in Semantic version, with neccessary mixins.
+        .fw-code.scss
+          :code
+            // defaults:
+            // (
+            //   $height: null, // size name or number
+            //   $responsive: "no-responsive", // "responsive" or "no-responsive"
+            //   $proportion: 0.45 // proportion of width to height, (bigger = wider)
+            // )
+            // "responsive" - size will be generated for all devices automatically
+            // "no-responsive" - only static size will be generated
+
+            .my-customSize {
+              @include fw-size-base;
+              @include fw-size(3em, responsive, 0.6);
+            }
+        .fw-separator
+          span Custom breakpoints
+        .fw-code.scss
+          :code
+            .my-customSize {
+              // include size-base only once
+              @include fw-size-base;
+
+              // set size for biggest screen
+              @include fw-size(50px, no-responsive);
+
+              // use no-responsive, to generate custom heights for each breakpoint
+              // if you will use responsive - mixin will generate breakpoints
+              // automatically, and you don't have to include the code below at all!
+              // define breakpoints from largest to smallest screen
+
+              @include fw-media(lg){
+                @include fw-size(40px, no-responsive);
+              }
+              @include fw-media(md){
+                @include fw-size(30px, no-responsive);
+              }
+              @include fw-media(sm){
+                @include fw-size(20px, no-responsive);
+              }
+
+            }
+section.sec-material
+    h3 Material Color
+    h5 Set color based on material design palette.
+
+
+
+
+    .fw-tabulators
+      span Background color
+      span Text color
+
+    .fw-tabs
+      div
+        //- p content 1
+
+
+
+        h4 available colors
+        .fw-example.demo-background-2.fw-copy.c-elements
+          .fw-bg-red red
+          .fw-bg-pink pink
+          .fw-bg-purple purple
+          .fw-bg-deeppurple deeppurple
+          .fw-bg-indigo indigo
+          .fw-bg-blue blue
+          .fw-bg-lightblue lightblue
+          .fw-bg-cyan cyan
+          .fw-bg-teal teal
+          .fw-bg-green green
+          .fw-bg-lightgreen lightgreen
+          .fw-bg-lime lime
+          .fw-bg-yellow yellow
+          .fw-bg-amber amber
+          .fw-bg-orange orange
+          .fw-bg-deeporange deeporange
+          .fw-bg-brown brown
+          .fw-bg-grey grey
+          .fw-bg-bluegrey bluegrey
+          .fw-bg-black black
+          .fw-bg-white white
+
+        h4 example: purple shades
+        .fw-example.demo-background-2.fw-copy.c-elements
+          .fw-bg-deeppurple-50 50
+          .fw-bg-deeppurple-100 100
+          .fw-bg-deeppurple-200 200
+          .fw-bg-deeppurple-300 300
+          .fw-bg-deeppurple-400 400
+          .fw-bg-deeppurple-500 500
+          .fw-bg-deeppurple-600 600
+          .fw-bg-deeppurple-700 700
+          .fw-bg-deeppurple-800 800
+          .fw-bg-deeppurple-900 900
+          .fw-bg-deeppurple-A100 A100
+          .fw-bg-deeppurple-A200 A200
+          .fw-bg-deeppurple-A400 A400
+          .fw-bg-deeppurple-A700 A700
+
+
+
+        h4 available shades
+        .fw-example.demo-background
+
+          .fw-bg-red-50 50
+          .fw-bg-red-100 100
+          .fw-bg-red-200 200
+          .fw-bg-red-300 300
+          .fw-bg-red-400 400
+          .fw-bg-red-500 500
+          .fw-bg-red-600 600
+          .fw-bg-red-700 700
+          .fw-bg-red-800 800
+          .fw-bg-red-900 900
+          .fw-bg-red-A100 A100
+          .fw-bg-red-A200 A200
+          .fw-bg-red-A400 A400
+          .fw-bg-red-A700 A700
+
+          .fw-bg-pink-50 50
+          .fw-bg-pink-100 100
+          .fw-bg-pink-200 200
+          .fw-bg-pink-300 300
+          .fw-bg-pink-400 400
+          .fw-bg-pink-500 500
+          .fw-bg-pink-600 600
+          .fw-bg-pink-700 700
+          .fw-bg-pink-800 800
+          .fw-bg-pink-900 900
+          .fw-bg-pink-A100 A100
+          .fw-bg-pink-A200 A200
+          .fw-bg-pink-A400 A400
+          .fw-bg-pink-A700 A700
+
+          .fw-bg-purple-50 50
+          .fw-bg-purple-100 100
+          .fw-bg-purple-200 200
+          .fw-bg-purple-300 300
+          .fw-bg-purple-400 400
+          .fw-bg-purple-500 500
+          .fw-bg-purple-600 600
+          .fw-bg-purple-700 700
+          .fw-bg-purple-800 800
+          .fw-bg-purple-900 900
+          .fw-bg-purple-A100 A100
+          .fw-bg-purple-A200 A200
+          .fw-bg-purple-A400 A400
+          .fw-bg-purple-A700 A700
+
+          .fw-bg-deeppurple-50 50
+          .fw-bg-deeppurple-100 100
+          .fw-bg-deeppurple-200 200
+          .fw-bg-deeppurple-300 300
+          .fw-bg-deeppurple-400 400
+          .fw-bg-deeppurple-500 500
+          .fw-bg-deeppurple-600 600
+          .fw-bg-deeppurple-700 700
+          .fw-bg-deeppurple-800 800
+          .fw-bg-deeppurple-900 900
+          .fw-bg-deeppurple-A100 A100
+          .fw-bg-deeppurple-A200 A200
+          .fw-bg-deeppurple-A400 A400
+          .fw-bg-deeppurple-A700 A700
+
+          .fw-bg-indigo-50 50
+          .fw-bg-indigo-100 100
+          .fw-bg-indigo-200 200
+          .fw-bg-indigo-300 300
+          .fw-bg-indigo-400 400
+          .fw-bg-indigo-500 500
+          .fw-bg-indigo-600 600
+          .fw-bg-indigo-700 700
+          .fw-bg-indigo-800 800
+          .fw-bg-indigo-900 900
+          .fw-bg-indigo-A100 A100
+          .fw-bg-indigo-A200 A200
+          .fw-bg-indigo-A400 A400
+          .fw-bg-indigo-A700 A700
+
+          .fw-bg-blue-50 50
+          .fw-bg-blue-100 100
+          .fw-bg-blue-200 200
+          .fw-bg-blue-300 300
+          .fw-bg-blue-400 400
+          .fw-bg-blue-500 500
+          .fw-bg-blue-600 600
+          .fw-bg-blue-700 700
+          .fw-bg-blue-800 800
+          .fw-bg-blue-900 900
+          .fw-bg-blue-A100 A100
+          .fw-bg-blue-A200 A200
+          .fw-bg-blue-A400 A400
+          .fw-bg-blue-A700 A700
+
+          .fw-bg-lightblue-50 50
+          .fw-bg-lightblue-100 100
+          .fw-bg-lightblue-200 200
+          .fw-bg-lightblue-300 300
+          .fw-bg-lightblue-400 400
+          .fw-bg-lightblue-500 500
+          .fw-bg-lightblue-600 600
+          .fw-bg-lightblue-700 700
+          .fw-bg-lightblue-800 800
+          .fw-bg-lightblue-900 900
+          .fw-bg-lightblue-A100 A100
+          .fw-bg-lightblue-A200 A200
+          .fw-bg-lightblue-A400 A400
+          .fw-bg-lightblue-A700 A700
+
+          .fw-bg-cyan-50 50
+          .fw-bg-cyan-100 100
+          .fw-bg-cyan-200 200
+          .fw-bg-cyan-300 300
+          .fw-bg-cyan-400 400
+          .fw-bg-cyan-500 500
+          .fw-bg-cyan-600 600
+          .fw-bg-cyan-700 700
+          .fw-bg-cyan-800 800
+          .fw-bg-cyan-900 900
+          .fw-bg-cyan-A100 A100
+          .fw-bg-cyan-A200 A200
+          .fw-bg-cyan-A400 A400
+          .fw-bg-cyan-A700 A700
+
+          .fw-bg-teal-50 50
+          .fw-bg-teal-100 100
+          .fw-bg-teal-200 200
+          .fw-bg-teal-300 300
+          .fw-bg-teal-400 400
+          .fw-bg-teal-500 500
+          .fw-bg-teal-600 600
+          .fw-bg-teal-700 700
+          .fw-bg-teal-800 800
+          .fw-bg-teal-900 900
+          .fw-bg-teal-A100 A100
+          .fw-bg-teal-A200 A200
+          .fw-bg-teal-A400 A400
+          .fw-bg-teal-A700 A700
+
+          .fw-bg-green-50 50
+          .fw-bg-green-100 100
+          .fw-bg-green-200 200
+          .fw-bg-green-300 300
+          .fw-bg-green-400 400
+          .fw-bg-green-500 500
+          .fw-bg-green-600 600
+          .fw-bg-green-700 700
+          .fw-bg-green-800 800
+          .fw-bg-green-900 900
+          .fw-bg-green-A100 A100
+          .fw-bg-green-A200 A200
+          .fw-bg-green-A400 A400
+          .fw-bg-green-A700 A700
+
+          .fw-bg-lightgreen-50 50
+          .fw-bg-lightgreen-100 100
+          .fw-bg-lightgreen-200 200
+          .fw-bg-lightgreen-300 300
+          .fw-bg-lightgreen-400 400
+          .fw-bg-lightgreen-500 500
+          .fw-bg-lightgreen-600 600
+          .fw-bg-lightgreen-700 700
+          .fw-bg-lightgreen-800 800
+          .fw-bg-lightgreen-900 900
+          .fw-bg-lightgreen-A100 A100
+          .fw-bg-lightgreen-A200 A200
+          .fw-bg-lightgreen-A400 A400
+          .fw-bg-lightgreen-A700 A700
+
+          .fw-bg-lime-50 50
+          .fw-bg-lime-100 100
+          .fw-bg-lime-200 200
+          .fw-bg-lime-300 300
+          .fw-bg-lime-400 400
+          .fw-bg-lime-500 500
+          .fw-bg-lime-600 600
+          .fw-bg-lime-700 700
+          .fw-bg-lime-800 800
+          .fw-bg-lime-900 900
+          .fw-bg-lime-A100 A100
+          .fw-bg-lime-A200 A200
+          .fw-bg-lime-A400 A400
+          .fw-bg-lime-A700 A700
+
+          .fw-bg-yellow-50 50
+          .fw-bg-yellow-100 100
+          .fw-bg-yellow-200 200
+          .fw-bg-yellow-300 300
+          .fw-bg-yellow-400 400
+          .fw-bg-yellow-500 500
+          .fw-bg-yellow-600 600
+          .fw-bg-yellow-700 700
+          .fw-bg-yellow-800 800
+          .fw-bg-yellow-900 900
+          .fw-bg-yellow-A100 A100
+          .fw-bg-yellow-A200 A200
+          .fw-bg-yellow-A400 A400
+          .fw-bg-yellow-A700 A700
+
+          .fw-bg-amber-50 50
+          .fw-bg-amber-100 100
+          .fw-bg-amber-200 200
+          .fw-bg-amber-300 300
+          .fw-bg-amber-400 400
+          .fw-bg-amber-500 500
+          .fw-bg-amber-600 600
+          .fw-bg-amber-700 700
+          .fw-bg-amber-800 800
+          .fw-bg-amber-900 900
+          .fw-bg-amber-A100 A100
+          .fw-bg-amber-A200 A200
+          .fw-bg-amber-A400 A400
+          .fw-bg-amber-A700 A700
+
+          .fw-bg-orange-50 50
+          .fw-bg-orange-100 100
+          .fw-bg-orange-200 200
+          .fw-bg-orange-300 300
+          .fw-bg-orange-400 400
+          .fw-bg-orange-500 500
+          .fw-bg-orange-600 600
+          .fw-bg-orange-700 700
+          .fw-bg-orange-800 800
+          .fw-bg-orange-900 900
+          .fw-bg-orange-A100 A100
+          .fw-bg-orange-A200 A200
+          .fw-bg-orange-A400 A400
+          .fw-bg-orange-A700 A700
+
+          .fw-bg-deeporange-50 50
+          .fw-bg-deeporange-100 100
+          .fw-bg-deeporange-200 200
+          .fw-bg-deeporange-300 300
+          .fw-bg-deeporange-400 400
+          .fw-bg-deeporange-500 500
+          .fw-bg-deeporange-600 600
+          .fw-bg-deeporange-700 700
+          .fw-bg-deeporange-800 800
+          .fw-bg-deeporange-900 900
+          .fw-bg-deeporange-A100 A100
+          .fw-bg-deeporange-A200 A200
+          .fw-bg-deeporange-A400 A400
+          .fw-bg-deeporange-A700 A700
+
+          .fw-bg-brown-50 50
+          .fw-bg-brown-100 100
+          .fw-bg-brown-200 200
+          .fw-bg-brown-300 300
+          .fw-bg-brown-400 400
+          .fw-bg-brown-500 500
+          .fw-bg-brown-600 600
+          .fw-bg-brown-700 700
+          .fw-bg-brown-800 800
+          .fw-bg-brown-900 900
+
+          .fw-bg-grey-50 50
+          .fw-bg-grey-100 100
+          .fw-bg-grey-200 200
+          .fw-bg-grey-300 300
+          .fw-bg-grey-400 400
+          .fw-bg-grey-500 500
+          .fw-bg-grey-600 600
+          .fw-bg-grey-700 700
+          .fw-bg-grey-800 800
+          .fw-bg-grey-900 900
+
+          .fw-bg-bluegrey-50 50
+          .fw-bg-bluegrey-100 100
+          .fw-bg-bluegrey-200 200
+          .fw-bg-bluegrey-300 300
+          .fw-bg-bluegrey-400 400
+          .fw-bg-bluegrey-500 500
+          .fw-bg-bluegrey-600 600
+          .fw-bg-bluegrey-700 700
+          .fw-bg-bluegrey-800 800
+          .fw-bg-bluegrey-900 900
+
+          .fw-bg-black-500 500
+
+          .fw-bg-white-500 500
+
+      div
+        .fw-copy.c-elements.demo-text.fw-example
+          .fw-txt-indigo-50 indigo 50 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-100 indigo 100 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-200 indigo 200 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-300 indigo 300 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-400 indigo 400 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-500 indigo 500 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-600 indigo 600 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-700 indigo 700 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-800 indigo 800 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-900 indigo 900 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-element {
+              background: fw-color(deeppurple, 800);
+              color: fw-color(indigo, A100);
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-txt-indigo-A100 fw-bg-deeppurple-900"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-element">Hello!</span>
+        .fw-code.scss
+          :code
+            .my-element {
+              background: fw-color(deeppurple, 800);
+              color: fw-color(indigo, A100);
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="fw-txt-indigo-A100 fw-bg-deeppurple-900">Hello!</span>
+section.sec-rounding
+    h3 Rounded corners
+    //- h5 Component<br>description.
+
+
+    .fw-tabulators
+      span Example
+
+    .fw-tabs
+      div.fw-container
+        //- p content 1
+
+        .fw-example.fw-copy.c-elements.rounding-demo
+          //- iframe(src='../demos/rounding_demo.html')
+
+          span.fw-ellipse ellipse
+          span.fw-round round
+          span.fw-rounded rounded
+          span.fw-rounded-sm rounded-sm
+          span.fw-rounded-md rounded-md
+          span.fw-rounded-lg rounded-lg
+          span.fw-rounded-xl rounded-xl
+
+          span.round-custom-1 custom-1
+          span.round-custom-2 custom-2
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+      span Custom
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .rounded-element {
+              border-radius: $fw-rounded-md;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-rounded-md"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="rounded-element">Rounded</span>
+        p Pick any of border radius from examples below
+        .fw-code.scss
+          :code
+            .rounded-element {
+              border-radius: 100%;  // ellipse
+              border-radius: 100em; // round (circular) edges
+              border-radius: $fw-rounded-sm; // small radius
+              border-radius: $fw-rounded-md; // medium radius
+              border-radius: $fw-rounded-lg; // large radius
+              border-radius: $fw-rounded-xl; // extra large radius
+            }
+
+      div.fw-container
+        .fw-code.fw-copy.c-elements
+          :code
+            <span class="fw-ellipse">Rounded</span>
+            <span class="fw-round">Rounded</span>
+            <span class="fw-rounded">Rounded</span>
+            <span class="fw-rounded-sm">Rounded</span>
+            <span class="fw-rounded-md">Rounded</span>
+            <span class="fw-rounded-lg">Rounded</span>
+            <span class="fw-rounded-xl">Rounded</span>
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="custom-rounding">Custom Rounded</span>
+
+        .fw-code.scss
+          :code
+            .custom-rounding {
+              // example (custom 1)
+              // value order: top-left, top-right, bottom-right, bottom-left
+              border-radius: $fw-rounded-xl $fw-rounded-sm $fw-rounded-xl $fw-rounded-sm;
+
+              // example (custom 2)
+              border-radius: 50% 50% 0 0; // only upper edges rounded
+            }

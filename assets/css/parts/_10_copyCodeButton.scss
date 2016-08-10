@@ -1,0 +1,122 @@
+
+.fw-code-copy {
+  display: block;
+  position: relative;
+  z-index: 5;
+  font-size: 0;
+  @include old-clearfix;
+  .fw-code-copy-mask {
+    height: 27px;
+    overflow: hidden;
+    float: right;
+    margin-bottom: -100%;
+    width: 75px;
+    margin-right: 5px;
+    opacity: 0.60;
+    transition: all 0.15s;
+    top: 5px;
+    cursor: pointer;
+    position: relative;
+    &:hover:not(.copying) {
+      opacity: 1;
+      .first {
+        margin-top: -27px;
+        opacity: 0;
+      }
+      .second {
+        opacity: 1;
+      }
+    }
+    &.copying {
+      opacity: 1;
+      .first {
+        margin-top: -54px;
+      }
+      .third {
+        // opacity: 1;
+        // background: lighten(#4A546A, 40%);
+      }
+      .fw-code-loading-mask {
+        width: 100%;
+      }
+      .fourth {
+        // background: #005BA5;
+        // background: red;
+        // background: saturate(darken(#5DC560, 18%), 20%);
+      }
+    }
+    &.done {
+      .first {
+        margin-top: -81px;
+      }
+      .fifth {
+        opacity: 1;
+      }
+      .first, .second, .third, .fourth {
+        opacity: 0;
+      }
+    }
+  }
+  .fw-code-copy-button {
+    transition: all 0.50s;
+    display: block;
+    background: #F1F2F6;
+    line-height: 25px;
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: Arial;
+    font-size: 11px;
+    border-radius: 2px;
+    border: solid 1px darken(#F1F2F6, 15%);
+    // box-shadow: inset 0 0 0 1px #fff;
+  }
+  .first {
+    // gray copy
+    margin-top: 0;
+  }
+  .second, .third, .fourth, .fifth {
+    background: lighten($controlButtons, 4%);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: none;
+    opacity: 0;
+  }
+  .third {
+    background: lighten(#4A546A, 40%);
+    opacity: 1;
+  }
+  .fw-code-loading-mask {
+    transition: all 0.7s;
+    overflow: hidden;
+    width: 0%;
+    margin-top: -27px;
+    height: 27px;
+    display: block;
+    // opacity: 1;
+  }
+  .fourth {
+    // margin-top: -27px;
+    opacity: 1;
+    // background: saturate(darken(#5DC560, 20%), 10%);
+    // background: red;
+    background: color(green, 800);
+    // background: lighten(#005BA5, 12%);
+    width: 75px;
+    height: 25px;
+    // opacity: 1;
+  }
+  .fifth {
+    // margin-top: -27px;
+    // background: saturate(darken(#5DC560, 18%), 20%);
+    // background: lighten(#4A546A, 32%);
+    border: solid 1px lighten(#4A546A, 50%);
+    // color: lighten(#4A546A, 36%);
+    // background: transparent;
+    background: color(blue, 900);
+    color: #fff;
+    line-height: 23px;
+  }
+}

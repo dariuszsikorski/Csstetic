@@ -1,0 +1,463 @@
+
+
+<splitSection output="output/elementSize_section.jade">
+
+  section.sec-elementSize
+    h3 Element Size
+    h5 Set size of the element. Best for input text, button, select menu.<br>
+     | Size is responsive to browser width and can be customized.
+
+
+
+    .fw-tabulators
+      span Demo with element size
+      span Demo without element size
+      span Custom width proportions
+
+    .fw-tabs
+      div
+        //- p content 1
+        p.fw-container <b>Resize</b> this demo and see how elements adapt to width of the screen.
+        .fw-resizable.fw-copy.c-elements
+          iframe(src='../demos/elementSize_demo.html')
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements.demo-elsize1
+          span xxs
+          span xs
+          span sm
+          span md
+          span lg
+          span xl
+          span xxl
+          span xxxl
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.demo-elsize1
+          span.custom-prop-1 prop 0
+          span.custom-prop-2 prop 0.25
+          span.custom-prop-3 prop 0.5
+          span.custom-prop-4 prop 0.75
+          span.custom-prop-5 prop 1
+          span.custom-prop-6 prop 2
+        .fw-custom-source
+          .fw-scss-code.scss
+            :code
+              .custom-prop-1,
+              .custom-prop-2,
+              .custom-prop-3,
+              .custom-prop-4,
+              .custom-prop-5,
+              .custom-prop-6 {
+                @include fw-size-base;
+              }
+              .custom-prop-1 {
+                @include fw-size(50px, no-responsive, 0);
+              }
+              .custom-prop-2 {
+                @include fw-size(50px, no-responsive, 0.25);
+              }
+              .custom-prop-3 {
+                @include fw-size(50px, no-responsive, 0.5);
+              }
+              .custom-prop-4 {
+                @include fw-size(50px, no-responsive, 0.75);
+              }
+              .custom-prop-5 {
+                @include fw-size(50px, no-responsive, 1);
+              }
+              .custom-prop-6 {
+                @include fw-size(50px, no-responsive, 2);
+              }
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+      span Customization
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Heights
+        p xxs, xs, sm, md, lg, xl, xxl, xxxl
+
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-elementSize {
+              @include fw-size-base;
+              @include fw-size(md);
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-size-lg"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-elementSize">Hello!</span>
+        .fw-code.scss
+          :code
+            .my-elementSize {
+              @include fw-size-base;
+              @include fw-size(md);
+            }
+      div.fw-container
+        .fw-code
+          :code
+            <span class="fw-size-lg">Hello!</span>
+      div.fw-container
+        p Customization is available only in Semantic version, with neccessary mixins.
+        .fw-code.scss
+          :code
+            // defaults:
+            // (
+            //   $height: null, // size name or number
+            //   $responsive: "no-responsive", // "responsive" or "no-responsive"
+            //   $proportion: 0.45 // proportion of width to height, (bigger = wider)
+            // )
+            // "responsive" - size will be generated for all devices automatically
+            // "no-responsive" - only static size will be generated
+
+            .my-customSize {
+              @include fw-size-base;
+              @include fw-size(3em, responsive, 0.6);
+            }
+        .fw-separator
+          span Custom breakpoints
+        .fw-code.scss
+          :code
+            .my-customSize {
+              // include size-base only once
+              @include fw-size-base;
+
+              // set size for biggest screen
+              @include fw-size(50px, no-responsive);
+
+              // use no-responsive, to generate custom heights for each breakpoint
+              // if you will use responsive - mixin will generate breakpoints
+              // automatically, and you don't have to include the code below at all!
+              // define breakpoints from largest to smallest screen
+
+              @include fw-media(lg){
+                @include fw-size(40px, no-responsive);
+              }
+              @include fw-media(md){
+                @include fw-size(30px, no-responsive);
+              }
+              @include fw-media(sm){
+                @include fw-size(20px, no-responsive);
+              }
+
+            }
+
+
+
+</splitSection>
+
+<splitSection output="output/elementSize_demo.scss">
+  .elementSize-demo {
+    span {
+      outline: solid 2px #333;
+      //- border: solid 2px #94DDE8;
+      margin-right: 5px+2px+2px;
+    }
+  }
+</splitSection>
+
+<splitSection output="output/elementSize_demo.jade">
+
+block meta
+  link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+  link(rel="stylesheet", href="./elementSize_demo.css" id="mainstyle")
+
+block title
+  title elementSize Demo
+
+block content
+  .elementSize-demo
+    span.fw-size-xxs xxs
+    //- button.fw-size-xxs xxs
+    //- input.fw-size-xxs(value="xxs")
+    span.fw-size-xs xs
+    //- button.fw-size-xs xs
+    //- input.fw-size-xs(value="xs")
+    span.fw-size-sm sm
+    //- button.fw-size-sm sm
+    //- input.fw-size-sm(value="sm")
+    span.fw-size-md md
+    //- button.fw-size-md md
+    //- input.fw-size-md(value="md")
+    span.fw-size-lg lg
+    //- button.fw-size-lg lg
+    //- input.fw-size-lg(value="lg")
+    span.fw-size-xl xl
+    //- button.fw-size-xl xl
+    //- input.fw-size-xl(value="xl")
+    span.fw-size-xxl xxl
+    //- button.fw-size-xxl xxl
+    //- input.fw-size-xxl(value="xxl")
+    span.fw-size-xxxl xxxl
+    //- button.fw-size-xxl xxxl
+    //- input.fw-size-xxl(value="xxxl")
+
+</splitSection>
+
+
+<splitSection output="output/elementSize_section.scss">
+
+.sec-elementSize {
+  .demo-elsize1 {
+    background: #fff;
+    span {
+      //- border: solid 2px #94DDE8;
+      margin-right: 5px+2px+2px;
+      outline: solid 2px #333;
+    }
+  }
+  .custom-prop-1,
+  .custom-prop-2,
+  .custom-prop-3,
+  .custom-prop-4,
+  .custom-prop-5,
+  .custom-prop-6 {
+    @include fw-size-base;
+  }
+  .custom-prop-1 {
+    @include fw-size(50px, no-responsive, 0);
+  }
+  .custom-prop-2 {
+    @include fw-size(50px, no-responsive, 0.25);
+  }
+  .custom-prop-3 {
+    @include fw-size(50px, no-responsive, 0.5);
+  }
+  .custom-prop-4 {
+    @include fw-size(50px, no-responsive, 0.75);
+  }
+  .custom-prop-5 {
+    @include fw-size(50px, no-responsive, 1);
+  }
+  .custom-prop-6 {
+    @include fw-size(50px, no-responsive, 2);
+  }
+}
+
+</splitSection>
+
+
+
+<splitSection output="output/elementSize_semantic.scss">
+// cast to number:
+// http://hugogiraudel.com/2014/01/15/sass-string-to-number/
+@function fw_length($number, $unit) {
+  $strings: 'px' 'cm' 'mm' '%' 'ch' 'pica' 'in' 'em' 'rem' 'pt' 'pc' 'ex' 'vw' 'vh' 'vmin' 'vmax';
+  $units:   1px  1cm  1mm  1%  1ch  1pica  1in  1em  1rem  1pt  1pc  1ex  1vw  1vh  1vmin  1vmax;
+  $index: index($strings, $unit);
+
+  @if not $index {
+    @warn "Unknown unit `#{$unit}`.";
+    @return false;
+  }
+
+  @return $number * nth($units, $index);
+}
+
+@function fw-number($string) {
+  // Matrices
+  $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+  $numbers:  0   1   2   3   4   5   6   7   8   9;
+
+  // Result
+  $result: 0;
+  $divider: 0;
+  $minus: false;
+
+  // Looping through all characters
+  @for $i from 1 through str-length($string) {
+    $character: str-slice($string, $i, $i);
+    $index: index($strings, $character);
+
+
+    @if $character == '-' {
+      $minus: true;
+    }
+
+    @else if $character == '.' {
+      $divider: 1;
+    }
+
+    @else {
+      @if not $index {
+        $result: if($minus, $result * -1, $result);
+        @return fw_length($result, str-slice($string, $i));
+      }
+
+      $number: nth($numbers, $index);
+
+      @if $divider == 0 {
+        $result: $result * 10;
+      }
+
+      @else {
+        // Move the decimal dot to the left
+        $divider: $divider * 10;
+        $number: $number / $divider;
+      }
+
+      $result: $result + $number;
+    }
+  }
+
+  @return if($minus, $result * -1, $result);
+}
+
+// fw size mixins
+@mixin fw-generate-size(
+  $height: null,
+  $proportion: 0.45
+){
+
+  // in case of custom height
+  @if $height == null {
+    @error "height must be defined for generate size";
+  }
+
+  @if type-of($height) != number {
+    @error "$height: #{$height} must be a number.";
+  }
+
+  // convert height to 'px' if unit wasn't defined
+  @if unitless($height) {
+    $height: $height * 1px;
+  }
+
+  // calculate proportional padding
+  $padding-x: ($height)*$proportion;
+
+  // calculate best font size and weight for the element
+  $unit: unit($height);
+  $base-font: fw-convert-unit(11px, $unit);
+  $base-height: fw-convert-unit(20px, $unit);
+  $font-growth: 0.25;
+  $extra-font: ($height - $base-height) * $font-growth;
+  $font-size: $base-font + $extra-font;
+  $font-weight: null;
+  @if $height <= fw-convert-unit(24px, $unit) {
+    $font-weight: 700;
+  }
+  @if $height <= fw-convert-unit(30px, $unit) and $height > fw-convert-unit(24px, $unit) {
+    $font-weight: 600;
+  }
+
+  //render calculated values as css properties
+  //- height: $height;
+  line-height: $height;
+  height: $height; // ie
+  padding: 0 $padding-x;
+  font-size: $font-size;
+  font-weight: $font-weight;
+
+
+}
+
+@mixin fw-size(
+  $height: null,
+  $responsive: no-responsive,
+  $proportion: 0.45
+){
+
+  // predefined element size
+  @if $height == xxs { $height: 20px; }
+  @if $height == xs  { $height: 24px; }
+  @if $height == sm  { $height: 30px; }
+  @if $height == md  { $height: 38px; }
+  @if $height == lg  { $height: 48px; }
+  @if $height == xl  { $height: 60px; }
+  @if $height == xxl { $height: 74px; }
+  @if $height == xxxl  { $height: 90px; }
+
+  @if type-of($height) == number {
+    @include fw-generate-size($height, $proportion);
+
+    @if $responsive == responsive and fw-convert-unit($height, px) > 31px {
+
+      $end: $height;
+      $begin: fw-convert-unit(30px, unit($height)) + $height * 0.12; // last param is growth factor
+
+      $scale-sm: fw-getResolutionScale(map-get($fw-breakpoints, sm));
+      $scale-md: fw-getResolutionScale(map-get($fw-breakpoints, md));
+      $scale-lg: fw-getResolutionScale(map-get($fw-breakpoints, lg));
+
+      $height-sm: fw-number(fw-scaleValues($begin, $end, $scale-sm));
+      $height-md: fw-number(fw-scaleValues($begin, $end, $scale-md));
+      $height-lg: fw-number(fw-scaleValues($begin, $end, $scale-lg));
+
+      @include fw-media(lg){
+        @include fw-generate-size($height-lg, $proportion);
+      };
+      @include fw-media(md){
+        @include fw-generate-size($height-md, $proportion);
+      };
+      @include fw-media(sm){
+        @include fw-generate-size($height-sm, $proportion);
+      };
+
+
+
+    }
+  }
+}
+
+button%fw-size-button,
+%fw-size-button[type=button]{
+  line-height: normal;
+}
+
+@mixin fw-size-base {
+  box-sizing: border-box;
+  display: inline-block;
+  > * {
+    line-height: inherit;
+  }
+
+  @extend %fw-size-button;
+
+}
+
+</splitSection>
+
+
+
+<splitSection output="output/elementSize_selectors.scss">
+.fw-size {
+  &-xxs,
+  &-xs,
+  &-sm,
+  &-md,
+  &-lg,
+  &-xl,
+  &-xxl,
+  &-xxxl {
+    @include fw-size-base;
+  }
+
+  &-xxs  { @include fw-size(xxs, responsive); }
+  &-xs   { @include fw-size(xs, responsive); }
+  &-sm   { @include fw-size(sm, responsive); }
+  &-md   { @include fw-size(md, responsive); }
+  &-lg   { @include fw-size(lg, responsive); }
+  &-xl   { @include fw-size(xl, responsive); }
+  &-xxl  { @include fw-size(xxl, responsive); }
+  &-xxxl { @include fw-size(xxxl, responsive); }
+}
+</splitSection>
+
+
+

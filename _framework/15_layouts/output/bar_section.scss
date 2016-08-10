@@ -1,0 +1,55 @@
+.sec-bar {
+  .bar-demo {
+    .fw-bar-item {
+      //- background: red;
+      background: fw-color(bluegrey, 50);
+      color: fw-color(bluegrey, 800);
+      @include fw-size-base;
+      @include fw-size(md);
+    }
+  }
+  .bar-demo-without-size {
+    .fw-bar-item {
+      //- background: red;
+      background: fw-color(bluegrey, 50);
+      color: fw-color(bluegrey, 800);
+    }
+  }
+  .demo-top {
+    .fw-bar {
+      border-top: solid 2px #444;
+      > * {
+        &,
+        .fw-bar-item {
+          vertical-align: top;
+        }
+      }
+    }
+
+  }
+  .demo-mid {
+    .fw-bar {
+      border: solid #444;
+      border-width: 2px 0;
+      > * {
+        &,
+        .fw-bar-item {
+          vertical-align: middle;
+        }
+      }
+    }
+
+  }
+  .demo-bot {
+    .fw-bar {
+      border-bottom: solid 2px #444;
+      > * {
+        &,
+        .fw-bar-item {
+          vertical-align: bottom;
+        }
+      }
+    }
+
+  }
+}

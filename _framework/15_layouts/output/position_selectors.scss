@@ -1,0 +1,35 @@
+.fw-relative {
+  position: relative;
+}
+
+.fw-pos {
+
+  &-top-left { @include fw-position(top-left); }
+  &-left { @include fw-position(left); }
+  &-bottom-left { @include fw-position(bottom-left); }
+  &-top { @include fw-position(top); }
+  &-center { @include fw-position(center); }
+  &-bottom { @include fw-position(bottom); }
+  &-top-right { @include fw-position(top-right); }
+  &-right { @include fw-position(right); }
+  &-bottom-right { @include fw-position(bottom-right); }
+
+  &-top-left-edge { @include fw-position(top-left, edge); }
+  &-left-edge { @include fw-position(left, edge); }
+  &-bottom-left-edge { @include fw-position(bottom-left, edge); }
+  &-top-edge { @include fw-position(top, edge); }
+  &-bottom-edge { @include fw-position(bottom, edge); }
+  &-top-right-edge { @include fw-position(top-right, edge); }
+  &-right-edge { @include fw-position(right, edge); }
+  &-bottom-right-edge { @include fw-position(bottom-right, edge); }
+
+  &-top-left-out { @include fw-position(top-left, outer); }
+  &-left-out { @include fw-position(left, outer); }
+  &-bottom-left-out { @include fw-position(bottom-left, outer); }
+  &-top-out { @include fw-position(top, outer); }
+  &-bottom-out { @include fw-position(bottom, outer); }
+  &-top-right-out { @include fw-position(top-right, outer); }
+  &-right-out { @include fw-position(right, outer); }
+  &-bottom-right-out { @include fw-position(bottom-right, outer); }
+
+}

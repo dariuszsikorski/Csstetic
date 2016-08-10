@@ -1,0 +1,232 @@
+
+
+<splitSection output="output/fillSpace_section.jade">
+
+  section.sec-fillSpace
+    h3 Fill space
+    h5 Create container which fills remaining width After or Before element.
+
+
+    .fw-tabulators
+      span Fill space demo
+      span Demo without fill space
+
+    .fw-tabs
+      div.fw-container
+        //- p content 1
+
+        p Please note this demo uses no Javascript.
+
+        .fw-example.fw-copy.demo-fillspace
+          //- iframe(src='../demos/fillSpace_demo.html')
+          .fw-space
+            .fw-space-left
+              .demo-block-left before fill space
+            .fw-space-right
+              .demo-block-right after fill space
+            .fw-space-fill
+              p.fw-text-sm <b>This block wil always fill remaining space between elements.</b> Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+        br
+        br
+        .fw-resizable.fw-example.fw-copy.demo-fillspace.demo-space-2
+          //- iframe(src='../demos/fillSpace_demo.html')
+          .fw-space
+            .fw-space-left
+              .demo-block-left before fill space
+
+            .fw-space-fill
+              p This input text will stretch to remaining space.
+              input(type="text" placeholder="input text")
+
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-example.fw-copy.demo-fillspace.demo-space-2
+          .demo-block-left before content
+          p This input text will stretch to remaining space.
+          input(type="text" placeholder="input text")
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-space {
+              @include fw-space;
+              .my-space-left { @include fw-space-left; }
+              .my-space-right { @include fw-space-right; }
+              .my-space-fill { @include fw-space-fill; }
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-space">
+              <div class="fw-space-left">left content</div>
+              <div class="fw-space-right">right content</div>
+              <div class="fw-space-fill">fill space</div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-space">
+              <div class="my-space-left">left content</div>
+              <div class="my-space-right">right content</div>
+              <div class="my-space-fill">fill space</div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-space {
+              @include fw-space;
+              .my-space-left { @include fw-space-left; }
+              .my-space-right { @include fw-space-right; }
+              .my-space-fill { @include fw-space-fill; }
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-space">
+              <div class="fw-space-left">left content</div>
+              <div class="fw-space-right">right content</div>
+              <div class="fw-space-fill">fill space</div>
+            </div>
+
+
+</splitSection>
+
+
+<splitSection output="output/fillSpace_demo.jade">
+
+//- block meta
+//-   link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+//-   link(rel="stylesheet", href="./fillSpace_demo.css" id="mainstyle")
+
+//- block title
+//-   title fillSpace Demo
+
+//- block content
+//-   .fillSpace-demo
+//-     span demo content
+//-     span demo content
+//-     span demo content
+
+</splitSection>
+
+
+<splitSection output="output/fillSpace_section.scss">
+
+.sec-fillSpace {
+  .demo-fillspace {
+    input {
+      @include fw-input;
+
+      // optional, custom styling
+      @include fw-size-base;
+      @include fw-size(xl);
+      //- border-radius: $fw-rounded-sm;
+      //- border: solid 2px #333;
+      //- border-width: 2px 0;
+      background-color: #fff;
+      color: fw-color(black);
+      display: block;
+      width: 100%;
+    }
+    .fw-space-fill {
+      padding: 10px;
+      background: fw-color(bluegrey, 50);
+      //- border: solid 2px #333;
+      //- border-width: 0 2px;
+    }
+    * {
+      margin: 0;
+    }
+
+    .fw-space-fill,
+    .demo-block-left,
+    .demo-block-right {
+      border: solid #333;
+      border-width: 0 2px;
+    }
+
+
+
+
+    .demo-block-left,
+    .demo-block-right {
+      color: #333;
+      padding: 10px;
+      text-align: center;
+      resize: both;
+      overflow: auto;
+      //- border: solid 2px #333;
+
+    }
+    .demo-block-left {
+      width: 150px;
+      height: 55px;
+      background: fw-color(bluegrey, 50);
+      margin-right: 15px;
+    }
+    .demo-block-right {
+      width: 150px;
+      height: 55px;
+      background: fw-color(bluegrey, 50);
+      margin-left: 15px;
+    }
+    &.demo-space-2 {
+      .fw-space-fill {
+        //- background: none;
+        //- padding: 0;
+      }
+    }
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/fillSpace_semantic.scss">
+
+@mixin fw-space {
+  width: 100%;
+  @include fw-clearfix;
+}
+@mixin fw-space-left {
+  float: left;
+}
+@mixin fw-space-right {
+  float: right;
+}
+@mixin fw-space-fill {
+  overflow: hidden;
+}
+
+</splitSection>
+
+
+<splitSection output="output/fillSpace_selectors.scss">
+
+
+.fw-space {
+  @include fw-space;
+  .fw-space-left {
+    @include fw-space-left;
+  }
+  .fw-space-right {
+    @include fw-space-right;
+  }
+  .fw-space-fill {
+    @include fw-space-fill;
+  }
+}
+
+</splitSection>

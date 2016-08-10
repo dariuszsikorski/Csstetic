@@ -1,0 +1,13 @@
+.demo-clearfix {
+  .container {
+    border: solid 2px #333;
+    padding: 10px;
+    &.clearfixed {
+      @include fw-clearfix;
+    }
+    div {
+      float: left;
+      padding: 7px;
+    }
+  }
+}

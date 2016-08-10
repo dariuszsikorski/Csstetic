@@ -1,0 +1,6 @@
+@each $current-preset in $fw-text-presets {
+  $i: index($fw-text-presets, $current-preset);
+  .fw-text-#{$current-preset} {
+    @include fw-text($current-preset);
+  }
+}

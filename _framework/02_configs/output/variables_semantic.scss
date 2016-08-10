@@ -1,0 +1,25 @@
+// fw-scale uses breakpoint from xs(min) to xl(max)
+// to retreive breakpoint use map-get()
+$fw-breakpoints: (
+  xxs: 320px,
+  xs:  500px,
+  sm:  768px,
+  md:  1024px,
+  lg:  1280px,
+  xl:  1400px,
+  xxl: 1600px
+);
+
+$fw-media: (
+  watch:   (0, 319px),
+  mobile:  (320px, 767px),
+  tablet:  (768px, 1024px),
+  laptop:  (1025px, 1280px),
+  desktop: (1281px, 9999px)
+);
+
+// rounded edges
+$fw-rounded-sm: 5px;
+$fw-rounded-md: 9px;
+$fw-rounded-lg: 14px;
+$fw-rounded-xl: 20px;

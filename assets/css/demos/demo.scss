@@ -1,0 +1,12 @@
+@import "../../../_framework/csstetic.scss";
+@import "../../plugins/normalize.scss";
+html, body {
+  margin: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+body {
+  @include fw-scale((
+    padding: (10px 12px, 25px 30px)
+  ));
+}

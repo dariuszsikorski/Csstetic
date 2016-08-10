@@ -1,0 +1,21 @@
+.sec-position {
+  .demo-position {
+    padding: 15px;
+    box-sizing: border-box;
+    //- text-align: center;
+    .fw-relative {
+      margin: auto;
+      max-width: 500px;
+      background: fw-color(bluegrey, 50);
+      outline: solid 2px #333;;
+      min-height: 150px;
+      //- margin: 15px;
+      * {
+        outline: solid 1px #333;;
+        background: #fff;
+        padding: 0 5px;
+        display: inline-block;
+      }
+    }
+  }
+}

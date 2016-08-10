@@ -1,0 +1,23 @@
+@import "../_framework/_csstetic-semantic.scss";
+
+body {
+  padding: 0 10px;
+}
+.demo-scaleprop {
+  text-align: center;
+  .scaledbox {
+    //- background: red;
+    border: solid 2px #333;
+    max-width: 450px;
+    display: block;
+    margin: 25px auto 25px auto;
+    //- padding: 100px;
+    transition: all 0.25s;
+    text-align: left;
+    @include fw-scale((
+      padding: (0 10px, 0 50px),
+      max-width: (250px, 600px),
+      font-size: (14px, 30px)
+    ));
+  }
+}

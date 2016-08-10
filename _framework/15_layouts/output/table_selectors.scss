@@ -1,0 +1,21 @@
+.fw-table {
+  @include fw-table;
+}
+
+.fw-table-row {
+  @include fw-table-row;
+}
+
+.fw-table-col {
+  @include fw-table-column;
+}
+
+.fw-table-top {
+  vertical-align: top;
+}
+.fw-table-middle {
+  vertical-align: middle;
+}
+.fw-table-bottom {
+  vertical-align: bottom;
+}

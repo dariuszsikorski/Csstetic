@@ -1,0 +1,9 @@
+@mixin fw-pile {
+  font-size: 0;
+  width: 100%;
+}
+@mixin fw-pile-item {
+  font-size: 16px;
+  font-size: 1rem;
+  display: inline-block;
+}

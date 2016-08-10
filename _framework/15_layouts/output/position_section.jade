@@ -1,0 +1,204 @@
+section.sec-position
+    h3 Position
+    h5 Set position of the element relatively to it's parent.<br>Element may be placed in the corner, centered or on the edge of parent.
+
+
+    .fw-tabulators
+      span Inside
+      span On edge
+      span Outside
+      span Custom
+
+    .fw-tabs
+      div
+
+        h4 inside:
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container
+          .fw-relative
+
+            .fw-pos-top-left top-left
+            .fw-pos-left left
+            .fw-pos-bottom-left bottom-left
+            .fw-pos-top top
+            .fw-pos-center center
+            .fw-pos-bottom bottom
+            .fw-pos-top-right top-right
+            .fw-pos-right right
+            .fw-pos-bottom-right bottom-right
+
+        .fw-separator
+          span Positions
+          p.fw-container
+            | top-left,
+            | left,
+            | bottom-left,
+            | top,
+            | center,
+            | bottom,
+            | top-right,
+            | right,
+            | bottom-right
+        .fw-separator
+          span Semantic
+        p.fw-container Please note that positioning always require "position: relative" on parent element.
+        .fw-code
+          :code
+            <div class="my-element">
+              <div class="positioned-item">item</item>
+            </div>
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right);
+              }
+            }
+
+
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-relative">
+              <div class="fw-pos-top-right">item</item>
+            </div>
+
+
+      div
+
+        h4 on edge:
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container
+          .fw-relative
+
+            .fw-pos-top-left-edge top-left-edge
+            .fw-pos-left-edge left-edge
+            .fw-pos-bottom-left-edge bottom-left-edge
+            .fw-pos-top-edge top-edge
+            .fw-pos-bottom-edge bottom-edge
+            .fw-pos-top-right-edge top-right-edge
+            .fw-pos-right-edge right-edge
+            .fw-pos-bottom-right-edge bottom-right-edge
+
+        .fw-separator
+          span Positions
+          p.fw-container
+            | top-left-edge,
+            | left-edge,
+            | bottom-left-edge,
+            | top-edge,
+            | bottom-edge,
+            | top-right-edge,
+            | right-edge,
+            | bottom-right-edge
+        .fw-separator
+          span Semantic
+        .fw-code
+          :code
+            <div class="my-element">
+              <div class="positioned-item">item</item>
+            </div>
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right, edge);
+              }
+            }
+
+
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-relative">
+              <div class="fw-pos-top-right-edge">item</item>
+            </div>
+
+      div
+
+        h4 outside:
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container
+          .fw-relative
+
+            .fw-pos-top-left-out top-left-out
+            .fw-pos-left-out left-out
+            .fw-pos-bottom-left-out bottom-left-out
+            .fw-pos-top-out top-out
+            .fw-pos-bottom-out bottom-out
+            .fw-pos-top-right-out top-right-out
+            .fw-pos-right-out right-out
+            .fw-pos-bottom-right-out bottom-right-out
+        br
+        .fw-separator
+          span Positions
+          p.fw-container
+            | top-left-out,
+            | left-out,
+            | bottom-left-out,
+            | top-out,
+            | bottom-out,
+            | top-right-out,
+            | right-out,
+            | bottom-right-out
+        .fw-separator
+          span Semantic
+        .fw-code
+          :code
+            <div class="my-element">
+              <div class="positioned-item">item</item>
+            </div>
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right, out);
+              }
+            }
+
+
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-relative">
+              <div class="fw-pos-top-right-out">item</item>
+            </div>
+
+      div
+
+        h4 custom
+        p.fw-container Create custom offset of positioned item by using css <b>translate X and Y</b>.
+
+        .fw-separator
+          span Example
+
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container.c-visible
+          .fw-relative
+
+            .fw-pos-top-right(style="transform: translateX(-50%) translateY(100%); -webkit-transform: translateX(-50%) translateY(100%)") Custom offset
+
+        p.fw-container This will move item <b>50%</b> to the <b>left</b> and <b>100%</b> <b>from top</b> (of it's own width and height) from <b>top-right</b> position.<br> You can customize all positions listed in "Inside" Tab.
+
+        .fw-separator
+          span or Semantic
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right);
+                transform: translateX(-50%) translateY(100%);
+                -webkit-transform: translateX(-50%) translateY(100%);
+              }
+            }
+        p.fw-container Please note that for old browsers you may also include prefixed translations such as:<br>
+          | <b>-webkit-</b>transform: ... (Chrome, newer versions of Opera.)<br>
+          | <b>-moz-</b>transform: ... (Firefox)<br>
+          | <b>-o-</b>transform: ... (Old versions of Opera)<br>
+          | <b>-ms-</b>transform: ... (Internet Explorer)

@@ -1,0 +1,21 @@
+section
+    h3 Scale Properties
+    h5 Scale Css properties relatively to width of the browser window.<br>Example: resizing browser can reduce font-size of the element.
+
+
+    .fw-resizable
+      iframe(src='../demos/scaleProperties_demo.html')
+
+    .fw-separator
+      span Semantic
+    p You can scale properties only in Semantic version.
+    .fw-code.scss
+      :code
+        .my-element {
+          transition: all 0.25s; // optional - for smooth scaling
+          @include fw-scale((
+            padding: (0 10px, 0 50px),
+            font-size: (14px, 30px)
+          ));
+        }
+    p property1: (<b>begin</b> value, <b>end</b> value),<br>property2: (<b>begin</b> value, <b>end</b> value)...<br><b>begin</b> value means size for smallest device while <b>end</b> is for desktop.

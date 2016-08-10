@@ -1,0 +1,680 @@
+// ----------------------------------------------------------------------
+
+.dc-grid {
+
+  // @include old-grid(
+
+  //   $columns: null,           // Number of columns. A full unitless number, for example: 12
+  //   $gridWidth: null,    // Grid width. A number in px or %, or unitless proportion, for example 960px or 80%, or 4/5
+  //   $columnWidth: null,       // Column width. A number in px or %, or unitless proportion, for example: 80px or 10%, or 1/12
+  //   $columnClass: "-col",  // Class for all columns. Must be a string starting with .L where L is letter, for example: "-col"
+  //   $spacingX: null,          // X - spacing between columns. A number in px, for example: 20px
+  //   $spacingY: null,          // Y - spacing between columns. A number in px, for example: 20px
+  //   $media: null,             // Media brakpoint, this will generate updated settings for
+  //   $showNames: null          // Helper, this will show column names on one of available positions: top/middle/bottom
+  // );
+
+  // base grid without media breakpoints must be defined at first
+  // this will generate -col-* column sizes
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 25px,
+    $spacingY: 25px
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 25px,
+    $spacingY: 25px,
+    $media: "xl" // -col-xl-*
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 20px,
+    $spacingY: 20px,
+    $media: "lg" // -col-lg-*
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 15px,
+    $spacingY: 15px,
+    $media: "md" // -col-md-*
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 10px,
+    $spacingY: 10px,
+    $media: "sm" // -col-sm-*
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 5px,
+    $spacingY: 5px,
+    $media: "xs" // -col-xs-*
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 0,
+    $spacingY: 0,
+    $media: "xxs" // -col-xxs-*
+  );
+
+}
+
+
+
+// ----------------------------------------------------------------------
+
+// proportion table
+// 4-1  = 400%
+// 3-1  = 300%
+// 5-2  = 250%
+// 2-1  = 200%
+// 7-4  = 175%
+// 3-2  = 150%
+// 5-4  = 125%
+// 1-1  = 100%
+// 9-10 = 90%
+// 4-5  = 80%
+// 3-4  = 75%
+// 7-10 = 70%
+// 2-3  = 66.66667%
+// 3-5  = 60%
+// 1-2  = 50%
+// 2-5  = 40%
+// 1-3  = 33.33333%
+// 3-10 = 30%
+// 1-4  = 25%
+// 1-5  = 20%
+// 1-8  = 12.5%
+// 1-10 = 10%
+
+.dc-tile {
+
+
+  &-33 {@include old-tile(1/3);}
+  &-66 {@include old-tile(2/3);}
+
+  & {@include old-tile(100%);}
+  &-1 {@include old-tile(100%);}
+  &-2 {@include old-tile(200%);}
+  &-3 {@include old-tile(300%);}
+  &-4 {@include old-tile(400%);}
+  &-25 {@include old-tile(25%);}
+  &-50 {@include old-tile(50%);}
+  &-75 {@include old-tile(75%);}
+  &-100 {@include old-tile(100%);}
+  &-125 {@include old-tile(125%);}
+  &-150 {@include old-tile(150%);}
+  &-175 {@include old-tile(175%);}
+  &-200 {@include old-tile(200%);}
+  &-225 {@include old-tile(225%);}
+  &-250 {@include old-tile(250%);}
+  &-275 {@include old-tile(275%);}
+  &-300 {@include old-tile(300%);}
+  &-325 {@include old-tile(325%);}
+  &-350 {@include old-tile(350%);}
+  &-375 {@include old-tile(375%);}
+  &-400 {@include old-tile(400%);}
+
+
+
+  @include old-media(xs){
+    & {@include old-tile(100%);}
+    &-1 {@include old-tile(100%);}
+    &-2 {@include old-tile(200%);}
+    &-3 {@include old-tile(300%);}
+    &-4 {@include old-tile(400%);}
+    &-25 {@include old-tile(25%);}
+    &-50 {@include old-tile(50%);}
+    &-75 {@include old-tile(75%);}
+    &-100 {@include old-tile(100%);}
+    &-125 {@include old-tile(125%);}
+    &-150 {@include old-tile(150%);}
+    &-175 {@include old-tile(175%);}
+    &-200 {@include old-tile(200%);}
+    &-225 {@include old-tile(225%);}
+    &-250 {@include old-tile(250%);}
+    &-275 {@include old-tile(275%);}
+    &-300 {@include old-tile(300%);}
+    &-325 {@include old-tile(325%);}
+    &-350 {@include old-tile(350%);}
+    &-375 {@include old-tile(375%);}
+    &-400 {@include old-tile(400%);}
+  }
+  @include old-media(sm){
+    & {@include old-tile(100%);}
+    &-1 {@include old-tile(100%);}
+    &-2 {@include old-tile(200%);}
+    &-3 {@include old-tile(300%);}
+    &-4 {@include old-tile(400%);}
+    &-25 {@include old-tile(25%);}
+    &-50 {@include old-tile(50%);}
+    &-75 {@include old-tile(75%);}
+    &-100 {@include old-tile(100%);}
+    &-125 {@include old-tile(125%);}
+    &-150 {@include old-tile(150%);}
+    &-175 {@include old-tile(175%);}
+    &-200 {@include old-tile(200%);}
+    &-225 {@include old-tile(225%);}
+    &-250 {@include old-tile(250%);}
+    &-275 {@include old-tile(275%);}
+    &-300 {@include old-tile(300%);}
+    &-325 {@include old-tile(325%);}
+    &-350 {@include old-tile(350%);}
+    &-375 {@include old-tile(375%);}
+    &-400 {@include old-tile(400%);}
+  }
+  @include old-media(md){
+    & {@include old-tile(100%);}
+    &-1 {@include old-tile(100%);}
+    &-2 {@include old-tile(200%);}
+    &-3 {@include old-tile(300%);}
+    &-4 {@include old-tile(400%);}
+    &-25 {@include old-tile(25%);}
+    &-50 {@include old-tile(50%);}
+    &-75 {@include old-tile(75%);}
+    &-100 {@include old-tile(100%);}
+    &-125 {@include old-tile(125%);}
+    &-150 {@include old-tile(150%);}
+    &-175 {@include old-tile(175%);}
+    &-200 {@include old-tile(200%);}
+    &-225 {@include old-tile(225%);}
+    &-250 {@include old-tile(250%);}
+    &-275 {@include old-tile(275%);}
+    &-300 {@include old-tile(300%);}
+    &-325 {@include old-tile(325%);}
+    &-350 {@include old-tile(350%);}
+    &-375 {@include old-tile(375%);}
+    &-400 {@include old-tile(400%);}
+  }
+  @include old-media(lg){
+    & {@include old-tile(100%);}
+    &-1 {@include old-tile(100%);}
+    &-2 {@include old-tile(200%);}
+    &-3 {@include old-tile(300%);}
+    &-4 {@include old-tile(400%);}
+    &-25 {@include old-tile(25%);}
+    &-50 {@include old-tile(50%);}
+    &-75 {@include old-tile(75%);}
+    &-100 {@include old-tile(100%);}
+    &-125 {@include old-tile(125%);}
+    &-150 {@include old-tile(150%);}
+    &-175 {@include old-tile(175%);}
+    &-200 {@include old-tile(200%);}
+    &-225 {@include old-tile(225%);}
+    &-250 {@include old-tile(250%);}
+    &-275 {@include old-tile(275%);}
+    &-300 {@include old-tile(300%);}
+    &-325 {@include old-tile(325%);}
+    &-350 {@include old-tile(350%);}
+    &-375 {@include old-tile(375%);}
+    &-400 {@include old-tile(400%);}
+  }
+  @include old-media(xl){
+    & {@include old-tile(100%);}
+    &-1 {@include old-tile(100%);}
+    &-2 {@include old-tile(200%);}
+    &-3 {@include old-tile(300%);}
+    &-4 {@include old-tile(400%);}
+    &-25 {@include old-tile(25%);}
+    &-50 {@include old-tile(50%);}
+    &-75 {@include old-tile(75%);}
+    &-100 {@include old-tile(100%);}
+    &-125 {@include old-tile(125%);}
+    &-150 {@include old-tile(150%);}
+    &-175 {@include old-tile(175%);}
+    &-200 {@include old-tile(200%);}
+    &-225 {@include old-tile(225%);}
+    &-250 {@include old-tile(250%);}
+    &-275 {@include old-tile(275%);}
+    &-300 {@include old-tile(300%);}
+    &-325 {@include old-tile(325%);}
+    &-350 {@include old-tile(350%);}
+    &-375 {@include old-tile(375%);}
+    &-400 {@include old-tile(400%);}
+  }
+
+
+
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-row {
+  @include old-row;
+}
+.dccol {
+  @include old-col;
+}
+.dcslice {
+  @include old-slice;
+}
+
+.dc-cols {
+  @include old-slice;
+  > * {
+    @include old-col;
+  }
+}
+
+.dc-rows {
+  @include old-slice;
+  > * {
+    @include old-row;
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-bar {
+  @include old-bar;
+  -bar-left {
+    @include old-bar-left;
+  }
+  -bar-center {
+    @include old-bar-center;
+  }
+  -bar-right {
+    @include old-bar-right;
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-pile {
+  @include old-pile;
+
+  > * {
+    @include old-pile-item;
+  }
+
+  // horizontal align
+  &-left {
+    @include old-pile(left);
+  }
+  &-center {
+    @include old-pile(center);
+  }
+  &-right {
+    @include old-pile(right);
+  }
+  &-justify {
+    @include old-pile(justify);
+  }
+
+  // vertical align
+  &-top {
+    > * {
+      @include old-pile-item(top);
+    }
+  }
+  &-middle {
+    > * {
+      @include old-pile-item(middle);
+    }
+  }
+  &-bottom {
+    > * {
+      @include old-pile-item(bottom);
+    }
+  }
+
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-list {
+  > * {
+    @include old-list-item;
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+//
+
+
+
+// ----------------------------------------------------------------------
+
+//
+
+
+
+// ----------------------------------------------------------------------
+
+
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-clearfix {
+  @include old-clearfix;
+}
+
+
+
+// ----------------------------------------------------------------------
+
+
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-media {
+  @include old-media-info;
+}
+
+.dc-hide {
+  &-mobile {
+    @include old-media(mobile){
+      display: none !important;
+    }
+  }
+  &-mobile-portrait {
+    @include old-media(mobile-portrait){
+      display: none !important;
+    }
+  }
+  &-mobile-landscape {
+    @include old-media(mobile-landscape){
+      display: none !important;
+    }
+  }
+  &-tablet {
+    @include old-media(tablet){
+      display: none !important;
+    }
+  }
+  &-tablet-portrait {
+    @include old-media(tablet-portrait){
+      display: none !important;
+    }
+  }
+  &-tablet-landscape {
+    @include old-media(tablet-landscape){
+      display: none !important;
+    }
+  }
+  &-laptop {
+    @include old-media(laptop){
+      display: none !important;
+    }
+  }
+  &-desktop {
+    @include old-media(desktop){
+      display: none !important;
+    }
+  }
+  &-xxs {
+    @include old-media(xxs){
+      display: none !important;
+    }
+  }
+  &-xs {
+    @include old-media(xs){
+      display: none !important;
+    }
+  }
+  &-sm {
+    @include old-media(sm){
+      display: none !important;
+    }
+  }
+  &-md {
+    @include old-media(md){
+      display: none !important;
+    }
+  }
+  &-lg {
+    @include old-media(lg){
+      display: none !important;
+    }
+  }
+  &-xl {
+    @include old-media(xl){
+      display: none !important;
+    }
+  }
+  &-xxl {
+    @include old-media(xxl){
+      display: none !important;
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-box {
+  &-xs {@include old-box(10px);}
+  &-sm {@include old-box(15px);}
+  &-md {@include old-box(20px);}
+  &-lg {@include old-box(30px);}
+  &-xl {@include old-box(60px);}
+  &-xxl {@include old-box(90px);}
+  &-xxxl {@include old-box(120px);}
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-bg {
+  // @each $KEY, $VALUE in $MAP
+  @each $color, $colorShades in $materialColors {
+    // for each color
+    &-#{$color} {
+      @each $shade, $shadeValue in $colorShades {
+        // for each shade
+        &-#{$shade} {
+          // render background
+          background-color: material($color, $shade);
+        }
+
+        // if shade is 500, create simplified selector like .bg-red
+        @if $shade == 500 {
+          background-color: material($color, $shade);
+        }
+      }
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc {
+  &-xs {@include old-size(20px);}
+  &-sm {@include old-size(24px);}
+  &-md {@include old-size(30px);}
+  &-lg {@include old-size(38px);}
+  &-xl {@include old-size(48px);}
+  &-xxl {@include old-size(60px);}
+  &-xxxl {@include old-size(74px);}
+  &-hg {@include old-size(90px);}
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-pos {
+
+  &-top-left { @include old-position(top-left); }
+  &-left { @include old-position(left); }
+  &-bottom-left { @include old-position(bottom-left); }
+  &-top { @include old-position(top); }
+  &-center { @include old-position(center); }
+  &-bottom { @include old-position(bottom); }
+  &-top-right { @include old-position(top-right); }
+  &-right { @include old-position(right); }
+  &-bottom-right { @include old-position(bottom-right); }
+
+  &-top-left-edge { @include old-position(top-left, edge); }
+  &-left-edge { @include old-position(left, edge); }
+  &-bottom-left-edge { @include old-position(bottom-left, edge); }
+  &-top-edge { @include old-position(top, edge); }
+  &-bottom-edge { @include old-position(bottom, edge); }
+  &-top-right-edge { @include old-position(top-right, edge); }
+  &-right-edge { @include old-position(right, edge); }
+  &-bottom-right-edge { @include old-position(bottom-right, edge); }
+
+  &-top-left-out { @include old-position(top-left, outer); }
+  &-left-out { @include old-position(left, outer); }
+  &-bottom-left-out { @include old-position(bottom-left, outer); }
+  &-top-out { @include old-position(top, outer); }
+  &-bottom-out { @include old-position(bottom, outer); }
+  &-top-right-out { @include old-position(top-right, outer); }
+  &-right-out { @include old-position(right, outer); }
+  &-bottom-right-out { @include old-position(bottom-right, outer); }
+
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-box {
+  &-xs {@include old-box(10px);}
+  &-sm {@include old-box(15px);}
+  &-md {@include old-box(20px);}
+  &-lg {@include old-box(30px);}
+  &-xl {@include old-box(60px);}
+  &-xxl {@include old-box(90px);}
+  &-xxxl {@include old-box(120px);}
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-txt {
+  // @each $KEY, $VALUE in $MAP
+  @each $color, $colorShades in $materialColors {
+    // for each color
+    &-#{$color} {
+      @each $shade, $shadeValue in $colorShades {
+        // for each shade
+        &-#{$shade} {
+          // render text color
+          color: material($color, $shade);
+        }
+
+        // if shade is 500, create simplified selector like .bg-red
+        @if $shade == 500 {
+          color: material($color, $shade);
+        }
+      }
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+// custom rounding
+// -round-custom {
+//   @include old-round(10px 20px);
+// }
+
+.dc-round {
+  @include old-round;
+}
+
+// alternative usage
+// -round-2 {
+//   @include old-round(round);
+// }
+
+.dc-rounded {
+  @include old-rounded;
+}
+
+// alternative usage
+// -rounded-2 {
+//   @include old-rounded(rounded);
+// }
+
+.dc-rounded-lg {
+  @include old-round(lg);
+}
+
+.dc-rounded-xl {
+  @include old-round(xl);
+}
+
+.dc-rounded-ellipse {
+  @include old-round(ellipse);
+}
+
+.dc-rounded-a1 {
+  @include old-round(a1);
+}
+
+.dc-rounded-a2 {
+  @include old-round(a2);
+}
+
+.dc-rounded-a3 {
+  @include old-round(a3);
+}
+
+.dc-rounded-a4 {
+  @include old-round(a4);
+}
+
+.dc-rounded-b1 {
+  @include old-round(b1);
+}
+
+.dc-rounded-b2 {
+  @include old-round(b2);
+}
+
+.dc-rounded-b3 {
+  @include old-round(b3);
+}
+
+.dc-rounded-b4 {
+  @include old-round(b4);
+}
+
+
+
+// ----------------------------------------------------------------------
+
+
+
+
+
+// ----------------------------------------------------------------------
+
+//

@@ -1,0 +1,12 @@
+
+<splitSection output="output/introduction_section.scss">
+
+$marker-color-primary: red;
+$marker-color-secondary: green;
+$marker-size-primary: 5px;
+$marker-size-secondary: 1px;
+$light-bg: red;
+$light-bg-text: green;
+$light-bg: fw-color(bluegrey, 50);
+
+</splitSection>

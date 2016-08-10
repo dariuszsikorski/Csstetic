@@ -1,0 +1,29 @@
+.fw-pile {
+  @include fw-pile;
+  //- text-align: right;
+  .fw-pile-item {
+    @include fw-pile-item;
+    vertical-align: middle;
+  }
+
+
+}
+
+.fw-pile-top {
+  .fw-pile-item { vertical-align: top; }
+}
+.fw-pile-middle {
+  .fw-pile-item { vertical-align: middle; }
+}
+.fw-pile-bottom {
+  .fw-pile-item { vertical-align: bottom; }
+}
+.fw-pile-left {
+  text-align: left;
+}
+.fw-pile-center {
+  text-align: center;
+}
+.fw-pile-right {
+  text-align: right;
+}

@@ -1,0 +1,16 @@
+@mixin fw-justified {
+  text-align: justify;
+  font-size: 0;
+  width: 100%;
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+@mixin fw-just-item {
+  display: inline-block;
+  font-size: 16px;
+  font-size: 1rem;
+}

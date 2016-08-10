@@ -1,0 +1,262 @@
+
+
+<splitSection output="output/align_section.jade">
+
+  section.sec-align
+    h3 Align
+    h5 Selectors for align, float and vertical-align.
+
+
+    .fw-tabulators
+      span Example
+
+    .fw-tabs
+      div
+        p.fw-container Please not that each align may require specific element display, width or height.<br>
+          | Vertical-align works best width inline-block or table-cell elements,<br>while
+          | margin: auto align require display block and limited width (such as 50%).
+
+        h4 text align
+        .fw-resizable.fw-example.fw-copy.c-elements.demo-align
+          .fw-text-left
+            p text aligned to left
+          .fw-text-center
+            p centered text
+          .fw-text-right
+            p text aligned to right
+
+        h4 vertical align
+        p.fw-container Example on table cells. Works on inline-block elements as well.
+        .fw-resizable.fw-example.fw-copy.c-elements.demo-align
+          .fw-top.fw-display-table-cell top
+          .fw-middle.fw-display-table-cell middle
+          .fw-bottom.fw-display-table-cell bottom
+
+        h4 float
+        p.fw-container Floating requires clearfix on parent element;
+        .fw-resizable.fw-example.fw-copy.c-elements.demo-align
+          .fw-clearfix
+            .fw-left left floated block
+
+          .fw-clearfix
+            .fw-right right floated block
+
+          .fw-clearfix
+            .fw-left both: left
+            .fw-right and right
+
+        h4 center (margin: auto)
+        .fw-resizable.fw-example.fw-copy.c-elements.demo-align
+          .fw-center(style="max-width: 100px") centered element
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .aligned-element {
+              text-right: center;
+              vertical-align: middle;
+            }
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-text-center"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-align">Hello!</span>
+        .fw-code.scss
+          :code
+            // element has to use display inline-block or table-cell and width: 100%
+            .aligned-element {
+              text-right: center;
+              vertical-align: middle;
+            }
+
+            // VERTICAL ALIGN
+            // element has to be display: inline-block or table-cell
+            .aligned-top {
+              vertical-align: top;
+            }
+            .aligned-middle {
+              vertical-align: middle;
+            }
+            .aligned-bottom {
+              vertical-align: bottom;
+            }
+
+            // TEXT ALIGN
+            // element has to be wider than it's content, add width: 100%
+            .aligned-text-left {
+              text-align: left;
+            }
+            .aligned-text-center {
+              text-align: center;
+            }
+            .aligned-text-right {
+              text-align: right;
+            }
+
+            // FLOAT
+            // float removes element from paren't height, use fw-clearfix to fix that
+            .clearfixed-parent {
+              @include fw-clearfix;
+              .aligned-left {
+                float: left;
+              }
+            }
+
+            .clearfixed-parent {
+              @include fw-clearfix;
+              .aligned-right {
+                float: right;
+              }
+            }
+
+            // CENTER (MARGIN: AUTO)
+            // centered element has to smaller than parent, for example add width: 50%
+            .aligned-center {
+              margin-left: auto;
+              margin-right: auto;
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <!-- TEXT ALIGN -->
+            <div class="fw-text-left">
+              <p>text aligned to left</p>
+            </div>
+
+            <div class="fw-text-center">
+              <p>centered text</p>
+            </div>
+
+            <div class="fw-text-right">
+              <p>text aligned to right</p>
+            </div>
+
+            <!-- VERTICAL ALIGN -->
+            <div class="fw-top fw-display-table-cell">
+              top
+            </div>
+
+            <div class="fw-middle fw-display-table-cell">
+              middle
+            </div>
+
+            <div class="fw-bottom fw-display-table-cell">
+              bottom
+            </div>
+
+            <!-- FLOAT -->
+            <div class="fw-clearfix">
+              <div class="fw-left">
+                left floated block
+              </div>
+            </div>
+
+            <div class="fw-clearfix">
+              <div class="fw-right">
+                right floated block
+              </div>
+            </div>
+
+            <div class="fw-clearfix">
+              <div class="fw-left">
+                both: left
+              </div>
+              <div class="fw-right">
+                and right
+              </div>
+            </div>
+
+            <!-- CENTER (MARGIN: AUTO) -->
+            <div class="fw-center" style="max-width: 100px">
+              centered element
+            </div>
+
+
+</splitSection>
+
+
+<splitSection output="output/align_demo.jade">
+
+//- block meta
+//-   link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+//-   link(rel="stylesheet", href="./align_demo.css" id="mainstyle")
+
+//- block title
+//-   title align Demo
+
+//- block content
+//-   .align-demo
+//-     span demo content
+//-     span demo content
+//-     span demo content
+
+</splitSection>
+
+
+<splitSection output="output/align_section.scss">
+
+.sec-align {
+  .demo-align {
+    .fw-top,
+    .fw-middle,
+    .fw-bottom {
+      width: 125px;
+      height: 100px;
+      border-left: 2px solid #444;
+      padding-left: 5px;
+      //- display: table-cell;
+    }
+    .fw-text-left,
+    .fw-text-center,
+    .fw-text-right,
+    .fw-center,
+    .fw-clearfix {
+      border: solid #444;
+      border-width: 0 0 1px 0;
+      padding: 5px;
+      //- margin-top 15px;
+      line-height: 1;
+      margin-top: 30px;
+      display: block;
+    }
+
+    //- .fw-text-left {border-width: 0 0 0 2px;}
+    //- .fw-text-center {border-width: 0 2px 0 2px;}
+    //- .fw-text-right {border-width: 0 2px 0 0;}
+    //- height: 100px;
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/align_selectors.scss">
+
+.fw-top { vertical-align: top; }
+.fw-middle { vertical-align: middle; }
+.fw-bottom { vertical-align: bottom; }
+.fw-text-left { text-align: left; }
+.fw-text-center { text-align: center; }
+.fw-text-right { text-align: right; }
+.fw-left { float: left; }
+.fw-right { float: right; }
+.fw-center { margin-left: auto; margin-right: auto; }
+
+</splitSection>

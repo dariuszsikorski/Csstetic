@@ -1,0 +1,4922 @@
+
+// ----------------------------------------------------------------------
+
+@mixin old-grid(
+  // $columns must be a full unitless number, for example: 12
+  $columns: null,
+
+  // $gridWidth must be a number in px @or %, or unitless proportion, for example 960px or 80%, or 4/5
+  $gridWidth: null,
+
+  // $columnWidth must be a number in px or %, or unitless proportion, for example: 80px or 10%, or 1/12
+  $columnWidth: null,
+
+  // $columnClass must be a string starting with .L where L is letter, for example: ".col"
+  $columnClass: ".ui-old-col",
+
+  // $spacingX must be a number in px, for example: 20px
+  $spacingX: null,
+
+  // $spacingY must be a number in px, for example: 20px
+  $spacingY: null,
+
+  // $media must be a string, for example: "md"
+  $media: null,
+
+  // string, top/middle/bottom
+  $showNames: null
+){
+
+  // ---------------------------------
+  // convert unitless proportions to %
+  // conversion can be replaced with
+  // calc(a/b) in web browsers
+  //
+
+  // if width is unitless proportion - convert to %;
+  @if $gridWidth and type-of($gridWidth) == number {
+    @if unitless($gridWidth) {
+      @if $gridWidth <= 0 or $gridWidth > 1 {
+        @error 'grid: $gridWidth #{$gridWidth} gives you #{$gridWidth * 100%}, $gridWidth must be between 1% and 100%';
+      }
+      $gridWidth: $gridWidth * 100%;
+    }
+  }
+
+  // if column is unitless proportion - convert to %;
+  @if $columnWidth and type-of($columnWidth) == number {
+    @if unitless($columnWidth) {
+      @if $columnWidth<= 0 or $columnWidth > 1 {
+        @error 'grid: $columnWidth #{$columnWidth} gives you #{$columnWidth * 100%}, $columnWidth must be between 1% and 100%';
+      }
+      $columnWidth: $columnWidth * 100%;
+    }
+  }
+
+  // ------------------------
+  // check argument relations
+  //
+
+  // if user did not pass any arguments, ask to define at least $columns
+  @if ($columns or $gridWidth or $columnWidth or $columnClass or
+       $spacingX or $spacingY or $media) == null {
+    @error 'grid: Please define at least two arguments for grid, for example $columns: 12, $columnClass: ".col".';
+  }
+
+  // user can define only two from three sizing arguments
+  // at the same time ($columns, $gridWidth, $columnWidth)
+  @if $columns and $gridWidth and $columnWidth {
+    @error 'grid: You can define only two arguments from $columns, $gridWidth, $columnWidth at the same time.';
+  }
+
+  // if only one of sizing argument is defined,
+  // ask to define another one
+  // but if only size is defined, set grid width to 100%
+  @if $columns and $gridWidth == null and $columnWidth == null {
+    $gridWidth: 100%;
+  }
+  @if $gridWidth and $columns == null and $columnWidth == null {
+    @error 'grid: Please add $columns or $columnWidth when $gridWidth is defined.';
+  }
+  @if $columnWidth and $columns == null and $gridWidth == null {
+    @error 'grid: Please add $columns or $gridWidth when $columnWidth is defined.';
+  }
+
+  // if user defined a grid size,
+  // you can't define column width in % at the same time
+  @if $columns and type-of($columnWidth) == number {
+    @if unit($columnWidth) == % {
+      @error "grid: please define only $columns, or define $columnWidth in px units.";
+    }
+  }
+
+  // check if user passed properly two of three sizing arguments
+  $sizing-defined: false;
+  @if ($columns and $gridWidth and $columnWidth == null) or
+      ($columns and $columnWidth and $gridWidth == null) or
+      ($gridWidth and $columnWidth and $columns == null) {
+    $sizing-defined: true;
+  }
+  // when user defined sizing arguments,
+  // ask to define $columnClass selector
+  @if $sizing-defined and $columnClass == null {
+    @error 'grid: When grid sizing arguments are defined, please define $columnClass selector.';
+  }
+
+  // when user define $spacingX or $spacingY
+  // ask to define $columnClass selector
+  @if ($spacingX or $spacingY) and $columnClass == null {
+    @error 'grid: Please define $columnClass selector, when $spacingX or $spacingY is defined.';
+  }
+
+  // if $spacingX or $spacingY is defined, mark $spacing as defined
+  $spacing-defined: false;
+  @if $spacingX or $spacingY {
+    $spacing-defined: true;
+  }
+
+  // when user defined breakpoint
+  // ask to define size or spacing
+  @if $media and ( $sizing-defined == false and $spacing-defined == false ) {
+    @error 'grid: When $media is defined, please define grid size or spacing.';
+  }
+
+  // if $columnClass is defined, and $spacing or $sizing is not defined
+  // ask to define spacing or sizing
+  @if $columnClass and ($spacing-defined or $sizing-defined) == false {
+    @error 'grid: Please define grid $columns, or children $spacing, when $columnClass selector is defined.';
+  }
+
+  // if $showNames and $columns is not defined
+  // ask to define $columns
+  @if $showNames and $columns == null{
+    @error 'grid: Please define $columns, to show column names.';
+  }
+
+  // -------------------------
+  // check argument data types
+  //
+
+  // $columns must be a full unitless number, for example: 12
+  // $columns: null;
+  @if $columns {
+    @if type-of($columns) != number or unitless($columns) == false or round($columns) != $columns {
+      @error 'grid: $columns #{$columns} must be a full unitless number, for example: 12';
+    }
+    @if $columns <= 0 {
+      @error 'grid: $columns #{$columns} must be bigger than 0';
+    }
+  }
+
+  // $gridWidth must be a number in [0+]px or [1-100]% or unitless [a/b]proportion, for example: 960px or 80% or 4/5
+  // $gridWidth: 10;
+  @if $gridWidth {
+    @if type-of($gridWidth) != number or
+        unit($gridWidth) != px and
+        unit($gridWidth) != % and
+        unitless($gridWidth) != true {
+      @error 'grid: $gridWidth #{$gridWidth} must be a number in px[0+] or %[1-100] or unitless proportion[a/b], for example: 960px or 80% or 4/5';
+    }
+    @if $gridWidth <= 0 {
+      @error 'grid: $gridWidth #{$gridWidth} must be bigger than 0';
+    }
+  }
+
+  // $columnWidth must be a number in px or %, or unitless proportion, for example: 80px or 10%, or 1/12
+  // $columnWidth: 1%;
+  @if $columnWidth {
+    @if type-of($columnWidth) != number or
+        unit($columnWidth) != px and
+        unit($columnWidth) != % and
+        unitless($columnWidth) != true {
+      @error 'grid: $columnWidth #{$columnWidth} must be a number in px[0+] or %[1-100] or unitless proportion[a/b], for example: 80px or 10% or 1/12';
+    }
+    @if $columnWidth <= 0 {
+      @error 'grid: $columnWidth #{$columnWidth} must be bigger than 0';
+    }
+  }
+
+  // $columnClass must be a string starting with .L where L is letter, for example: ".col"
+  @if $columnClass {
+    @if type-of($columnClass) != string or
+        str-slice($columnClass, 0, 1) != "." {
+      @error 'grid: $columnClass #{$columnClass} must be a string starting with .L where L is letter, for example: ".col"';
+    }
+  }
+
+  // $spacingX must be a number in px[0+], for example: 20px
+  // $spacingX: 20px;
+  @if $spacingX {
+    @if type-of($spacingX) != number or
+        (unit($spacingX) == px or unitless($spacingX)) == false {
+      @error 'grid: $spacingX #{$spacingX} must be a number in px[0+], for example: 20px';
+    }
+  }
+  // $spacingY must be a number in px[0+], for example: 20px
+  // $spacingY: 12px;
+  @if $spacingY {
+    @if type-of($spacingY) != number or
+        (unit($spacingY) == px or unitless($spacingY)) == false {
+      @error 'grid: $spacingY #{$spacingY} must be a number in px[0+], for example: 20px';
+    }
+  }
+
+  // $media must be a string, for example: "md"
+  @if $media {
+    @if type-of($media) != string {
+      @error 'grid: $media #{$media} must be a string, for example: "md"';
+    }
+  }
+
+  // $showNames must be a string: top/middle/bottom
+  @if $showNames {
+    @if type-of($showNames) != string {
+      @error 'grid: $showNames must be a string: "top", "middle" or "bottom"';
+    }
+  }
+
+  // --------------------------------------
+  // calculate missing third size arguments
+  //
+
+  @if $sizing-defined {
+    // automatically calculate third argument of sizing
+    // case calculate size
+    @if $gridWidth and $columnWidth {
+
+      // case 1 width in % column in %
+      @if unit($gridWidth) == % and unit($columnWidth) == % {
+        $columns: floor(100%/$columnWidth);
+      }
+
+      // case 2 width in % column in px
+      @if unit($gridWidth) == % and unit($columnWidth) == px {
+        $columns: 24;
+      }
+
+      // case 3 width in px column in %
+      @if unit($gridWidth) == px and unit($columnWidth) == % {
+        $columns: floor(100%/$columnWidth);
+      }
+
+      // check if user passed proper column width for case 1 or 3
+      @if (unit($gridWidth) == % and unit($columnWidth) == %) or
+          (unit($gridWidth) == px and unit($columnWidth) == %) {
+        $check-width: old-decimal-ceil($columns * $columnWidth, 5);
+        @if $check-width != 100% {
+          @error 'grid: Wrong column width: #{$columns}cols * #{$columnWidth} = #{$check-width}, a sum of 100% is expected.';
+        }
+      }
+
+      // case 4 width in px column in px
+      @if unit($gridWidth) == px and unit($columnWidth) == px {
+        $columns: floor($gridWidth / $columnWidth);
+        $check-width: old-decimal-ceil($columns * $columnWidth, 5);
+        @if $check-width != $gridWidth {
+          @error 'grid: Wrong column width: #{$columns}cols * #{$column} = #{$check-width}, #{$gridWidth}(grid width) is expected.';
+        }
+      }
+    }
+    // case calculate width
+    @else if $columns and $columnWidth {
+      // case 5 size and column in %
+      @if unit($columnWidth) == % {
+        // you can't define size and column width in % at the same time
+        // $gridWidth has been set to 100% and go to calculations in case 7
+      }
+
+      // case 6 size and column in px
+      @if unit($columnWidth) == px {
+        $gridWidth: $columns * $columnWidth;
+      }
+    }
+
+    // case calculate column
+    @else if $columns and $gridWidth {
+      // case 7 size and grid width in %
+      // calculate column width by dividing 100%/$columns
+      @if unit($gridWidth) == % {
+        $columnWidth: 100% / $columns;
+      }
+
+      // case 8 size and width in px
+      @if unit($gridWidth) == px {
+        $columnWidth: $gridWidth / $columns;
+      }
+    }
+  }
+
+  // -------------------------------
+  // create main generate grid mixin
+  //
+
+  @mixin old-generate-grid {
+
+    // --------------------------------------------------------
+    // create prefix for all childrens and define spacing mixin
+    //
+
+    @mixin old-add-children-spacing(){
+      @if $spacingX { padding-left: $spacingX; }
+      @if $spacingY { padding-bottom: $spacingY; }
+    }
+    @mixin old-add-container-margin(){
+      @if $spacingX { margin-left: $spacingX * -1;}
+      @if $spacingY { margin-bottom: $spacingY * -1; }
+    }
+
+    $child-prefix: str-slice($columnClass, 2, str-length($columnClass)) + "-";
+
+    // ---------------------------------------------------------------------
+    // generate new grid spacing between items, when only spacing is defined
+    //
+
+    @if $spacing-defined and $sizing-defined == false {
+      @include old-add-container-margin;
+      > {
+        @include old-classname-begin($child-prefix){
+          @include old-add-children-spacing;
+        }
+      }
+    }
+
+    // --------------------------------------
+    // generate new grid, columns and spacing
+    //
+
+    @if $sizing-defined {
+      @if $spacing-defined {
+        @include old-add-container-margin;
+      }
+      // define selector for columns
+      $current-children: $columnClass + "-";
+
+      // define styling for grid container
+      @if $media == null {
+        // if breakpoint is not defined
+        // it means grid is defined for the first time
+        @extend %old-clearfix;
+        @if $gridWidth == 100% {
+          width: auto;
+        } @else {
+          width: $gridWidth;
+        }
+        box-sizing: border-box;
+        > {
+          @include old-classname-begin($child-prefix){
+            float: left;
+            box-sizing: border-box;
+            @extend %old-clearfix;
+            @if $spacing-defined {
+              @include old-add-children-spacing;
+            }
+            @if $showNames {
+              position: relative;
+              // &:after is reserved for clearfix
+              &:before {
+                position: absolute;
+                // text-shadow: 0 1px 3px #000;
+                text-align: center;
+                display: block;
+                left: 0;
+                width: 100%;
+                color: #464D5D;
+                font-size: 13px;
+                font-weight: bold;
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                z-index: 2; // restore column name beeing overlapped by column content
+
+                @include old-media(xxs){
+                  display: none !important;
+                }
+                @if $showNames == "top" { top: 8%; }
+                @if $showNames == "bottom" { bottom: 8%; }
+                @if $showNames == "middle" {
+                  top: 50%;
+                  transform: translateY(-50%);
+                  -webkit-transform: translateY(-50%);
+                }
+              }
+            }
+          }
+        }
+      } @else {
+        // if breakpoint is defined
+        // modify selector for columns
+        $current-children: $columnClass + "-" + $media + "-";
+        @if $gridWidth == 100% {
+          width: auto;
+        } @else {
+          width: $gridWidth;
+        }
+        > {
+          @include old-classname-begin($child-prefix){
+            @if $spacing-defined {
+              @include old-add-children-spacing;
+            }
+          }
+        }
+      }
+
+      // generate column widths
+      @for $loop from 1 through $columns {
+        > #{$current-children + $loop} {
+          width: old-decimal-ceil($loop * $columnWidth, 5);
+          @if $showNames {
+            &:before {
+              $columnName: $current-children + $loop;
+              // remove dot from name:
+              $columnName: str-slice($columnName, 2, str-length($columnName));
+              content: "#{$columnName}";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // call generate grid mixin, and if breakpoint is defined,
+  // wrap code in mediaquery same as the breakpoint name
+  @if $media {
+    @include old-media($media){
+      @include old-generate-grid;
+    }
+  } @else {
+      @include old-generate-grid;
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+%old-tile {
+  position: relative;
+  display: inline-block;
+  vertical-align: top; // remove spacing
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  &:after {
+    display: block;
+    content: "";
+  }
+  > * {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@mixin old-tile(
+  $height: 100%
+){
+  // check unit types
+  @if type-of($height) != number {
+    @error "tile width must be a number";
+  }
+
+  @extend %old-tile;
+
+  // convert unitless number (proportion) to percent
+  @if unitless($height) {
+    $height: $height * 100%;
+  }
+
+  // define tile size;
+  &:after {
+    padding-bottom: $height; // ie8 fallback
+    padding-bottom: calc(#{$height} + 0.5px); // fix subpixel rendering
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+%old-slice-element {
+  // better width and height calculations
+  box-sizing: border-box;
+}
+@mixin old-slice {
+  @extend %old-slice-element;
+  display: table;
+
+  // prevent table-elements from resizing by it's contents
+  table-layout: fixed;
+
+  // by default table is as small as possible, let's stretch it
+  // to full parent size
+  width: 100%;
+  height: 100%;
+
+}
+
+@mixin old-row {
+  @extend %old-slice-element;
+
+  display: table-row;
+
+  // rows don't require width and height
+  // by default they stretch to 100% width and stretch height equally
+
+  // the row which has to take all available space needs height: 100%; (but it's calculated wrong on IE)
+  // better solution is to set height: 1px on all rows, which has to collapse
+}
+@mixin old-col {
+  @extend %old-slice-element;
+
+  // cols don't need width, they will have equal widths if not defined
+  display: table-cell;
+
+  // this is needed for nested cells on IE 9+
+  height: inherit;
+
+  // make neighbour columns have indepentend margin-top for it's content
+  vertical-align: top;
+
+  // you can combine rows and cols in the same parent table
+  // all cols will behave like rows then, but allowing
+  // nested tables inside to inherit the column(row) height
+
+  // fix empty col styling (required on firefox)
+  &:after{
+    content: "\00a0";
+    font-size: 0.001px;
+    display: block;
+  }
+
+}
+
+@mixin old-breakSlice (
+  $media: null
+){
+  @if $media {
+    @include old-media($media){
+      display: block !important;
+      // outline: solid 5px red;
+      > * {
+        display: block !important;
+        height: auto !important;
+        width: auto !important;
+      }
+    }
+  } @else {
+    display: block !important;
+    // outline: solid 5px blue;
+    > * {
+      display: block !important;
+      height: auto !important;
+      width: auto !important;
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+%old-bar-side {
+  display: inline-block;
+  width: 100%;
+  margin-right: -100%;
+  vertical-align: middle;
+  > * {
+    position: relative;
+    z-index: 1; // fix bar elements z-order
+    display: inline-block;
+
+  }
+}
+
+@mixin old-bar(){
+  // background: #20D07F;
+  // color: #fff;
+  width: 100%;
+  // display: block;
+  font-size: 0; // clear gaps
+  text-align: left;
+  > * {
+    // sides
+    font-size: 16px; // restore font size
+  }
+  > * {
+    vertical-align: top;
+  }
+}
+
+@mixin old-bar-left (){
+  @extend %old-bar-side;
+  text-align: left;
+}
+@mixin old-bar-center (){
+  @extend %old-bar-side;
+  text-align: center;
+}
+@mixin old-bar-right (){
+  @extend %old-bar-side;
+  text-align: right;
+}
+@mixin old-bar-break (){
+  margin-right: 0;
+}
+
+
+
+// ----------------------------------------------------------------------
+
+@mixin old-pile(
+  $horizontal-align: left,
+  $vertical-align: null,
+  $spacing: 10
+){
+
+  // check variable types
+  @if type-of($horizontal-align) != string {
+    @error "$horizontal-align must be a string";
+  }
+
+  // apply one of four options of horizontal-align items
+  @if $horizontal-align == left {text-align: left;}
+  @if $horizontal-align == center {text-align: center;}
+  @if $horizontal-align == right {text-align: right;}
+  @if $horizontal-align == justify {
+    text-align: justify;
+    width: 100%;
+    &:after {
+      content: "";
+      width: 100%;
+      display: inline-block;
+    }
+  }
+
+}
+
+%old-pile-item {
+  display: inline-block;
+  text-align: left;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+
+@mixin old-pile-item(
+  $vertical-align: middle,
+  $spacing: 10
+){
+
+  // check variable types
+  @if type-of($vertical-align) != string {
+    @error "$vertical-align must be a string";
+  }
+  @if type-of($spacing) != number {
+    @error "$spacing must be a number";
+  }
+
+  // pile-item base code
+  @extend %old-pile-item;
+
+  // convert spacing to pixels
+  @if unitless($spacing) {
+    $spacing: $spacing * 1px;
+  }
+
+  // apply spacing if has been defined
+  @if $spacing != 0px {
+    margin-right: $spacing;
+  }
+
+  // additional property - align items to top, middle or bottom of the line
+  @if $vertical-align == top {vertical-align: top;}
+  @if $vertical-align == middle {vertical-align: middle;}
+  @if $vertical-align == bottom {vertical-align: bottom;}
+}
+
+
+
+// ----------------------------------------------------------------------
+
+@mixin old-list-item(){
+  display: block;
+  width: 100%;
+}
+
+
+
+// ----------------------------------------------------------------------
+
+//
+
+
+
+// ----------------------------------------------------------------------
+
+// Round a number to specified digits.
+//
+// @param  {Number} $number A number to round
+// @param  {Number} [$digits:0] Digits to output
+// @param  {String} [$mode:round] (round|ceil|floor) How to round a number
+// @return {Number} A rounded number
+// @example
+//     old-decimal-round(0.333)    => 0
+//     old-decimal-round(0.333, 1) => 0.3
+//     old-decimal-round(0.333, 2) => 0.33
+//     old-decimal-round(0.666)    => 1
+//     old-decimal-round(0.666, 1) => 0.7
+//     old-decimal-round(0.666, 2) => 0.67
+//
+@function old-decimal-round ($number, $digits: 0, $mode: round) {
+    $n: 1;
+    // $number must be a number
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+    // $digits must be a unitless number
+    @if type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+    @for $i from 1 through $digits {
+        $n: $n * 10;
+    }
+    @if $mode == round {
+        @return round($number * $n) / $n;
+    } @else if $mode == ceil {
+        @return ceil($number * $n) / $n;
+    } @else if $mode == floor {
+        @return floor($number * $n) / $n;
+    } @else {
+        @warn '#{ $mode } is undefined keyword.';
+        @return $number;
+    }
+}
+
+
+// Ceil a number to specified digits.
+//
+// @param  {Number} $number A number to round
+// @param  {Number} [$digits:0] Digits to output
+// @return {Number} A ceiled number
+// @example
+//     old-decimal-ceil(0.333)    => 1
+//     old-decimal-ceil(0.333, 1) => 0.4
+//     old-decimal-ceil(0.333, 2) => 0.34
+//     old-decimal-ceil(0.666)    => 1
+//     old-decimal-ceil(0.666, 1) => 0.7
+//     old-decimal-ceil(0.666, 2) => 0.67
+//
+@function old-decimal-ceil ($number, $digits: 0) {
+    @return old-decimal-round($number, $digits, ceil);
+}
+
+
+// Floor a number to specified digits.
+//
+// @param  {Number} $number A number to round
+// @param  {Number} [$digits:0] Digits to output
+// @return {Number} A floored number
+// @example
+//     old-decimal-floor(0.333)    => 0
+//     old-decimal-floor(0.333, 1) => 0.3
+//     old-decimal-floor(0.333, 2) => 0.33
+//     old-decimal-floor(0.666)    => 0
+//     old-decimal-floor(0.666, 1) => 0.6
+//     old-decimal-floor(0.666, 2) => 0.66
+//
+@function old-decimal-floor ($number, $digits: 0) {
+    @return old-decimal-round($number, $digits, floor);
+}
+
+@function old-number($string) {
+  // Matrices
+  $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+  $numbers:  0   1   2   3   4   5   6   7   8   9;
+
+  // Result
+  $result: 0;
+  $divider: 0;
+  $minus: false;
+
+  // Looping through all characters
+  @for $i from 1 through str-length($string) {
+    $character: str-slice($string, $i, $i);
+    $index: index($strings, $character);
+
+
+    @if $character == '-' {
+      $minus: true;
+    }
+
+    @else if $character == '.' {
+      $divider: 1;
+    }
+
+    @else {
+      @if not $index {
+        $result: if($minus, $result * -1, $result);
+        @return old-_length($result, str-slice($string, $i));
+      }
+
+      $number: nth($numbers, $index);
+
+      @if $divider == 0 {
+        $result: $result * 10;
+      }
+
+      @else {
+        // Move the decimal dot to the left
+        $divider: $divider * 10;
+        $number: $number / $divider;
+      }
+
+      $result: $result + $number;
+    }
+  }
+
+  @return if($minus, $result * -1, $result);
+}
+
+
+@function old-_length($number, $unit) {
+  $strings: 'px' 'cm' 'mm' '%' 'ch' 'pica' 'in' 'em' 'rem' 'pt' 'pc' 'ex' 'vw' 'vh' 'vmin' 'vmax';
+  $units:   1px  1cm  1mm  1%  1ch  1pica  1in  1em  1rem  1pt  1pc  1ex  1vw  1vh  1vmin  1vmax;
+  $index: index($strings, $unit);
+
+  @if not $index {
+    @warn "Unknown unit `#{$unit}`.";
+    @return false;
+  }
+
+  @return $number * nth($units, $index);
+}
+
+
+@function old-strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+
+@mixin old-classname-begin(
+  $begin: null
+) {
+  @if type-of($begin) != string {
+    @error 'classname-begin accepts only a string as an argument';
+  }
+  $begin: unquote($begin);
+  &[class^='#{$begin}'],
+  &[class*=' #{$begin}'] {
+    @content;
+  }
+}
+
+// Fetch nested keys
+@function old-map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+
+
+// ----------------------------------------------------------------------
+
+// convert-unit function
+// usage: old-convert-unit( inputValue, outputUnit )
+// example: old-convert-unit(32px, rem);
+
+@function old-convert-unit(
+  $value,
+  $outputUnit: px
+){
+  // default unit sizes measured in px for 1920x1200 (imac 24') screen
+  // http://www.w3schools.com/browsers/browsers_display.asp
+  // http://www.w3schools.com/cssref/css_units.asp
+  $units: (
+    px:   1,
+    em:   16,
+    ex:   9.12656,
+    ch:   9.78827,
+    rem:  16,
+    vw:   17.4545,
+    vh:   9.86364,
+    vmin: 9.86364,
+    vmax: 17.4545,
+    "%":    0.16,
+    cm:   37.7953,
+    mm:   3.77953,
+    in:   96,
+    pt:   1.33333,
+    pc:   16
+  );
+
+  // check if input value is a number
+  @if type-of($value) == number {
+    $inputUnit: unit($value);
+
+    // define variable for value to px conversion
+    $pxValue: 1;
+
+    // define variable for px to output value conversion
+    $outputValue: 1px;
+
+    // if input value was unitless, convert it to pixels
+    @if unitless($value){
+      $value: $value * 1px;
+    }
+
+    // convert input value to px units
+    // @each Key, Value in Map
+    @each $keyUnit, $size in $units {
+      @if $inputUnit == $keyUnit {
+        $pxValue: old-strip-unit($value) * $size;
+      }
+    }
+
+    // convert pxValue to output value
+    @each $keyUnit, $size in $units {
+      @if $outputUnit == $keyUnit {
+        $outputValue: old-_length($pxValue / $size,  $outputUnit);
+      }
+    }
+
+    @return $outputValue;
+  }
+
+  // return communicate when $value is not a number
+  @return "value must be a number";
+}
+
+
+
+// ----------------------------------------------------------------------
+
+%old-clearfix {
+  &:after {
+    a: a;
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin old-clearfix(){
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+@function old-scaleValues(
+  $begin: null, // for example 50px
+  $end: null, // for example 100px
+  $scale: null // for 1 - return 100px, for 0 - return
+){
+  @if $begin and $end and $scale{
+    $result: "";
+
+    // loop through each value
+    @for $i from 1 through length($begin) {
+      $beginValue: nth($begin, $i);
+      $endValue: nth($end, $i);
+
+      @if type-of($beginValue) != number or type-of($endValue) != number {
+        @warn "error in '#{$key}: (#{$beginValue}) => (#{$endValue})'' - use only number values."
+      }
+
+      @if unit($beginValue) != unit($endValue) {
+        @warn "error in '#{$key}: (#{$beginValue}) => (#{$endValue})' - different unit types."
+      }
+
+      $beginValue: nth($begin, $i);
+      $valueGrowth: old-decimal-round(((nth($end, $i) - nth($begin, $i)) * $scale), 3);
+      $scaledValue: $beginValue + $valueGrowth;
+      $result: $result + $scaledValue;
+      // add spaces between values
+      @if $i != length($begin){
+        $result: $result + " ";
+      }
+    }
+    @return unquote($result);
+  } @else {
+    @warn "begin values, end values and scale must be defined.";
+  }
+}
+
+@mixin old-scalePoint(
+  $properties: null,
+  $point: null,
+  $beginScale: 480px,
+  $endScale: 1500px
+){
+  @if $properties == null {
+    @error "you must define properties to scalePoint.";
+  }
+  @if $point == null {
+    @error "you must define point to scalePoint for example 768px.";
+  }
+  @if $point < $beginScale {
+    @error "defined $point: #{$point} can't be smaller than $beginScale: #{$beginScale}.";
+  }
+  @if $point > $endScale {
+    @error "defined $point: #{$point} can't be bigger than $endScale: #{$endScale}.";
+  }
+  // calculate scale of growth for defined point
+  $scaleSize: $endScale - $beginScale;
+  $currentPoint: $point - $beginScale;
+  $scale: $currentPoint / $scaleSize;
+  @each $property in $properties {
+    $key: nth($property, 1);
+    $value: nth($property, 2);
+    @if type-of($value) != list {
+      @error "value of #{$key} must look like this (start values, end values).";
+    }
+    $begin: nth($value, 1);
+    $end: nth($value, 2);
+    @if length($begin) != length($end) {
+      @error "error in '#{$key}: (#{$begin}) => (#{$end})' - different number of values.";
+    }
+    #{$key}: old-scaleValues($begin, $end, $scale);
+  }
+}
+
+@mixin old-scale(
+  $properties: null
+){
+  @if $properties == null {
+    @error "scale needs at least one property";
+  }
+  @if type-of($properties) != map {
+    @error "scale must be passed like this:
+  scale((
+    property1: (start, end),
+    property2: (start1 start2, end1 end2),
+    ...
+  ))
+";}
+    @include old-scalePoint($properties, 1500px);
+    @include old-media(lg){
+      @include old-scalePoint($properties, 1280px);
+    }
+    @include old-media(md){
+      @include old-scalePoint($properties, 1024px);
+    }
+    @include old-media(sm){
+      @include old-scalePoint($properties, 768px);
+    }
+    @include old-media(xs){
+      @include old-scalePoint($properties, 480px);
+    }
+}
+
+// returns a scale factor between 0 and 1 for given resolution
+@function old-getResolutionScale(
+  $resolution // best for something between 480px and 1500px
+){
+  $beginScale: 480px;
+  $endScale: 1500px;
+  $scaleSize: $endScale - $beginScale;
+  $currentPoint: $resolution - $beginScale;
+  $scale: $currentPoint / $scaleSize;
+  @return $scale;
+};
+
+
+
+// ----------------------------------------------------------------------
+
+// @include old-media(number) will define media from 0 to number
+// @include old-media(number min, number max) will define from min to max range
+// @include old-media(string name) will define media for targeted device / viewport
+// available sizes:
+// mobile
+// mobile-portrait
+// mobile-landscape
+// tablet
+// tablet-portrait
+// tablet-landscape
+// laptop
+// desktop
+// xxs
+// xs
+// sm
+// md
+// lg
+// xl
+// xxl
+
+@mixin old-media(
+  $size: null,
+  $max: null
+){
+  // check arguments
+  @if $size == null {
+    @error "please define size in screen() mixin";
+  }
+
+  // available media names
+  @if $size == mobile {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+  @if $size == mobile-portrait or $size == watch {
+    @media (max-width: 320px) {
+      @content;
+    }
+  }
+  @if $size == mobile-landscape {
+    @media (min-width: 321px) and (max-width: 767px) {
+      @content;
+    }
+  }
+  @if $size == tablet {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  }
+  @if $size == tablet-portrait {
+    @media (min-width: 768px) and (max-width: 1023px) {
+      @content;
+    }
+  }
+  @if $size == tablet-landscape {
+    @media (min-width: 1024px) and (max-width: 1280px) {
+      @content;
+    }
+  }
+  @if $size == laptop {
+    @media (max-width: 1600px) {
+      @content;
+    }
+  }
+  @if $size == desktop {
+    @media (min-width: 1281px) {
+      @content;
+    }
+  }
+  @if $size == xxs {
+    @media (max-width: 320px) {
+      @content;
+    }
+  }
+  @if $size == xs {
+    @media (max-width: 500px) {
+      @content;
+    }
+  }
+  @if $size == sm {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+  @if $size == md {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  }
+  @if $size == lg {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  }
+  @if $size == xl {
+    @media (max-width: 1400px) {
+      @content;
+    }
+  }
+  @if $size == xxl {
+    @media (max-width: 1600px) {
+      @content;
+    }
+  }
+
+  // set media query in range from 0 to $max width
+  @if type-of($size) == number and $max == null {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+
+  // set media query in range from min $size to $max width
+  @if type-of($size) == number and type-of($max) == number {
+    @media (min-width: $size) and (max-width: $max) {
+      @content;
+    }
+  }
+
+  //
+  @if $max != null and type-of($max) != number {
+    @error "second argumnet (max-width) must be a number.";
+  }
+}
+
+@mixin old-media-info {
+  all: initial;
+  background: #0C3E71;
+  color: #fff;
+  font-size: 12px;
+  font-family: Verdana;
+  display: block;
+  // transition: all 0.25s;
+  overflow: hidden;
+  @include old-media(desktop){
+    &:before {
+      content: "media: desktop";
+    }
+    &:after {
+      content: "1601+";
+    }
+  };
+  @include old-media(laptop){
+    &:before {
+      content: "media: laptop";
+    }
+  };
+  @include old-media(tablet-landscape){
+    &:before {
+      content: "media: tablet, tablet-landscape";
+    }
+  };
+  @include old-media(tablet-portrait){
+    &:before {
+      content: "media: tablet, tablet-portrait";
+    }
+  };
+  @include old-media(mobile-landscape){
+    &:before {
+      content: "media: mobile, mobile-landscape";
+    }
+  };
+  @include old-media(mobile-portrait){
+    &:before {
+      content: "media: watch, mobile, mobile-portrait, xxs 0-320";
+    }
+  };
+  @include old-media(xxl){
+    background: #0D5292;
+    &:after {
+      content: "xxl 0-1600";
+    }
+  };
+  @include old-media(xl){
+    &:after {
+      content: "xl 0-1400";
+    }
+  };
+  @include old-media(lg){
+    background: #0C3E71;
+    &:after {
+      content: "lg 0-1280";
+    }
+  };
+  @include old-media(md){
+    &:after {
+      content: "md 0-1024";
+    }
+  };
+  @include old-media(sm){
+    background: #0D5292;
+    &:after {
+      content: "sm 0-768";
+    }
+  };
+  @include old-media(xs){
+    &:after {
+      content: "xs 0-500";
+    }
+  };
+  @include old-media(xxs){
+    background: #0C3E71;
+    &:before {
+      text-align: center;
+      border-radius: 0 !important;
+    }
+    &:after {
+      display: none;
+    }
+  };
+  &:before {
+    float: left;
+    // border-radius: 0 100px 100px 0;
+    padding: 7px 15px 7px 10px;
+  }
+  &:after {
+    float: right;
+    // border-radius: 100px 0 0 100px;
+    padding: 7px 10px 7px 15px;
+  }
+  &:before,
+  &:after {
+    // background: rgba(0, 0, 0, 0.25);
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+// a map of Material Ui Colors
+// https://www.google.com/design/spec/style/color.html
+
+// available colors:
+// red, pink, purple, deeppurple, indigo, blue, lightblue,
+// cyan, teal, green, lightgreen, lime, yellow, amber,
+// orange, deeporange, brown, grey, bluegrey
+// + extra colors: black, white only available in shade 500 which is #000 & #fff
+
+// shade 500 is default color for material colors
+
+// available shades:
+// A-shades are not available in last 3 material colors
+
+// 50
+// 100
+// 200
+// 300
+// 400
+// 500
+// 600
+// 700
+// 800
+// 900
+// A100
+// A200
+// A400
+// A700
+
+$materialColors: (
+  red: (
+    50: #ffebee,
+    100: #ffcdd2,
+    200: #ef9a9a,
+    300: #e57373,
+    400: #ef5350,
+    500: #f44336,
+    600: #e53935,
+    700: #d32f2f,
+    800: #c62828,
+    900: #b71c1c,
+    A100: #ff8a80,
+    A200: #ff5252,
+    A400: #ff1744,
+    A700: #d50000
+  ),
+  pink: (
+    50: #FCE4EC,
+    100: #F8BBD0,
+    200: #F48FB1,
+    300: #F06292,
+    400: #EC407A,
+    500: #E91E63,
+    600: #D81B60,
+    700: #C2185B,
+    800: #AD1457,
+    900: #880E4F,
+    A100: #FF80AB,
+    A200: #FF4081,
+    A400: #F50057,
+    A700: #C51162
+  ),
+  purple: (
+    50: #F3E5F5,
+    100: #E1BEE7,
+    200: #CE93D8,
+    300: #BA68C8,
+    400: #AB47BC,
+    500: #9C27B0,
+    600: #8E24AA,
+    700: #7B1FA2,
+    800: #6A1B9A,
+    900: #4A148C,
+    A100: #EA80FC,
+    A200: #E040FB,
+    A400: #D500F9,
+    A700: #AA00FF
+  ),
+  deeppurple: (
+    50: #EDE7F6,
+    100: #D1C4E9,
+    200: #B39DDB,
+    300: #9575CD,
+    400: #7E57C2,
+    500: #673AB7,
+    600: #5E35B1,
+    700: #512DA8,
+    800: #4527A0,
+    900: #311B92,
+    A100: #B388FF,
+    A200: #7C4DFF,
+    A400: #651FFF,
+    A700: #6200EA
+  ),
+  indigo: (
+    50: #E8EAF6,
+    100: #C5CAE9,
+    200: #9FA8DA,
+    300: #7986CB,
+    400: #5C6BC0,
+    500: #3F51B5,
+    600: #3949AB,
+    700: #303F9F,
+    800: #283593,
+    900: #1A237E,
+    A100: #8C9EFF,
+    A200: #536DFE,
+    A400: #3D5AFE,
+    A700: #304FFE
+  ),
+  blue: (
+    50: #E3F2FD,
+    100: #BBDEFB,
+    200: #90CAF9,
+    300: #64B5F6,
+    400: #42A5F5,
+    500: #2196F3,
+    600: #1E88E5,
+    700: #1976D2,
+    800: #1565C0,
+    900: #0D47A1,
+    A100: #82B1FF,
+    A200: #448AFF,
+    A400: #2979FF,
+    A700: #2962FF
+  ),
+  lightblue: (
+    50: #E1F5FE,
+    100: #B3E5FC,
+    200: #81D4FA,
+    300: #4FC3F7,
+    400: #29B6F6,
+    500: #03A9F4,
+    600: #039BE5,
+    700: #0288D1,
+    800: #0277BD,
+    900: #01579B,
+    A100: #80D8FF,
+    A200: #40C4FF,
+    A400: #00B0FF,
+    A700: #0091EA
+  ),
+  cyan: (
+    50: #E0F7FA,
+    100: #B2EBF2,
+    200: #80DEEA,
+    300: #4DD0E1,
+    400: #26C6DA,
+    500: #00BCD4,
+    600: #00ACC1,
+    700: #0097A7,
+    800: #00838F,
+    900: #006064,
+    A100: #84FFFF,
+    A200: #18FFFF,
+    A400: #00E5FF,
+    A700: #00B8D4
+  ),
+  teal: (
+    50: #E0F2F1,
+    100: #B2DFDB,
+    200: #80CBC4,
+    300: #4DB6AC,
+    400: #26A69A,
+    500: #009688,
+    600: #00897B,
+    700: #00796B,
+    800: #00695C,
+    900: #004D40,
+    A100: #A7FFEB,
+    A200: #64FFDA,
+    A400: #1DE9B6,
+    A700: #00BFA5
+  ),
+  green: (
+    50: #E8F5E9,
+    100: #C8E6C9,
+    200: #A5D6A7,
+    300: #81C784,
+    400: #66BB6A,
+    500: #4CAF50,
+    600: #43A047,
+    700: #388E3C,
+    800: #2E7D32,
+    900: #1B5E20,
+    A100: #B9F6CA,
+    A200: #69F0AE,
+    A400: #00E676,
+    A700: #00C853
+  ),
+  lightgreen: (
+    50: #F1F8E9,
+    100: #DCEDC8,
+    200: #C5E1A5,
+    300: #AED581,
+    400: #9CCC65,
+    500: #8BC34A,
+    600: #7CB342,
+    700: #689F38,
+    800: #558B2F,
+    900: #33691E,
+    A100: #CCFF90,
+    A200: #B2FF59,
+    A400: #76FF03,
+    A700: #64DD17
+  ),
+  lime: (
+    50: #F9FBE7,
+    100: #F0F4C3,
+    200: #E6EE9C,
+    300: #DCE775,
+    400: #D4E157,
+    500: #CDDC39,
+    600: #C0CA33,
+    700: #AFB42B,
+    800: #9E9D24,
+    900: #827717,
+    A100: #F4FF81,
+    A200: #EEFF41,
+    A400: #C6FF00,
+    A700: #AEEA00
+  ),
+  yellow: (
+    50: #FFFDE7,
+    100: #FFF9C4,
+    200: #FFF59D,
+    300: #FFF176,
+    400: #FFEE58,
+    500: #FFEB3B,
+    600: #FDD835,
+    700: #FBC02D,
+    800: #F9A825,
+    900: #F57F17,
+    A100: #FFFF8D,
+    A200: #FFFF00,
+    A400: #FFEA00,
+    A700: #FFD600
+  ),
+  amber: (
+    50: #FFF8E1,
+    100: #FFECB3,
+    200: #FFE082,
+    300: #FFD54F,
+    400: #FFCA28,
+    500: #FFC107,
+    600: #FFB300,
+    700: #FFA000,
+    800: #FF8F00,
+    900: #FF6F00,
+    A100: #FFE57F,
+    A200: #FFD740,
+    A400: #FFC400,
+    A700: #FFAB00
+  ),
+  orange: (
+    50: #FFF3E0,
+    100: #FFE0B2,
+    200: #FFCC80,
+    300: #FFB74D,
+    400: #FFA726,
+    500: #FF9800,
+    600: #FB8C00,
+    700: #F57C00,
+    800: #EF6C00,
+    900: #E65100,
+    A100: #FFD180,
+    A200: #FFAB40,
+    A400: #FF9100,
+    A700: #FF6D00
+  ),
+  deeporange: (
+    50: #FBE9E7,
+    100: #FFCCBC,
+    200: #FFAB91,
+    300: #FF8A65,
+    400: #FF7043,
+    500: #FF5722,
+    600: #F4511E,
+    700: #E64A19,
+    800: #D84315,
+    900: #BF360C,
+    A100: #FF9E80,
+    A200: #FF6E40,
+    A400: #FF3D00,
+    A700: #DD2C00
+  ),
+  brown: (
+    50: #EFEBE9,
+    100: #D7CCC8,
+    200: #BCAAA4,
+    300: #A1887F,
+    400: #8D6E63,
+    500: #795548,
+    600: #6D4C41,
+    700: #5D4037,
+    800: #4E342E,
+    900: #3E2723
+  ),
+  grey: (
+    50: #FAFAFA,
+    100: #F5F5F5,
+    200: #EEEEEE,
+    300: #E0E0E0,
+    400: #BDBDBD,
+    500: #9E9E9E,
+    600: #757575,
+    700: #616161,
+    800: #424242,
+    900: #212121
+  ),
+  bluegrey: (
+    50: #ECEFF1,
+    100: #CFD8DC,
+    200: #B0BEC5,
+    300: #90A4AE,
+    400: #78909C,
+    500: #607D8B,
+    600: #546E7A,
+    700: #455A64,
+    800: #37474F,
+    900: #263238
+  ),
+  black: (
+    500: #000000
+  ),
+  white: (
+    500: #ffffff
+  )
+);
+
+// function for easy retreiving colors from MaterialUi Color Map
+@function old-material($name: blue, $shade: 500){
+  @if ( $name == white ) or ( $name == black ) { $shade: 500 }
+  @return old-map-deep-get($materialColors, $name, $shade);
+}
+
+// alias for material function
+@function old-color($name: blue, $shade: 500){
+  @return old-material($name, $shade);
+}
+
+
+
+// ----------------------------------------------------------------------
+
+//
+
+
+
+// ----------------------------------------------------------------------
+
+// set background-color
+@mixin old-background($name: blue, $shade: 600){
+  background-color: old-material($name, $shade);
+}
+
+
+
+// ----------------------------------------------------------------------
+
+%old-size {
+  box-sizing: border-box;
+  display: inline-block;
+  // vertical-align: middle;
+}
+button%old-size,
+[type=button]%old-size {
+  line-height: normal;
+}
+
+@mixin old-generate-size(
+  $height: null,
+  $proportion: 0.45
+){
+
+  // in case if passed custom height
+  @if $height == null {
+    @error "height must be defined for generate size";
+  }
+
+  @if type-of($height) != number {
+    @error "$height: #{$height} must be a number.";
+  }
+
+  // convert height to 'px' if unit wasn't defined
+  @if unitless($height) {
+    $height: $height * 1px;
+  }
+
+  // calculate proportional padding
+  $padding-x: ($height)*$proportion;
+
+  // calculate best font size and weight for element
+  $unit: unit($height);
+  $base-font: old-convert-unit(11px, $unit);
+  $base-height: old-convert-unit(20px, $unit);
+  $font-growth: 0.25;
+  $extra-font: ($height - $base-height) * $font-growth;
+  $font-size: $base-font + $extra-font;
+  $font-weight: null; // this will be overwritten by conditions below
+  @if $height <= old-convert-unit(24px, $unit) {
+    $font-weight: 700;
+  }
+  @if $height <= old-convert-unit(30px, $unit) and $height > old-convert-unit(24px, $unit) {
+    $font-weight: 600;
+  }
+
+  //render calculated values as css properties
+  height: $height;
+  line-height: $height;
+  padding: 0 $padding-x;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  > * {
+    line-height: $height;
+  }
+
+}
+
+@mixin old-size(
+  $height: null,
+  $scalable: scalable,
+  $proportion: 0.45
+){
+
+  // predefined element sizes
+  @if $height == xs { $height: 20px; }
+  @if $height == sm { $height: 24px; }
+  @if $height == md { $height: 30px; }
+  @if $height == lg { $height: 38px; }
+  @if $height == xl { $height: 48px; }
+  @if $height == xxl { $height: 60px; }
+  @if $height == xxxl { $height: 74px; }
+  @if $height == hg { $height: 90px; }
+
+  @if type-of($height) == number {
+
+    @extend %old-size;
+    @include old-generate-size($height, $proportion);
+
+    // generate responsive size for smaller devices if $scalalble is set to "scale"
+    @if $scalable == scalable and old-convert-unit($height, px) > 30px {
+      $minHeight: (($height - 30px)*0.5) + 30px; // smallest scaled element size
+      @include old-media(lg){
+        $scale: old-getResolutionScale(1280px);
+        $mediaHeight: old-number(old-scaleValues($minHeight, $height, $scale));
+        @include old-generate-size($mediaHeight, $proportion);
+      }
+      @include old-media(md){
+        $scale: old-getResolutionScale(1024px);
+        $mediaHeight: old-number(old-scaleValues($minHeight, $height, $scale));
+        @include old-generate-size($mediaHeight, $proportion);
+
+      }
+      @include old-media(sm){
+        $scale: old-getResolutionScale(768px);
+        $mediaHeight: old-number(old-scaleValues($minHeight, $height, $scale));
+        @include old-generate-size($mediaHeight, $proportion);
+
+      }
+      @include old-media(xs){
+        $scale: old-getResolutionScale(480px);
+        $mediaHeight: old-number(old-scaleValues($minHeight, $height, $scale));
+        @include old-generate-size($mediaHeight, $proportion);
+      }
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+@mixin old-position(
+  $position: center,
+  $offset: inner
+){
+
+  // available positions:
+  // top-left
+  // left
+  // bottom-left
+  // top
+  // center
+  // bottom
+  // top-right
+  // right ght
+  // bottom-right
+
+  // available offsets"
+  // inner - inside element
+  // edge - on the edge of element
+  // outer - outside element
+
+  position: absolute;
+
+  @if $position == top-left {
+    top: 0;
+    left: 0;
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(-100%);
+    }
+  }
+
+  @if $position == left {
+    top: 50%;
+    left: 0;
+    @if $offset == inner {
+      transform: translateY(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(-50%);
+    }
+  }
+
+  @if $position == bottom-left {
+    bottom: 0;
+    left: 0;
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(100%);
+    }
+  }
+
+  @if $position == top {
+    top: 0;
+    left: 50%;
+    @if $offset == inner {
+      transform: translateX(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-50%) translateY(-100%);
+    }
+  }
+
+  @if $position == center {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  @if $position == bottom {
+    bottom: 0;
+    left: 50%;
+    @if $offset == inner {
+      transform: translateX(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-50%) translateY(100%);
+    }
+  }
+
+  @if $position == top-right {
+    top: 0;
+    right: 0;
+    @if $offset == edge {
+      transform: translateX(50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(-100%);
+    }
+  }
+
+  @if $position == right {
+    top: 50%;
+    right: 0;
+    @if $offset == inner {
+      transform: translateY(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(-50%);
+    }
+  }
+
+  @if $position == bottom-right {
+    bottom: 0;
+    right: 0;
+    @if $offset == edge {
+      transform: translateX(50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(100%);
+    }
+  }
+
+}
+
+
+
+// ----------------------------------------------------------------------
+
+%box {
+  box-sizing: border-box;
+}
+
+@mixin old-generate-box(
+  $padding: null,
+  $proportion: 0.7
+){
+
+  @if $padding == null {
+    @error "padding must be defined for generate box";
+  }
+
+  @if type-of($padding) != number {
+    @error "$padding: #{$padding} must be a number.";
+  }
+
+  // convert padding to 'px' if unit wasn't defined
+  @if unitless($padding) {
+    $padding: $padding * 1px;
+  }
+
+  // calculate proportional padding
+  $padding-y: $padding * $proportion;
+
+  //render calculated value as css property
+  padding: $padding-y $padding;
+
+}
+
+@mixin old-box(
+  $padding: null,
+  $scalable: scalable,
+  $proportion: 0.75
+){
+
+  // box size presets
+  @if $padding == xs { $padding: 10px; }
+  @if $padding == sm { $padding: 15px; }
+  @if $padding == md { $padding: 20px; }
+  @if $padding == lg { $padding: 30px; }
+  @if $padding == xl { $padding: 60px; }
+  @if $padding == xxl { $padding: 90px; }
+  @if $padding == xxxl { $padding: 120px; }
+
+  @if type-of($padding) == number {
+
+    @extend %box;
+    @include old-generate-box($padding, $proportion);
+
+    // generate responsive box for smaller devices if $scalable is set to "scalable"
+    @if $scalable == scalable and old-convert-unit($padding, px) > 10px {
+      $minPadding: (($padding - 10px)*0.1) + 10px; // smallest scaled box
+      @include old-media(lg){
+        $scale: old-getResolutionScale(1280px);
+        $mediaPadding: old-number(old-scaleValues($minPadding, $padding, $scale));
+        @include old-generate-box($mediaPadding, $proportion);
+      }
+      @include old-media(md){
+        $scale: old-getResolutionScale(1024px);
+        $mediaPadding: old-number(old-scaleValues($minPadding, $padding, $scale));
+        @include old-generate-box($mediaPadding, $proportion);
+
+      }
+      @include old-media(sm){
+        $scale: old-getResolutionScale(768px);
+        $mediaPadding: old-number(old-scaleValues($minPadding, $padding, $scale));
+        @include old-generate-box($mediaPadding, $proportion);
+
+      }
+      @include old-media(xs){
+        $scale: old-getResolutionScale(480px);
+        $mediaPadding: old-number(old-scaleValues($minPadding, $padding, $scale));
+        @include old-generate-box($mediaPadding, $proportion);
+      }
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+// set text color
+@mixin old-color($name: blue, $shade: 500){
+  color: old-material($name, $shade);
+}
+
+
+
+// ----------------------------------------------------------------------
+
+$round-radius: .25em;
+$round-radius-lg: .5em;
+$round-radius-xl: 1em;
+
+// alias for round() mixin
+@mixin old-rounded(
+  $corners: rounded
+){
+  @include old-round($corners);
+}
+
+// mixin for rounding element corners
+@mixin old-round(
+  $corners: round
+){
+
+  // corner presets
+  @if $corners == round {
+    $corners: 1000em;
+  }
+  @if $corners == rounded {
+    $corners: $round-radius;
+  }
+  @if $corners == lg {
+    $corners: $round-radius-lg;
+  }
+  @if $corners == xl {
+    $corners: $round-radius-xl;
+  }
+  @if $corners == ellipse {
+    $corners: 100%;
+  }
+  @if $corners == a1 {
+    $corners: 0 $round-radius-lg;
+  }
+  @if $corners == a2 {
+    $corners: $round-radius-lg 0;
+  }
+  @if $corners == a3 {
+    $corners: $round-radius-lg $round-radius-lg 0 0;
+  }
+  @if $corners == a4 {
+    $corners: 0 0 $round-radius-lg $round-radius-lg;
+  }
+  @if $corners == b1 {
+    $corners: $round-radius-lg 0 0 0;
+  }
+  @if $corners == b2 {
+    $corners: 0 $round-radius-lg 0 0;
+  }
+  @if $corners == b3 {
+    $corners: 0 0 $round-radius-lg 0;
+  }
+  @if $corners == b4 {
+    $corners: 0 0 0 $round-radius-lg;
+  }
+
+  // generate corners with border-radius
+  // if none of the presets was used, border-radius will use custom, user passed size
+  border-radius: $corners;
+
+}
+
+
+// ----------------------------------------------------------------------
+
+.dc-grid {
+
+  // @include old-grid(
+
+  //   $columns: null,           // Number of columns. A full unitless number, for example: 12
+  //   $gridWidth: null,    // Grid width. A number in px or %, or unitless proportion, for example 960px or 80%, or 4/5
+  //   $columnWidth: null,       // Column width. A number in px or %, or unitless proportion, for example: 80px or 10%, or 1/12
+  //   $columnClass: "-col",  // Class for all columns. Must be a string starting with .L where L is letter, for example: "-col"
+  //   $spacingX: null,          // X - spacing between columns. A number in px, for example: 20px
+  //   $spacingY: null,          // Y - spacing between columns. A number in px, for example: 20px
+  //   $media: null,             // Media brakpoint, this will generate updated settings for
+  //   $showNames: null          // Helper, this will show column names on one of available positions: top/middle/bottom
+  // );
+
+  // base grid without media breakpoints must be defined at first
+  // this will generate -col-* column sizes
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 25px,
+    $spacingY: 25px
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 25px,
+    $spacingY: 25px,
+    $media: "xl" // -col-xl-*
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 20px,
+    $spacingY: 20px,
+    $media: "lg" // -col-lg-*
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 15px,
+    $spacingY: 15px,
+    $media: "md" // -col-md-*
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 10px,
+    $spacingY: 10px,
+    $media: "sm" // -col-sm-*
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 5px,
+    $spacingY: 5px,
+    $media: "xs" // -col-xs-*
+  );
+
+  @include old-grid(
+    $columns: 12,
+    $spacingX: 0,
+    $spacingY: 0,
+    $media: "xxs" // -col-xxs-*
+  );
+
+}
+
+
+
+// ----------------------------------------------------------------------
+
+// proportion table
+// 4-1  = 400%
+// 3-1  = 300%
+// 5-2  = 250%
+// 2-1  = 200%
+// 7-4  = 175%
+// 3-2  = 150%
+// 5-4  = 125%
+// 1-1  = 100%
+// 9-10 = 90%
+// 4-5  = 80%
+// 3-4  = 75%
+// 7-10 = 70%
+// 2-3  = 66.66667%
+// 3-5  = 60%
+// 1-2  = 50%
+// 2-5  = 40%
+// 1-3  = 33.33333%
+// 3-10 = 30%
+// 1-4  = 25%
+// 1-5  = 20%
+// 1-8  = 12.5%
+// 1-10 = 10%
+
+.dc-tile {
+
+
+  &-33 {@include old-tile(1/3);}
+  &-66 {@include old-tile(2/3);}
+
+  & {@include old-tile(100%);}
+  &-1 {@include old-tile(100%);}
+  &-2 {@include old-tile(200%);}
+  &-3 {@include old-tile(300%);}
+  &-4 {@include old-tile(400%);}
+  &-25 {@include old-tile(25%);}
+  &-50 {@include old-tile(50%);}
+  &-75 {@include old-tile(75%);}
+  &-100 {@include old-tile(100%);}
+  &-125 {@include old-tile(125%);}
+  &-150 {@include old-tile(150%);}
+  &-175 {@include old-tile(175%);}
+  &-200 {@include old-tile(200%);}
+  &-225 {@include old-tile(225%);}
+  &-250 {@include old-tile(250%);}
+  &-275 {@include old-tile(275%);}
+  &-300 {@include old-tile(300%);}
+  &-325 {@include old-tile(325%);}
+  &-350 {@include old-tile(350%);}
+  &-375 {@include old-tile(375%);}
+  &-400 {@include old-tile(400%);}
+
+
+
+  @include old-media(xs){
+    & {@include old-tile(100%);}
+    &-1 {@include old-tile(100%);}
+    &-2 {@include old-tile(200%);}
+    &-3 {@include old-tile(300%);}
+    &-4 {@include old-tile(400%);}
+    &-25 {@include old-tile(25%);}
+    &-50 {@include old-tile(50%);}
+    &-75 {@include old-tile(75%);}
+    &-100 {@include old-tile(100%);}
+    &-125 {@include old-tile(125%);}
+    &-150 {@include old-tile(150%);}
+    &-175 {@include old-tile(175%);}
+    &-200 {@include old-tile(200%);}
+    &-225 {@include old-tile(225%);}
+    &-250 {@include old-tile(250%);}
+    &-275 {@include old-tile(275%);}
+    &-300 {@include old-tile(300%);}
+    &-325 {@include old-tile(325%);}
+    &-350 {@include old-tile(350%);}
+    &-375 {@include old-tile(375%);}
+    &-400 {@include old-tile(400%);}
+  }
+  @include old-media(sm){
+    & {@include old-tile(100%);}
+    &-1 {@include old-tile(100%);}
+    &-2 {@include old-tile(200%);}
+    &-3 {@include old-tile(300%);}
+    &-4 {@include old-tile(400%);}
+    &-25 {@include old-tile(25%);}
+    &-50 {@include old-tile(50%);}
+    &-75 {@include old-tile(75%);}
+    &-100 {@include old-tile(100%);}
+    &-125 {@include old-tile(125%);}
+    &-150 {@include old-tile(150%);}
+    &-175 {@include old-tile(175%);}
+    &-200 {@include old-tile(200%);}
+    &-225 {@include old-tile(225%);}
+    &-250 {@include old-tile(250%);}
+    &-275 {@include old-tile(275%);}
+    &-300 {@include old-tile(300%);}
+    &-325 {@include old-tile(325%);}
+    &-350 {@include old-tile(350%);}
+    &-375 {@include old-tile(375%);}
+    &-400 {@include old-tile(400%);}
+  }
+  @include old-media(md){
+    & {@include old-tile(100%);}
+    &-1 {@include old-tile(100%);}
+    &-2 {@include old-tile(200%);}
+    &-3 {@include old-tile(300%);}
+    &-4 {@include old-tile(400%);}
+    &-25 {@include old-tile(25%);}
+    &-50 {@include old-tile(50%);}
+    &-75 {@include old-tile(75%);}
+    &-100 {@include old-tile(100%);}
+    &-125 {@include old-tile(125%);}
+    &-150 {@include old-tile(150%);}
+    &-175 {@include old-tile(175%);}
+    &-200 {@include old-tile(200%);}
+    &-225 {@include old-tile(225%);}
+    &-250 {@include old-tile(250%);}
+    &-275 {@include old-tile(275%);}
+    &-300 {@include old-tile(300%);}
+    &-325 {@include old-tile(325%);}
+    &-350 {@include old-tile(350%);}
+    &-375 {@include old-tile(375%);}
+    &-400 {@include old-tile(400%);}
+  }
+  @include old-media(lg){
+    & {@include old-tile(100%);}
+    &-1 {@include old-tile(100%);}
+    &-2 {@include old-tile(200%);}
+    &-3 {@include old-tile(300%);}
+    &-4 {@include old-tile(400%);}
+    &-25 {@include old-tile(25%);}
+    &-50 {@include old-tile(50%);}
+    &-75 {@include old-tile(75%);}
+    &-100 {@include old-tile(100%);}
+    &-125 {@include old-tile(125%);}
+    &-150 {@include old-tile(150%);}
+    &-175 {@include old-tile(175%);}
+    &-200 {@include old-tile(200%);}
+    &-225 {@include old-tile(225%);}
+    &-250 {@include old-tile(250%);}
+    &-275 {@include old-tile(275%);}
+    &-300 {@include old-tile(300%);}
+    &-325 {@include old-tile(325%);}
+    &-350 {@include old-tile(350%);}
+    &-375 {@include old-tile(375%);}
+    &-400 {@include old-tile(400%);}
+  }
+  @include old-media(xl){
+    & {@include old-tile(100%);}
+    &-1 {@include old-tile(100%);}
+    &-2 {@include old-tile(200%);}
+    &-3 {@include old-tile(300%);}
+    &-4 {@include old-tile(400%);}
+    &-25 {@include old-tile(25%);}
+    &-50 {@include old-tile(50%);}
+    &-75 {@include old-tile(75%);}
+    &-100 {@include old-tile(100%);}
+    &-125 {@include old-tile(125%);}
+    &-150 {@include old-tile(150%);}
+    &-175 {@include old-tile(175%);}
+    &-200 {@include old-tile(200%);}
+    &-225 {@include old-tile(225%);}
+    &-250 {@include old-tile(250%);}
+    &-275 {@include old-tile(275%);}
+    &-300 {@include old-tile(300%);}
+    &-325 {@include old-tile(325%);}
+    &-350 {@include old-tile(350%);}
+    &-375 {@include old-tile(375%);}
+    &-400 {@include old-tile(400%);}
+  }
+
+
+
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-row {
+  @include old-row;
+}
+.dccol {
+  @include old-col;
+}
+.dcslice {
+  @include old-slice;
+}
+
+.dc-cols {
+  @include old-slice;
+  > * {
+    @include old-col;
+  }
+}
+
+.dc-rows {
+  @include old-slice;
+  > * {
+    @include old-row;
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-bar {
+  @include old-bar;
+  -bar-left {
+    @include old-bar-left;
+  }
+  -bar-center {
+    @include old-bar-center;
+  }
+  -bar-right {
+    @include old-bar-right;
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-pile {
+  @include old-pile;
+
+  > * {
+    @include old-pile-item;
+  }
+
+  // horizontal align
+  &-left {
+    @include old-pile(left);
+  }
+  &-center {
+    @include old-pile(center);
+  }
+  &-right {
+    @include old-pile(right);
+  }
+  &-justify {
+    @include old-pile(justify);
+  }
+
+  // vertical align
+  &-top {
+    > * {
+      @include old-pile-item(top);
+    }
+  }
+  &-middle {
+    > * {
+      @include old-pile-item(middle);
+    }
+  }
+  &-bottom {
+    > * {
+      @include old-pile-item(bottom);
+    }
+  }
+
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-list {
+  > * {
+    @include old-list-item;
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+//
+
+
+
+// ----------------------------------------------------------------------
+
+//
+
+
+
+// ----------------------------------------------------------------------
+
+
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-clearfix {
+  @include old-clearfix;
+}
+
+
+
+// ----------------------------------------------------------------------
+
+
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-media {
+  @include old-media-info;
+}
+
+.dc-hide {
+  &-mobile {
+    @include old-media(mobile){
+      display: none !important;
+    }
+  }
+  &-mobile-portrait {
+    @include old-media(mobile-portrait){
+      display: none !important;
+    }
+  }
+  &-mobile-landscape {
+    @include old-media(mobile-landscape){
+      display: none !important;
+    }
+  }
+  &-tablet {
+    @include old-media(tablet){
+      display: none !important;
+    }
+  }
+  &-tablet-portrait {
+    @include old-media(tablet-portrait){
+      display: none !important;
+    }
+  }
+  &-tablet-landscape {
+    @include old-media(tablet-landscape){
+      display: none !important;
+    }
+  }
+  &-laptop {
+    @include old-media(laptop){
+      display: none !important;
+    }
+  }
+  &-desktop {
+    @include old-media(desktop){
+      display: none !important;
+    }
+  }
+  &-xxs {
+    @include old-media(xxs){
+      display: none !important;
+    }
+  }
+  &-xs {
+    @include old-media(xs){
+      display: none !important;
+    }
+  }
+  &-sm {
+    @include old-media(sm){
+      display: none !important;
+    }
+  }
+  &-md {
+    @include old-media(md){
+      display: none !important;
+    }
+  }
+  &-lg {
+    @include old-media(lg){
+      display: none !important;
+    }
+  }
+  &-xl {
+    @include old-media(xl){
+      display: none !important;
+    }
+  }
+  &-xxl {
+    @include old-media(xxl){
+      display: none !important;
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-box {
+  &-xs {@include old-box(10px);}
+  &-sm {@include old-box(15px);}
+  &-md {@include old-box(20px);}
+  &-lg {@include old-box(30px);}
+  &-xl {@include old-box(60px);}
+  &-xxl {@include old-box(90px);}
+  &-xxxl {@include old-box(120px);}
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-bg {
+  // @each $KEY, $VALUE in $MAP
+  @each $color, $colorShades in $materialColors {
+    // for each color
+    &-#{$color} {
+      @each $shade, $shadeValue in $colorShades {
+        // for each shade
+        &-#{$shade} {
+          // render background
+          background-color: material($color, $shade);
+        }
+
+        // if shade is 500, create simplified selector like .bg-red
+        @if $shade == 500 {
+          background-color: material($color, $shade);
+        }
+      }
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc {
+  &-xs {@include old-size(20px);}
+  &-sm {@include old-size(24px);}
+  &-md {@include old-size(30px);}
+  &-lg {@include old-size(38px);}
+  &-xl {@include old-size(48px);}
+  &-xxl {@include old-size(60px);}
+  &-xxxl {@include old-size(74px);}
+  &-hg {@include old-size(90px);}
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-pos {
+
+  &-top-left { @include old-position(top-left); }
+  &-left { @include old-position(left); }
+  &-bottom-left { @include old-position(bottom-left); }
+  &-top { @include old-position(top); }
+  &-center { @include old-position(center); }
+  &-bottom { @include old-position(bottom); }
+  &-top-right { @include old-position(top-right); }
+  &-right { @include old-position(right); }
+  &-bottom-right { @include old-position(bottom-right); }
+
+  &-top-left-edge { @include old-position(top-left, edge); }
+  &-left-edge { @include old-position(left, edge); }
+  &-bottom-left-edge { @include old-position(bottom-left, edge); }
+  &-top-edge { @include old-position(top, edge); }
+  &-bottom-edge { @include old-position(bottom, edge); }
+  &-top-right-edge { @include old-position(top-right, edge); }
+  &-right-edge { @include old-position(right, edge); }
+  &-bottom-right-edge { @include old-position(bottom-right, edge); }
+
+  &-top-left-out { @include old-position(top-left, outer); }
+  &-left-out { @include old-position(left, outer); }
+  &-bottom-left-out { @include old-position(bottom-left, outer); }
+  &-top-out { @include old-position(top, outer); }
+  &-bottom-out { @include old-position(bottom, outer); }
+  &-top-right-out { @include old-position(top-right, outer); }
+  &-right-out { @include old-position(right, outer); }
+  &-bottom-right-out { @include old-position(bottom-right, outer); }
+
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-box {
+  &-xs {@include old-box(10px);}
+  &-sm {@include old-box(15px);}
+  &-md {@include old-box(20px);}
+  &-lg {@include old-box(30px);}
+  &-xl {@include old-box(60px);}
+  &-xxl {@include old-box(90px);}
+  &-xxxl {@include old-box(120px);}
+}
+
+
+
+// ----------------------------------------------------------------------
+
+.dc-txt {
+  // @each $KEY, $VALUE in $MAP
+  @each $color, $colorShades in $materialColors {
+    // for each color
+    &-#{$color} {
+      @each $shade, $shadeValue in $colorShades {
+        // for each shade
+        &-#{$shade} {
+          // render text color
+          color: material($color, $shade);
+        }
+
+        // if shade is 500, create simplified selector like .bg-red
+        @if $shade == 500 {
+          color: material($color, $shade);
+        }
+      }
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------------
+
+// custom rounding
+// -round-custom {
+//   @include old-round(10px 20px);
+// }
+
+.dc-round {
+  @include old-round;
+}
+
+// alternative usage
+// -round-2 {
+//   @include old-round(round);
+// }
+
+.dc-rounded {
+  @include old-rounded;
+}
+
+// alternative usage
+// -rounded-2 {
+//   @include old-rounded(rounded);
+// }
+
+.dc-rounded-lg {
+  @include old-round(lg);
+}
+
+.dc-rounded-xl {
+  @include old-round(xl);
+}
+
+.dc-rounded-ellipse {
+  @include old-round(ellipse);
+}
+
+.dc-rounded-a1 {
+  @include old-round(a1);
+}
+
+.dc-rounded-a2 {
+  @include old-round(a2);
+}
+
+.dc-rounded-a3 {
+  @include old-round(a3);
+}
+
+.dc-rounded-a4 {
+  @include old-round(a4);
+}
+
+.dc-rounded-b1 {
+  @include old-round(b1);
+}
+
+.dc-rounded-b2 {
+  @include old-round(b2);
+}
+
+.dc-rounded-b3 {
+  @include old-round(b3);
+}
+
+.dc-rounded-b4 {
+  @include old-round(b4);
+}
+
+
+
+// ----------------------------------------------------------------------
+
+
+
+
+
+// ----------------------------------------------------------------------
+
+//
+$controlButtons: darken(mix(#308cfd, #464D5D, 90%), 10%);
+// $codeBlocksBackground: #28323F;
+// $codeBlocksBackground: darken(#F1F2F6, 4%);
+$codeBlocksBackground: darken(#F1F2F6, 0.4%);
+$codeBlocksLeftEdge: #E3E4E8;
+$codeBlocksBorder: none;
+$pageBackground: lighten(#f1f2f6, 2.5%);
+%ionicon {
+  display: inline-block;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+@mixin ionicon(
+  $iconcode: null
+){
+  content: $iconcode;
+  @extend %ionicon;
+}
+
+@import "../plugins/normalize.scss";
+@import "../../_framework/csstetic.scss";
+@import "../../_framework/sections.scss";
+@import url(https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,900,300,100,400italic);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,400italic,700,700italic);
+@import url(../plugins/css/ionicons/css/ionicons.min.css);
+@import url(../plugins/css/font-awesome.css);
+@import url(../plugins/css/googlefont.css);
+// @import url(https://cdn.rawgit.com/gebidesign/5e8d629eb47e1aa8cc7d/raw/2a78ac4d411edf247a96fde97e850b42bb587535/sanfrancisco-font.css);
+
+
+
+
+
+html, body {
+  margin: 0;
+  font-family: 'Noto Sans', 'Open Sans', Helvetica, Arial, sans-serif;
+  // font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  color: darken(#9197A3, 12%);
+  @include old-scale((
+    font-size: (14px, 16px)
+  ));
+  overflow-x: hidden; // not neccessary, burn scroll appears during resize window for second
+}
+
+h1 {
+  // font-family: 'San Francisco', 'Open Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Lato', sans-serif;
+  color: #333;
+  margin: 0;
+  transition: font-size 0.25s;
+  // line-height: 2;
+}
+
+
+h1 {
+  line-height: 1em;
+  margin-bottom: 35px;
+  font-weight: 100;
+  @include old-scale((
+    font-size: (38px, 74px)
+  ));
+}
+h2 {
+  line-height: 1em;
+  margin-bottom: 30px;
+  font-weight: 300;
+  @include old-scale((
+    font-size: (32px, 55px)
+  ));
+}
+h3 {
+  margin-bottom: 25px;
+  line-height: 1.25em;
+  font-weight: 400 !important;
+  @include old-scale((
+    font-size: (26px, 55px)
+  ));
+}
+h4 {
+  // display: block;
+  // margin-bottom: 20px;
+  // position: relative;
+  // top: -15px;
+  line-height: 1.2em;
+  font-weight: 500;
+  // font-size: 13px !important;
+  // margin-top: 0 !important;
+  // margin-bottom: 15px;
+  // @include old-scale((
+  //   font-size: (18px, 24px)
+  // ));
+  // @include old-scale((
+  //   font-size: (14px, 16px)
+  // ));
+}
+h5 {
+  margin-bottom: 15px;
+  line-height: 1.5em;
+  font-weight: 700;
+  @include old-scale((
+    font-size: (17px, 20px),
+    margin-top: (15px, 25px)
+  ));
+}
+
+
+a {
+  text-decoration: none;
+  color: #0065B7;
+}
+
+// p {
+//   margin: 10px 0 0 0;
+// }
+
+
+ul, li {
+  list-style: none;
+}
+
+pre {
+  margin: 0;
+}
+
+.fw-wrapper {
+  display: table;
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+
+
+  // .fw-sidebar {
+  //   &,
+  //   .fw-inner {
+  //     transition: all 1s;
+  //   }
+  // }
+  // &.sidebar-hidden {
+  //   .fw-sidebar {
+  //     // width: 0;
+  //     overflow: hidden;
+  //   }
+  //   .fw-sidebar {
+  //     &,
+  //     .fw-inner {
+  //       overflow: hidden;
+  //       max-width: 0;
+  //     }
+  //   }
+  // }
+  .fw-sidebar {
+    .sidebar-header,
+    .fw-sidebar-menu,
+    .sidebar-footer,
+    .fw-inner {
+      // overflow: hidden;
+      // transition: all 1s;
+    }
+  }
+  .fw-sidebar {
+    // transition: all 1s;
+  }
+  .check-toggle-sidebar {
+    transition: all 0s;
+  }
+  &.sidebar-hidden {
+
+    .check-toggle-sidebar {
+      left: 10px;
+    }
+    .fw-sidebar {
+      // background: red;
+      width: 0;
+      // opacity: 0;
+      // overflow: hidden;
+      .sidebar-header,
+      .fw-sidebar-menu {
+        // display: none;
+        left: -250px;
+      }
+      .sidebar-footer {
+        left: -250px;
+      }
+      .fw-inner {
+        // width: 0;
+        opacity: 0;
+        margin-left: -250px;
+      }
+    }
+  }
+
+
+
+}
+
+iframe {
+  background: #fff;
+}
+
+body {
+  // display: table;
+  // border-collapse: collapse;
+  // background: #F2F2F2;
+  // background: #92939A;
+  // background: #353f4a;
+  // background: #727484;
+  background: $pageBackground;
+  // background: darken(#fff, 2%);
+  // background: lighten(#f3f3f7, 10%);
+  // background: #f1f2f6;
+
+  table-layout: fixed;
+  // @extend %container;
+  margin: auto;
+
+}
+
+p {
+  @include old-media(sm){
+    text-align: center;
+  }
+}
+
+
+
+.fw-sidebar,
+.fw-content {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.fw-content {
+  > .fw-inner {
+
+    margin: auto;
+    h5 {
+      // color: #777;
+      font-weight: normal;
+      color: #888;
+      // font-size: 17px;
+      strong, b {
+        border-bottom: #888 1px dotted;
+        // border-color: red;
+        // text-decoration: underline;
+        font-weight: normal;
+        // color: #000;
+      }
+      text-align: center;
+      @include old-scale((
+        font-size: (18px, 28px)
+      ));
+      // @include old-scale((
+      // ));
+    }
+    h3 {
+      color: #000;
+      position: relative;
+      display: inline-block;
+      // border-bottom: solid 1px black;
+      // color: #fff;
+      z-index: 91;
+      // margin-bottom: 15px;
+      line-height: 1.2em;
+      font-weight: 600;
+      // width: 90% !important;
+      display: block;
+      // font-family: "Ope"
+      text-align: center;
+      // @include old-scale((
+      //   font-size: (26px, 60px),
+      //   // margin: (0 -10px, 0 -60px),
+      //   padding: (8px 0 8px 0, 12px 0 12px 0)
+      // ));
+
+      transition: none;
+      &.is_stuck {
+        text-align: left;
+        font-size: 16px;
+        background: rgba(255,255,255, 0.92);
+        // border-bottom: solid 1px rgba(0, 0, 0, 0.05);
+        box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.10);
+        // color: darken(#888888, 10%);
+        color: #000;
+        @include old-media(sm){
+          text-align: center;
+          // font-weight: normal;
+          // color: #666;
+        };
+      }
+    }
+    h4, .fw-line,  {
+      margin-bottom: 15px;
+      margin-top: 35px;
+      // @include old-scale((
+      //   margin-top: (35px, 35px)
+      // ));
+    }
+    .fw-description {
+      margin-top: 70px;
+      margin-bottom: 15px;
+    }
+    h4, .fw-line,  {
+      &:after {
+        display: block;
+        content: "";
+        height: 1px;
+        width: 84.7%;
+        // width: 15.3%;
+        background: darken(#f1f2f6, 7.5%);
+        margin-bottom: -1px;
+        margin-top: 5px;
+      }
+      @include old-media(xl) {
+        margin-bottom: 10px;
+        &:after {
+          display: none;
+        }
+      }
+      @include old-media(sm){
+        text-align: center;
+        // margin-bottom: 10px;
+
+      }
+    }
+    h4 {
+      // width: 15%;
+      // border-top: solid 1px rgba(0,0,0,0.1);
+      color: #888;
+      text-transform: uppercase;
+      // color: red;
+      // border-bottom: solid 1px red;
+
+      // @include old-media(xxl){
+      //   color: red;
+      // };
+      letter-spacing: 1px;
+      @include old-scale((
+        font-size: (13px, 14px)
+      ));
+    }
+    > section {
+      // @include old-scale((
+        // padding: (0 10px, 0 60px),
+      //   padding-bottom: (130px, 30px)
+      // ));
+    }
+  }
+}
+
+
+
+// .fw-bar {
+//   background: #F0EFF0;
+//   > * {
+//     // sides
+//     > * {
+//       // items
+//       background: #B6B6C0;
+//     }
+//   }
+// }
+
+.fw-example {
+  @include old-scale((
+    padding: (10px 12px, 25px 30px)
+  ));
+}
+.hljs {
+  @include old-scale((
+    padding: (10px 12px, 25px 30px)
+  ));
+  font-size: 15px;
+  line-height: 1.6;
+  filter: saturate(120%);
+  -webkit-filter: saturate(120%);
+}
+.fw-example {
+  box-sizing: border-box;
+  @include old-clearfix;
+  background: #fff;
+  // border: solid 3px darken(#f1f2f6, 5%);
+  font-size: 14px;
+  min-width: 200px !important;
+}
+
+
+.fw-sectionBar {
+
+}
+
+
+.fw-sidebar,
+.fw-content {
+  > .fw-inner {
+
+    .fw-group {
+      > section {
+        // border-bottom: solid 10px rgba(158, 158, 175, 0.1);
+        &.active {
+          h3 {
+            transition: all 0.25s;
+            // opacity: 0.46;
+            color: fw-color(deeppurple, 900);
+          }
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+        @include old-media(xs){
+          margin: 0;
+        }
+        @include old-scale((
+          // margin-bottom: (10px, 30px),
+          padding: (10px 10px 10px 10px, 100px 60px 125px 60px),
+          // padding-bottom: (50px, 60px)
+        ));
+        h3 {
+          // @include old-scale((
+          //   margin-left: (-10px, 0),
+          //   margin-right: (-10px, 0)
+          // ));
+          // margin-right: -60px;
+          // background: red;
+        }
+        &:first-child {
+          // margin-top: 10px;
+          @include old-media(xs){
+            margin-top: 0;
+            border-radius: 0;
+          }
+        }
+      }
+      &:last-child {
+        // background: yellow;
+        section {
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+.fw-subsection {
+  background: #ebecee;
+  // margin: 0 -60px;
+  @include old-scale((
+    margin: (0 -10px, 0 -60px),
+    padding: (10px 10px, 45px 60px)
+  ));
+}
+
+
+
+
+
+.ui-ios-overlay {
+  background: rgba(180, 182, 191, 0.9);
+  transform: scale(0.66);
+}
+
+.fw-container,
+.fw-group > * > h1,
+.fw-group > * > h2,
+.fw-group > * > h5,
+.fw-group > * > h6,
+.fw-group > * > p,
+.fw-example,
+.fw-code,
+.fw-source,
+.fw-description {
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+
+.fw-example {
+  // padding: 0;
+  box-sizing: border-box;
+  border: solid 2px #F0F1F6;
+}
+
+.fw-separator {
+  display: block;
+  margin-bottom: 1rem;
+  // text-align: center;
+  span {
+    background: $pageBackground;
+    display: inline-block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 0 20px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+  }
+  &:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    border-top: dashed 1px rgba(0,0,0,0.1);
+    margin-right: -100%;
+  }
+}
+
+// $sidebar-background: #37435D;
+$sidebar-background: darken(#F9F9FB, 4%);
+$sidebar-width: 250px;
+.fw-sidebar {
+  // $sidebar-background: #464D5D;
+  width: $sidebar-width;
+  // background: yellow;
+  // background: #464D5D;
+  background: $sidebar-background;
+  position: relative;
+  z-index: 100;
+
+  // @include old-media(md){
+  //   display: none;
+  // };
+  > .fw-inner {
+    // background: #fafafa;
+    // width: 250px;
+    box-sizing: border-box;
+    border-right: solid 1px #ddd;
+    position: fixed;
+    background: $sidebar-background;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    border-radius: 4px;
+    // overflow: hidden;
+  }
+}
+
+  // $dot-size: 20px;
+  // $end-dot-size: 15px;
+  // $line-size: 4px;
+  // $text-left: 10px;
+  // $animate-size: 5px;
+  // // $list-color: #007aff;
+  // $list-color: #10B0E2; // dots and lines
+  // $active-link: #fff; // text color
+  // $inactive-link: #ABBDDE; // text color
+  // // $sidebar-active-background: #545D73; // sidebar active background color
+  // $sidebar-active-background: lighten($sidebar-background, 0%);
+  // $link-left-margin: 20px;
+  // $sidebar-hover: lighten($sidebar-background, 5%);
+  // $linkFontsize: 13.5px;
+  // $linkPadding: 13px;
+  // $link-hover-color: #fff;
+
+
+$non-active-indicators: darken($sidebar-background, 10%);
+#navbar {
+  $dot-size: 20px;
+  $end-dot-size: 15px;
+  $line-size: 4px;
+  $text-left: 10px;
+  $animate-size: 8px;
+  // $list-color: #007aff;
+  $list-color: desaturate(fw-color(deeppurple, 500), 15%); // dots and lines
+  $link-hover-border: fw-color(deeppurple, 400);
+  $active-link: #222; // text color
+  $inactive-link: #888; // text color
+  // $sidebar-active-background: #545D73; // sidebar active background color
+  $sidebar-active-background: lighten($sidebar-background, 4%);
+  $link-left-margin: 20px;
+  $sidebar-hover: lighten($sidebar-background, 3%);
+  $linkFontsize: 13.5px;
+  $linkPadding: 15px;
+  $link-hover-color: #333;
+  ul {
+    // all ul's
+    padding: 0;
+    margin: 0;
+    // overflow: hidden;
+  }
+  li {
+    // all li's
+    list-style: none;
+    position: relative;
+    // width: 100%;
+    display: block;
+    /* outline: solid 1px red; */
+    font-weight: 600;
+    &:before {
+      z-index: 1;
+    }
+    &:before,
+    &:after {
+      // background: rgba(173, 174, 181, 0.5);
+      background: $list-color;
+    }
+    &.active {
+      &:before,
+      &:after {
+        // background: #20D07F;
+        background: $list-color;
+      }
+      ul li {
+        &:before,
+        &:after {
+          // background: #20D07F;
+          background: $list-color;
+        }
+      }
+    }
+    &:before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+    }
+    &.active {
+      ul {
+        // display: block;
+        // height: auto;
+        overflow: visible;
+        max-height: 2000px;
+        // transition: all 1s;
+        li:last-child a {
+          margin-bottom: 15px;
+        }
+      }
+      > a {
+        // font-weight: 600;
+        color: $active-link;
+      }
+    }
+    ul {
+      // display: none;
+      // height: 50px;`
+      overflow: hidden;
+      max-height: 0;
+      li:last-child a {
+        margin-bottom: $animate-size + 15px;
+        transition: margin 0.5s;
+      }
+    }
+  }
+  a {
+    // all a
+    text-decoration: none;
+    padding-top: $linkPadding;
+    padding-bottom: $linkPadding;
+    display: block;
+    /* border: solid 1px blue; */
+    color: $inactive-link;
+  }
+  .first {
+    // first level ul
+    > li {
+      // first level li
+      padding-left: 10px;
+      // border-bottom: solid 1px rgba(0,0,0,0.17);
+      // background: rgba(0,0,0,0.05);
+      // transition: all 0.15s;
+      &.active {
+        background: $sidebar-active-background;
+        padding-bottom: 1px;
+        // box-shadow: inset 0 1px rgba(255, 255, 255, 0.1),
+        //             inset 0 -1px rgba(0, 0, 0, 0.15),
+        //             inset 0 0 0 4px #545D73,
+        //             inset 0 0 0 5px rgba(60, 66, 80, 0.3)
+      }
+      &:hover:not(.active) {
+        background: $sidebar-hover;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+      &:not(.active) {
+        &:before {
+          background: $non-active-indicators;
+        }
+      }
+      &:before {
+        // first level dot
+        margin-top: $linkPadding+1px;
+        width: ($dot-size);
+        height: $dot-size;
+        line-height: $dot-size;
+        padding-left: 1px; // dot left padding
+        border-radius: 100px;
+        display: inline-block;
+
+
+        @include ionicon("\f10a");
+
+        color: #fff;
+        font-size: 10px;
+        text-align: center;
+        transition: transform 0.5s;
+      }
+      &.active {
+        &:before {
+          transform: rotate(90deg);
+        }
+
+        // background: #fafafa;
+      }
+      > a {
+        // first level a
+        margin-left: $dot-size + $text-left; // offset text from dot
+      }
+      &.active {
+        ul li:first-child a {
+          margin-top: 0;
+        }
+      }
+      ul li:first-child a {
+        margin-top: ($animate-size)*-1;
+        transition: margin 0.5s;
+      }
+    }
+  }
+  .second {
+    // second level ul
+    > li {
+      // second level li
+      &:after {
+        content: "";
+        display: block;
+        width: $line-size;
+        /* height: 10px; */
+        transition: top 0.25s;
+        top: -18px;
+        left: (($dot-size)/2 - ($line-size)/2)+0.5px;
+        bottom: -15px;
+        position: absolute;
+      }
+      > a {
+        // second level a
+        // padding-left: $text-left;
+        padding-left: $link-left-margin; // link left margin
+        margin-left: (($dot-size)/2 - ($line-size)/2)+$line-size+0.5px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        padding-right: 10px;
+        font-size: $linkFontsize;
+        // text-transform: uppercase;
+        border-right: solid 4px transparent;
+        &:hover {
+          // background: red;
+          border-right-color: $link-hover-border;
+          color: $link-hover-color;
+
+        }
+      }
+      &:last-child {
+        // last second level li
+        a {
+          position: relative;
+          z-index: 1;
+          // padding-left: $text-left + ($end-dot-size - $line-size)/2;
+        }
+        &:before {
+          width: $end-dot-size;
+          height: $end-dot-size;
+          top: 10px;
+          left: ($dot-size/2)-($end-dot-size/2)+0.5px;
+          border-radius: 100px;
+        }
+        &:after {
+          bottom: 22px;
+        }
+      }
+    }
+  }
+}
+
+
+.fw-back-to-home {
+  a {
+    display: inline-block;
+    margin: 10px 20px;
+    border-bottom: solid 2px transparent;
+    color: #000;
+    .icon {
+      font-size: 1.2em;
+      position: relative;
+      top: 2px;
+    }
+    &:hover {
+      border-bottom-color: #333;
+    }
+    @include old-scale((
+      font-size: (12px, 24px)
+    ));
+  }
+}
+
+
+// photoshop style for sidebar
+// $sidecolor: #f3f3f5;
+// .fw-sidebar {
+//   background: $sidecolor;
+//   border-right: solid 1px darken($sidecolor, 12%);
+// }
+// #navbar {
+//   $list-color: desaturate(darken($sidecolor, 40%), 5%); // dots and lines
+//   // $list-color: #1fc3d3;
+//   $active-link: #000; // text color
+//   $inactive-link: desaturate(darken($sidecolor, 50%), 10%); // text color
+//   $sidebar-active-background: darken($sidecolor, 3%); // sidebar active background color
+//   $sidebar-hover: darken($sidecolor, 3%);
+//   $dot-size: 20px;
+//   $end-dot-size: 15px;
+//   $line-size: 4px;
+//   $text-left: 10px;
+//   $animate-size: 5px;
+//   // $list-color: #007aff;
+//   $link-left-margin: 20px;
+//   $linkFontsize: 13.5px;
+//   $linkPadding: 13px;
+//   li {
+//     // all li's
+//     &:before,
+//     &:after {
+//       background: $list-color;
+//     }
+//     &.active {
+//       &:before,
+//       &:after {
+//         background: $list-color;
+//       }
+//       ul li {
+//         &:before,
+//         &:after {
+//           background: $list-color;
+//         }
+//       }
+//     }
+//     &.active {
+//       > a {
+//         color: $active-link;
+//       }
+//     }
+//   }
+//   a {
+//     // all a
+//     padding-top: $linkPadding;
+//     padding-bottom: $linkPadding;
+//     color: $inactive-link;
+//   }
+//   .first {
+//     // first level ul
+//     > li {
+//       // first level li
+//       &.active {
+//         background: $sidebar-active-background;
+//       }
+//       &:hover:not(.active) {
+//         background: $sidebar-hover;
+//       }
+//       &:last-child {
+//       }
+//       &:before {
+//         // first level dot
+//         margin-top: $linkPadding+1px;
+//         width: ($dot-size);
+//         height: $dot-size;
+//         line-height: $dot-size;
+//       }
+//       > a {
+//         // first level a
+//         margin-left: $dot-size + $text-left; // offset text from dot
+//       }
+//     }
+//   }
+//   .second {
+//     // second level ul
+//     > li {
+//       // second level li
+//       &:after {
+//         width: $line-size;
+//         left: (($dot-size)/2 - ($line-size)/2)+0.5px;
+//       }
+//       > a {
+//         // second level a
+//         padding-left: $link-left-margin; // link left margin
+//         margin-left: (($dot-size)/2 - ($line-size)/2)+$line-size+0.5px;
+//         font-size: $linkFontsize;
+//         &:hover {
+//           border-right-color: #7C87A5;
+//         }
+//       }
+//       &:last-child {
+//         // last second level li
+//         &:before {
+//           width: $end-dot-size;
+//           height: $end-dot-size;
+//           left: ($dot-size/2)-($end-dot-size/2)+0.5px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+.sidebar-footer {
+  box-sizing: border-box;
+  padding: 25px 15px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: $sidebar-width;
+  box-shadow: inset 0 1px 0 0 rgba(0,0,0,0.06);
+  // border-top: solid 1px rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.03);
+  // display: none;
+}
+
+
+.fw-sidebar-menu {
+  // outline: solid 2px black;
+  &.expanded {
+    #navbar {
+      ul.first {
+        > li {
+          &:not(.active){
+            ul.second {
+              overflow: visible;
+            }
+            li:after {
+              top: -14px;
+              // background: red !important;
+            }
+            li:after,
+            li:before {
+              // outline: solid 1px red;
+              background: $non-active-indicators;
+            }
+
+          }
+        }
+        // li:not(.active):after {
+        // background: transparent;
+        // // top: -30px !important;
+        // }
+      }
+      ul.first {
+        > li {
+          &.active {
+            a {
+              padding-top: 8px;
+              padding-bottom: 8px;
+              // outline: solid red 5px;
+            }
+          }
+        }
+      }
+      ul.second {
+        max-height: 100%;
+        > li {
+          &:last-child {
+            a {
+              // outline: solid 5px green;
+              margin-bottom: 8px;
+            }
+          }
+
+        }
+        // outline: solid 2px red;
+      }
+
+    }
+  }
+  overflow: auto;
+}
+
+
+
+
+.fw-sidebar-menu {
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-thumb {
+    transition: all 1s;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.075);
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar {
+    width: 12px;
+    background-color: rgba(0,0,0,0.015);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: desaturate(rgba(165, 150, 191, 0.2), 15%);
+  }
+  &:hover {
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
+    }
+    &::-webkit-scrollbar {
+      background-color: rgba(0,0,0,0.05);
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: desaturate(rgba(165, 150, 191, 1), 15%);
+    }
+  }
+}
+
+.se-checkbox {
+  display: block;
+  cursor: pointer;
+}
+
+.se-checkbox, .se-checkbox * {
+  transition: all 0.15s;
+}
+
+.se-checkbox input {
+  display: none;
+}
+
+.se-checkbox .label {
+  line-height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 13px;
+  color: #444;
+}
+
+.se-checkbox input:checked ~ .label .icon {
+  font-size: 12px;
+  background: fw-color(deeppurple, 600);
+}
+
+.se-checkbox .icon {
+  margin-right: 5px;
+  position: relative;
+  top: -1px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.15);
+  font-size: 0.0000001px;
+  color: #fff;
+  vertical-align: middle;
+  text-align: center;
+  display: inline-block;
+}
+
+.se-checkbox:hover .icon {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+}
+
+.se-checkbox:active .icon {
+  transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+}
+
+.check-toggle-sidebar {
+  position: fixed;
+  top: 51px;
+  left: 260px;
+  z-index: 9999999999;
+}
+
+.check-toggle-sidebar .icon {
+  color: #6C4CA5;
+  margin: 0;
+  font-size: 24px;
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+  background: #fff;
+  border: solid 1px #DDDCE4;
+}
+
+.check-toggle-sidebar input:checked ~ .label .icon {
+  border: none;
+  color: #fff;
+  font-size: 24px;
+}
+
+$checkColor: fw-color(deeppurple, 600);
+$inactiveCheckColor: rgba(0,0,0,0.15);
+
+
+.se-checkbox {
+  display: block;
+  cursor: pointer;
+  &, & * {
+    transition: all 0.15s;
+  }
+  input {
+    display: none;
+  }
+  .label {
+    // color: green;
+    line-height: 20px;
+    vertical-align: middle;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    color: #444;
+  }
+  input:checked {
+    ~ .label {
+      // color: red;
+      // display: none;
+      .icon {
+        font-size: 12px;
+        background: $checkColor;
+      }
+    }
+  }
+  .icon {
+    margin-right: 5px;
+    position: relative;
+    top: -1px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 3px;
+    background: $inactiveCheckColor;
+    font-size: 0.0000001px;
+    color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    // margin-bottom: 4px;
+  }
+  &:hover {
+    .icon {
+      transform: scale(1.1);
+      -webkit-transform: scale(1.1);
+    }
+  }
+  &:active {
+    .icon {
+      transform: scale(0.9);
+      -webkit-transform: scale(0.9);
+    }
+  }
+}
+
+.se-checkbox {
+  // padding: 30px;
+}
+
+.check-toggle-sidebar {
+  // background: red;
+  position: fixed;
+  // right: -10px;
+  // top: 50px;
+  // z-index: 9999;
+  // transform: translateX(100%);
+  top: 51px;
+  left: 260px;
+  z-index: 9999999999;
+  .icon {
+    color: #6C4CA5;
+    margin: 0;
+    font-size: 24px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    background: #fff;
+    border: solid 1px #DDDCE4;
+    // background: #DDDCE4;
+  }
+  // .label {
+    // line-height: 50px;
+  // }
+  input:checked {
+    ~ .label {
+      // color: red;
+      // display: none;
+      .icon {
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        // background: $checkColor;
+      }
+    }
+  }
+  // input:checked {
+  //   ~ .label {
+  //     // color: red;
+  //     // display: none;
+  //     .icon {
+  //       // font-size: 12px;
+  //       // background: $checkColor;
+  //     }
+  //   }
+  // }
+}
+
+.fw-code-copy {
+  display: block;
+  position: relative;
+  z-index: 5;
+  font-size: 0;
+  @include old-clearfix;
+  .fw-code-copy-mask {
+    height: 27px;
+    overflow: hidden;
+    float: right;
+    margin-bottom: -100%;
+    width: 75px;
+    margin-right: 5px;
+    opacity: 0.60;
+    transition: all 0.15s;
+    top: 5px;
+    cursor: pointer;
+    position: relative;
+    &:hover:not(.copying) {
+      opacity: 1;
+      .first {
+        margin-top: -27px;
+        opacity: 0;
+      }
+      .second {
+        opacity: 1;
+      }
+    }
+    &.copying {
+      opacity: 1;
+      .first {
+        margin-top: -54px;
+      }
+      .third {
+        // opacity: 1;
+        // background: lighten(#4A546A, 40%);
+      }
+      .fw-code-loading-mask {
+        width: 100%;
+      }
+      .fourth {
+        // background: #005BA5;
+        // background: red;
+        // background: saturate(darken(#5DC560, 18%), 20%);
+      }
+    }
+    &.done {
+      .first {
+        margin-top: -81px;
+      }
+      .fifth {
+        opacity: 1;
+      }
+      .first, .second, .third, .fourth {
+        opacity: 0;
+      }
+    }
+  }
+  .fw-code-copy-button {
+    transition: all 0.50s;
+    display: block;
+    background: #F1F2F6;
+    line-height: 25px;
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: Arial;
+    font-size: 11px;
+    border-radius: 2px;
+    border: solid 1px darken(#F1F2F6, 15%);
+    // box-shadow: inset 0 0 0 1px #fff;
+  }
+  .first {
+    // gray copy
+    margin-top: 0;
+  }
+  .second, .third, .fourth, .fifth {
+    background: lighten($controlButtons, 4%);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: none;
+    opacity: 0;
+  }
+  .third {
+    background: lighten(#4A546A, 40%);
+    opacity: 1;
+  }
+  .fw-code-loading-mask {
+    transition: all 0.7s;
+    overflow: hidden;
+    width: 0%;
+    margin-top: -27px;
+    height: 27px;
+    display: block;
+    // opacity: 1;
+  }
+  .fourth {
+    // margin-top: -27px;
+    opacity: 1;
+    // background: saturate(darken(#5DC560, 20%), 10%);
+    // background: red;
+    background: color(green, 800);
+    // background: lighten(#005BA5, 12%);
+    width: 75px;
+    height: 25px;
+    // opacity: 1;
+  }
+  .fifth {
+    // margin-top: -27px;
+    // background: saturate(darken(#5DC560, 18%), 20%);
+    // background: lighten(#4A546A, 32%);
+    border: solid 1px lighten(#4A546A, 50%);
+    // color: lighten(#4A546A, 36%);
+    // background: transparent;
+    background: color(blue, 900);
+    color: #fff;
+    line-height: 23px;
+  }
+}
+
+.fw-switch {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: -5px;
+  > span {
+    &:first-child {border-radius: 3px 0 0 3px;}
+    &:last-child {border-radius: 0 3px 3px 0;}
+    cursor: pointer;
+  }
+  .lang-css,
+  .lang-scss {
+    display: inline-block;
+    border: solid rgb(113, 125, 154) 1px;
+    color: #FFF;
+    width: 75px;
+    line-height: 28px;
+    // border-radius: 2px;    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    position: relative;
+    &.active {
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    }
+    &:active:not(.active) {
+      box-shadow: inset 0 1px 15px rgba(0, 0, 0, 0.1);
+      border: solid darken(rgb(113, 125, 154), 5%) 1px;
+      top: 1px;
+      // margin-top: 1px;
+      // margin-left: 10px;
+    }
+    &:hover {
+      background: #545D73;
+    }
+  }
+  .lang-css {
+
+    // background: transparent;
+    // border-left: solid 4px rgba(205, 102, 154, 0.4);
+    &.active {
+      border: solid 1px #2DD2E2;
+      background: #1FC3D3;
+    }
+    &:active:not(.active) {
+      // border-left: solid 4px rgba(31, 195, 211, 0.4);
+    }
+  }
+  .lang-scss {
+    // border-right: solid 4px rgba(31, 195, 211, 0.4);
+    // margin-left: 10px;
+    &.active {
+      // border: solid 1px lighten(#CD669A, 9%);
+      // background: #CD669A;
+      border: solid 1px #6A73CC;
+      background: #666EC3;
+    }
+    &:active:not(.active) {
+      // border-right: solid 4px rgba(205, 102, 154, 0.4);
+    }
+  }
+}
+
+
+.fw-tabulators {
+  // background: red;
+  border-bottom: solid 1px rgba(0,0,0,0.06);
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+  // background: red;
+  @include old-clearfix;
+  > * {
+    display: inline-block;
+    margin-right: 25px;
+    @include old-scale((
+      margin-right: (10px, 30px)
+    ));
+    box-sizing: border-box;
+    // color: #08c;
+    color: #888;
+    cursor: pointer;
+    // padding: 5px 10px;
+    // background: red;
+    padding: 15px 0 5px 0;
+    vertical-align: bottom;
+    transition: all 0.2s;
+    // border: solid 1px transparent;
+    // border-radius: 4px;
+    margin-bottom: -1px;
+    font-size: 15px;
+    border-bottom: solid 1px transparent;
+    &:hover:not(.active) {
+      border-color: rgba(0,0,0,0.2);
+      // text-decoration: underline;
+    }
+    &.active,
+    &:hover:not(.active){
+      padding-bottom: 7px;
+      padding-top: 13px;
+      color: #444;
+    }
+    &.active {
+      color: #000;
+      // font-weight: bold;
+      border-bottom: solid 1px black;
+      // transition: all 0s;
+      // border-top: solid 1px #eee;
+      // background: rgba(0,0,0,0.04);
+      // background: color()
+    }
+  }
+  @include old-media(md){
+    // border-radius: 5px;
+    // border: solid 1px rgba(0,0,0,0.15);
+    // overflow: hidden;
+    > * {
+      // border-bottom: solid 1px rgba(0,0,0,0.1);
+      // margin: 5px;
+      width: 50%;
+      float: left;
+      margin: 0;
+      border: solid 1px rgba(0,0,0,0.1);
+      padding: 5px 0;
+      // display: block;
+      text-align: center;
+      font-size: 13px;
+      transition: all 0.05s;
+      &.active,
+      &:hover:not(.active){
+        color: #000;
+        // border-bottom: none;
+        padding: 5px 0;
+        background: rgba(0,0,0,0.025);
+        border-color: rgba(0,0,0,0.15);
+      }
+      &.active {
+        // background: #5FB7EC;
+        // background: #9A9FAB;
+        // color: #fff;
+        background: rgba(0,0,0,0.045);
+        // border-color: transparent;
+        // font-weight: bold;
+      }
+    }
+  }
+  @include old-media(xs){
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+.fw-tabs {
+  // margin-top: 30px;
+  margin-bottom: 2rem;
+  > * {
+    // display: block;
+    // border: solid 1px red;
+    padding-top: 1rem;
+    // transition: all 0.5s;
+    width: 100%;
+    // background: rgba(0,0,0,0.2);
+    @include old-clearfix;
+    &.active {
+      // display: block;
+      // outline: solid 5px blue;
+      opacity: 1;
+      // background: transparent;
+    }
+    &.hidden {
+      // display: none;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: none;
+      display: none;
+    }
+  }
+}
+
+
+@mixin hexagon(
+  $color: red
+){
+  $width: 100px;
+  width: $width;
+  height: 55px;
+  background: $color;
+  position: relative;
+  transition: all 0.5s;
+  &:before {
+    content: "";
+    position: absolute;
+    top: -24px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: $width*0.5 solid transparent;
+    border-right: $width*0.5 solid transparent;
+    border-bottom: 25px solid $color;
+    transition: all 0.5s;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -24px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: $width*0.5 solid transparent;
+    border-right: $width*0.5 solid transparent;
+    border-top: 25px solid $color;
+    transition: all 0.5s;
+  }
+}
+
+
+
+.fw-logo {
+  .hexagon-out {
+    $normal-border: saturate(lighten(#717d9a, 8%), 10%); // normal border
+    $normal-background: $sidebar-background;
+    $normal-text: saturate(lighten(#8E9DC3, 3%), 5%);
+    $hover-background: #5F6EBD;
+    $hover-text: white;
+    $border-scale: 0.9;
+    margin: 20px auto 20px auto;
+    @include old_media(tablet-portrait){
+      display: none;
+    }
+    @include hexagon($normal-border); // outer border color
+    cursor: pointer;
+    transform: scale(0.7);
+    &:hover {
+      background: $hover-background;
+
+      // transform: scale(0.75);
+      .label {
+        color: $hover-text; // hover label color
+      }
+      &:before {
+        border-bottom-color: $hover-background;
+      }
+      &:after {
+        border-top-color: $hover-background;
+      }
+      .hexagon-in {
+        transform: scale(0);
+      }
+    }
+    .label {
+      color: $normal-text;
+      text-shadow: 0 0 3px rgba(0,0,0,0.5);
+      width: 100%;
+      position: absolute;
+      font-weight: 600;
+      font-size: 24px;
+      z-index: 1;
+      // top: 50%;
+      // transform: translateY(-50%);
+      // -webkit-transform: translateY(-50%);
+      transition: all 0.4s;
+      text-align: center;
+      margin-top: 8px;
+
+
+
+
+    }
+    .hexagon-in {
+      @include hexagon($normal-background);
+      position: absolute;
+      // top: 0;
+      z-index: 1;
+      transform: scale($border-scale);
+      // left: 0;
+    }
+  }
+  .subtitle {
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    // text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+}
+
+
+// .fw-table {
+//   // background: red;
+//   display: table;
+//   // table-layout: fixed;
+//   width: 100%;
+//   > * {
+//     // rows
+//     display: table-row;
+//     > * {
+//       // cells
+//       display: table-cell;
+//       border-bottom: solid 1px black;
+//       @include old_scale((
+//         padding: (10px, 5px)
+//       ));
+//     }
+//   }
+// }
+
+
+.tooltipster-default {
+  border-radius: 3px;
+  border: 2px solid #FFF;
+  background: $controlButtons;
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2),0 1px 5px rgba(0, 0, 0, 0.1);
+  .tooltipster-content {
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 8px 18px;
+    cursor: pointer;
+    &:hover {
+      background: lighten($controlButtons, 5%);
+    }
+  }
+}
+
+
+
+
+.tooltipster-light {
+  background: #4A546A;
+  color: #fff;
+  border: none;
+  box-shadow: none;
+  .tooltipster-content {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+.ui-resizable-resizing {
+
+  .ui-resizable-se,
+  .ui-resizable-e {
+    width: 23px !important;
+    height: 23px !important;
+    opacity: 1 !important;
+  }
+}
+
+.fw-resizable:hover,
+.ui-resizable-resizing {
+  outline: solid 1px rgba(#12a5ff, 0.3) !important;
+  background: rgba(#e7f6ff, 0.3);
+  .ui-resizable-se,
+  .ui-resizable-e {
+    background: $controlButtons !important;
+  }
+}
+
+
+// .ui-resizable-resizing {
+//   .ui-resizable-se,
+//   .ui-resizable-e {
+//     opacity: 1 !important;
+//     background: rgba(114, 119, 142, 0.8) !important;
+//   }
+//   outline: dashed 1px rgba(0,0,0,0.15);
+// }
+
+.fw {
+  &-resizable {
+    margin: auto;
+    margin-bottom: 15px;
+    min-width: 200px;
+    width: 100%;
+    outline: solid 1px rgba(0,0,0,0.075);
+    display: none;
+    &:hover {
+      .ui-resizable-se,
+      .ui-resizable-e {
+        width: 19px;
+        height: 19px;
+        opacity: 1;
+      }
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      pointer-events: none;
+      &:before {
+        display: block;
+        width: 500px;
+        height: 100px;
+        // background: red;
+        content: "";
+      }
+    }
+    // .ui-resizable-e {
+    //   display: none !important;
+    // }
+    .ui-resizable-se,
+    .ui-resizable-e {
+      background: darken(#f0f1f5, 8%);
+      opacity: 0.75;
+      @include old_media(xl){
+        opacity: 1;
+      }
+      border: solid 2.5px white;
+
+      border-radius: 100px;
+      width: 16px;
+      height: 16px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.25), 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 8px 5px rgba(255, 255, 255, 0.1);
+      transition: all 0.25s;
+      transform: translateX(50%) translateY(50%);
+      -webkit-transform: translateX(50%) translateY(50%);
+      bottom: 15px;
+      right: 0;
+      &:hover {
+        width: 23px;
+        height: 23px;
+        opacity: 1;
+      }
+    }
+    .ui-resizable-e {
+      top: 50%;
+      transform: translateX(50%) translateY(-50%);
+      -webkit-transform: translateX(50%) translateY(-50%);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$resizable-width: 10px;
+
+
+// .ui-resizable-resizing {
+//   .ui-resizable-se,
+//   .ui-resizable-e {
+//     opacity: 1 !important;
+//     background: rgba(114, 119, 142, 0.8) !important;
+//   }
+//   outline: dashed 1px rgba(0,0,0,0.15);
+// }
+
+// .fw {
+//   &-resizable {
+//     margin: auto;
+//     min-width: 100px;
+//     width: 100%;
+//     // padding-right: $resizable-width + 10px;
+//     &:hover {
+//       outline: solid 1px rgba(#12a5ff, 0.2);
+//       background: rgba(#e7f6ff, 0.3);
+//       .ui-resizable-se,
+//       .ui-resizable-e {
+//         // width: 19px;
+//         // height: 19px;
+//         opacity: 1;
+//       }
+//     }
+//     iframe {
+//       border: none;
+//       width: 100%;
+//       pointer-events: none;
+//       // &:before {
+//       //   display: block;
+//       //   width: 500px;
+//       //   height: 100px;
+//       //   // background: red;
+//       //   content: "";
+//       // }
+//     }
+//     // .ui-resizable-e {
+//     //   display: none !important;
+//     // }
+//     .ui-resizable-se,
+//     .ui-resizable-e {
+//       // opacity: 0;
+//       @include old_media(xl){
+//         // opacity: 1;
+//       }
+//       // border: solid 2.5px white;
+//       // background: $controlButtons;
+//       // border-radius: 100px;
+//       // width: 16px;
+//       // height: 16px;
+//       // box-shadow: 0 3px 12px rgba(0,0,0,0.25), 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 8px 5px rgba(255, 255, 255, 0.1);
+//       transition: all 0.25s;
+//       // transform: translateX(40%) translateY(40%);
+//       // -webkit-transform: translateX(40%) translateY(50%);
+//       // bottom: 15px;
+//       // background: black;
+//       opacity: 0.33;
+//       margin: 5px 0;
+//       // margin-top: 15px;
+//       border-radius: 100px;
+//       background: rgba(114, 119, 142, 0.6);
+//       right: $resizable-width*(-1);
+//       width: $resizable-width;
+//       top: -5px;
+
+
+// //       border: solid 2.5px white;
+// //       background: $controlButtons;
+// //       border-radius: 100px;
+// //       width: 16px;
+// //       height: 16px;
+// //       box-shadow: 0 3px 12px rgba(0,0,0,0.25), 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 8px 5px rgba(255, 255, 255, 0.1);
+// //       transition: all 0.25s;
+// //       transform: translateX(40%) translateY(40%);
+// //       -webkit-transform: translateX(40%) translateY(50%);
+// //       bottom: 15px;
+// //       right: 0;
+// //       &:hover {
+// //         width: 23px;
+// //         height: 23px;
+// //         opacity: 1;
+// //       }
+
+
+
+
+//       &:hover {
+//         // width: 23px;
+//         // height: 23px;
+//         // opacity: 0.8;
+//       }
+//     }
+//     .ui-resizable-e {
+//       // top: 50%;
+//       // transform: translateX(40%) translateY(-50%);
+//     }
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pre code {
+  font-family: Consolas, monaco, monospace;
+}
+
+.c-elements {
+  > * {
+    transition: all 0.2s;
+  }
+  > *:hover {
+    box-shadow: 0 0 10px 1px rgba(0, 111, 216, 0.9);
+  }
+}
+
+.fw-code-title {
+    // margin-top: 5px;
+    display: inline-block;
+    font-family: Tahoma;
+    // text-align: center;
+    // width: 55px;
+    // background: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #A8ADCA;
+    // position: relative;
+    // display: inline-block;
+    border-radius: 4px 4px 0 0;
+    padding: 0 15px;
+    line-height: 26px;
+    // text-shadow: -1px 0 #fff;
+    background: $codeBlocksBackground;
+    // background: #fff;
+    // border: solid 3px $codeBlocksLeftEdge;
+    transform: rotate(-90deg) translateX(-100%) translateY(-100%);
+    // margin-top: 5px;
+    transform-origin: 0% 0%;
+    // transform-origin:
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    // outline: solid 1px black;
+    // box-shadow: inset 0 -2px 5px rgba(0,0,0,0.04);
+    border-bottom: none !important;
+    + pre {
+      // margin-top: -20px;
+    }
+    // green #29B321
+    // pink #EA62A7
+    // purple #905CE0
+    // red #a71d5d
+  &.html {
+    // border: solid 3px lighten(#005BA5, 5%);
+    color: lighten(#0066D3, 3%);
+  }
+  &.scss {
+    // border: solid 3px #CD669A;
+    color: #EA62A7;
+  }
+  &.css {
+    // border: solid 3px #795da3;
+    color: #905CE0;
+  }
+  &.script {
+    // border: solid 3px #a71d5d;
+    color: #29B321;
+  }
+}
+
+.fw-code {
+  position: relative;
+  margin-bottom: 1rem;
+}
+.fw-source {
+  > * {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  pre {
+    transition: box-shadow 0.75s;
+    box-shadow: 0px 0px 0px 0px rgba(255, 200, 89, 0);
+    // outline: solid 10px red;
+    &.fw-highlighted {
+      box-shadow: 0px 0px 0px 5px rgb(255, 200, 89);
+      // box-shadow: 0px 0px 3px 3px #87D1FF;
+      // box-shadow: 0px 0px 4px 3px #C8D1DE;
+    }
+  }
+}
+
+
+
+.fw-source-scss {
+
+}
+.fw-viewCss {
+  .fw-source {
+    .fw-source-scss {
+      display: none;
+    }
+  }
+}
+.fw-viewScss {
+  .fw-source {
+    .fw-source-css {
+      display: none;
+    }
+  }
+}
+
+.fw-code, [class^="fw-source-"] {
+  &:hover {
+    .fw-code-copy-mask {
+      opacity: 0.75;
+    }
+    code {
+      // border-left: solid 3px $codeBlocksLeftEdge;
+    }
+  }
+}
+.fw-code, [class^="fw-source-"] {
+  code {
+    // border-left: solid 3px #fff;
+  }
+  pre + code {
+    display: none; // ie9 fix
+  }
+}
+
+.fw-code-title {
+  @include old-media(sm){
+    transform: rotate(0);
+    position: static;
+  }
+}
+
+.fw-code[data-header]{
+  .fw-code-title {
+    transform: rotate(0);
+    position: static;
+  }
+}
+.fw-code.small {
+  .fw-code-title {
+    // border: solid 2px red;
+    transform: rotate(0);
+    position: static;
+  }
+  &.small,
+  &.slim {
+    pre code {
+      padding: 7px 15px;
+    }
+  }
+}
+
+
+.hljs {
+  // background: lighten(#f1f2f6, 0.5%);
+  background: $codeBlocksBackground;
+  word-wrap: break-word;
+  border: $codeBlocksBorder;
+  // -webkit-filter: saturate(110%);
+}
+
+.hljs {
+  // @include old_scale((
+  //   margin-top: (10px, 20px)
+  // ));
+  // background: #EEEEf1;
+  // opacity: 0.5;
+  // font-size: 14px;
+  @include old_media(sm){
+    overflow: hidden;
+  };
+  transition: opacity 0.3s;
+  // -webkit-filter: grayscale(0.5);
+  // display: none;
+  @include old_media(sm){
+    // display: none;
+  }
+
+  // &:hover {
+  //   opacity: 1;
+  //   -webkit-filter: grayscale(0);
+  // }
+}
+
+
+.fw-custom-source {
+  display: none;
+}
+
+// h4 {
+//   color: red !important;
+// }
+
+
+.dc-topbar {
+  // background: red;
+
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 95;
+
+  .dc-section-info {
+
+
+
+
+    // left: 310px;
+    // right: 0;
+
+
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    background: rgba(255,255,255, 0.92);
+    // border-bottom: solid 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.10);
+    // color: darken(#888888, 10%);
+    color: #000;
+    @include old-box(xs);
+    @include old-scale((
+      padding-left: (10px, 60px),
+      padding-right: (10px, 60px)
+    ));
+    @include old-media(sm){
+      text-align: center;
+      // font-weight: normal;
+      // color: #666;
+    };
+    transition: all 0.5s;
+    &.isHidden {
+      opacity: 0;
+      transform: translateY(-25%);
+    }
+
+  }
+
+
+}

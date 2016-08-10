@@ -1,0 +1,154 @@
+
+
+<splitSection output="output/justifiedBar_section.jade">
+
+  section.sec-justifiedBar
+    h3 Justified bar
+    h5 Use text justify to create bar of equal-spaced elements.
+
+
+    .fw-tabulators
+      span Example
+
+    .fw-tabs
+      div.fw-container
+
+        .fw-resizable.fw-copy.c-elements.demo-justbar.fw-example
+
+          .fw-justify
+            .fw-just-item.fw-bg-bluegrey-50 item 1
+            .fw-just-item.fw-bg-bluegrey-50 item 2
+            .fw-just-item.fw-bg-bluegrey-50 item 3
+            .fw-just-item.fw-bg-bluegrey-50 item 4
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-justify {
+               @include fw-justified;
+              .my-just-item {
+                @include fw-just-item;
+                vertical-align: middle;
+              }
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-justify">
+              <div class="fw-just-item">item 1</div>
+              <div class="fw-just-item">item 2</div>
+              <div class="fw-just-item">item 3</div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-justify">
+              <div class="my-just-item">item 1</div>
+              <div class="my-just-item">item 2</div>
+              <div class="my-just-item">item 3</div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-justify {
+               @include fw-justified;
+              .my-just-item {
+                @include fw-just-item;
+                vertical-align: middle;
+              }
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-justify">
+              <div class="fw-just-item">item 1</div>
+              <div class="fw-just-item">item 2</div>
+              <div class="fw-just-item">item 3</div>
+            </div>
+
+
+</splitSection>
+
+
+<splitSection output="output/justifiedBar_demo.jade">
+
+//- block meta
+//-   link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+//-   link(rel="stylesheet", href="./justifiedBar_demo.css" id="mainstyle")
+
+//- block title
+//-   title justifiedBar Demo
+
+//- block content
+//-   .justifiedBar-demo
+//-     span demo content
+//-     span demo content
+//-     span demo content
+
+</splitSection>
+
+
+<splitSection output="output/justifiedBar_section.scss">
+
+.sec-justifiedBar {
+  .demo-justbar {
+    .fw-justify {
+      outline: solid 2px #333;
+    }
+    .fw-just-item {
+      color: fw-color(bluegrey, 900);
+    }
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/justifiedBar_semantic.scss">
+
+@mixin fw-justified {
+  text-align: justify;
+  font-size: 0;
+  width: 100%;
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+@mixin fw-just-item {
+  display: inline-block;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+</splitSection>
+
+
+<splitSection output="output/justifiedBar_selectors.scss">
+
+.fw-justify {
+   @include fw-justified;
+
+  .fw-just-item {
+    @include fw-just-item;
+    vertical-align: middle;
+    @include fw-size-base;
+    @include fw-size(md);
+  }
+}
+
+</splitSection>

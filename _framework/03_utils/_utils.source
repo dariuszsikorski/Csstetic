@@ -1,0 +1,143 @@
+
+<splitSection output="output/utils_semantic.scss">
+
+// source: http://hugogiraudel.com/2014/01/15/sass-string-to-number/
+@function _length($number, $unit) {
+  $strings: 'px' 'cm' 'mm' '%' 'ch' 'pica' 'in' 'em' 'rem' 'pt' 'pc' 'ex' 'vw' 'vh' 'vmin' 'vmax';
+  $units:   1px  1cm  1mm  1%  1ch  1pica  1in  1em  1rem  1pt  1pc  1ex  1vw  1vh  1vmin  1vmax;
+  $index: index($strings, $unit);
+
+  @if not $index {
+    @warn "Unknown unit `#{$unit}`.";
+    @return false;
+  }
+
+  @return $number * nth($units, $index);
+}
+
+@function fw-strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+// source: https://gist.github.com/terkel/4373420
+// Round a number to specified digits.
+// decimal-round(0.333)    => 0
+// decimal-round(0.333, 1) => 0.3
+// decimal-round(0.333, 2) => 0.33
+// decimal-round(0.666)    => 1
+// decimal-round(0.666, 1) => 0.7
+// decimal-round(0.666, 2) => 0.67
+@function decimal-round ($number, $digits: 0, $mode: round) {
+    $n: 1;
+    // $number must be a number
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+    // $digits must be a unitless number
+    @if type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+    @for $i from 1 through $digits {
+        $n: $n * 10;
+    }
+    @if $mode == round {
+        @return round($number * $n) / $n;
+    } @else if $mode == ceil {
+        @return ceil($number * $n) / $n;
+    } @else if $mode == floor {
+        @return floor($number * $n) / $n;
+    } @else {
+        @warn '#{ $mode } is undefined keyword.';
+        @return $number;
+    }
+}
+
+// convert-unit function
+// usage: convert-unit( inputValue, outputUnit )
+// example: convert-unit(32px, rem);
+
+@function fw-convert-unit(
+  $value,
+  $outputUnit: px
+){
+  // default unit sizes measured in px for 1920x1200 (imac 24') screen
+  // http://www.w3schools.com/browsers/browsers_display.asp
+  // http://www.w3schools.com/cssref/css_units.asp
+  $units: (
+    px:   1,
+    em:   16,
+    ex:   9.12656,
+    ch:   9.78827,
+    rem:  16,
+    vw:   17.4545,
+    vh:   9.86364,
+    vmin: 9.86364,
+    vmax: 17.4545,
+    "%":    0.16,
+    cm:   37.7953,
+    mm:   3.77953,
+    in:   96,
+    pt:   1.33333,
+    pc:   16
+  );
+
+  // check if input value is a number
+  @if type-of($value) == number {
+    $inputUnit: unit($value);
+
+    // define variable for value to px conversion
+    $pxValue: 1;
+
+    // define variable for px to output value conversion
+    $outputValue: 1px;
+
+    // if input value was unitless, convert it to pixels
+    @if unitless($value){
+      $value: $value * 1px;
+    }
+
+    // convert input value to px units
+    // @each Key, Value in Map
+    @each $keyUnit, $size in $units {
+      @if $inputUnit == $keyUnit {
+        $pxValue: fw-strip-unit($value) * $size;
+      }
+    }
+
+    // convert pxValue to output value
+    @each $keyUnit, $size in $units {
+      @if $outputUnit == $keyUnit {
+        $outputValue: _length($pxValue / $size,  $outputUnit);
+      }
+    }
+
+    @return $outputValue;
+  }
+
+  // return communicate when $value is not a number
+  @return "value must be a number";
+}
+
+</splitSection>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

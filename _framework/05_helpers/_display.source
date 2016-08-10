@@ -1,0 +1,204 @@
+
+
+<splitSection output="output/display_section.jade">
+
+  section.sec-display
+    h3 Display
+    h5 Change element's display property.
+
+
+    .fw-tabulators
+      span Example
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        .fw-resizable.fw-example.fw-copy.c-elements.demo-display
+          .fw-display-inline inline
+          .fw-display-block block
+          .fw-display-inline-block  inline-block
+          .fw-display-flex flex
+          .fw-display-inline-flex inline-flex<br>
+          .fw-display-inline-table inline-table
+          .fw-display-list-item list-item
+          .fw-display-table table
+          .fw-display-table-caption table-caption
+          .fw-display-table-column-group table-column-group
+          .fw-display-table-header-group table-header-group
+          .fw-display-table-footer-group table-footer-group
+          .fw-display-table-row-group table-row-group
+          .fw-display-table-cell table-cell
+          .fw-display-table-column table-column
+          .fw-display-table-row table-row
+          .fw-display-none none
+
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-element {
+              display: inline-block;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-display-inline-block"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="display-inline">Inline block element</span>
+        .fw-code.scss
+          :code
+            .display-inline {
+              display: inline;
+            }
+            .display-block {
+              display: block;
+            }
+            .display-inline-block  {
+              display: inline-block ;
+            }
+            .display-flex {
+              display: flex;
+            }
+            .display-inline-flex {
+              display: inline-flex;
+            }
+            .display-inline-table {
+              display: inline-table;
+            }
+            .display-list-item {
+              display: list-item;
+            }
+            .display-table {
+              display: table;
+            }
+            .display-table-caption {
+              display: table-caption;
+            }
+            .display-table-column-group {
+              display: table-column-group;
+            }
+            .display-table-header-group {
+              display: table-header-group;
+            }
+            .display-table-footer-group {
+              display: table-footer-group;
+            }
+            .display-table-row-group {
+              display: table-row-group;
+            }
+            .display-table-cell {
+              display: table-cell;
+            }
+            .display-table-column {
+              display: table-column;
+            }
+            .display-table-row {
+              display: table-row;
+            }
+            .display-none {
+              display: none;
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-display-inline">inline</div>
+            <div class="fw-display-block">block</div>
+            <div class="fw-display-inline-block">inline-block</div>
+            <div class="fw-display-flex">flex</div>
+            <div class="fw-display-inline-flex">inline-flex<br></div>
+            <div class="fw-display-inline-table">inline-table</div>
+            <div class="fw-display-list-item">list-item</div>
+            <div class="fw-display-table">table</div>
+            <div class="fw-display-table-caption">table-caption</div>
+            <div class="fw-display-table-column-group">table-column-group</div>
+            <div class="fw-display-table-header-group">table-header-group</div>
+            <div class="fw-display-table-footer-group">table-footer-group</div>
+            <div class="fw-display-table-row-group">table-row-group</div>
+            <div class="fw-display-table-cell">table-cell</div>
+            <div class="fw-display-table-column">table-column</div>
+            <div class="fw-display-table-row">table-row</div>
+            <div class="fw-display-none">none</div>
+
+
+</splitSection>
+
+
+<splitSection output="output/display_demo.jade">
+
+//- block meta
+//-   link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+//-   link(rel="stylesheet", href="./display_demo.css" id="mainstyle")
+
+//- block title
+//-   title display Demo
+
+//- block content
+//-   .display-demo
+//-     span demo content
+//-     span demo content
+//-     span demo content
+
+</splitSection>
+
+
+<splitSection output="output/display_section.scss">
+
+.sec-display {
+  .demo-display {
+    div:not(:last-child) {
+      border: solid 1px #333;
+      margin: 5px 0;
+      padding: 6px 10px
+    }
+  }
+}
+
+</splitSection>
+
+
+<aasplitSection output="output/display_semantic.scss">
+
+@mixin fw-display(){
+  // ...
+}
+
+</aasplitSection>
+
+
+<splitSection output="output/display_selectors.scss">
+
+.fw-display-inline { display: inline; }
+.fw-display-block { display: block; }
+.fw-display-inline-block  { display: inline-block ; }
+.fw-display-flex { display: flex; }
+.fw-display-inline-flex { display: inline-flex; }
+.fw-display-inline-table { display: inline-table; }
+.fw-display-list-item { display: list-item; }
+.fw-display-table { display: table; }
+.fw-display-table-caption { display: table-caption; }
+.fw-display-table-column-group { display: table-column-group; }
+.fw-display-table-header-group { display: table-header-group; }
+.fw-display-table-footer-group { display: table-footer-group; }
+.fw-display-table-row-group { display: table-row-group; }
+.fw-display-table-cell { display: table-cell; }
+.fw-display-table-column { display: table-column; }
+.fw-display-table-row { display: table-row; }
+.fw-display-none { display: none; }
+
+</splitSection>

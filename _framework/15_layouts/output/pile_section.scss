@@ -1,0 +1,41 @@
+.sec-pile {
+  .demo-pile {
+    .first { @include fw-size-base; @include fw-size(xs); }
+    .second { @include fw-size-base; @include fw-size(md); }
+    .third { @include fw-size-base; @include fw-size(lg); }
+    .fourth { @include fw-size-base; @include fw-size(xl); }
+    .fw-pile-item {
+      //- @include fw-size-base;
+      //- @include fw-size(md);
+      color: fw-color(bluegrey, 800);
+      background: fw-color(bluegrey, 50);
+    }
+  }
+
+  .line-bottom,
+  .line-top-bottom,
+  .line-top,
+  .line-left,
+  .line-left-right,
+  .line-right {
+    border: solid #444444;
+  }
+  .line-bottom {
+    border-width: 0 0 2px 0;
+  }
+  .line-top-bottom {
+    border-width: 2px 0 2px 0;
+  }
+  .line-top {
+    border-width: 2px 0 0 0;
+  }
+  .line-left {
+    border-width: 0 0 0 2px;
+  }
+  .line-left-right {
+    border-width: 0 2px 0 2px;
+  }
+  .line-right {
+    border-width: 0 2px 0 0;
+  }
+}

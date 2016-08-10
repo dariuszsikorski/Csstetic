@@ -1,0 +1,123 @@
+section
+    h3 Media Queries
+    h5 Apply styling for specific screen size.<br> Read more about <a href="https://en.wikipedia.org/wiki/Responsive_web_design">RWD</a>
+
+
+    .fw-tabulators
+      span Media
+      span Media Up
+      span Media Down
+      span Custom Range
+
+    .fw-tabs
+      div
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>maximum screen size</b>:
+        h4 size
+        .fw-resizable
+          iframe(src='../demos/mediaQueries_demo.html')
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>specific device</b>:
+        h4 device
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo2_demo.html')
+
+
+
+        .fw-container
+
+          .fw-separator
+            span Sizes
+
+          p <b>xxs</b>, <b>xs</b>, <b>sm</b>, <b>md</b>, <b>lg</b>, <b>xl</b>, <b>xxl</b>, <b>watch</b>, <b>mobile</b>, <b>tablet</b>, <b>laptop</b>, <b>desktop</b>.
+
+          .fw-separator
+            span Semantic
+          p Media Queries are available only in Semantic version.
+          .fw-code.scss
+            :code
+              .my-element {
+                @include fw-media(tablet){
+                  // ...styling goes here...
+                };
+              }
+          .fw-separator
+            span Alternative nesting
+          .fw-code.scss
+            :code
+              @include fw-media(tablet){
+                .my-element {
+                  // ...styling goes here...
+                }
+              };
+
+
+      div
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>minimum screen size</b>:
+        h4 size (and up)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-up_demo.html')
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>minimum device</b> size:
+        h4 device (and up)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo2-up_demo.html')
+
+
+        .fw-container
+          .fw-separator
+            span Semantic
+          .fw-code.scss
+            :code
+              @include fw-media-up(tablet){
+                // ...styling goes here...
+              };
+          .fw-separator
+            span Custom breakpoint
+          .fw-code.scss
+            :code
+              @include fw-media-up(200px){
+                // ...styling for min-width 200px goes here...
+              };
+
+      div
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>maximum device</b> size:
+        h4 device (and down)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo2-down_demo.html')
+
+
+
+        .fw-container
+          .fw-separator
+            span Semantic
+          .fw-code.scss
+            :code
+              @include fw-media-down(tablet){
+                // ...styling goes here...
+              };
+          .fw-separator
+            span Custom breakpoint
+          .fw-code.scss
+            :code
+              @include fw-media-down(200px){
+                // ...styling for max-width 200px goes here...
+              };
+
+      div
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for custom range <b>begin - end</b> of screen size:
+        h4 range (begin, end)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo-range_demo.html')
+          //- iframe(src='../demos/mediaQueries-demo2-down_demo.html')
+
+
+        .fw-container
+          .fw-separator
+            span Semantic
+          .fw-code.scss
+            :code
+              @include fw-media(200px, 400px){
+                // ...styling goes here...
+              };

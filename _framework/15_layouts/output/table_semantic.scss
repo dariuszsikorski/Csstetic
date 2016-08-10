@@ -1,0 +1,22 @@
+@mixin fw-table{
+  display: table;
+  width: 100%;
+  //- height: 100%; // it is very helpful, for nested tables, but unexpected for developers
+  border-collapse: collapse; // allow to add row borders
+  table-layout: fixed; // set equal size for unstyled cells
+  box-sizing: border-box;
+}
+
+@mixin fw-table-row {
+  display: table-row;
+  height: inherit; // fix row height on ie
+  box-sizing: border-box;
+
+}
+
+@mixin fw-table-column {
+  display: table-cell;
+  vertical-align: top;
+  height: inherit; // fix column height on ie
+  box-sizing: border-box;
+}

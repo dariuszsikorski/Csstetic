@@ -1,0 +1,43 @@
+- require('jade').filters.code = function( block ) {
+- return block.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/#/g, '&#35;').replace(/\\/g, '\\\\');
+- }
+
+
+doctype html
+html(lang="en")
+  head
+    meta(content='text/html;charset=utf-8' http-equiv='Content-Type')
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    block meta
+    script(type='text/javascript', src="../assets/plugins/html5shiv.min.js")
+    //- link(rel='stylesheet', href='../assets/plugins/css/googlecode.min.css')
+    //- link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/docco.min.css')
+    //- link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/hybrid.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github-gist.min.css')
+    //- link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css')
+    //- link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/paraiso.dark.min.css')
+    //- link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/androidstudio.min.css')
+    link(rel='stylesheet', href='../assets/plugins/css/jquery-ui.min.css')
+    link(rel='stylesheet', href='../assets/plugins/css/tooltipster.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/themes/tooltipster-light.min.css')
+    link(rel='stylesheet', href='../assets/plugins/css/animate.min.css')
+    link(rel='stylesheet', href='../assets/plugins/iosOverlay/css/iosOverlay.css')
+    link(rel='stylesheet', href='../assets/css/style.css' id='mainstyle')
+    block title
+      title no title
+  body.fw-viewScss
+    .fw-wrapper
+      block content
+
+    //- script(type='text/javascript', src="../assets/plugins/jquery-1.11.3.min.js")
+    //- script(type='text/javascript', src="../assets/plugins/jquery-ui.min.js")
+    //- script(type='text/javascript', src="../assets/plugins/jquery.ui.touch-punch.min.js")
+    //- script(type='text/javascript', src="../assets/plugins/jquery.noty.packaged.min.js")
+    //- script(type='text/javascript', src="../assets/plugins/jquery.tooltipster.min.js")
+    //- script(type='text/javascript', src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.5/clipboard.min.js")
+    //- <script type="text/javascript" src="../assets/plugins/highlight.pack.js"></script>
+    //- script(type='text/javascript', src="../assets/plugins/jquery.sticky-kit.min.js")
+    //- script(type='text/javascript', src="../assets/plugins/scrollspy.js")
+    script(type='text/javascript', src="../assets/js/plugins-dist.js")
+    script(type='text/javascript', src="../assets/js/scripts-dist.js")
+    include ../stats.jade

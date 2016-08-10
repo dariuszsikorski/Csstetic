@@ -1,0 +1,38 @@
+// selectors for background color
+.fw-bg {
+  // @each $KEY, $VALUE in $MAP
+  @each $color, $colorShades in $fw-material-colors {
+    // for each color
+    &-#{$color} {
+      @each $shade, $shadeValue in $colorShades {
+        // for each shade
+        &-#{$shade} {
+          background-color: fw-color($color, $shade);
+        }
+        @if $shade == 500 {
+          background-color: fw-color($color, $shade);
+        }
+      }
+    }
+  }
+}
+
+
+// selectors for text color
+.fw {
+  // @each $KEY, $VALUE in $MAP
+  @each $color, $colorShades in $fw-material-colors {
+    // for each color
+    &-txt-#{$color} {
+      @each $shade, $shadeValue in $colorShades {
+        // for each shade
+        &-#{$shade} {
+          color: fw-color($color, $shade);
+        }
+        @if $shade == 500 {
+          color: fw-color($color, $shade);
+        }
+      }
+    }
+  }
+}

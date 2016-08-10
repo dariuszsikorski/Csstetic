@@ -1,0 +1,154 @@
+section.sec-elementSize
+    h3 Element Size
+    h5 Set size of the element. Best for input text, button, select menu.<br>
+     | Size is responsive to browser width and can be customized.
+
+
+
+    .fw-tabulators
+      span Demo with element size
+      span Demo without element size
+      span Custom width proportions
+
+    .fw-tabs
+      div
+        //- p content 1
+        p.fw-container <b>Resize</b> this demo and see how elements adapt to width of the screen.
+        .fw-resizable.fw-copy.c-elements
+          iframe(src='../demos/elementSize_demo.html')
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements.demo-elsize1
+          span xxs
+          span xs
+          span sm
+          span md
+          span lg
+          span xl
+          span xxl
+          span xxxl
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.demo-elsize1
+          span.custom-prop-1 prop 0
+          span.custom-prop-2 prop 0.25
+          span.custom-prop-3 prop 0.5
+          span.custom-prop-4 prop 0.75
+          span.custom-prop-5 prop 1
+          span.custom-prop-6 prop 2
+        .fw-custom-source
+          .fw-scss-code.scss
+            :code
+              .custom-prop-1,
+              .custom-prop-2,
+              .custom-prop-3,
+              .custom-prop-4,
+              .custom-prop-5,
+              .custom-prop-6 {
+                @include fw-size-base;
+              }
+              .custom-prop-1 {
+                @include fw-size(50px, no-responsive, 0);
+              }
+              .custom-prop-2 {
+                @include fw-size(50px, no-responsive, 0.25);
+              }
+              .custom-prop-3 {
+                @include fw-size(50px, no-responsive, 0.5);
+              }
+              .custom-prop-4 {
+                @include fw-size(50px, no-responsive, 0.75);
+              }
+              .custom-prop-5 {
+                @include fw-size(50px, no-responsive, 1);
+              }
+              .custom-prop-6 {
+                @include fw-size(50px, no-responsive, 2);
+              }
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+      span Customization
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Heights
+        p xxs, xs, sm, md, lg, xl, xxl, xxxl
+
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-elementSize {
+              @include fw-size-base;
+              @include fw-size(md);
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-size-lg"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-elementSize">Hello!</span>
+        .fw-code.scss
+          :code
+            .my-elementSize {
+              @include fw-size-base;
+              @include fw-size(md);
+            }
+      div.fw-container
+        .fw-code
+          :code
+            <span class="fw-size-lg">Hello!</span>
+      div.fw-container
+        p Customization is available only in Semantic version, with neccessary mixins.
+        .fw-code.scss
+          :code
+            // defaults:
+            // (
+            //   $height: null, // size name or number
+            //   $responsive: "no-responsive", // "responsive" or "no-responsive"
+            //   $proportion: 0.45 // proportion of width to height, (bigger = wider)
+            // )
+            // "responsive" - size will be generated for all devices automatically
+            // "no-responsive" - only static size will be generated
+
+            .my-customSize {
+              @include fw-size-base;
+              @include fw-size(3em, responsive, 0.6);
+            }
+        .fw-separator
+          span Custom breakpoints
+        .fw-code.scss
+          :code
+            .my-customSize {
+              // include size-base only once
+              @include fw-size-base;
+
+              // set size for biggest screen
+              @include fw-size(50px, no-responsive);
+
+              // use no-responsive, to generate custom heights for each breakpoint
+              // if you will use responsive - mixin will generate breakpoints
+              // automatically, and you don't have to include the code below at all!
+              // define breakpoints from largest to smallest screen
+
+              @include fw-media(lg){
+                @include fw-size(40px, no-responsive);
+              }
+              @include fw-media(md){
+                @include fw-size(30px, no-responsive);
+              }
+              @include fw-media(sm){
+                @include fw-size(20px, no-responsive);
+              }
+
+            }

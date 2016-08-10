@@ -1,0 +1,138 @@
+// returns a scale factor between 0 and 1 for given resolution
+@function fw-getResolutionScale(
+  $resolution // best for something between 480px and 1500px
+){
+  $beginScale: 480px;
+  $endScale: 1500px;
+  $scaleSize: $endScale - $beginScale;
+  $currentPoint: $resolution - $beginScale;
+  $scale: $currentPoint / $scaleSize;
+  @return $scale;
+};
+
+
+
+
+// function which find the value multiplied by $scale factor (from 0 to 1)
+@function fw-scaleValues(
+  $begin: null, // for example 50px
+  $end: null,   // for example 100px
+  $scale: null  // for 1 - return 100px, for 0 - return 50px
+){
+  // type check
+  @if type-of($scale) != number {
+    @error "$scale value for scaleValues has to be a number";
+  }
+
+  @if $begin and $end and $scale{
+    $result: "";
+
+    // loop through each value
+    @for $i from 1 through length($begin) {
+      $beginValue: nth($begin, $i);
+      $endValue: nth($end, $i);
+
+      @if type-of($beginValue) != number or type-of($endValue) != number {
+        @warn "error in '#{$key}: (#{$beginValue}) => (#{$endValue})'' - use only number values."
+      }
+
+      @if unit($beginValue) != unit($endValue) {
+        @warn "error in '#{$key}: (#{$beginValue}) => (#{$endValue})' - different unit types."
+      }
+
+      $beginValue: nth($begin, $i);
+      $valueGrowth: decimal-round(((nth($end, $i) - nth($begin, $i)) * $scale), 3);
+      $scaledValue: $beginValue + $valueGrowth;
+      $result: $result + $scaledValue;
+      // add spaces between values
+      @if $i != length($begin){
+        $result: $result + " ";
+      }
+    }
+    @return unquote($result);
+  } @else {
+    @warn "begin values, end values and scale must be defined.";
+  }
+}
+
+// In short: scalePoint generates properties in given map for some resolution.
+// scalePoint takes css properties with begin-end values in sass map
+// and "point" which is resolution between begin and end of scale
+// then a value for each css property in map is calculated according
+// to position of scale point.
+
+// scalePoint
+@mixin fw-scalePoint(
+  $properties: null,
+  $point: null,
+  $beginScale: map-get($fw-breakpoints, xs), // 480px
+  $endScale:   map-get($fw-breakpoints, xl)  // 1400px
+){
+  @if $properties == null {
+    @error "you must define properties to fw-scalePoint.";
+  }
+  @if $point == null {
+    @error "you must define point to fw-scalePoint for example 768px.";
+  }
+  @if $point < $beginScale {
+    @error "defined $point: #{$point} can't be smaller than $beginScale: #{$beginScale}.";
+  }
+  @if $point > $endScale {
+    @error "defined $point: #{$point} can't be bigger than $endScale: #{$endScale}.";
+  }
+  // calculate scale of growth for defined point
+  $scaleSize: $endScale - $beginScale;
+  $currentPoint: $point - $beginScale;
+  $scale: $currentPoint / $scaleSize;
+  @each $property in $properties {
+    $key: nth($property, 1);
+    $value: nth($property, 2);
+    @if type-of($value) != list {
+      @error "value of #{$key} must look like this (start values, end values).";
+    }
+    $begin: nth($value, 1);
+    $end: nth($value, 2);
+    @if length($begin) != length($end) {
+      @error "error in '#{$key}: (#{$begin}) => (#{$end})' - different number of values.";
+    }
+    #{$key}: fw-scaleValues($begin, $end, $scale);
+  }
+}
+
+
+
+// in short: scale generates set of mediaQueries with element scaled properties.
+// scale iterates through media-breakpoints and for each generate scaled
+// properties passed in properties map with begin-end value
+@mixin fw-scale(
+  $properties: null
+){
+  @if $properties == null {
+    @error "scale needs at least one property";
+  }
+  @if type-of($properties) != map {
+    @error "scale must be passed like this:
+  scale((
+    property1: (start, end),
+    property2: (start1 start2, end1 end2),
+    ...
+  ))
+";}
+
+    // full size
+    @include fw-scalePoint($properties, map-get($fw-breakpoints, xl));
+
+    @include fw-media(lg){
+      @include fw-scalePoint($properties, map-get($fw-breakpoints, lg));
+    }
+    @include fw-media(md){
+      @include fw-scalePoint($properties, map-get($fw-breakpoints, md));
+    }
+    @include fw-media(sm){
+      @include fw-scalePoint($properties, map-get($fw-breakpoints, sm));
+    }
+    @include fw-media(xs){ // minimum size
+      @include fw-scalePoint($properties, map-get($fw-breakpoints, xs));
+    }
+
+}

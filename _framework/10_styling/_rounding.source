@@ -1,0 +1,161 @@
+
+
+<splitSection output="output/rounding_section.jade">
+
+  section.sec-rounding
+    h3 Rounded corners
+    //- h5 Component<br>description.
+
+
+    .fw-tabulators
+      span Example
+
+    .fw-tabs
+      div.fw-container
+        //- p content 1
+
+        .fw-example.fw-copy.c-elements.rounding-demo
+          //- iframe(src='../demos/rounding_demo.html')
+
+          span.fw-ellipse ellipse
+          span.fw-round round
+          span.fw-rounded rounded
+          span.fw-rounded-sm rounded-sm
+          span.fw-rounded-md rounded-md
+          span.fw-rounded-lg rounded-lg
+          span.fw-rounded-xl rounded-xl
+
+          span.round-custom-1 custom-1
+          span.round-custom-2 custom-2
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+      span Custom
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .rounded-element {
+              border-radius: $fw-rounded-md;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-rounded-md"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="rounded-element">Rounded</span>
+        p Pick any of border radius from examples below
+        .fw-code.scss
+          :code
+            .rounded-element {
+              border-radius: 100%;  // ellipse
+              border-radius: 100em; // round (circular) edges
+              border-radius: $fw-rounded-sm; // small radius
+              border-radius: $fw-rounded-md; // medium radius
+              border-radius: $fw-rounded-lg; // large radius
+              border-radius: $fw-rounded-xl; // extra large radius
+            }
+
+      div.fw-container
+        .fw-code.fw-copy.c-elements
+          :code
+            <span class="fw-ellipse">Rounded</span>
+            <span class="fw-round">Rounded</span>
+            <span class="fw-rounded">Rounded</span>
+            <span class="fw-rounded-sm">Rounded</span>
+            <span class="fw-rounded-md">Rounded</span>
+            <span class="fw-rounded-lg">Rounded</span>
+            <span class="fw-rounded-xl">Rounded</span>
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="custom-rounding">Custom Rounded</span>
+
+        .fw-code.scss
+          :code
+            .custom-rounding {
+              // example (custom 1)
+              // value order: top-left, top-right, bottom-right, bottom-left
+              border-radius: $fw-rounded-xl $fw-rounded-sm $fw-rounded-xl $fw-rounded-sm;
+
+              // example (custom 2)
+              border-radius: 50% 50% 0 0; // only upper edges rounded
+            }
+
+</splitSection>
+
+
+
+
+<splitSection output="output/rounding_section.scss">
+
+.sec-rounding {
+  .round-custom-1 {
+    border-radius: $fw-rounded-xl $fw-rounded-sm $fw-rounded-xl $fw-rounded-sm;
+  }
+  .round-custom-2 {
+    border-radius: 50% 50% 0 0;
+  }
+  .rounding-demo {
+    span {
+      @include fw-size-base;
+      @include fw-size(xl);
+      background: darken(fw-color(bluegrey, 50), 3%);
+      margin: 5px;
+      color: #333;
+    }
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/rounding_semantic.scss">
+
+$fw-rounded: 9px;
+$fw-rounded-sm: 5px;
+$fw-rounded-md: 9px;
+$fw-rounded-lg: 14px;
+$fw-rounded-xl: 20px;
+
+</splitSection>
+
+
+<splitSection output="output/rounding_selectors.scss">
+
+.fw {
+  &-ellipse {
+    border-radius: 100%;
+  }
+  &-round {
+    border-radius: 100em;
+  }
+  &-rounded {
+    border-radius: 0 5px 0 5px;
+  }
+  &-rounded-sm {
+    border-radius: $fw-rounded-sm;
+  }
+  &-rounded-md {
+    border-radius: $fw-rounded-md;
+  }
+  &-rounded-lg {
+    border-radius: $fw-rounded-lg;
+  }
+  &-rounded-xl {
+    border-radius: $fw-rounded-xl;
+  }
+}
+
+</splitSection>

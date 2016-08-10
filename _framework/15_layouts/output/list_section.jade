@@ -1,0 +1,84 @@
+section.sec-list
+    h3 List
+    h5 Convert elements to list of items with display block.
+
+
+    .fw-tabulators
+      span Demo with list
+      span Demo without list
+
+    .fw-tabs
+      div.fw-container.demo-list
+        //- p content 1
+
+        .fw-resizable.fw-copy.fw-example
+          .fw-list
+            a.fw-list-item(href="#") item 1
+            a.fw-list-item(href="#") item 2
+            a.fw-list-item(href="#") item 3
+            a.fw-list-item(href="#") item 4
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.fw-example
+          a(href="#") item 1
+          a(href="#") item 2
+          a(href="#") item 3
+          a(href="#") item 4
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-list {
+              @include fw-list;
+              .my-list-item {
+                @include fw-list-item;
+              }
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-list">
+              <span class="fw-list-item">item 1</span>
+              <span class="fw-list-item">item 2</span>
+              <span class="fw-list-item">item 3</span>
+              <span class="fw-list-item">item 4</span>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-list">
+              <span class="my-list-item">item 1</span>
+              <span class="my-list-item">item 2</span>
+              <span class="my-list-item">item 3</span>
+              <span class="my-list-item">item 4</span>
+            </div>
+        .fw-code.scss
+          :code
+            .my-list {
+              @include fw-list;
+              .my-list-item {
+                @include fw-list-item;
+              }
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-list">
+              <span class="fw-list-item">item 1</span>
+              <span class="fw-list-item">item 2</span>
+              <span class="fw-list-item">item 3</span>
+              <span class="fw-list-item">item 4</span>
+            </div>

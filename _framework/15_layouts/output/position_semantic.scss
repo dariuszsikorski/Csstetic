@@ -1,0 +1,130 @@
+@mixin fw-position(
+  $position: center,
+  $offset: inner
+){
+
+  // available positions:
+  // top-left
+  // left
+  // bottom-left
+  // top
+  // center
+  // bottom
+  // top-right
+  // right ght
+  // bottom-right
+
+  // available offsets"
+  // inner - inside element
+  // edge - on the edge of element
+  // outer - outside element
+
+  position: absolute;
+
+  @if $position == top-left {
+    top: 0;
+    left: 0;
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(-100%);
+    }
+  }
+
+  @if $position == left {
+    top: 50%;
+    left: 0;
+    @if $offset == inner {
+      transform: translateY(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(-50%);
+    }
+  }
+
+  @if $position == bottom-left {
+    bottom: 0;
+    left: 0;
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-100%) translateY(100%);
+    }
+  }
+
+  @if $position == top {
+    top: 0;
+    left: 50%;
+    @if $offset == inner {
+      transform: translateX(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-50%) translateY(-100%);
+    }
+  }
+
+  @if $position == center {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  @if $position == bottom {
+    bottom: 0;
+    left: 50%;
+    @if $offset == inner {
+      transform: translateX(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(-50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(-50%) translateY(100%);
+    }
+  }
+
+  @if $position == top-right {
+    top: 0;
+    right: 0;
+    @if $offset == edge {
+      transform: translateX(50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(-100%);
+    }
+  }
+
+  @if $position == right {
+    top: 50%;
+    right: 0;
+    @if $offset == inner {
+      transform: translateY(-50%);
+    }
+    @if $offset == edge {
+      transform: translateX(50%) translateY(-50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(-50%);
+    }
+  }
+
+  @if $position == bottom-right {
+    bottom: 0;
+    right: 0;
+    @if $offset == edge {
+      transform: translateX(50%) translateY(50%);
+    }
+    @if $offset == outer {
+      transform: translateX(100%) translateY(100%);
+    }
+  }
+
+}

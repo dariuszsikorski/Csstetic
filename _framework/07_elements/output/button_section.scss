@@ -1,0 +1,11 @@
+.sec-button {
+  .demo-buttons {
+    font-size: 0;
+    .fw-button {
+      @include fw-size-base;
+      @include fw-size(sm);
+      margin-right: 5px;
+      //- background: fw-color(bluegrey, 200);
+    }
+  }
+}

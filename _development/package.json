@@ -1,0 +1,25 @@
+{
+  "name": "cssfw6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-change": "^1.0.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat-util": "^0.5.5",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-watch": "^4.3.5",
+    "require-dir": "^0.3.0",
+    "run-sequence": "^1.1.5",
+    "splitfile": "^1.0.13",
+    "vinyl-paths": "^2.1.0"
+  },
+  "devDependencies": {}
+}

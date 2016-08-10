@@ -1,0 +1,933 @@
+
+
+<splitSection output="output/mediaQueries_section.jade">
+
+  section
+    h3 Media Queries
+    h5 Apply styling for specific screen size.<br> Read more about <a href="https://en.wikipedia.org/wiki/Responsive_web_design">RWD</a>
+
+
+    .fw-tabulators
+      span Media
+      span Media Up
+      span Media Down
+      span Custom Range
+
+    .fw-tabs
+      div
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>maximum screen size</b>:
+        h4 size
+        .fw-resizable
+          iframe(src='../demos/mediaQueries_demo.html')
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>specific device</b>:
+        h4 device
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo2_demo.html')
+
+
+
+        .fw-container
+
+          .fw-separator
+            span Sizes
+
+          p <b>xxs</b>, <b>xs</b>, <b>sm</b>, <b>md</b>, <b>lg</b>, <b>xl</b>, <b>xxl</b>, <b>watch</b>, <b>mobile</b>, <b>tablet</b>, <b>laptop</b>, <b>desktop</b>.
+
+          .fw-separator
+            span Semantic
+          p Media Queries are available only in Semantic version.
+          .fw-code.scss
+            :code
+              .my-element {
+                @include fw-media(tablet){
+                  // ...styling goes here...
+                };
+              }
+          .fw-separator
+            span Alternative nesting
+          .fw-code.scss
+            :code
+              @include fw-media(tablet){
+                .my-element {
+                  // ...styling goes here...
+                }
+              };
+
+
+      div
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>minimum screen size</b>:
+        h4 size (and up)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-up_demo.html')
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>minimum device</b> size:
+        h4 device (and up)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo2-up_demo.html')
+
+
+        .fw-container
+          .fw-separator
+            span Semantic
+          .fw-code.scss
+            :code
+              @include fw-media-up(tablet){
+                // ...styling goes here...
+              };
+          .fw-separator
+            span Custom breakpoint
+          .fw-code.scss
+            :code
+              @include fw-media-up(200px){
+                // ...styling for min-width 200px goes here...
+              };
+
+      div
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for <b>maximum device</b> size:
+        h4 device (and down)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo2-down_demo.html')
+
+
+
+        .fw-container
+          .fw-separator
+            span Semantic
+          .fw-code.scss
+            :code
+              @include fw-media-down(tablet){
+                // ...styling goes here...
+              };
+          .fw-separator
+            span Custom breakpoint
+          .fw-code.scss
+            :code
+              @include fw-media-down(200px){
+                // ...styling for max-width 200px goes here...
+              };
+
+      div
+
+        p.fw-container(style="margin-top: 35px; position: relative; top: 25px") Styling for custom range <b>begin - end</b> of screen size:
+        h4 range (begin, end)
+        .fw-resizable
+          iframe(src='../demos/mediaQueries-demo-range_demo.html')
+          //- iframe(src='../demos/mediaQueries-demo2-down_demo.html')
+
+
+        .fw-container
+          .fw-separator
+            span Semantic
+          .fw-code.scss
+            :code
+              @include fw-media(200px, 400px){
+                // ...styling goes here...
+              };
+
+
+
+</splitSection>
+
+<splitSection output="output/mediaQueries_demo.jade">
+
+block meta
+  link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+  link(rel="stylesheet", href="./mediaQueries_demo.css" id="mainstyle")
+
+block title
+  title Media Queries Demo
+
+block content
+  //- .fw-media-info
+
+  .fw-demo1
+    .media-item
+      span.xxs xxs
+    .media-item
+      span.xs xs
+    .media-item
+      span.sm sm
+    .media-item
+      span.md md
+    .media-item
+      span.lg lg
+    .media-item
+      span.xl xl
+    .media-item
+      span.xxl xxl
+
+</splitSection>
+
+<splitSection output="output/mediaQueries-demo2_demo.jade">
+
+block meta
+  link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+  link(rel="stylesheet", href="./mediaQueries_demo.css" id="mainstyle")
+
+block title
+  title Media Queries Demo 2
+
+block content
+  .fw-demo2
+    .media-item
+      span.watch watch
+    .media-item
+      span.mobile mobile
+    .media-item
+      span.tablet tablet
+    .media-item
+      span.laptop laptop
+    .media-item
+      span.desktop desktop
+</splitSection>
+
+
+
+<splitSection output="output/mediaQueries-demo-range_demo.jade">
+
+block meta
+  link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+  link(rel="stylesheet", href="./mediaQueries_demo.css" id="mainstyle")
+
+block title
+  title Media Queries Demo Range
+
+block content
+  .fw-demo3
+    .media-item
+      span.d200-400 200px to 400px
+    .media-item
+      span.d20-45-rem 20rem to 45rem
+    .media-item
+      span.d15-30-cm 15cm to 30cm
+
+</splitSection>
+
+
+<splitSection output="output/mediaQueries-up_demo.jade">
+
+block meta
+  link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+  link(rel="stylesheet", href="./mediaQueries_demo.css" id="mainstyle")
+
+block title
+  title Media Queries Up Demo
+
+block content
+
+  .fw-demo1
+    .media-item
+      span.xxs-up xxs up
+    .media-item
+      span.xs-up xs up
+    .media-item
+      span.sm-up sm up
+    .media-item
+      span.md-up md up
+    .media-item
+      span.lg-up lg up
+    .media-item
+      span.xl-up xl up
+    .media-item
+      span.xxl-up xxl up
+
+</splitSection>
+
+<splitSection output="output/mediaQueries-demo2-up_demo.jade">
+
+block meta
+  link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+  link(rel="stylesheet", href="./mediaQueries_demo.css" id="mainstyle")
+
+block title
+  title Media Queries Up Demo 2
+
+block content
+  .fw-demo2
+    .media-item
+      span.watch-up watch up
+    .media-item
+      span.mobile-up mobile up
+    .media-item
+      span.tablet-up tablet up
+    .media-item
+      span.laptop-up laptop up
+    .media-item
+      span.desktop-up desktop up
+</splitSection>
+
+
+
+
+
+
+
+
+
+
+
+<splitSection output="output/mediaQueries-demo2-down_demo.jade">
+
+block meta
+  link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+  link(rel="stylesheet", href="./mediaQueries_demo.css" id="mainstyle")
+
+block title
+  title Media Queries Down Demo 2
+
+block content
+  .fw-demo2
+    .media-item
+      span.watch-down watch down
+    .media-item
+      span.mobile-down mobile down
+    .media-item
+      span.tablet-down tablet down
+    .media-item
+      span.laptop-down laptop down
+    .media-item
+      span.desktop-down desktop down
+</splitSection>
+
+
+
+
+
+
+
+<splitSection output="output/mediaQueries_demo.scss">
+@import "../_framework/_csstetic-semantic.scss";
+
+
+body {
+  padding: 10px;
+}
+
+.fw-demo1,
+.fw-demo2,
+.fw-demo3 {
+  @include fw-clearfix;
+}
+
+.fw-demo1 {
+  .media-item {
+    width: (100/7) * 1%;
+    //- @include fw-media(xs){
+    //-   width: 50%;
+    //- }
+  }
+}
+.fw-demo2 {
+  .media-item {
+    width: (100/5) * 1%;
+    //- @include fw-media(xs){
+    //-   width: 50%;
+    //- }
+  }
+}
+.fw-demo3 {
+  .media-item {
+    width: (100/3) * 1%;
+  }
+}
+
+.media-item {
+  float: left;
+}
+span {
+  @include fw-media(xs){
+    margin: 7px 1px;
+  }
+  margin: 7px;
+  display: block;
+  //- border: solid 2px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  padding: 10px 10px;
+  text-align: center;
+  background: fw-color(bluegrey, 50);
+  //- box-shadow: inset 0 2px 3px 1px white;
+  border-top-color: rgba(0, 0, 0, 0.05);
+  border-bottom-color: rgba(0, 0, 0, 0.15);
+  font-size: 13px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.45);
+  //- text-shadow: 0 1px white;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+
+@mixin media-demo-block(){
+  @extend %media-demo;
+}
+
+@mixin media-block-active (){
+  background: #ACF97E;
+  color: #387700;
+  //- box-shadow: inset 0 2px 3px 1px #E5FFBB, 0 3px 16px rgba(154, 255, 43, 0.6);
+}
+
+.xxs {
+  @include media-demo-block();
+  @include fw-media(xxs){
+    @include media-block-active;
+  };
+}
+.xs {
+  @include media-demo-block();
+  @include fw-media(xs){
+    @include media-block-active;
+  };
+}
+.sm {
+  @include media-demo-block();
+  @include fw-media(sm){
+    @include media-block-active;
+  };
+}
+.md {
+  @include media-demo-block();
+  @include fw-media(md){
+    @include media-block-active;
+  };
+}
+.lg {
+  @include media-demo-block();
+  @include fw-media(lg){
+    @include media-block-active;
+  };
+}
+.xl {
+  @include media-demo-block();
+  @include fw-media(xl){
+    @include media-block-active;
+  };
+}
+.xxl {
+  @include media-demo-block();
+  @include fw-media(xxl){
+    @include media-block-active;
+  };
+}
+.watch {
+  @include media-demo-block();
+  @include fw-media(watch){
+    @include media-block-active;
+  };
+}
+.mobile {
+  @include media-demo-block();
+  @include fw-media(mobile){
+    @include media-block-active;
+  };
+}
+.tablet {
+  @include media-demo-block();
+  @include fw-media(tablet){
+    @include media-block-active;
+  };
+}
+.laptop {
+  @include media-demo-block();
+  @include fw-media(laptop){
+    @include media-block-active;
+  };
+}
+.desktop {
+  @include media-demo-block();
+  @include fw-media(desktop){
+    @include media-block-active;
+  };
+}
+
+.d200-400 {
+  @include media-demo-block();
+  @include fw-media(200px, 400px){
+    @include media-block-active;
+  }
+}
+.d20-45-rem {
+  @include media-demo-block();
+  @include fw-media(20rem, 45rem){
+    @include media-block-active;
+  }
+}
+.d15-30-cm {
+  @include media-demo-block();
+  @include fw-media(15cm, 30cm){
+    @include media-block-active;
+  }
+}
+.xxs-up {
+  @include media-demo-block();
+  @include fw-media-up(xxs){
+    @include media-block-active;
+  };
+}
+.xs-up {
+  @include media-demo-block();
+  @include fw-media-up(xs){
+    @include media-block-active;
+  };
+}
+.sm-up {
+  @include media-demo-block();
+  @include fw-media-up(sm){
+    @include media-block-active;
+  };
+}
+.md-up {
+  @include media-demo-block();
+  @include fw-media-up(md){
+    @include media-block-active;
+  };
+}
+.lg-up {
+  @include media-demo-block();
+  @include fw-media-up(lg){
+    @include media-block-active;
+  };
+}
+.xl-up {
+  @include media-demo-block();
+  @include fw-media-up(xl){
+    @include media-block-active;
+  };
+}
+.xxl-up {
+  @include media-demo-block();
+  @include fw-media-up(xxl){
+    @include media-block-active;
+  };
+}
+.watch-up {
+  @include media-demo-block();
+  @include fw-media-up(watch){
+    @include media-block-active;
+  };
+}
+.mobile-up {
+  @include media-demo-block();
+  @include fw-media-up(mobile){
+    @include media-block-active;
+  };
+}
+.tablet-up {
+  @include media-demo-block();
+  @include fw-media-up(tablet){
+    @include media-block-active;
+  };
+}
+.laptop-up {
+  @include media-demo-block();
+  @include fw-media-up(laptop){
+    @include media-block-active;
+  };
+}
+.desktop-up {
+  @include media-demo-block();
+  @include fw-media-up(desktop){
+    @include media-block-active;
+  };
+}
+
+
+
+
+
+
+
+
+
+.xxs-down {
+  @include media-demo-block();
+  @include fw-media-down(xxs){
+    @include media-block-active;
+  };
+}
+.xs-down {
+  @include media-demo-block();
+  @include fw-media-down(xs){
+    @include media-block-active;
+  };
+}
+.sm-down {
+  @include media-demo-block();
+  @include fw-media-down(sm){
+    @include media-block-active;
+  };
+}
+.md-down {
+  @include media-demo-block();
+  @include fw-media-down(md){
+    @include media-block-active;
+  };
+}
+.lg-down {
+  @include media-demo-block();
+  @include fw-media-down(lg){
+    @include media-block-active;
+  };
+}
+.xl-down {
+  @include media-demo-block();
+  @include fw-media-down(xl){
+    @include media-block-active;
+  };
+}
+.xxl-down {
+  @include media-demo-block();
+  @include fw-media-down(xxl){
+    @include media-block-active;
+  };
+}
+.watch-down {
+  @include media-demo-block();
+  @include fw-media-down(watch){
+    @include media-block-active;
+  };
+}
+.mobile-down {
+  @include media-demo-block();
+  @include fw-media-down(mobile){
+    @include media-block-active;
+  };
+}
+.tablet-down {
+  @include media-demo-block();
+  @include fw-media-down(tablet){
+    @include media-block-active;
+  };
+}
+.laptop-down {
+  @include media-demo-block();
+  @include fw-media-down(laptop){
+    @include media-block-active;
+  };
+}
+.desktop-down {
+  @include media-demo-block();
+  @include fw-media-down(desktop){
+    @include media-block-active;
+  };
+}
+
+
+
+
+
+</splitSection>
+
+
+
+<splitSection output="output/mediaQueries_section.scss">
+
+//- .demo-mediaQueries {
+//-   .container {
+//-     border: solid 3px #94DDE8;
+//-     padding: 10px;
+//-     &.mediaQueriesed {
+//-       @include fw-mediaQueries;
+//-     }
+//-     div {
+//-       float: left;
+//-       padding: 7px;
+//-     }
+//-   }
+//- }
+
+</splitSection>
+
+
+
+<splitSection output="output/mediaQueries_semantic.scss">
+
+@mixin fw-media(
+  $arg1: null,
+  $arg2: null
+){
+
+  // case 1: passed name of breakpoint
+  // arg1 is string and is key in fw-breakpoints, $arg2 is null
+  @if type-of($arg1) == string and map-has-key($fw-breakpoints, $arg1) and $arg2 == null {
+    // set media to max-width of breakpoint
+    @media ( max-width: map-get($fw-breakpoints, $arg1) ) {
+      @content;
+    }
+  };
+
+  // case 2: passed name of media
+  // $arg1 is string and is key in fw-media
+  @if type-of($arg1) == string and map-has-key($fw-media, $arg1) and $arg2 == null {
+    // set media between min and max width of picked fw-media
+    @media ( min-width: nth(map-get($fw-media, $arg1), 1) ) and ( max-width: nth(map-get($fw-media, $arg1), 2) ) {
+      @content;
+    }
+  };
+
+  // case 3: passed only max-width
+  // $arg1 is number and $arg2 is null
+  @if type-of($arg1) == number and $arg2 == null {
+    // set max-width to passed number
+    @media ( max-width: $arg1 ) {
+      @content;
+    }
+  };
+
+  // case 4: passed begin-end range
+  // $arg1 is number and $arg2 is number
+  @if type-of($arg1) == number and type-of($arg2) == number {
+    // set media in range between $arg1 and $arg2
+    @media ( min-width: $arg1 ) and ( max-width: $arg2 ) {
+      @content;
+    }
+  };
+
+}
+
+@mixin fw-media-up(
+  $arg1: null
+){
+
+  // case 1: passed name of breakpoint
+  @if type-of($arg1) == string and map-has-key($fw-breakpoints, $arg1) {
+    // set media to min-width of breakpoint
+    @if $arg1 == xxs {
+      @content;
+    } @else {
+      // check $arg1 index in $fw-breakpoints
+      $map-index: 0;
+      @for $i from 1 through length($fw-breakpoints) {
+        $key: nth($fw-breakpoints, $i);
+        @if nth($key, 2) == map-get($fw-breakpoints, $arg1) {
+          $map-index: $i;
+        }
+      }
+      // move $arg1 breakpoint to 1 backwards
+      $arg1: nth(nth($fw-breakpoints, $map-index - 1), 1);
+      @media ( min-width: map-get($fw-breakpoints, $arg1) + 1 ) {
+        @content;
+      }
+    }
+  };
+
+  // case 2: passed name of media
+  @if type-of($arg1) == string and map-has-key($fw-media, $arg1) {
+    // set media to min-width of picked fw-media
+    @media ( min-width: nth(map-get($fw-media, $arg1), 1) ) {
+      @content;
+    }
+  };
+
+  // case 3: passed min-width
+  @if type-of($arg1) == number {
+    // set min-width to passed number
+    @media ( min-width: $arg1 ) {
+      @content;
+    }
+  };
+
+}
+
+@mixin fw-media-down(
+  $arg1: null
+){
+
+  // case 1: passed name of breakpoint
+  @if type-of($arg1) == string and map-has-key($fw-breakpoints, $arg1) {
+    // set media to max-width of breakpoint
+    @media ( max-width: map-get($fw-breakpoints, $arg1) ) {
+      @content;
+    }
+  };
+
+  // case 2: passed name of media
+  @if type-of($arg1) == string and map-has-key($fw-media, $arg1) {
+    // set media to max-width of picked fw-media
+    @media ( max-width: nth(map-get($fw-media, $arg1), 2) ) {
+      @content;
+    }
+  };
+
+  // case 3: passed min-width
+  @if type-of($arg1) == number {
+    // set max-width to passed number
+    @media ( max-width: $arg1 ) {
+      @content;
+    }
+  };
+
+}
+
+@mixin fw-media-info {
+  all: initial;
+  background: #0C3E71;
+  color: #fff;
+  font-size: 12px;
+  font-family: Verdana;
+  display: block;
+  overflow: hidden;
+  @include fw-media(desktop){
+    &:before {
+      content: "media: desktop";
+    }
+  };
+  @include fw-media(laptop){
+    &:before {
+      content: "media: laptop";
+    }
+  };
+  @include fw-media(tablet){
+    &:before {
+      content: "media: tablet";
+    }
+  };
+  @include fw-media(mobile){
+    &:before {
+      content: "media: mobile";
+    }
+  };
+  @include fw-media(watch){
+    &:before {
+      content: "media: watch";
+    }
+  };
+  @include fw-media(xxl){
+    &:after{
+      content: "media: xxl";
+    }
+  };
+  @include fw-media(xl){
+    &:after{
+      content: "media: xl";
+    }
+  };
+  @include fw-media(lg){
+    &:after{
+      content: "media: lg";
+    }
+  };
+  @include fw-media(md){
+    &:after{
+      content: "media: md";
+    }
+  };
+  @include fw-media(sm){
+    &:after{
+      content: "media: sm";
+    }
+  };
+  @include fw-media(xs){
+    &:after{
+      content: "media: xs";
+    }
+  };
+  @include fw-media(xxs){
+    &:after{
+      content: "media: xxs";
+    }
+  };
+  &:before,
+  &:after {
+    float: left;
+  }
+  &:before {
+    padding: 7px 15px 7px 10px;
+  }
+  &:after {
+    padding: 7px 10px 7px 15px;
+  }
+  &:after {
+    float: right;
+  }
+}
+
+</splitSection>
+
+
+
+<splitSection output="output/mediaQueries_selectors.scss">
+
+.fw-media-info {
+  @include fw-media-info;
+}
+
+</splitSection>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// use case tests:
+
+// .media-up1{
+//   @include fw-media-up(sm){
+//     hello: world;
+//   }
+// }
+// .media-up2{
+//   @include fw-media-up(mobile){
+//     hello: world;
+//   }
+// }
+// .media-up3{
+//   @include fw-media-up(238){
+//     hello: world;
+//   }
+// }
+
+// .media-down1{
+//   @include fw-media-down(sm){
+//     hello: world;
+//   }
+// }
+// .media-down2{
+//   @include fw-media-down(mobile){
+//     hello: world;
+//   }
+// }
+// .media-down3{
+//   @include fw-media-down(238){
+//     hello: world;
+//   }
+// }
+
+// .media1 {
+//   @include fw-media(xxl){
+//     hello: world;
+//   };
+// }
+// .media2 {
+//   @include fw-media(mobile){
+//     hello: world;
+//   };
+// }
+// .media3 {
+//   @include fw-media(500){
+//     hello: world;
+//   };
+// }
+// .media4 {
+//   @include fw-media(500, 1500){
+//     hello: world;
+//   };
+// }
+

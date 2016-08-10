@@ -1,0 +1,219 @@
+section.sec-gridSystem
+    h3 Grid
+    h5 Slice block into rows, then into responsive columns.<br>Very useful for building basement for layouts.
+
+
+    .fw-tabulators
+      span Grid demo
+      span Responsive grid
+      span Responsive grid & tiles
+    .fw-tabs
+      div
+        .fw-resizable.fw-copy.c-elements.fw-example
+          .fw-grid
+            .fw-grid-row
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+            .fw-grid-row
+              .fw-col-2 col-2
+              .fw-col-2 col-2
+              .fw-col-2 col-2
+              .fw-col-2 col-2
+              .fw-col-2 col-2
+              .fw-col-2 col-2
+            .fw-grid-row
+              .fw-col-3 col-3
+              .fw-col-3 col-3
+              .fw-col-3 col-3
+              .fw-col-3 col-3
+            .fw-grid-row
+              .fw-col-4 col-4
+              .fw-col-4 col-4
+              .fw-col-4 col-4
+            .fw-grid-row
+              .fw-col-6 col-6
+              .fw-col-6 col-6
+
+      div
+        p.fw-container Resize the demo
+        //- p content 2
+        .fw-resizable.fw-copy
+          iframe(src='../demos/responsive_grid_demo.html')
+      div
+        p.fw-container Resize the demo
+        //- p content 2
+        .fw-resizable.fw-copy
+          iframe(src='../demos/responsive_grid_tiles_demo.html')
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            $my-grid: (
+              columns: 12,
+              gridWidth: 100%
+            );
+            .my-grid {
+              @include fw-generate-grid($my-grid);
+            }
+            .my-grid-row {
+              @include fw-grid-row($my-grid);
+            }
+            .my-grid-col {
+              @include fw-column-base($my-grid);
+            }
+            .my-col-6 {
+              @include fw-generate-column(6, $my-grid);
+            }
+            .my-col-12 {
+              @include fw-generate-column(12, $my-grid);
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-grid">
+              <div class="fw-grid-row">
+                <div class="fw-col-6">col-6</div>
+                <div class="fw-col-6">col-6</div>
+              </div>
+              <div class="fw-grid-row">
+                <div class="fw-col-4">col-4</div>
+                <div class="fw-col-4">col-4</div>
+                <div class="fw-col-4">col-4</div>
+              </div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-grid">
+              <div class="my-grid-row">
+                <div class="my-grid-col my-col-6 my-col-md-12">col-6</div>
+                <div class="my-grid-col my-col-6 my-col-md-12">col-6</div>
+              </div>
+              <div class="my-grid-row">
+                <div class="my-grid-col my-col-4 my-col-md-6">col-4</div>
+                <div class="my-grid-col my-col-4 my-col-md-6">col-4</div>
+                <div class="my-grid-col my-col-4 my-col-md-6">col-4</div>
+              </div>
+            </div>
+        .fw-code.scss
+          :code
+            // define default grid
+            $my-grid: (
+              // grid size (pick 2 of 3 arguments below, third argument will be calculated):
+              columns: 12,           // I   [full number]
+              gridWidth: 100%,       // II  [px, %, 4/5]
+              // columnWidth: 25%,   // III [px, %, 4/5]
+
+              // additional options (not required):
+              spacingX: 10px, // [px]
+              spacingY: 10px  // [px]
+            );
+
+            // generate style for default grid
+            .my-grid {
+              @include fw-generate-grid($my-grid);
+            }
+
+            // generate style for default rows
+            .my-grid-row {
+              @include fw-grid-row($my-grid);
+            }
+
+            // generate base style for columns
+            .my-grid-col {
+              @include fw-column-base($my-grid);
+            }
+
+            // single column sizing
+            .my-col {
+              @include fw-generate-column(6, $my-grid); // (6/12 = 50%)
+            }
+
+            // or multi column sizing
+            .my-col {
+              // generate my-col-1 ... 12
+              @for $col from 1 through map-get($my-grid, columns) {
+                &-#{$col} {
+                  @include fw-generate-column($col, $my-grid);
+                }
+              }
+            }
+
+
+
+            // optional
+            // define grid for medium devices
+            $my-grid-md: (
+              columns: 12,           // [full number]
+              gridWidth: 100%,       // [px, %, 4/5]
+              spacingX: 0, // [px]
+              spacingY: 0  // [px]
+            );
+
+            @include fw-media(md){
+
+              // generate my-col-md-1 ... 12
+              .my-col-md {
+                @for $col from 1 through map-get($my-grid-md, columns) {
+                  &-#{$col} {
+                    @include fw-generate-column($col, $my-grid-md);
+                  }
+                }
+              }
+
+              // generate base style for medium columns
+              .my-grid-col { @include fw-column-base($my-grid-md); }
+
+              // generate style for grid on medium devices
+              .my-grid { @include fw-generate-grid($my-grid-md); }
+
+              // generate style for row on medium devices
+              .my-grid-row { @include fw-grid-row($my-grid-md); }
+            }
+
+
+      div.fw-container
+        p <b>Column sizing classes:</b><br>
+          | <b>default</b> fw-col-1 ... 12 (1 = 1/12), (12 = 12/12 = 100%)
+        p <b>Column size for smaller devices:</b><br>
+          | <b>extra large</b> fw-col-xl-1 ... 12<br>
+          | <b>large</b> fw-col-lg-1 ... 12<br>
+          | <b>medium</b> fw-col-md-1 ... 12<br>
+          | <b>small</b> fw-col-sm-1 ... 12<br>
+          | <b>extra small</b> fw-col-xs-1 ... 12<br>
+        .fw-code
+          :code
+            <div class="fw-grid">
+              <div class="fw-grid-row">
+                <div class="fw-col-6 fw-col-md-12">col</div>
+                <div class="fw-col-6 fw-col-md-12">col</div>
+                <div class="fw-col-6 fw-col-md-12">col</div>
+              </div>
+              <div class="fw-grid-row">
+                <div class="fw-col-4 fw-col-md-6 fw-col-sm-12">col</div>
+                <div class="fw-col-4 fw-col-md-6 fw-col-sm-12">col</div>
+                <div class="fw-col-4 fw-col-md-6 fw-col-sm-12">col</div>
+              </div>
+            </div>

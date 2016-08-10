@@ -1,0 +1,43 @@
+@mixin fw-tile {
+  position: relative;
+  display: inline-block;
+  vertical-align: top; // remove spacing
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  box-sizing: border-box;
+  &:after {
+    display: block;
+    content: "";
+  }
+}
+
+@mixin fw-tile-height(
+  $height: 100%
+){
+  // check unit types
+  @if type-of($height) != number {
+    @error "tile width must be a number";
+  }
+
+  // convert unitless number (proportion) to percent
+  @if unitless($height) {
+    $height: $height * 100%;
+  }
+
+  // define tile size;
+  &:after {
+    padding-bottom: $height;
+    padding-top: 1px; // subpixel rendering fix when combined with grid
+  }
+
+}
+
+@mixin fw-tile-content(){
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+}

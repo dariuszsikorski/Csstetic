@@ -1,0 +1,21 @@
+.fw-size {
+  &-xxs,
+  &-xs,
+  &-sm,
+  &-md,
+  &-lg,
+  &-xl,
+  &-xxl,
+  &-xxxl {
+    @include fw-size-base;
+  }
+
+  &-xxs  { @include fw-size(xxs, responsive); }
+  &-xs   { @include fw-size(xs, responsive); }
+  &-sm   { @include fw-size(sm, responsive); }
+  &-md   { @include fw-size(md, responsive); }
+  &-lg   { @include fw-size(lg, responsive); }
+  &-xl   { @include fw-size(xl, responsive); }
+  &-xxl  { @include fw-size(xxl, responsive); }
+  &-xxxl { @include fw-size(xxxl, responsive); }
+}

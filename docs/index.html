@@ -1,0 +1,2803 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="../assets/plugins/html5shiv.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github-gist.min.css">
+    <link rel="stylesheet" href="../assets/plugins/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="../assets/plugins/css/tooltipster.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/themes/tooltipster-light.min.css">
+    <link rel="stylesheet" href="../assets/plugins/css/animate.min.css">
+    <link rel="stylesheet" href="../assets/plugins/iosOverlay/css/iosOverlay.css">
+    <link rel="stylesheet" href="../assets/css/style.css" id="mainstyle">
+    <title>Documentation - Csstetic</title>
+  </head>
+  <body class="fw-viewScss">
+    <div class="fw-wrapper">
+      <aside class="fw-sidebar">
+        <label class="se-checkbox check-toggle-sidebar">
+          <input type="checkbox"><span class="label"><i class="icon ionicons ion-navicon-round"></i></span>
+        </label>
+        <div class="fw-inner">
+          <div class="sidebar-header">
+            <div class="fw-back-to-home"><a href="../"><span class="ion-ios-arrow-thin-left icon"></span> Home</a></div>
+          </div>
+          <div class="fw-sidebar-menu"></div>
+          <div class="sidebar-footer">
+            <label class="se-checkbox check-expand-menu">
+              <input type="checkbox"><span class="label"><i class="icon ionicons ion-checkmark"></i> Expand menu</span>
+            </label>
+          </div>
+        </div>
+      </aside>
+      <div class="fw-content">
+        <div class="fw-inner">
+          <div class="dc-topbar">
+            <div class="dc-section-info isHidden"><span></span></div>
+          </div>
+          <div data-name="Getting started" class="fw-group">
+            <section class="sec-installation">
+              <h3>Installation</h3>
+              
+              <div class="fw-tabulators"><span>Classic</span><span>Semantic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="install-step">
+                    <div class="step-left"><span class="step-number">1</span></div>
+                    <div class="step-right">
+                      <p class="step-description">Get the Classic version from <a href="../#get">Get it section</a>.<br> You may stop here because .zip file contains ready to use html template.</p>
+                    </div>
+                  </div>
+                  <div class="fw-separator"><span>optional:</span></div>
+                  <div class="install-step">
+                    <div class="step-left"><span class="step-number">2</span></div>
+                    <div class="step-right">
+                      <p class="step-description">After downloading and unzipping the file - copy <b>csstetic.css</b> to your project folder.</p>
+                    </div>
+                  </div>
+                  <div class="install-step">
+                    <div class="step-left"><span class="step-number">3</span></div>
+                    <div class="step-right">
+                      <p class="step-description">Link to stylesheet by pasting following code in <b>HEAD</b> of your html file.</p>
+                    </div><br>
+                    <div class="fw-code">&lt;link rel=&quot;stylesheet&quot; href=&quot;./style/csstetic.css&quot;&gt;
+
+                    </div>
+                  </div>
+                </div>
+                <div class="fw-container semantic-steps">
+                  <div class="install-step">
+                    <div class="step-left"><span class="step-number">1</span></div>
+                    <div class="step-right">
+                      <p class="step-description">Get the Semantic version from <a href="../#get">Get it section</a>.<br> You may stop here because .zip file contains ready to use html and scss template.</p>
+                    </div>
+                  </div>
+                  <div class="fw-separator"><span>optional:</span></div>
+                  <div class="install-step">
+                    <div class="step-left"><span class="step-number">2</span></div>
+                    <div class="step-right">
+                      <p class="step-description">After downloading and unzipping the file - copy <b>_csstetic-semantic.scss</b> to your project folder.<br>If you want to build your own - classic version, also copy the <b>csstetic.scss</b> file.</p>
+                    </div>
+                  </div>
+                  <div class="install-step">
+                    <div class="step-left"><span class="step-number">3</span></div>
+                    <div class="step-right">
+                      <p class="step-description">Import scss files your <b>style.scss</b> file.</p>
+                    </div><br>
+                    <div class="fw-code scss">@import &quot;./_csstetic-semantic.scss&quot;;
+@import &quot;./csstetic.scss&quot;; // optional (classic version)
+
+                    </div>
+                  </div>
+                  <div class="install-step">
+                    <div class="step-left"><span class="step-number">4</span></div>
+                    <div class="step-right">
+                      <p class="step-description">Compile <b>style.scss</b> file by using <a href="https://www.ostraining.com/blog/coding/compiling-tools/">Sass Compiler</a> of your choice.</p>
+                    </div>
+                  </div>
+                  <div class="install-step">
+                    <div class="step-left"><span class="step-number">5</span></div>
+                    <div class="step-right">
+                      <p class="step-description">Link to stylesheet by pasting following code in <b>HEAD</b> of your html file.</p>
+                    </div><br>
+                    <div class="fw-code">&lt;link rel=&quot;stylesheet&quot; href=&quot;./style/style.css&quot;&gt;
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div data-name="Elements" class="fw-group">
+            <section class="sec-tile">
+              <h3>Tiles</h3>
+              <h5>Create a rectangle of proportional size.<br>Tiles can be used to make responsive metro-style layouts,<br>image thumbnails or galleries.</h5>
+              <div class="fw-tabulators"><span>Colors</span><span>Wireframe</span><span>Photos</span><span>Heights</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <div class="fw-resizable fw-copy tile-demo tile-demo-photo">
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-2 fw-bg-bluegrey-100">
+                      <div class="fw-tile-content">
+                        <p>Do your <b>best</b></p>
+                      </div>
+                    </div>
+                    <div style="max-width: 50%;" class="fw-tile fw-tile-050 fw-bg-bluegrey-600">
+                      <div class="fw-tile-content dimmed">
+                        <p class="fw-pos-top-left">Live, learn, <b>love</b></p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-bg-bluegrey-900">
+                      <div class="fw-tile-content">
+                        <p>Don’t regret <b>decisions</b></p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-bg-bluegrey-200">
+                      <div class="fw-tile-content">
+                        <div style="max-width: 30%; min-width: 40px" class="fw-tile fw-pos-bottom-left fw-bg-bluegrey-100"></div>
+                        <p>Don’t just <b>think</b></p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-bg-bluegrey-100">
+                      <div class="fw-tile-content">
+                        <p><b>Read</b> something new</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-050 fw-bg-teal">
+                      <div class="fw-tile-content">
+                        <p>Dream, <b>believe</b></p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-050 fw-bg-deeppurple-600">
+                      <div class="fw-tile-content">
+                        <p>Life is <b>awesome</b></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy tile-demo">
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-2">
+                      <div class="fw-tile-content">
+                        <p>height 200%<br>max-width: 25%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 50%;" class="fw-tile fw-tile-050">
+                      <div class="fw-tile-content">
+                        <p>height: 50%<br>max-width: 50%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile">
+                      <div class="fw-tile-content">
+                        <p>height: 100%<br>max-width: 25%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile">
+                      <div class="fw-tile-content">
+                        <p>height: 100%<br>max-width: 25%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile">
+                      <div class="fw-tile-content">
+                        <p>height: 100%<br>max-width: 25%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-050">
+                      <div class="fw-tile-content">
+                        <p>height: 50%<br>max-width: 25%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-050">
+                      <div class="fw-tile-content">
+                        <p>height: 50%<br>max-width: 25%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="fw-resizable fw-copy tile-demo tile-demo-photo">
+                    <div style="max-width: 25%; background-image: url(https://static.pexels.com/photos/7529/pexels-photo-large.jpeg)" class="fw-tile fw-tile-2">
+                      <div class="fw-tile-content">
+                        <p>Do your <b>best</b></p>
+                      </div>
+                    </div>
+                    <div style="max-width: 50%; background-image: url(https://static.pexels.com/photos/36367/pexels-photo-large.jpg)" class="fw-tile fw-tile-050">
+                      <div class="fw-tile-content dimmed">
+                        <p class="fw-pos-top-left">Live, learn, <b>love</b></p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-bg-bluegrey-900">
+                      <div class="fw-tile-content">
+                        <p>Don’t regret <b>decisions</b></p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-bg-bluegrey-200">
+                      <div class="fw-tile-content">
+                        <div style="max-width: 30%; min-width: 40px; background-image: url(https://static.pexels.com/photos/4952/sky-beach-vacation-summer-medium.jpeg)" class="fw-tile fw-pos-bottom-left"></div>
+                        <p>Don’t just <b>think</b></p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%; background-image: url(https://static.pexels.com/photos/26521/pexels-photo-large.jpg)" class="fw-tile">
+                      <div class="fw-tile-content">
+                        <p><b>Read</b> something new</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%; background-image: url(https://static.pexels.com/photos/54536/pexels-photo-54536.jpeg)" class="fw-tile fw-tile-050">
+                      <div class="fw-tile-content">
+                        <p>Dream, <b>believe</b></p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%; background-image: url()" class="fw-tile fw-tile-050 fw-bg-deeppurple-600">
+                      <div class="fw-tile-content">
+                        <p>Life is <b>awesome</b></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy tile-demo">
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-025">
+                      <div class="fw-tile-content">
+                        <p>height 25%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-050">
+                      <div class="fw-tile-content">
+                        <p>height 50%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-075">
+                      <div class="fw-tile-content">
+                        <p>height 75%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-100">
+                      <div class="fw-tile-content">
+                        <p>height 125%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-125">
+                      <div class="fw-tile-content">
+                        <p>height 150%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-150">
+                      <div class="fw-tile-content">
+                        <p>height 175%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-175">
+                      <div class="fw-tile-content">
+                        <p>height 175%</p>
+                      </div>
+                    </div>
+                    <div style="max-width: 25%;" class="fw-tile fw-tile-200">
+                      <div class="fw-tile-content">
+                        <p>height 200%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-tile {
+  @include fw-tile;
+  @include fw-tile-height(3/4); // or (75%)
+  max-width: 25%; // optional
+}
+.my-tile-content {
+  @include fw-tile-content;
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-tile fw-tile-075&quot;&gt;
+  &lt;div class=&quot;fw-tile-content&quot;&gt;content...&lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-separator"><span>Classic heights</span></div>
+                  <p>.fw-tile<b>-1</b> - 100% (step is every 100%)&nbsp; &nbsp; ... &nbsp; &nbsp;up to .fw-tile<b>-4</b> - 400%<br><br>.fw-tile<b>-025</b> - 25% (step is every 25%)&nbsp; &nbsp; ... &nbsp; &nbsp;up to .fw-tile<b>-400</b> - 400%</p>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;my-tile&quot;&gt;
+  &lt;div class=&quot;my-tile-content&quot;&gt;content...&lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">.my-tile {
+  @include fw-tile;
+  @include fw-tile-height(3/4); // or (75%)
+  max-width: 25%; // optional
+}
+.my-tile-content {
+  @include fw-tile-content;
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;fw-tile fw-tile-075&quot;&gt;
+  &lt;div class=&quot;fw-tile-content&quot;&gt;content...&lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-button">
+              <h3>Button</h3>
+              <h5>Convert inline element into<br>a button, ready for styling.</h5>
+              <div class="fw-tabulators"><span>Demo button</span><span>Demo without button</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <div class="fw-resizable fw-copy c-elements demo-buttons fw-example"><a href="#" class="fw-button">Anchor as Button</a>
+                    <p class="fw-button">Paragraph as Button</p><span class="fw-button">Span as Button</span>
+                    <input type="button" value="Input as Button" class="fw-button">
+                  </div>
+                  <div class="fw-container">
+                    <div class="fw-separator"><span>Styled</span></div>
+                  </div>
+                  <div class="fw-resizable fw-copy">
+                    <iframe src="../demos/button_demo.html"></iframe>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy c-elements fw-example"><a href="#">Anchor</a>
+                    <p>Paragraph</p><span>Span</span>
+                    <input type="button" value="Input">
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-button {
+  @include fw-button;
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">class=&quot;fw-button&quot;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;my-button&quot;&gt;Hello!&lt;/span&gt;
+                  </div>
+                  <div class="fw-code scss">.my-button {
+  @include fw-button;
+
+  // optional, custom styling
+  @include fw-size-base;
+  @include fw-size(xxl);
+  border-radius: $fw-rounded-md;
+  background-color: fw-color(deeppurple, 500);
+  color: fw-color(white);
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;fw-button&quot;&gt;Hello!&lt;/span&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-input">
+              <h3>Input</h3>
+              <h5>Reset styling on input element, ready to apply custom style.</h5>
+              <div class="fw-tabulators"><span>Input demo</span><span>Browser default</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <h4>Unstyled input</h4>
+                  <div class="fw-copy fw-example">
+                    <input type="text" placeholder="type text" class="fw-input">
+                  </div>
+                  <h4>Custom styling</h4>
+                  <div class="fw-example fw-copy c-elements">
+                    <input type="text" placeholder="Non semantic input" class="fw-input fw-bg-bluegrey-50 fw-size-xxl fw-rounded-md fw-txt-black">
+                    <input type="text" placeholder="Semantic (see code)" class="demo-input">
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-copy fw-example">
+                    <input type="text" placeholder="type text">
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-input {
+  @include fw-input;
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">class=&quot;fw-input&quot;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;input class=&quot;my-input&quot; placeholder=&quot;placeholder text&quot;&gt;
+                  </div>
+                  <div class="fw-code scss">.my-input {
+  @include fw-input;
+
+  // optional, custom styling
+  @include fw-size-base;
+  @include fw-size(xxl);
+  border-radius: $fw-rounded-md;
+  background-color: fw-color(grey, 100);
+  color: fw-color(black);
+}
+
+                  </div>
+                </div>
+                <div>
+                  <div class="fw-code">&lt;input class=&quot;fw-input&quot; placeholder=&quot;placeholder text&quot;&gt;
+
+                  </div>
+                  <h4>Input with custom styling</h4>
+                  <div class="fw-code">&lt;input class=&quot;fw-input fw-bg-bluegrey-50 fw-size-xxl fw-rounded-md fw-txt-black&quot; placeholder=&quot;placeholder text&quot;&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-text">
+              <h3>Text (size)</h3>
+              <h5>Determines size of the text depending on window width.<br>This utility also comes with a set of presets.</h5>
+              <div class="fw-tabulators"><span>Demo with text</span><span>Demo without text</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <div class="fw-resizable fw-copy">
+                    <iframe src="../demos/text_demo.html"></iframe>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable">
+                    <div class="text-demo">
+                      <p>XXS Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.</p>
+                      <p>XS Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.</p>
+                      <p>SM Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.</p>
+                      <p>MD Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.</p>
+                      <p>LG Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.</p>
+                      <p>XL Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.</p>
+                      <p>XXL Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.</p>
+                      <p>XXXL Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.</p>
+                      <p>HG Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short Usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Size presets</span></div>
+                  <p>xxs, xs, sm, md, lg, xl, xxl, xxxl, hg</p>
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-text {
+  @include fw-text(md);
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">class=&quot;fw-text-md&quot;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;my-text&quot;&gt;Hello!&lt;/span&gt;
+                  </div>
+                  <div class="fw-code scss">.my-text {
+  @include fw-text(md);
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;fw-text-md&quot;&gt;Hello!&lt;/span&gt;
+                  </div>
+                </div>
+              </div>
+              <p>You can also use <a href="#scale-properties">Scale Properties</a> to create scalable text of custom size.</p>
+            </section>
+          </div>
+          <div data-name="Styling" class="fw-group">
+            <section class="sec-align">
+              <h3>Align</h3>
+              <h5>Selectors for align, float and vertical-align.</h5>
+              <div class="fw-tabulators"><span>Example</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <p class="fw-container">
+                    Please not that each align may require specific element display, width or height.<br>
+                    Vertical-align works best width inline-block or table-cell elements,<br>while
+                    margin: auto align require display block and limited width (such as 50%).
+                  </p>
+                  <h4>text align</h4>
+                  <div class="fw-resizable fw-example fw-copy c-elements demo-align">
+                    <div class="fw-text-left">
+                      <p>text aligned to left</p>
+                    </div>
+                    <div class="fw-text-center">
+                      <p>centered text</p>
+                    </div>
+                    <div class="fw-text-right">
+                      <p>text aligned to right</p>
+                    </div>
+                  </div>
+                  <h4>vertical align</h4>
+                  <p class="fw-container">Example on table cells. Works on inline-block elements as well.</p>
+                  <div class="fw-resizable fw-example fw-copy c-elements demo-align">
+                    <div class="fw-top fw-display-table-cell">top</div>
+                    <div class="fw-middle fw-display-table-cell">middle</div>
+                    <div class="fw-bottom fw-display-table-cell">bottom</div>
+                  </div>
+                  <h4>float</h4>
+                  <p class="fw-container">Floating requires clearfix on parent element;</p>
+                  <div class="fw-resizable fw-example fw-copy c-elements demo-align">
+                    <div class="fw-clearfix">
+                      <div class="fw-left">left floated block</div>
+                    </div>
+                    <div class="fw-clearfix">
+                      <div class="fw-right">right floated block</div>
+                    </div>
+                    <div class="fw-clearfix">
+                      <div class="fw-left">both: left</div>
+                      <div class="fw-right">and right</div>
+                    </div>
+                  </div>
+                  <h4>center (margin: auto)</h4>
+                  <div class="fw-resizable fw-example fw-copy c-elements demo-align">
+                    <div style="max-width: 100px" class="fw-center">centered element</div>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.aligned-element {
+  text-right: center;
+  vertical-align: middle;
+}
+
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">class=&quot;fw-text-center&quot;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;my-align&quot;&gt;Hello!&lt;/span&gt;
+                  </div>
+                  <div class="fw-code scss">// element has to use display inline-block or table-cell and width: 100%
+.aligned-element {
+  text-right: center;
+  vertical-align: middle;
+}
+
+// VERTICAL ALIGN
+// element has to be display: inline-block or table-cell
+.aligned-top {
+  vertical-align: top;
+}
+.aligned-middle {
+  vertical-align: middle;
+}
+.aligned-bottom {
+  vertical-align: bottom;
+}
+
+// TEXT ALIGN
+// element has to be wider than it's content, add width: 100%
+.aligned-text-left {
+  text-align: left;
+}
+.aligned-text-center {
+  text-align: center;
+}
+.aligned-text-right {
+  text-align: right;
+}
+
+// FLOAT
+// float removes element from paren't height, use fw-clearfix to fix that
+.clearfixed-parent {
+  @include fw-clearfix;
+  .aligned-left {
+    float: left;
+  }
+}
+
+.clearfixed-parent {
+  @include fw-clearfix;
+  .aligned-right {
+    float: right;
+  }
+}
+
+// CENTER (MARGIN: AUTO)
+// centered element has to smaller than parent, for example add width: 50%
+.aligned-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;!-- TEXT ALIGN --&gt;
+&lt;div class=&quot;fw-text-left&quot;&gt;
+  &lt;p&gt;text aligned to left&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;fw-text-center&quot;&gt;
+  &lt;p&gt;centered text&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;fw-text-right&quot;&gt;
+  &lt;p&gt;text aligned to right&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- VERTICAL ALIGN --&gt;
+&lt;div class=&quot;fw-top fw-display-table-cell&quot;&gt;
+  top
+&lt;/div&gt;
+
+&lt;div class=&quot;fw-middle fw-display-table-cell&quot;&gt;
+  middle
+&lt;/div&gt;
+
+&lt;div class=&quot;fw-bottom fw-display-table-cell&quot;&gt;
+  bottom
+&lt;/div&gt;
+
+&lt;!-- FLOAT --&gt;
+&lt;div class=&quot;fw-clearfix&quot;&gt;
+  &lt;div class=&quot;fw-left&quot;&gt;
+    left floated block
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;fw-clearfix&quot;&gt;
+  &lt;div class=&quot;fw-right&quot;&gt;
+    right floated block
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;fw-clearfix&quot;&gt;
+  &lt;div class=&quot;fw-left&quot;&gt;
+    both: left
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-right&quot;&gt;
+    and right
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- CENTER (MARGIN: AUTO) --&gt;
+&lt;div class=&quot;fw-center&quot; style=&quot;max-width: 100px&quot;&gt;
+  centered element
+&lt;/div&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-elementSize">
+              <h3>Element Size</h3>
+              <h5>
+                Set size of the element. Best for input text, button, select menu.<br>
+                Size is responsive to browser width and can be customized.
+              </h5>
+              <div class="fw-tabulators"><span>Demo with element size</span><span>Demo without element size</span><span>Custom width proportions</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <p class="fw-container"><b>Resize</b> this demo and see how elements adapt to width of the screen.</p>
+                  <div class="fw-resizable fw-copy c-elements">
+                    <iframe src="../demos/elementSize_demo.html"></iframe>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy c-elements demo-elsize1"><span>xxs</span><span>xs</span><span>sm</span><span>md</span><span>lg</span><span>xl</span><span>xxl</span><span>xxxl</span></div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy demo-elsize1"><span class="custom-prop-1">prop 0</span><span class="custom-prop-2">prop 0.25</span><span class="custom-prop-3">prop 0.5</span><span class="custom-prop-4">prop 0.75</span><span class="custom-prop-5">prop 1</span><span class="custom-prop-6">prop 2</span></div>
+                  <div class="fw-custom-source">
+                    <div class="fw-scss-code scss">.custom-prop-1,
+.custom-prop-2,
+.custom-prop-3,
+.custom-prop-4,
+.custom-prop-5,
+.custom-prop-6 {
+  @include fw-size-base;
+}
+.custom-prop-1 {
+  @include fw-size(50px, no-responsive, 0);
+}
+.custom-prop-2 {
+  @include fw-size(50px, no-responsive, 0.25);
+}
+.custom-prop-3 {
+  @include fw-size(50px, no-responsive, 0.5);
+}
+.custom-prop-4 {
+  @include fw-size(50px, no-responsive, 0.75);
+}
+.custom-prop-5 {
+  @include fw-size(50px, no-responsive, 1);
+}
+.custom-prop-6 {
+  @include fw-size(50px, no-responsive, 2);
+}
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span><span>Customization</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Heights</span></div>
+                  <p>xxs, xs, sm, md, lg, xl, xxl, xxxl</p>
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-elementSize {
+  @include fw-size-base;
+  @include fw-size(md);
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">class=&quot;fw-size-lg&quot;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;my-elementSize&quot;&gt;Hello!&lt;/span&gt;
+                  </div>
+                  <div class="fw-code scss">.my-elementSize {
+  @include fw-size-base;
+  @include fw-size(md);
+}
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;fw-size-lg&quot;&gt;Hello!&lt;/span&gt;
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <p>Customization is available only in Semantic version, with neccessary mixins.</p>
+                  <div class="fw-code scss">// defaults:
+// (
+//   $height: null, // size name or number
+//   $responsive: &quot;no-responsive&quot;, // &quot;responsive&quot; or &quot;no-responsive&quot;
+//   $proportion: 0.45 // proportion of width to height, (bigger = wider)
+// )
+// &quot;responsive&quot; - size will be generated for all devices automatically
+// &quot;no-responsive&quot; - only static size will be generated
+
+.my-customSize {
+  @include fw-size-base;
+  @include fw-size(3em, responsive, 0.6);
+}
+                  </div>
+                  <div class="fw-separator"><span>Custom breakpoints</span></div>
+                  <div class="fw-code scss">.my-customSize {
+  // include size-base only once
+  @include fw-size-base;
+
+  // set size for biggest screen
+  @include fw-size(50px, no-responsive);
+
+  // use no-responsive, to generate custom heights for each breakpoint
+  // if you will use responsive - mixin will generate breakpoints
+  // automatically, and you don't have to include the code below at all!
+  // define breakpoints from largest to smallest screen
+
+  @include fw-media(lg){
+    @include fw-size(40px, no-responsive);
+  }
+  @include fw-media(md){
+    @include fw-size(30px, no-responsive);
+  }
+  @include fw-media(sm){
+    @include fw-size(20px, no-responsive);
+  }
+
+}
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-material">
+              <h3>Material Color</h3>
+              <h5>Set color based on material design palette.</h5>
+              <div class="fw-tabulators"><span>Background color</span><span>Text color</span></div>
+              <div class="fw-tabs">
+                <div>
+                  
+                  
+                  <h4>available colors</h4>
+                  <div class="fw-example demo-background-2 fw-copy c-elements">
+                    <div class="fw-bg-red">red</div>
+                    <div class="fw-bg-pink">pink</div>
+                    <div class="fw-bg-purple">purple</div>
+                    <div class="fw-bg-deeppurple">deeppurple</div>
+                    <div class="fw-bg-indigo">indigo</div>
+                    <div class="fw-bg-blue">blue</div>
+                    <div class="fw-bg-lightblue">lightblue</div>
+                    <div class="fw-bg-cyan">cyan</div>
+                    <div class="fw-bg-teal">teal</div>
+                    <div class="fw-bg-green">green</div>
+                    <div class="fw-bg-lightgreen">lightgreen</div>
+                    <div class="fw-bg-lime">lime</div>
+                    <div class="fw-bg-yellow">yellow</div>
+                    <div class="fw-bg-amber">amber</div>
+                    <div class="fw-bg-orange">orange</div>
+                    <div class="fw-bg-deeporange">deeporange</div>
+                    <div class="fw-bg-brown">brown</div>
+                    <div class="fw-bg-grey">grey</div>
+                    <div class="fw-bg-bluegrey">bluegrey</div>
+                    <div class="fw-bg-black">black</div>
+                    <div class="fw-bg-white">white</div>
+                  </div>
+                  <h4>example: purple shades</h4>
+                  <div class="fw-example demo-background-2 fw-copy c-elements">
+                    <div class="fw-bg-deeppurple-50">50</div>
+                    <div class="fw-bg-deeppurple-100">100</div>
+                    <div class="fw-bg-deeppurple-200">200</div>
+                    <div class="fw-bg-deeppurple-300">300</div>
+                    <div class="fw-bg-deeppurple-400">400</div>
+                    <div class="fw-bg-deeppurple-500">500</div>
+                    <div class="fw-bg-deeppurple-600">600</div>
+                    <div class="fw-bg-deeppurple-700">700</div>
+                    <div class="fw-bg-deeppurple-800">800</div>
+                    <div class="fw-bg-deeppurple-900">900</div>
+                    <div class="fw-bg-deeppurple-A100">A100</div>
+                    <div class="fw-bg-deeppurple-A200">A200</div>
+                    <div class="fw-bg-deeppurple-A400">A400</div>
+                    <div class="fw-bg-deeppurple-A700">A700</div>
+                  </div>
+                  <h4>available shades</h4>
+                  <div class="fw-example demo-background">
+                    <div class="fw-bg-red-50">50</div>
+                    <div class="fw-bg-red-100">100</div>
+                    <div class="fw-bg-red-200">200</div>
+                    <div class="fw-bg-red-300">300</div>
+                    <div class="fw-bg-red-400">400</div>
+                    <div class="fw-bg-red-500">500</div>
+                    <div class="fw-bg-red-600">600</div>
+                    <div class="fw-bg-red-700">700</div>
+                    <div class="fw-bg-red-800">800</div>
+                    <div class="fw-bg-red-900">900</div>
+                    <div class="fw-bg-red-A100">A100</div>
+                    <div class="fw-bg-red-A200">A200</div>
+                    <div class="fw-bg-red-A400">A400</div>
+                    <div class="fw-bg-red-A700">A700</div>
+                    <div class="fw-bg-pink-50">50</div>
+                    <div class="fw-bg-pink-100">100</div>
+                    <div class="fw-bg-pink-200">200</div>
+                    <div class="fw-bg-pink-300">300</div>
+                    <div class="fw-bg-pink-400">400</div>
+                    <div class="fw-bg-pink-500">500</div>
+                    <div class="fw-bg-pink-600">600</div>
+                    <div class="fw-bg-pink-700">700</div>
+                    <div class="fw-bg-pink-800">800</div>
+                    <div class="fw-bg-pink-900">900</div>
+                    <div class="fw-bg-pink-A100">A100</div>
+                    <div class="fw-bg-pink-A200">A200</div>
+                    <div class="fw-bg-pink-A400">A400</div>
+                    <div class="fw-bg-pink-A700">A700</div>
+                    <div class="fw-bg-purple-50">50</div>
+                    <div class="fw-bg-purple-100">100</div>
+                    <div class="fw-bg-purple-200">200</div>
+                    <div class="fw-bg-purple-300">300</div>
+                    <div class="fw-bg-purple-400">400</div>
+                    <div class="fw-bg-purple-500">500</div>
+                    <div class="fw-bg-purple-600">600</div>
+                    <div class="fw-bg-purple-700">700</div>
+                    <div class="fw-bg-purple-800">800</div>
+                    <div class="fw-bg-purple-900">900</div>
+                    <div class="fw-bg-purple-A100">A100</div>
+                    <div class="fw-bg-purple-A200">A200</div>
+                    <div class="fw-bg-purple-A400">A400</div>
+                    <div class="fw-bg-purple-A700">A700</div>
+                    <div class="fw-bg-deeppurple-50">50</div>
+                    <div class="fw-bg-deeppurple-100">100</div>
+                    <div class="fw-bg-deeppurple-200">200</div>
+                    <div class="fw-bg-deeppurple-300">300</div>
+                    <div class="fw-bg-deeppurple-400">400</div>
+                    <div class="fw-bg-deeppurple-500">500</div>
+                    <div class="fw-bg-deeppurple-600">600</div>
+                    <div class="fw-bg-deeppurple-700">700</div>
+                    <div class="fw-bg-deeppurple-800">800</div>
+                    <div class="fw-bg-deeppurple-900">900</div>
+                    <div class="fw-bg-deeppurple-A100">A100</div>
+                    <div class="fw-bg-deeppurple-A200">A200</div>
+                    <div class="fw-bg-deeppurple-A400">A400</div>
+                    <div class="fw-bg-deeppurple-A700">A700</div>
+                    <div class="fw-bg-indigo-50">50</div>
+                    <div class="fw-bg-indigo-100">100</div>
+                    <div class="fw-bg-indigo-200">200</div>
+                    <div class="fw-bg-indigo-300">300</div>
+                    <div class="fw-bg-indigo-400">400</div>
+                    <div class="fw-bg-indigo-500">500</div>
+                    <div class="fw-bg-indigo-600">600</div>
+                    <div class="fw-bg-indigo-700">700</div>
+                    <div class="fw-bg-indigo-800">800</div>
+                    <div class="fw-bg-indigo-900">900</div>
+                    <div class="fw-bg-indigo-A100">A100</div>
+                    <div class="fw-bg-indigo-A200">A200</div>
+                    <div class="fw-bg-indigo-A400">A400</div>
+                    <div class="fw-bg-indigo-A700">A700</div>
+                    <div class="fw-bg-blue-50">50</div>
+                    <div class="fw-bg-blue-100">100</div>
+                    <div class="fw-bg-blue-200">200</div>
+                    <div class="fw-bg-blue-300">300</div>
+                    <div class="fw-bg-blue-400">400</div>
+                    <div class="fw-bg-blue-500">500</div>
+                    <div class="fw-bg-blue-600">600</div>
+                    <div class="fw-bg-blue-700">700</div>
+                    <div class="fw-bg-blue-800">800</div>
+                    <div class="fw-bg-blue-900">900</div>
+                    <div class="fw-bg-blue-A100">A100</div>
+                    <div class="fw-bg-blue-A200">A200</div>
+                    <div class="fw-bg-blue-A400">A400</div>
+                    <div class="fw-bg-blue-A700">A700</div>
+                    <div class="fw-bg-lightblue-50">50</div>
+                    <div class="fw-bg-lightblue-100">100</div>
+                    <div class="fw-bg-lightblue-200">200</div>
+                    <div class="fw-bg-lightblue-300">300</div>
+                    <div class="fw-bg-lightblue-400">400</div>
+                    <div class="fw-bg-lightblue-500">500</div>
+                    <div class="fw-bg-lightblue-600">600</div>
+                    <div class="fw-bg-lightblue-700">700</div>
+                    <div class="fw-bg-lightblue-800">800</div>
+                    <div class="fw-bg-lightblue-900">900</div>
+                    <div class="fw-bg-lightblue-A100">A100</div>
+                    <div class="fw-bg-lightblue-A200">A200</div>
+                    <div class="fw-bg-lightblue-A400">A400</div>
+                    <div class="fw-bg-lightblue-A700">A700</div>
+                    <div class="fw-bg-cyan-50">50</div>
+                    <div class="fw-bg-cyan-100">100</div>
+                    <div class="fw-bg-cyan-200">200</div>
+                    <div class="fw-bg-cyan-300">300</div>
+                    <div class="fw-bg-cyan-400">400</div>
+                    <div class="fw-bg-cyan-500">500</div>
+                    <div class="fw-bg-cyan-600">600</div>
+                    <div class="fw-bg-cyan-700">700</div>
+                    <div class="fw-bg-cyan-800">800</div>
+                    <div class="fw-bg-cyan-900">900</div>
+                    <div class="fw-bg-cyan-A100">A100</div>
+                    <div class="fw-bg-cyan-A200">A200</div>
+                    <div class="fw-bg-cyan-A400">A400</div>
+                    <div class="fw-bg-cyan-A700">A700</div>
+                    <div class="fw-bg-teal-50">50</div>
+                    <div class="fw-bg-teal-100">100</div>
+                    <div class="fw-bg-teal-200">200</div>
+                    <div class="fw-bg-teal-300">300</div>
+                    <div class="fw-bg-teal-400">400</div>
+                    <div class="fw-bg-teal-500">500</div>
+                    <div class="fw-bg-teal-600">600</div>
+                    <div class="fw-bg-teal-700">700</div>
+                    <div class="fw-bg-teal-800">800</div>
+                    <div class="fw-bg-teal-900">900</div>
+                    <div class="fw-bg-teal-A100">A100</div>
+                    <div class="fw-bg-teal-A200">A200</div>
+                    <div class="fw-bg-teal-A400">A400</div>
+                    <div class="fw-bg-teal-A700">A700</div>
+                    <div class="fw-bg-green-50">50</div>
+                    <div class="fw-bg-green-100">100</div>
+                    <div class="fw-bg-green-200">200</div>
+                    <div class="fw-bg-green-300">300</div>
+                    <div class="fw-bg-green-400">400</div>
+                    <div class="fw-bg-green-500">500</div>
+                    <div class="fw-bg-green-600">600</div>
+                    <div class="fw-bg-green-700">700</div>
+                    <div class="fw-bg-green-800">800</div>
+                    <div class="fw-bg-green-900">900</div>
+                    <div class="fw-bg-green-A100">A100</div>
+                    <div class="fw-bg-green-A200">A200</div>
+                    <div class="fw-bg-green-A400">A400</div>
+                    <div class="fw-bg-green-A700">A700</div>
+                    <div class="fw-bg-lightgreen-50">50</div>
+                    <div class="fw-bg-lightgreen-100">100</div>
+                    <div class="fw-bg-lightgreen-200">200</div>
+                    <div class="fw-bg-lightgreen-300">300</div>
+                    <div class="fw-bg-lightgreen-400">400</div>
+                    <div class="fw-bg-lightgreen-500">500</div>
+                    <div class="fw-bg-lightgreen-600">600</div>
+                    <div class="fw-bg-lightgreen-700">700</div>
+                    <div class="fw-bg-lightgreen-800">800</div>
+                    <div class="fw-bg-lightgreen-900">900</div>
+                    <div class="fw-bg-lightgreen-A100">A100</div>
+                    <div class="fw-bg-lightgreen-A200">A200</div>
+                    <div class="fw-bg-lightgreen-A400">A400</div>
+                    <div class="fw-bg-lightgreen-A700">A700</div>
+                    <div class="fw-bg-lime-50">50</div>
+                    <div class="fw-bg-lime-100">100</div>
+                    <div class="fw-bg-lime-200">200</div>
+                    <div class="fw-bg-lime-300">300</div>
+                    <div class="fw-bg-lime-400">400</div>
+                    <div class="fw-bg-lime-500">500</div>
+                    <div class="fw-bg-lime-600">600</div>
+                    <div class="fw-bg-lime-700">700</div>
+                    <div class="fw-bg-lime-800">800</div>
+                    <div class="fw-bg-lime-900">900</div>
+                    <div class="fw-bg-lime-A100">A100</div>
+                    <div class="fw-bg-lime-A200">A200</div>
+                    <div class="fw-bg-lime-A400">A400</div>
+                    <div class="fw-bg-lime-A700">A700</div>
+                    <div class="fw-bg-yellow-50">50</div>
+                    <div class="fw-bg-yellow-100">100</div>
+                    <div class="fw-bg-yellow-200">200</div>
+                    <div class="fw-bg-yellow-300">300</div>
+                    <div class="fw-bg-yellow-400">400</div>
+                    <div class="fw-bg-yellow-500">500</div>
+                    <div class="fw-bg-yellow-600">600</div>
+                    <div class="fw-bg-yellow-700">700</div>
+                    <div class="fw-bg-yellow-800">800</div>
+                    <div class="fw-bg-yellow-900">900</div>
+                    <div class="fw-bg-yellow-A100">A100</div>
+                    <div class="fw-bg-yellow-A200">A200</div>
+                    <div class="fw-bg-yellow-A400">A400</div>
+                    <div class="fw-bg-yellow-A700">A700</div>
+                    <div class="fw-bg-amber-50">50</div>
+                    <div class="fw-bg-amber-100">100</div>
+                    <div class="fw-bg-amber-200">200</div>
+                    <div class="fw-bg-amber-300">300</div>
+                    <div class="fw-bg-amber-400">400</div>
+                    <div class="fw-bg-amber-500">500</div>
+                    <div class="fw-bg-amber-600">600</div>
+                    <div class="fw-bg-amber-700">700</div>
+                    <div class="fw-bg-amber-800">800</div>
+                    <div class="fw-bg-amber-900">900</div>
+                    <div class="fw-bg-amber-A100">A100</div>
+                    <div class="fw-bg-amber-A200">A200</div>
+                    <div class="fw-bg-amber-A400">A400</div>
+                    <div class="fw-bg-amber-A700">A700</div>
+                    <div class="fw-bg-orange-50">50</div>
+                    <div class="fw-bg-orange-100">100</div>
+                    <div class="fw-bg-orange-200">200</div>
+                    <div class="fw-bg-orange-300">300</div>
+                    <div class="fw-bg-orange-400">400</div>
+                    <div class="fw-bg-orange-500">500</div>
+                    <div class="fw-bg-orange-600">600</div>
+                    <div class="fw-bg-orange-700">700</div>
+                    <div class="fw-bg-orange-800">800</div>
+                    <div class="fw-bg-orange-900">900</div>
+                    <div class="fw-bg-orange-A100">A100</div>
+                    <div class="fw-bg-orange-A200">A200</div>
+                    <div class="fw-bg-orange-A400">A400</div>
+                    <div class="fw-bg-orange-A700">A700</div>
+                    <div class="fw-bg-deeporange-50">50</div>
+                    <div class="fw-bg-deeporange-100">100</div>
+                    <div class="fw-bg-deeporange-200">200</div>
+                    <div class="fw-bg-deeporange-300">300</div>
+                    <div class="fw-bg-deeporange-400">400</div>
+                    <div class="fw-bg-deeporange-500">500</div>
+                    <div class="fw-bg-deeporange-600">600</div>
+                    <div class="fw-bg-deeporange-700">700</div>
+                    <div class="fw-bg-deeporange-800">800</div>
+                    <div class="fw-bg-deeporange-900">900</div>
+                    <div class="fw-bg-deeporange-A100">A100</div>
+                    <div class="fw-bg-deeporange-A200">A200</div>
+                    <div class="fw-bg-deeporange-A400">A400</div>
+                    <div class="fw-bg-deeporange-A700">A700</div>
+                    <div class="fw-bg-brown-50">50</div>
+                    <div class="fw-bg-brown-100">100</div>
+                    <div class="fw-bg-brown-200">200</div>
+                    <div class="fw-bg-brown-300">300</div>
+                    <div class="fw-bg-brown-400">400</div>
+                    <div class="fw-bg-brown-500">500</div>
+                    <div class="fw-bg-brown-600">600</div>
+                    <div class="fw-bg-brown-700">700</div>
+                    <div class="fw-bg-brown-800">800</div>
+                    <div class="fw-bg-brown-900">900</div>
+                    <div class="fw-bg-grey-50">50</div>
+                    <div class="fw-bg-grey-100">100</div>
+                    <div class="fw-bg-grey-200">200</div>
+                    <div class="fw-bg-grey-300">300</div>
+                    <div class="fw-bg-grey-400">400</div>
+                    <div class="fw-bg-grey-500">500</div>
+                    <div class="fw-bg-grey-600">600</div>
+                    <div class="fw-bg-grey-700">700</div>
+                    <div class="fw-bg-grey-800">800</div>
+                    <div class="fw-bg-grey-900">900</div>
+                    <div class="fw-bg-bluegrey-50">50</div>
+                    <div class="fw-bg-bluegrey-100">100</div>
+                    <div class="fw-bg-bluegrey-200">200</div>
+                    <div class="fw-bg-bluegrey-300">300</div>
+                    <div class="fw-bg-bluegrey-400">400</div>
+                    <div class="fw-bg-bluegrey-500">500</div>
+                    <div class="fw-bg-bluegrey-600">600</div>
+                    <div class="fw-bg-bluegrey-700">700</div>
+                    <div class="fw-bg-bluegrey-800">800</div>
+                    <div class="fw-bg-bluegrey-900">900</div>
+                    <div class="fw-bg-black-500">500</div>
+                    <div class="fw-bg-white-500">500</div>
+                  </div>
+                </div>
+                <div>
+                  <div class="fw-copy c-elements demo-text fw-example">
+                    <div class="fw-txt-indigo-50">indigo 50 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.</div>
+                    <div class="fw-txt-indigo-100">indigo 100 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.</div>
+                    <div class="fw-txt-indigo-200">indigo 200 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.</div>
+                    <div class="fw-txt-indigo-300">indigo 300 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.</div>
+                    <div class="fw-txt-indigo-400">indigo 400 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.</div>
+                    <div class="fw-txt-indigo-500">indigo 500 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.</div>
+                    <div class="fw-txt-indigo-600">indigo 600 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.</div>
+                    <div class="fw-txt-indigo-700">indigo 700 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.</div>
+                    <div class="fw-txt-indigo-800">indigo 800 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.</div>
+                    <div class="fw-txt-indigo-900">indigo 900 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-element {
+  background: fw-color(deeppurple, 800);
+  color: fw-color(indigo, A100);
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">class=&quot;fw-txt-indigo-A100 fw-bg-deeppurple-900&quot;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;my-element&quot;&gt;Hello!&lt;/span&gt;
+                  </div>
+                  <div class="fw-code scss">.my-element {
+  background: fw-color(deeppurple, 800);
+  color: fw-color(indigo, A100);
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;fw-txt-indigo-A100 fw-bg-deeppurple-900&quot;&gt;Hello!&lt;/span&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-rounding">
+              <h3>Rounded corners</h3>
+              
+              <div class="fw-tabulators"><span>Example</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-example fw-copy c-elements rounding-demo"><span class="fw-ellipse">ellipse</span><span class="fw-round">round</span><span class="fw-rounded">rounded</span><span class="fw-rounded-sm">rounded-sm</span><span class="fw-rounded-md">rounded-md</span><span class="fw-rounded-lg">rounded-lg</span><span class="fw-rounded-xl">rounded-xl</span><span class="round-custom-1">custom-1</span><span class="round-custom-2">custom-2</span>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span><span>Custom</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.rounded-element {
+  border-radius: $fw-rounded-md;
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">class=&quot;fw-rounded-md&quot;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;rounded-element&quot;&gt;Rounded&lt;/span&gt;
+                  </div>
+                  <p>Pick any of border radius from examples below</p>
+                  <div class="fw-code scss">.rounded-element {
+  border-radius: 100%;  // ellipse
+  border-radius: 100em; // round (circular) edges
+  border-radius: $fw-rounded-sm; // small radius
+  border-radius: $fw-rounded-md; // medium radius
+  border-radius: $fw-rounded-lg; // large radius
+  border-radius: $fw-rounded-xl; // extra large radius
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code fw-copy c-elements">&lt;span class=&quot;fw-ellipse&quot;&gt;Rounded&lt;/span&gt;
+&lt;span class=&quot;fw-round&quot;&gt;Rounded&lt;/span&gt;
+&lt;span class=&quot;fw-rounded&quot;&gt;Rounded&lt;/span&gt;
+&lt;span class=&quot;fw-rounded-sm&quot;&gt;Rounded&lt;/span&gt;
+&lt;span class=&quot;fw-rounded-md&quot;&gt;Rounded&lt;/span&gt;
+&lt;span class=&quot;fw-rounded-lg&quot;&gt;Rounded&lt;/span&gt;
+&lt;span class=&quot;fw-rounded-xl&quot;&gt;Rounded&lt;/span&gt;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;custom-rounding&quot;&gt;Custom Rounded&lt;/span&gt;
+
+                  </div>
+                  <div class="fw-code scss">.custom-rounding {
+  // example (custom 1)
+  // value order: top-left, top-right, bottom-right, bottom-left
+  border-radius: $fw-rounded-xl $fw-rounded-sm $fw-rounded-xl $fw-rounded-sm;
+
+  // example (custom 2)
+  border-radius: 50% 50% 0 0; // only upper edges rounded
+}
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div data-name="Layout" class="fw-group">
+            <section class="sec-bar">
+              <h3>Bar</h3>
+              <h5>Layout divided into side sections.<br>Height is always adjusted to fit the items.</h5>
+              <div class="fw-tabulators"><span>Example</span><span>Vertical align</span><span>Selected sides</span><span>Breaking sections</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy bar-demo fw-example">
+                    
+                    <div class="fw-bar">
+                      <div class="fw-bar-center">
+                        <div class="fw-bar-item"><span>center item</span></div>
+                        <div class="fw-bar-item"><span>center item</span></div>
+                      </div>
+                      <div class="fw-bar-left">
+                        <div class="fw-bar-item"><span>left item</span></div>
+                        <div class="fw-bar-item"><span>left item</span></div>
+                      </div>
+                      <div class="fw-bar-right">
+                        <div class="fw-bar-item"><span>right item</span></div>
+                        <div class="fw-bar-item"><span>right item</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fw-resizable fw-copy fw-example bar-demo-without-size demo-mid">
+                    <div class="fw-bar">
+                      <div class="fw-bar-center">
+                        <div class="fw-bar-item fw-size-xxl"><span>center item</span></div>
+                      </div>
+                      <div class="fw-bar-left">
+                        <div class="fw-bar-item fw-size-sm"><span>left item</span></div>
+                      </div>
+                      <div class="fw-bar-right">
+                        <div class="fw-bar-item fw-size-sm"><span>right item</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy fw-example bar-demo-without-size demo-top">
+                    <div class="fw-bar">
+                      <div class="fw-bar-center">
+                        <div class="fw-bar-item fw-size-lg"><span>top</span></div>
+                      </div>
+                      <div class="fw-bar-left">
+                        <div class="fw-bar-item fw-size-xxl"><span>top</span></div>
+                      </div>
+                      <div class="fw-bar-right">
+                        <div class="fw-bar-item fw-size-xs"><span>top</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fw-resizable fw-copy fw-example bar-demo-without-size demo-mid">
+                    <div class="fw-bar">
+                      <div class="fw-bar-center">
+                        <div class="fw-bar-item fw-size-lg"><span>middle</span></div>
+                      </div>
+                      <div class="fw-bar-left">
+                        <div class="fw-bar-item fw-size-xxl"><span>middle</span></div>
+                      </div>
+                      <div class="fw-bar-right">
+                        <div class="fw-bar-item fw-size-xs"><span>middle</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fw-resizable fw-copy fw-example bar-demo-without-size demo-bot">
+                    <div class="fw-bar">
+                      <div class="fw-bar-center">
+                        <div class="fw-bar-item fw-size-lg"><span>bottom</span></div>
+                      </div>
+                      <div class="fw-bar-left">
+                        <div class="fw-bar-item fw-size-xxl"><span>bottom</span></div>
+                      </div>
+                      <div class="fw-bar-right">
+                        <div class="fw-bar-item fw-size-xs"><span>bottom</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p class="fw-container">Remove sides which are not necessary.</p>
+                  <h4>left and right</h4>
+                  <div class="fw-resizable fw-copy fw-example bar-demo demo-mid">
+                    <div class="fw-bar">
+                      <div class="fw-bar-left">
+                        <div class="fw-bar-item"><span>left item</span></div>
+                      </div>
+                      <div class="fw-bar-right">
+                        <div class="fw-bar-item"><span>right item</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <h4>left</h4>
+                  <div class="fw-resizable fw-copy fw-example bar-demo demo-mid">
+                    <div class="fw-bar">
+                      <div class="fw-bar-left">
+                        <div class="fw-bar-item"><span>left item</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <h4>center</h4>
+                  <div class="fw-resizable fw-copy fw-example bar-demo demo-mid">
+                    <div class="fw-bar">
+                      <div class="fw-bar-center">
+                        <div class="fw-bar-item"><span>center item</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <h4>right</h4>
+                  <div class="fw-resizable fw-copy fw-example bar-demo demo-mid">
+                    <div class="fw-bar">
+                      <div class="fw-bar-right">
+                        <div class="fw-bar-item"><span>right item</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy fw-example bar-demo demo-mid">
+                    <div class="fw-bar">
+                      <div class="fw-bar-center fw-bar-break">
+                        <div class="fw-bar-item"><span>center with break</span></div>
+                      </div>
+                      <div class="fw-bar-left">
+                        <div class="fw-bar-item"><span>left item</span></div>
+                      </div>
+                      <div class="fw-bar-right">
+                        <div class="fw-bar-item"><span>right item</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-bar {
+  @include fw-bar;
+  .my-bar-left,
+  .my-bar-center,
+  .my-bar-right {
+    @include fw-bar-side;
+  }
+  .my-bar-left {
+    text-align: left;
+  }
+  .my-bar-center {
+    text-align: center;
+  }
+  .my-bar-right {
+    text-align: right;
+  }
+  .my-bar-item {
+    @include fw-bar-item;
+  }
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-bar&quot;&gt;
+  &lt;div class=&quot;fw-bar-center&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-bar-left&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-bar-right&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;my-bar&quot;&gt;
+  &lt;div class=&quot;my-bar-center&quot;&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;my-bar-left&quot;&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;my-bar-right&quot;&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;my-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">.my-bar {
+  @include fw-bar;
+  .my-bar-left,
+  .my-bar-center,
+  .my-bar-right {
+    @include fw-bar-side;
+  }
+  .my-bar-left {
+    text-align: left;
+  }
+  .my-bar-center {
+    text-align: center;
+  }
+  .my-bar-right {
+    text-align: right;
+  }
+  .my-bar-item {
+    @include fw-bar-item;
+  }
+
+  // optional - break sections for smaller devices
+  @include fw-media(md){
+    .my-bar-left,
+    .my-bar-center,
+    .my-bar-right {
+      display: block;
+      text-align: left;
+    }
+  }
+
+  // optional - vertical align items
+  .my-bar-left {
+    &amp;, &amp;.my-bar-item {
+      vetical-align: top; // top | middle | bottom
+    }
+  }
+
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;fw-bar&quot;&gt;
+  &lt;div class=&quot;fw-bar-center&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;center item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-bar-left&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;left item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-bar-right&quot;&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;fw-bar-item&quot;&gt;&lt;span&gt;right item&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-fillSpace">
+              <h3>Fill space</h3>
+              <h5>Create container which fills remaining width After or Before element.</h5>
+              <div class="fw-tabulators"><span>Fill space demo</span><span>Demo without fill space</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <p>Please note this demo uses no Javascript.</p>
+                  <div class="fw-example fw-copy demo-fillspace">
+                    <div class="fw-space">
+                      <div class="fw-space-left">
+                        <div class="demo-block-left">before fill space</div>
+                      </div>
+                      <div class="fw-space-right">
+                        <div class="demo-block-right">after fill space</div>
+                      </div>
+                      <div class="fw-space-fill">
+                        <p class="fw-text-sm"><b>This block wil always fill remaining space between elements.</b> Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.</p>
+                      </div>
+                    </div>
+                  </div><br><br>
+                  <div class="fw-resizable fw-example fw-copy demo-fillspace demo-space-2">
+                    <div class="fw-space">
+                      <div class="fw-space-left">
+                        <div class="demo-block-left">before fill space</div>
+                      </div>
+                      <div class="fw-space-fill">
+                        <p>This input text will stretch to remaining space.</p>
+                        <input type="text" placeholder="input text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-example fw-copy demo-fillspace demo-space-2">
+                    <div class="demo-block-left">before content</div>
+                    <p>This input text will stretch to remaining space.</p>
+                    <input type="text" placeholder="input text">
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-space {
+  @include fw-space;
+  .my-space-left { @include fw-space-left; }
+  .my-space-right { @include fw-space-right; }
+  .my-space-fill { @include fw-space-fill; }
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-space&quot;&gt;
+  &lt;div class=&quot;fw-space-left&quot;&gt;left content&lt;/div&gt;
+  &lt;div class=&quot;fw-space-right&quot;&gt;right content&lt;/div&gt;
+  &lt;div class=&quot;fw-space-fill&quot;&gt;fill space&lt;/div&gt;
+&lt;/div&gt;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;my-space&quot;&gt;
+  &lt;div class=&quot;my-space-left&quot;&gt;left content&lt;/div&gt;
+  &lt;div class=&quot;my-space-right&quot;&gt;right content&lt;/div&gt;
+  &lt;div class=&quot;my-space-fill&quot;&gt;fill space&lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">.my-space {
+  @include fw-space;
+  .my-space-left { @include fw-space-left; }
+  .my-space-right { @include fw-space-right; }
+  .my-space-fill { @include fw-space-fill; }
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;fw-space&quot;&gt;
+  &lt;div class=&quot;fw-space-left&quot;&gt;left content&lt;/div&gt;
+  &lt;div class=&quot;fw-space-right&quot;&gt;right content&lt;/div&gt;
+  &lt;div class=&quot;fw-space-fill&quot;&gt;fill space&lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-gridSystem">
+              <h3>Grid</h3>
+              <h5>Slice block into rows, then into responsive columns.<br>Very useful for building basement for layouts.</h5>
+              <div class="fw-tabulators"><span>Grid demo</span><span>Responsive grid</span><span>Responsive grid & tiles</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <div class="fw-resizable fw-copy c-elements fw-example">
+                    <div class="fw-grid">
+                      <div class="fw-grid-row">
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                        <div class="fw-col-1">col-1</div>
+                      </div>
+                      <div class="fw-grid-row">
+                        <div class="fw-col-2">col-2</div>
+                        <div class="fw-col-2">col-2</div>
+                        <div class="fw-col-2">col-2</div>
+                        <div class="fw-col-2">col-2</div>
+                        <div class="fw-col-2">col-2</div>
+                        <div class="fw-col-2">col-2</div>
+                      </div>
+                      <div class="fw-grid-row">
+                        <div class="fw-col-3">col-3</div>
+                        <div class="fw-col-3">col-3</div>
+                        <div class="fw-col-3">col-3</div>
+                        <div class="fw-col-3">col-3</div>
+                      </div>
+                      <div class="fw-grid-row">
+                        <div class="fw-col-4">col-4</div>
+                        <div class="fw-col-4">col-4</div>
+                        <div class="fw-col-4">col-4</div>
+                      </div>
+                      <div class="fw-grid-row">
+                        <div class="fw-col-6">col-6</div>
+                        <div class="fw-col-6">col-6</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p class="fw-container">Resize the demo</p>
+                  <div class="fw-resizable fw-copy">
+                    <iframe src="../demos/responsive_grid_demo.html"></iframe>
+                  </div>
+                </div>
+                <div>
+                  <p class="fw-container">Resize the demo</p>
+                  <div class="fw-resizable fw-copy">
+                    <iframe src="../demos/responsive_grid_tiles_demo.html"></iframe>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">$my-grid: (
+  columns: 12,
+  gridWidth: 100%
+);
+.my-grid {
+  @include fw-generate-grid($my-grid);
+}
+.my-grid-row {
+  @include fw-grid-row($my-grid);
+}
+.my-grid-col {
+  @include fw-column-base($my-grid);
+}
+.my-col-6 {
+  @include fw-generate-column(6, $my-grid);
+}
+.my-col-12 {
+  @include fw-generate-column(12, $my-grid);
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-grid&quot;&gt;
+  &lt;div class=&quot;fw-grid-row&quot;&gt;
+    &lt;div class=&quot;fw-col-6&quot;&gt;col-6&lt;/div&gt;
+    &lt;div class=&quot;fw-col-6&quot;&gt;col-6&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-grid-row&quot;&gt;
+    &lt;div class=&quot;fw-col-4&quot;&gt;col-4&lt;/div&gt;
+    &lt;div class=&quot;fw-col-4&quot;&gt;col-4&lt;/div&gt;
+    &lt;div class=&quot;fw-col-4&quot;&gt;col-4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;my-grid&quot;&gt;
+  &lt;div class=&quot;my-grid-row&quot;&gt;
+    &lt;div class=&quot;my-grid-col my-col-6 my-col-md-12&quot;&gt;col-6&lt;/div&gt;
+    &lt;div class=&quot;my-grid-col my-col-6 my-col-md-12&quot;&gt;col-6&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;my-grid-row&quot;&gt;
+    &lt;div class=&quot;my-grid-col my-col-4 my-col-md-6&quot;&gt;col-4&lt;/div&gt;
+    &lt;div class=&quot;my-grid-col my-col-4 my-col-md-6&quot;&gt;col-4&lt;/div&gt;
+    &lt;div class=&quot;my-grid-col my-col-4 my-col-md-6&quot;&gt;col-4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">// define default grid
+$my-grid: (
+  // grid size (pick 2 of 3 arguments below, third argument will be calculated):
+  columns: 12,           // I   [full number]
+  gridWidth: 100%,       // II  [px, %, 4/5]
+  // columnWidth: 25%,   // III [px, %, 4/5]
+
+  // additional options (not required):
+  spacingX: 10px, // [px]
+  spacingY: 10px  // [px]
+);
+
+// generate style for default grid
+.my-grid {
+  @include fw-generate-grid($my-grid);
+}
+
+// generate style for default rows
+.my-grid-row {
+  @include fw-grid-row($my-grid);
+}
+
+// generate base style for columns
+.my-grid-col {
+  @include fw-column-base($my-grid);
+}
+
+// single column sizing
+.my-col {
+  @include fw-generate-column(6, $my-grid); // (6/12 = 50%)
+}
+
+// or multi column sizing
+.my-col {
+  // generate my-col-1 ... 12
+  @for $col from 1 through map-get($my-grid, columns) {
+    &amp;-&#35;{$col} {
+      @include fw-generate-column($col, $my-grid);
+    }
+  }
+}
+
+
+
+// optional
+// define grid for medium devices
+$my-grid-md: (
+  columns: 12,           // [full number]
+  gridWidth: 100%,       // [px, %, 4/5]
+  spacingX: 0, // [px]
+  spacingY: 0  // [px]
+);
+
+@include fw-media(md){
+
+  // generate my-col-md-1 ... 12
+  .my-col-md {
+    @for $col from 1 through map-get($my-grid-md, columns) {
+      &amp;-&#35;{$col} {
+        @include fw-generate-column($col, $my-grid-md);
+      }
+    }
+  }
+
+  // generate base style for medium columns
+  .my-grid-col { @include fw-column-base($my-grid-md); }
+
+  // generate style for grid on medium devices
+  .my-grid { @include fw-generate-grid($my-grid-md); }
+
+  // generate style for row on medium devices
+  .my-grid-row { @include fw-grid-row($my-grid-md); }
+}
+
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <p>
+                    <b>Column sizing classes:</b><br>
+                    <b>default</b> fw-col-1 ... 12 (1 = 1/12), (12 = 12/12 = 100%)
+                  </p>
+                  <p>
+                    <b>Column size for smaller devices:</b><br>
+                    <b>extra large</b> fw-col-xl-1 ... 12<br>
+                    <b>large</b> fw-col-lg-1 ... 12<br>
+                    <b>medium</b> fw-col-md-1 ... 12<br>
+                    <b>small</b> fw-col-sm-1 ... 12<br>
+                    <b>extra small</b> fw-col-xs-1 ... 12<br>
+                  </p>
+                  <div class="fw-code">&lt;div class=&quot;fw-grid&quot;&gt;
+  &lt;div class=&quot;fw-grid-row&quot;&gt;
+    &lt;div class=&quot;fw-col-6 fw-col-md-12&quot;&gt;col&lt;/div&gt;
+    &lt;div class=&quot;fw-col-6 fw-col-md-12&quot;&gt;col&lt;/div&gt;
+    &lt;div class=&quot;fw-col-6 fw-col-md-12&quot;&gt;col&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;fw-grid-row&quot;&gt;
+    &lt;div class=&quot;fw-col-4 fw-col-md-6 fw-col-sm-12&quot;&gt;col&lt;/div&gt;
+    &lt;div class=&quot;fw-col-4 fw-col-md-6 fw-col-sm-12&quot;&gt;col&lt;/div&gt;
+    &lt;div class=&quot;fw-col-4 fw-col-md-6 fw-col-sm-12&quot;&gt;col&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-justifiedBar">
+              <h3>Justified bar</h3>
+              <h5>Use text justify to create bar of equal-spaced elements.</h5>
+              <div class="fw-tabulators"><span>Example</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy c-elements demo-justbar fw-example">
+                    <div class="fw-justify">
+                      <div class="fw-just-item fw-bg-bluegrey-50">item 1</div>
+                      <div class="fw-just-item fw-bg-bluegrey-50">item 2</div>
+                      <div class="fw-just-item fw-bg-bluegrey-50">item 3</div>
+                      <div class="fw-just-item fw-bg-bluegrey-50">item 4</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-justify {
+   @include fw-justified;
+  .my-just-item {
+    @include fw-just-item;
+    vertical-align: middle;
+  }
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-justify&quot;&gt;
+  &lt;div class=&quot;fw-just-item&quot;&gt;item 1&lt;/div&gt;
+  &lt;div class=&quot;fw-just-item&quot;&gt;item 2&lt;/div&gt;
+  &lt;div class=&quot;fw-just-item&quot;&gt;item 3&lt;/div&gt;
+&lt;/div&gt;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;my-justify&quot;&gt;
+  &lt;div class=&quot;my-just-item&quot;&gt;item 1&lt;/div&gt;
+  &lt;div class=&quot;my-just-item&quot;&gt;item 2&lt;/div&gt;
+  &lt;div class=&quot;my-just-item&quot;&gt;item 3&lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">.my-justify {
+   @include fw-justified;
+  .my-just-item {
+    @include fw-just-item;
+    vertical-align: middle;
+  }
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;fw-justify&quot;&gt;
+  &lt;div class=&quot;fw-just-item&quot;&gt;item 1&lt;/div&gt;
+  &lt;div class=&quot;fw-just-item&quot;&gt;item 2&lt;/div&gt;
+  &lt;div class=&quot;fw-just-item&quot;&gt;item 3&lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-list">
+              <h3>List</h3>
+              <h5>Convert elements to list of items with display block.</h5>
+              <div class="fw-tabulators"><span>Demo with list</span><span>Demo without list</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container demo-list">
+                  <div class="fw-resizable fw-copy fw-example">
+                    <div class="fw-list"><a href="#" class="fw-list-item">item 1</a><a href="#" class="fw-list-item">item 2</a><a href="#" class="fw-list-item">item 3</a><a href="#" class="fw-list-item">item 4</a></div>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy fw-example"><a href="#">item 1</a><a href="#">item 2</a><a href="#">item 3</a><a href="#">item 4</a></div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-list {
+  @include fw-list;
+  .my-list-item {
+    @include fw-list-item;
+  }
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-list&quot;&gt;
+  &lt;span class=&quot;fw-list-item&quot;&gt;item 1&lt;/span&gt;
+  &lt;span class=&quot;fw-list-item&quot;&gt;item 2&lt;/span&gt;
+  &lt;span class=&quot;fw-list-item&quot;&gt;item 3&lt;/span&gt;
+  &lt;span class=&quot;fw-list-item&quot;&gt;item 4&lt;/span&gt;
+&lt;/div&gt;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;my-list&quot;&gt;
+  &lt;span class=&quot;my-list-item&quot;&gt;item 1&lt;/span&gt;
+  &lt;span class=&quot;my-list-item&quot;&gt;item 2&lt;/span&gt;
+  &lt;span class=&quot;my-list-item&quot;&gt;item 3&lt;/span&gt;
+  &lt;span class=&quot;my-list-item&quot;&gt;item 4&lt;/span&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">.my-list {
+  @include fw-list;
+  .my-list-item {
+    @include fw-list-item;
+  }
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;fw-list&quot;&gt;
+  &lt;span class=&quot;fw-list-item&quot;&gt;item 1&lt;/span&gt;
+  &lt;span class=&quot;fw-list-item&quot;&gt;item 2&lt;/span&gt;
+  &lt;span class=&quot;fw-list-item&quot;&gt;item 3&lt;/span&gt;
+  &lt;span class=&quot;fw-list-item&quot;&gt;item 4&lt;/span&gt;
+&lt;/div&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-pile">
+              <h3>Pile of items</h3>
+              <div class="fw-tabulators"><span>Example</span><span>Vertical & Horizontal align</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <div class="fw-copy fw-example demo-pile">
+                    <div class="fw-pile line-top-bottom">
+                      <div class="fw-pile-item fourth"><span>pile item</span></div>
+                      <div class="fw-pile-item third"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item first"><span>pile item</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4>bottom</h4>
+                  <div class="fw-copy fw-example demo-pile">
+                    <div class="fw-pile fw-pile-bottom line-bottom">
+                      <div class="fw-pile-item first"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item third"><span>pile item</span></div>
+                      <div class="fw-pile-item fourth"><span>pile item</span></div>
+                    </div>
+                  </div>
+                  <h4>middle</h4>
+                  <div class="fw-copy fw-example demo-pile">
+                    <div class="fw-pile fw-pile-middle line-top-bottom">
+                      <div class="fw-pile-item first"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item third"><span>pile item</span></div>
+                      <div class="fw-pile-item fourth"><span>pile item</span></div>
+                    </div>
+                  </div>
+                  <h4>top</h4>
+                  <div class="fw-copy fw-example demo-pile">
+                    <div class="fw-pile fw-pile-top line-top">
+                      <div class="fw-pile-item first"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item third"><span>pile item</span></div>
+                      <div class="fw-pile-item fourth"><span>pile item</span></div>
+                    </div>
+                  </div>
+                  <h4>left</h4>
+                  <div class="fw-copy fw-example demo-pile">
+                    <div class="fw-pile fw-pile-left line-left">
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                    </div>
+                  </div>
+                  <h4>center</h4>
+                  <div class="fw-copy fw-example demo-pile">
+                    <div class="fw-pile fw-pile-center line-left-right">
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                    </div>
+                  </div>
+                  <h4>right</h4>
+                  <div class="fw-copy fw-example demo-pile">
+                    <div class="fw-pile fw-pile-right line-right">
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                      <div class="fw-pile-item second"><span>pile item</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy c-elements">
+                    <p>Paragraph pile</p>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-pile {
+  @include fw-pile;
+  .my-pile-item {
+    @include fw-pile-item;
+  }
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-pile&quot;&gt;
+  &lt;div class=&quot;fw-pile-item&quot;&gt;&lt;span&gt;pile item&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;fw-pile-item&quot;&gt;&lt;span&gt;pile item&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;my-pile&quot;&gt;
+  &lt;div class=&quot;my-pile-item&quot;&gt;&lt;span&gt;pile item&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;my-pile-item&quot;&gt;&lt;span&gt;pile item&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">.my-pile {
+  @include fw-pile;
+  text-align: right; // optional: left | center | right
+  .my-pile-item {
+    @include fw-pile-item;
+    vertical-align: middle; // optional: top | middle | bottom
+  }
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;fw-pile&quot;&gt;
+  &lt;div class=&quot;fw-pile-item&quot;&gt;&lt;span&gt;pile item&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;fw-pile-item&quot;&gt;&lt;span&gt;pile item&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- vertical align --&gt;
+&lt;div class=&quot;fw-pile fw-pile-top&quot;&gt;
+&lt;div class=&quot;fw-pile fw-pile-middle&quot;&gt;
+&lt;div class=&quot;fw-pile fw-pile-bottom&quot;&gt;
+
+&lt;!-- horizontal align --&gt;
+&lt;div class=&quot;fw-pile fw-pile-left&quot;&gt;
+&lt;div class=&quot;fw-pile fw-pile-center&quot;&gt;
+&lt;div class=&quot;fw-pile fw-pile-right&quot;&gt;
+
+&lt;!-- vertical &amp; horizontal align --&gt;
+&lt;div class=&quot;fw-pile fw-pile-center fw-pile-middle&quot;&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-position">
+              <h3>Position</h3>
+              <h5>Set position of the element relatively to it's parent.<br>Element may be placed in the corner, centered or on the edge of parent.</h5>
+              <div class="fw-tabulators"><span>Inside</span><span>On edge</span><span>Outside</span><span>Custom</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <h4>inside:</h4>
+                  <div class="fw-resizable fw-example fw-copy demo-position fw-container">
+                    <div class="fw-relative">
+                      <div class="fw-pos-top-left">top-left</div>
+                      <div class="fw-pos-left">left</div>
+                      <div class="fw-pos-bottom-left">bottom-left</div>
+                      <div class="fw-pos-top">top</div>
+                      <div class="fw-pos-center">center</div>
+                      <div class="fw-pos-bottom">bottom</div>
+                      <div class="fw-pos-top-right">top-right</div>
+                      <div class="fw-pos-right">right</div>
+                      <div class="fw-pos-bottom-right">bottom-right</div>
+                    </div>
+                  </div>
+                  <div class="fw-separator"><span>Positions</span>
+                    <p class="fw-container">
+                      top-left,
+                      left,
+                      bottom-left,
+                      top,
+                      center,
+                      bottom,
+                      top-right,
+                      right,
+                      bottom-right
+                    </p>
+                  </div>
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <p class="fw-container">Please note that positioning always require "position: relative" on parent element.</p>
+                  <div class="fw-code">&lt;div class=&quot;my-element&quot;&gt;
+  &lt;div class=&quot;positioned-item&quot;&gt;item&lt;/item&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">.my-element {
+  position: relative;
+  .positioned-item {
+    @include fw-position(top-right);
+  }
+}
+
+
+
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-relative&quot;&gt;
+  &lt;div class=&quot;fw-pos-top-right&quot;&gt;item&lt;/item&gt;
+&lt;/div&gt;
+
+
+                  </div>
+                </div>
+                <div>
+                  <h4>on edge:</h4>
+                  <div class="fw-resizable fw-example fw-copy demo-position fw-container">
+                    <div class="fw-relative">
+                      <div class="fw-pos-top-left-edge">top-left-edge</div>
+                      <div class="fw-pos-left-edge">left-edge</div>
+                      <div class="fw-pos-bottom-left-edge">bottom-left-edge</div>
+                      <div class="fw-pos-top-edge">top-edge</div>
+                      <div class="fw-pos-bottom-edge">bottom-edge</div>
+                      <div class="fw-pos-top-right-edge">top-right-edge</div>
+                      <div class="fw-pos-right-edge">right-edge</div>
+                      <div class="fw-pos-bottom-right-edge">bottom-right-edge</div>
+                    </div>
+                  </div>
+                  <div class="fw-separator"><span>Positions</span>
+                    <p class="fw-container">
+                      top-left-edge,
+                      left-edge,
+                      bottom-left-edge,
+                      top-edge,
+                      bottom-edge,
+                      top-right-edge,
+                      right-edge,
+                      bottom-right-edge
+                    </p>
+                  </div>
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;my-element&quot;&gt;
+  &lt;div class=&quot;positioned-item&quot;&gt;item&lt;/item&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">.my-element {
+  position: relative;
+  .positioned-item {
+    @include fw-position(top-right, edge);
+  }
+}
+
+
+
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-relative&quot;&gt;
+  &lt;div class=&quot;fw-pos-top-right-edge&quot;&gt;item&lt;/item&gt;
+&lt;/div&gt;
+
+                  </div>
+                </div>
+                <div>
+                  <h4>outside:</h4>
+                  <div class="fw-resizable fw-example fw-copy demo-position fw-container">
+                    <div class="fw-relative">
+                      <div class="fw-pos-top-left-out">top-left-out</div>
+                      <div class="fw-pos-left-out">left-out</div>
+                      <div class="fw-pos-bottom-left-out">bottom-left-out</div>
+                      <div class="fw-pos-top-out">top-out</div>
+                      <div class="fw-pos-bottom-out">bottom-out</div>
+                      <div class="fw-pos-top-right-out">top-right-out</div>
+                      <div class="fw-pos-right-out">right-out</div>
+                      <div class="fw-pos-bottom-right-out">bottom-right-out</div>
+                    </div>
+                  </div><br>
+                  <div class="fw-separator"><span>Positions</span>
+                    <p class="fw-container">
+                      top-left-out,
+                      left-out,
+                      bottom-left-out,
+                      top-out,
+                      bottom-out,
+                      top-right-out,
+                      right-out,
+                      bottom-right-out
+                    </p>
+                  </div>
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;my-element&quot;&gt;
+  &lt;div class=&quot;positioned-item&quot;&gt;item&lt;/item&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">.my-element {
+  position: relative;
+  .positioned-item {
+    @include fw-position(top-right, out);
+  }
+}
+
+
+
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-relative&quot;&gt;
+  &lt;div class=&quot;fw-pos-top-right-out&quot;&gt;item&lt;/item&gt;
+&lt;/div&gt;
+
+                  </div>
+                </div>
+                <div>
+                  <h4>custom</h4>
+                  <p class="fw-container">Create custom offset of positioned item by using css <b>translate X and Y</b>.</p>
+                  <div class="fw-separator"><span>Example</span></div>
+                  <div class="fw-resizable fw-example fw-copy demo-position fw-container c-visible">
+                    <div class="fw-relative">
+                      <div style="transform: translateX(-50%) translateY(100%); -webkit-transform: translateX(-50%) translateY(100%)" class="fw-pos-top-right">Custom offset</div>
+                    </div>
+                  </div>
+                  <p class="fw-container">This will move item <b>50%</b> to the <b>left</b> and <b>100%</b> <b>from top</b> (of it's own width and height) from <b>top-right</b> position.<br> You can customize all positions listed in "Inside" Tab.</p>
+                  <div class="fw-separator"><span>or Semantic</span></div>
+                  <div class="fw-code scss">.my-element {
+  position: relative;
+  .positioned-item {
+    @include fw-position(top-right);
+    transform: translateX(-50%) translateY(100%);
+    -webkit-transform: translateX(-50%) translateY(100%);
+  }
+}
+                  </div>
+                  <p class="fw-container">
+                    Please note that for old browsers you may also include prefixed translations such as:<br>
+                    <b>-webkit-</b>transform: ... (Chrome, newer versions of Opera.)<br>
+                    <b>-moz-</b>transform: ... (Firefox)<br>
+                    <b>-o-</b>transform: ... (Old versions of Opera)<br>
+                    <b>-ms-</b>transform: ... (Internet Explorer)
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="sec-table">
+              <h3>Table</h3>
+              <h5>Use table rows and columns to build equal height blocks,<br>present data or vertically align content.</h5>
+              <div class="fw-tabulators"><span>Table demo</span><span>Vertical align content</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <h4>simple table</h4>
+                  <div class="fw-resizable fw-copy c-elements demo-tables fw-example">
+                    <div class="fw-table">
+                      <div class="fw-table-row">
+                        <div class="fw-table-col">column</div>
+                        <div class="fw-table-col">column</div>
+                        <div class="fw-table-col">column</div>
+                      </div>
+                    </div>
+                  </div>
+                  <h4>nested tables</h4>
+                  <div class="fw-resizable fw-copy c-elements demo-tables fw-example">
+                    <div class="fw-table">
+                      <div class="fw-table-row">
+                        <div class="fw-table">
+                          <div class="fw-table-row">
+                            <div class="fw-table-col">column</div>
+                            <div class="fw-table-col">column</div>
+                            <div class="fw-table-col">column</div>
+                            <div class="fw-table-col">column</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="fw-table-row">
+                        <div class="fw-table">
+                          <div class="fw-table-row">
+                            <div class="fw-table-col">column</div>
+                            <div class="fw-table-col">column</div>
+                            <div class="fw-table-col">column</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="fw-table-row">
+                        <div class="fw-table">
+                          <div class="fw-table-row">
+                            <div class="fw-table-col">column</div>
+                            <div class="fw-table-col">column</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="fw-resizable fw-copy c-elements demo-tables fw-example demo-vtable">
+                    <div class="fw-table">
+                      <div class="fw-table-row">
+                        <div class="fw-table-col fw-table-top">content top</div>
+                        <div class="fw-table-col fw-table-middle">content middle</div>
+                        <div class="fw-table-col fw-table-bottom">content bottom</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="fw-resizable fw-copy c-elements">
+                    <p>Paragraph table</p>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span><span>Vertical align</span><span>Nesting tables</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-table {
+  @include fw-table;
+}
+.my-table-row {
+  @include fw-table-row;
+}
+.my-table-col {
+  @include fw-table-column;
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">&lt;div class=&quot;fw-table&quot;&gt;
+  &lt;div class=&quot;fw-table-row&quot;&gt;
+    &lt;div class=&quot;fw-table-col&quot;&gt;column&lt;/div&gt;
+    &lt;div class=&quot;fw-table-col&quot;&gt;column&lt;/div&gt;
+    &lt;div class=&quot;fw-table-col&quot;&gt;column&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;my-table&quot;&gt;
+  &lt;div class=&quot;my-table-row&quot;&gt;
+    &lt;div class=&quot;my-table-col&quot;&gt;column&lt;/div&gt;
+    &lt;div class=&quot;my-table-col&quot;&gt;column&lt;/div&gt;
+    &lt;div class=&quot;my-table-col&quot;&gt;column&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code scss">.my-table {
+  @include fw-table;
+}
+.my-table-row {
+  @include fw-table-row;
+}
+.my-table-col {
+  @include fw-table-column;
+
+  // optional:
+  vertical-align: middle; // top | middle | bottom
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;fw-table&quot;&gt;
+  &lt;div class=&quot;fw-table-row&quot;&gt;
+    &lt;div class=&quot;fw-table-col&quot;&gt;column&lt;/div&gt;
+    &lt;div class=&quot;fw-table-col&quot;&gt;column&lt;/div&gt;
+    &lt;div class=&quot;fw-table-col&quot;&gt;column&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <h4>Classic align</h4>
+                  <div class="fw-code">class=&quot;fw-table-col fw-table-top&quot;
+class=&quot;fw-table-col fw-table-middle&quot;
+class=&quot;fw-table-col fw-table-bottom&quot;
+
+                  </div>
+                  <h4>Semantic align</h4>
+                  <div class="fw-code">.my-table-col {
+  @include fw-table-column;
+  vertical-align: middle; // top | middle | bottom
+}
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">// first table
+&lt;div class=&quot;fw-table&quot;&gt;
+  &lt;div class=&quot;fw-table-row&quot;&gt;
+    &lt;div class=&quot;fw-table-col&quot;&gt;
+
+      // nested table
+      &lt;div class=&quot;fw-table&quot;&gt;
+        &lt;div class=&quot;fw-table-row&quot;&gt;
+          &lt;div class=&quot;fw-table-col&quot;&gt;column&lt;/div&gt;
+          &lt;div class=&quot;fw-table-col&quot;&gt;column&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;fw-table-row&quot;&gt;
+          &lt;div class=&quot;fw-table-col&quot;&gt;column&lt;/div&gt;
+          &lt;div class=&quot;fw-table-col&quot;&gt;column&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+                  </div>
+                  <p>Each table has to be nested in following pattern: <b>table</b> > <b>row</b> > <b>column</b> > <b>table</b> > <b>row</b> ...<br>Browsers such as Chrome and Firefox work properly with simpler: <b>table</b> > <b>column</b> > <b>table</b> > <b>column</b> ... patterns, but since Internet Explorer(10-) has problems inheriting heights, it's better to use w3c specified <b>table</b> > <b>row</b> > <b>column</b> pattern.</p>
+                  <p>Please not that css has no "colspan" property. Each row has to contain same number of columns, unless you nest another table inside a column.</p>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div data-name="Helpers" class="fw-group">
+            <section>
+              <h3>Clearfix</h3>
+              <h5>Restore height to container with floated elements.</h5>
+              <div class="fw-tabulators"><span>Demo with clearfix</span><span>Demo without clearfix</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-example fw-copy demo-clearfix">
+                    <div class="container clearfixed">
+                      <div>floated element</div>
+                      <div>floated element</div>
+                      <div>floated element</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-example fw-copy demo-clearfix">
+                    <div class="container">
+                      <div>floated element</div>
+                      <div>floated element</div>
+                      <div>floated element</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">@include fw-clearfix;
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">class=&quot;fw-clearfix&quot;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;my-container&quot;&gt;
+  &lt;div&gt;floated element&lt;/div&gt;
+  &lt;div&gt;floated element&lt;/div&gt;
+  &lt;div&gt;floated element&lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                  <div class="fw-code">my-container {
+  @include fw-clearfix;
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;fw-clearfix&quot;&gt;
+  &lt;div&gt;floated element&lt;/div&gt;
+  &lt;div&gt;floated element&lt;/div&gt;
+  &lt;div&gt;floated element&lt;/div&gt;
+&lt;/div&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-display">
+              <h3>Display</h3>
+              <h5>Change element's display property.</h5>
+              <div class="fw-tabulators"><span>Example</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <div class="fw-resizable fw-example fw-copy c-elements demo-display">
+                    <div class="fw-display-inline">inline</div>
+                    <div class="fw-display-block">block</div>
+                    <div class="fw-display-inline-block"> inline-block</div>
+                    <div class="fw-display-flex">flex</div>
+                    <div class="fw-display-inline-flex">inline-flex<br></div>
+                    <div class="fw-display-inline-table">inline-table</div>
+                    <div class="fw-display-list-item">list-item</div>
+                    <div class="fw-display-table">table</div>
+                    <div class="fw-display-table-caption">table-caption</div>
+                    <div class="fw-display-table-column-group">table-column-group</div>
+                    <div class="fw-display-table-header-group">table-header-group</div>
+                    <div class="fw-display-table-footer-group">table-footer-group</div>
+                    <div class="fw-display-table-row-group">table-row-group</div>
+                    <div class="fw-display-table-cell">table-cell</div>
+                    <div class="fw-display-table-column">table-column</div>
+                    <div class="fw-display-table-row">table-row</div>
+                    <div class="fw-display-none">none</div>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-element {
+  display: inline-block;
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">class=&quot;fw-display-inline-block&quot;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;span class=&quot;display-inline&quot;&gt;Inline block element&lt;/span&gt;
+                  </div>
+                  <div class="fw-code scss">.display-inline {
+  display: inline;
+}
+.display-block {
+  display: block;
+}
+.display-inline-block  {
+  display: inline-block ;
+}
+.display-flex {
+  display: flex;
+}
+.display-inline-flex {
+  display: inline-flex;
+}
+.display-inline-table {
+  display: inline-table;
+}
+.display-list-item {
+  display: list-item;
+}
+.display-table {
+  display: table;
+}
+.display-table-caption {
+  display: table-caption;
+}
+.display-table-column-group {
+  display: table-column-group;
+}
+.display-table-header-group {
+  display: table-header-group;
+}
+.display-table-footer-group {
+  display: table-footer-group;
+}
+.display-table-row-group {
+  display: table-row-group;
+}
+.display-table-cell {
+  display: table-cell;
+}
+.display-table-column {
+  display: table-column;
+}
+.display-table-row {
+  display: table-row;
+}
+.display-none {
+  display: none;
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;div class=&quot;fw-display-inline&quot;&gt;inline&lt;/div&gt;
+&lt;div class=&quot;fw-display-block&quot;&gt;block&lt;/div&gt;
+&lt;div class=&quot;fw-display-inline-block&quot;&gt;inline-block&lt;/div&gt;
+&lt;div class=&quot;fw-display-flex&quot;&gt;flex&lt;/div&gt;
+&lt;div class=&quot;fw-display-inline-flex&quot;&gt;inline-flex&lt;br&gt;&lt;/div&gt;
+&lt;div class=&quot;fw-display-inline-table&quot;&gt;inline-table&lt;/div&gt;
+&lt;div class=&quot;fw-display-list-item&quot;&gt;list-item&lt;/div&gt;
+&lt;div class=&quot;fw-display-table&quot;&gt;table&lt;/div&gt;
+&lt;div class=&quot;fw-display-table-caption&quot;&gt;table-caption&lt;/div&gt;
+&lt;div class=&quot;fw-display-table-column-group&quot;&gt;table-column-group&lt;/div&gt;
+&lt;div class=&quot;fw-display-table-header-group&quot;&gt;table-header-group&lt;/div&gt;
+&lt;div class=&quot;fw-display-table-footer-group&quot;&gt;table-footer-group&lt;/div&gt;
+&lt;div class=&quot;fw-display-table-row-group&quot;&gt;table-row-group&lt;/div&gt;
+&lt;div class=&quot;fw-display-table-cell&quot;&gt;table-cell&lt;/div&gt;
+&lt;div class=&quot;fw-display-table-column&quot;&gt;table-column&lt;/div&gt;
+&lt;div class=&quot;fw-display-table-row&quot;&gt;table-row&lt;/div&gt;
+&lt;div class=&quot;fw-display-none&quot;&gt;none&lt;/div&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="sec-ellipsis">
+              <h3>Ellipsis</h3>
+              <h5>Show three dots at the end of the line if paragraph is too long.</h5>
+              <div class="fw-tabulators"><span>Demo with ellipsis</span><span>Demo without ellipsis</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy c-elements demo-ellipsis">
+                    <p class="fw-ellipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam accumsan turpis. Phasellus dignissim felis pharetra orci gravida, et egestas mauris venenatis. Phasellus efficitur ligula lorem, eu fermentum nunc commodo at. Duis quis mi nunc. Nunc molestie augue quis felis consequat cursus. Ut accumsan posuere nunc, ut rutrum dolor consectetur et. Nulla malesuada faucibus tincidunt. In lobortis lacus a leo euismod, et mattis turpis sollicitudin. Duis nec erat at augue volutpat tempus.</p>
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-resizable fw-copy c-elements demo-ellipsis">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam accumsan turpis. Phasellus dignissim felis pharetra orci gravida, et egestas mauris venenatis. Phasellus efficitur ligula lorem, eu fermentum nunc commodo at. Duis quis mi nunc. Nunc molestie augue quis felis consequat cursus. Ut accumsan posuere nunc, ut rutrum dolor consectetur et. Nulla malesuada faucibus tincidunt. In lobortis lacus a leo euismod, et mattis turpis sollicitudin. Duis nec erat at augue volutpat tempus.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="fw-tabulators"><span>Short usage</span><span>Semantic</span><span>Classic</span></div>
+              <div class="fw-tabs">
+                <div class="fw-container">
+                  <div class="fw-separator"><span>Semantic</span></div>
+                  <div class="fw-code scss">.my-paragraph {
+  @include fw-ellipsis;
+}
+                  </div>
+                  <div class="fw-separator"><span>Classic</span></div>
+                  <div class="fw-code">class=&quot;fw-ellipsis&quot;
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;p class=&quot;my-paragraph&quot;&gt;Hello!&lt;/p&gt;
+                  </div>
+                  <div class="fw-code scss">.my-paragraph {
+  @include fw-ellipsis;
+}
+
+                  </div>
+                </div>
+                <div class="fw-container">
+                  <div class="fw-code">&lt;p class=&quot;fw-ellipsis&quot;&gt;Hello!&lt;/p&gt;
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section>
+              <h3>Media Queries</h3>
+              <h5>Apply styling for specific screen size.<br> Read more about <a href="https://en.wikipedia.org/wiki/Responsive_web_design">RWD</a></h5>
+              <div class="fw-tabulators"><span>Media</span><span>Media Up</span><span>Media Down</span><span>Custom Range</span></div>
+              <div class="fw-tabs">
+                <div>
+                  <p style="margin-top: 35px; position: relative; top: 25px" class="fw-container">Styling for <b>maximum screen size</b>:</p>
+                  <h4>size</h4>
+                  <div class="fw-resizable">
+                    <iframe src="../demos/mediaQueries_demo.html"></iframe>
+                  </div>
+                  <p style="margin-top: 35px; position: relative; top: 25px" class="fw-container">Styling for <b>specific device</b>:</p>
+                  <h4>device</h4>
+                  <div class="fw-resizable">
+                    <iframe src="../demos/mediaQueries-demo2_demo.html"></iframe>
+                  </div>
+                  <div class="fw-container">
+                    <div class="fw-separator"><span>Sizes</span></div>
+                    <p><b>xxs</b>, <b>xs</b>, <b>sm</b>, <b>md</b>, <b>lg</b>, <b>xl</b>, <b>xxl</b>, <b>watch</b>, <b>mobile</b>, <b>tablet</b>, <b>laptop</b>, <b>desktop</b>.</p>
+                    <div class="fw-separator"><span>Semantic</span></div>
+                    <p>Media Queries are available only in Semantic version.</p>
+                    <div class="fw-code scss">.my-element {
+  @include fw-media(tablet){
+    // ...styling goes here...
+  };
+}
+                    </div>
+                    <div class="fw-separator"><span>Alternative nesting</span></div>
+                    <div class="fw-code scss">@include fw-media(tablet){
+  .my-element {
+    // ...styling goes here...
+  }
+};
+
+
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p style="margin-top: 35px; position: relative; top: 25px" class="fw-container">Styling for <b>minimum screen size</b>:</p>
+                  <h4>size (and up)</h4>
+                  <div class="fw-resizable">
+                    <iframe src="../demos/mediaQueries-up_demo.html"></iframe>
+                  </div>
+                  <p style="margin-top: 35px; position: relative; top: 25px" class="fw-container">Styling for <b>minimum device</b> size:</p>
+                  <h4>device (and up)</h4>
+                  <div class="fw-resizable">
+                    <iframe src="../demos/mediaQueries-demo2-up_demo.html"></iframe>
+                  </div>
+                  <div class="fw-container">
+                    <div class="fw-separator"><span>Semantic</span></div>
+                    <div class="fw-code scss">@include fw-media-up(tablet){
+  // ...styling goes here...
+};
+                    </div>
+                    <div class="fw-separator"><span>Custom breakpoint</span></div>
+                    <div class="fw-code scss">@include fw-media-up(200px){
+  // ...styling for min-width 200px goes here...
+};
+
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p style="margin-top: 35px; position: relative; top: 25px" class="fw-container">Styling for <b>maximum device</b> size:</p>
+                  <h4>device (and down)</h4>
+                  <div class="fw-resizable">
+                    <iframe src="../demos/mediaQueries-demo2-down_demo.html"></iframe>
+                  </div>
+                  <div class="fw-container">
+                    <div class="fw-separator"><span>Semantic</span></div>
+                    <div class="fw-code scss">@include fw-media-down(tablet){
+  // ...styling goes here...
+};
+                    </div>
+                    <div class="fw-separator"><span>Custom breakpoint</span></div>
+                    <div class="fw-code scss">@include fw-media-down(200px){
+  // ...styling for max-width 200px goes here...
+};
+
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p style="margin-top: 35px; position: relative; top: 25px" class="fw-container">Styling for custom range <b>begin - end</b> of screen size:</p>
+                  <h4>range (begin, end)</h4>
+                  <div class="fw-resizable">
+                    <iframe src="../demos/mediaQueries-demo-range_demo.html"></iframe>
+                    
+                  </div>
+                  <div class="fw-container">
+                    <div class="fw-separator"><span>Semantic</span></div>
+                    <div class="fw-code scss">@include fw-media(200px, 400px){
+  // ...styling goes here...
+};
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section>
+              <h3>Scale Properties</h3>
+              <h5>Scale Css properties relatively to width of the browser window.<br>Example: resizing browser can reduce font-size of the element.</h5>
+              <div class="fw-resizable">
+                <iframe src="../demos/scaleProperties_demo.html"></iframe>
+              </div>
+              <div class="fw-separator"><span>Semantic</span></div>
+              <p>You can scale properties only in Semantic version.</p>
+              <div class="fw-code scss">.my-element {
+  transition: all 0.25s; // optional - for smooth scaling
+  @include fw-scale((
+    padding: (0 10px, 0 50px),
+    font-size: (14px, 30px)
+  ));
+}
+              </div>
+              <p>property1: (<b>begin</b> value, <b>end</b> value),<br>property2: (<b>begin</b> value, <b>end</b> value)...<br><b>begin</b> value means size for smallest device while <b>end</b> is for desktop.</p>
+            </section>
+          </div>
+          <div data-name="Functions" class="fw-group">
+            <section class="sec-convertUnit">
+              <h3>Convert Unit</h3>
+              <h5>Convert css size units.<br>Some conversions are relative to browser defaults such as 16px for font-size.</h5><br><br>
+              <div class="fw-resizable fw-example fw-copy c-elements demo-converts">
+                
+                <p class="fw-ellipsis px-px"><b>10px to [px]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-em"><b>11px to [em]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-ex"><b>12px to [ex]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-ch"><b>13px to [ch]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-rem"><b>14px to [rem]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-vw"><b>15px to [vw]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-vh"><b>16px to [vh]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-vmin"><b>17px to [vmin]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-vmax"><b>18px to [vmax]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-proc"><b>19px to [%]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-cm"><b>20px to [cm]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-mm"><b>21px to [mm]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-in"><b>22px to [in]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-pt"><b>23px to [pt]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+                <p class="fw-ellipsis px-pc"><b>24px to [pc]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.</p>
+              </div>
+              <div class="fw-separator"><span>Units</span></div>
+              <div class="fw-container">
+                <P>
+                  px,
+                  em,
+                  ex,
+                  ch,
+                  rem,
+                  vw,
+                  vh,
+                  vmin,
+                  vmax,
+                  %,
+                  cm,
+                  mm,
+                  in,
+                  pt,
+                  pc
+                </P>
+              </div>
+              <div class="fw-separator"><span>Semantic usage</span></div>
+              <div class="fw-code scss">.my-element {
+  font-size: fw-convert(2rem, px); // returns 32px
+}
+              </div>
+              <p>syntax: fw-convert(<b> input value </b>, <b> output unit </b>);</p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../assets/js/plugins-dist.js"></script>
+    <script type="text/javascript" src="../assets/js/scripts-dist.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-75619756-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

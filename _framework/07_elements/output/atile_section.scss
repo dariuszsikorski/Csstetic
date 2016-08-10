@@ -1,0 +1,43 @@
+.sec-tile {
+  .tile-demo {
+    @include old-clearfix;
+    .fw-tile {
+      float: left;
+      overflow: hidden;
+      p {
+        margin: 0;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        text-align: center;
+        @include old-media(sm){
+          display: none;
+        }
+      }
+    }
+    .fw-tile-content {
+      border: solid 2px #94DDE8;
+      background: #fff;
+    }
+  }
+  .tile-demo-photo {
+    .fw-tile {
+      cursor: pointer;
+      &,& * {transition: all 0.33s;}
+    }
+    .fw-tile-content {
+      background: rgba(0,0,0,0);
+      color: #fff;
+      border: none;
+      &.dimmed {
+        background: rgba(35,45,50,0.2);
+      }
+      &:hover {
+        background: rgba(35,45,50,0.7);
+      }
+    }
+  }
+}

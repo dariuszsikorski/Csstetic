@@ -1,0 +1,11 @@
+.sec-input {
+  .demo-input {
+    @include fw-input;
+
+    @include fw-size-base;
+    @include fw-size(xxl);
+    border-radius: $fw-rounded-md;
+    background-color: fw-color(bluegrey, 50);
+    //- color: fw-color(bluegrey, 900);
+  }
+}

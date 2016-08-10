@@ -1,0 +1,199 @@
+@mixin fw-media(
+  $arg1: null,
+  $arg2: null
+){
+
+  // case 1: passed name of breakpoint
+  // arg1 is string and is key in fw-breakpoints, $arg2 is null
+  @if type-of($arg1) == string and map-has-key($fw-breakpoints, $arg1) and $arg2 == null {
+    // set media to max-width of breakpoint
+    @media ( max-width: map-get($fw-breakpoints, $arg1) ) {
+      @content;
+    }
+  };
+
+  // case 2: passed name of media
+  // $arg1 is string and is key in fw-media
+  @if type-of($arg1) == string and map-has-key($fw-media, $arg1) and $arg2 == null {
+    // set media between min and max width of picked fw-media
+    @media ( min-width: nth(map-get($fw-media, $arg1), 1) ) and ( max-width: nth(map-get($fw-media, $arg1), 2) ) {
+      @content;
+    }
+  };
+
+  // case 3: passed only max-width
+  // $arg1 is number and $arg2 is null
+  @if type-of($arg1) == number and $arg2 == null {
+    // set max-width to passed number
+    @media ( max-width: $arg1 ) {
+      @content;
+    }
+  };
+
+  // case 4: passed begin-end range
+  // $arg1 is number and $arg2 is number
+  @if type-of($arg1) == number and type-of($arg2) == number {
+    // set media in range between $arg1 and $arg2
+    @media ( min-width: $arg1 ) and ( max-width: $arg2 ) {
+      @content;
+    }
+  };
+
+}
+
+@mixin fw-media-up(
+  $arg1: null
+){
+
+  // case 1: passed name of breakpoint
+  @if type-of($arg1) == string and map-has-key($fw-breakpoints, $arg1) {
+    // set media to min-width of breakpoint
+    @if $arg1 == xxs {
+      @content;
+    } @else {
+      // check $arg1 index in $fw-breakpoints
+      $map-index: 0;
+      @for $i from 1 through length($fw-breakpoints) {
+        $key: nth($fw-breakpoints, $i);
+        @if nth($key, 2) == map-get($fw-breakpoints, $arg1) {
+          $map-index: $i;
+        }
+      }
+      // move $arg1 breakpoint to 1 backwards
+      $arg1: nth(nth($fw-breakpoints, $map-index - 1), 1);
+      @media ( min-width: map-get($fw-breakpoints, $arg1) + 1 ) {
+        @content;
+      }
+    }
+  };
+
+  // case 2: passed name of media
+  @if type-of($arg1) == string and map-has-key($fw-media, $arg1) {
+    // set media to min-width of picked fw-media
+    @media ( min-width: nth(map-get($fw-media, $arg1), 1) ) {
+      @content;
+    }
+  };
+
+  // case 3: passed min-width
+  @if type-of($arg1) == number {
+    // set min-width to passed number
+    @media ( min-width: $arg1 ) {
+      @content;
+    }
+  };
+
+}
+
+@mixin fw-media-down(
+  $arg1: null
+){
+
+  // case 1: passed name of breakpoint
+  @if type-of($arg1) == string and map-has-key($fw-breakpoints, $arg1) {
+    // set media to max-width of breakpoint
+    @media ( max-width: map-get($fw-breakpoints, $arg1) ) {
+      @content;
+    }
+  };
+
+  // case 2: passed name of media
+  @if type-of($arg1) == string and map-has-key($fw-media, $arg1) {
+    // set media to max-width of picked fw-media
+    @media ( max-width: nth(map-get($fw-media, $arg1), 2) ) {
+      @content;
+    }
+  };
+
+  // case 3: passed min-width
+  @if type-of($arg1) == number {
+    // set max-width to passed number
+    @media ( max-width: $arg1 ) {
+      @content;
+    }
+  };
+
+}
+
+@mixin fw-media-info {
+  all: initial;
+  background: #0C3E71;
+  color: #fff;
+  font-size: 12px;
+  font-family: Verdana;
+  display: block;
+  overflow: hidden;
+  @include fw-media(desktop){
+    &:before {
+      content: "media: desktop";
+    }
+  };
+  @include fw-media(laptop){
+    &:before {
+      content: "media: laptop";
+    }
+  };
+  @include fw-media(tablet){
+    &:before {
+      content: "media: tablet";
+    }
+  };
+  @include fw-media(mobile){
+    &:before {
+      content: "media: mobile";
+    }
+  };
+  @include fw-media(watch){
+    &:before {
+      content: "media: watch";
+    }
+  };
+  @include fw-media(xxl){
+    &:after{
+      content: "media: xxl";
+    }
+  };
+  @include fw-media(xl){
+    &:after{
+      content: "media: xl";
+    }
+  };
+  @include fw-media(lg){
+    &:after{
+      content: "media: lg";
+    }
+  };
+  @include fw-media(md){
+    &:after{
+      content: "media: md";
+    }
+  };
+  @include fw-media(sm){
+    &:after{
+      content: "media: sm";
+    }
+  };
+  @include fw-media(xs){
+    &:after{
+      content: "media: xs";
+    }
+  };
+  @include fw-media(xxs){
+    &:after{
+      content: "media: xxs";
+    }
+  };
+  &:before,
+  &:after {
+    float: left;
+  }
+  &:before {
+    padding: 7px 15px 7px 10px;
+  }
+  &:after {
+    padding: 7px 10px 7px 15px;
+  }
+  &:after {
+    float: right;
+  }
+}

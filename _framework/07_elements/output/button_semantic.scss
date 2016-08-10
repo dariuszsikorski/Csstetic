@@ -1,0 +1,18 @@
+@mixin fw-button(){
+  box-sizing: border-box;
+  display: inline-block;
+  border: none;
+  line-height: 1;
+  text-decoration: none;
+  font-style: normal;
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 1rem; // in case when button-size wasn't defined in 'px'
+  background: fw-color(bluegrey, 200);
+  color: #fff; // default text color
+  > * {
+    // align elements inside button
+    display: inline-block;
+    vertical-align: top;
+  }
+}

@@ -1,0 +1,407 @@
+
+
+<splitSection output="output/bar_section.jade">
+
+  section.sec-bar
+    h3 Bar
+    h5 Layout divided into side sections.<br>Height is always adjusted to fit the items.
+
+
+    .fw-tabulators
+      span Example
+      span Vertical align
+      span Selected sides
+      span Breaking sections
+
+
+    .fw-tabs
+      div.fw-container
+        //- p content 1
+
+        .fw-resizable.fw-copy.bar-demo.fw-example
+          //- iframe(src='../demos/bar_demo.html')
+
+
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item
+                span center item
+              .fw-bar-item
+                span center item
+            .fw-bar-left
+              .fw-bar-item
+                span left item
+              .fw-bar-item
+                span left item
+            .fw-bar-right
+              .fw-bar-item
+                span right item
+              .fw-bar-item
+                span right item
+
+        .fw-resizable.fw-copy.fw-example.bar-demo-without-size.demo-mid
+          //- iframe(src='../demos/bar_demo.html')
+
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item.fw-size-xxl
+                span center item
+            .fw-bar-left
+              .fw-bar-item.fw-size-sm
+                span left item
+            .fw-bar-right
+              .fw-bar-item.fw-size-sm
+                span right item
+
+      div.fw-container
+
+        .fw-resizable.fw-copy.fw-example.bar-demo-without-size.demo-top
+          //- iframe(src='../demos/bar_demo.html')
+
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item.fw-size-lg
+                span top
+            .fw-bar-left
+              .fw-bar-item.fw-size-xxl
+                span top
+            .fw-bar-right
+              .fw-bar-item.fw-size-xs
+                span top
+
+        .fw-resizable.fw-copy.fw-example.bar-demo-without-size.demo-mid
+          //- iframe(src='../demos/bar_demo.html')
+
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item.fw-size-lg
+                span middle
+            .fw-bar-left
+              .fw-bar-item.fw-size-xxl
+                span middle
+            .fw-bar-right
+              .fw-bar-item.fw-size-xs
+                span middle
+
+        .fw-resizable.fw-copy.fw-example.bar-demo-without-size.demo-bot
+          //- iframe(src='../demos/bar_demo.html')
+
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item.fw-size-lg
+                span bottom
+            .fw-bar-left
+              .fw-bar-item.fw-size-xxl
+                span bottom
+            .fw-bar-right
+              .fw-bar-item.fw-size-xs
+                span bottom
+
+      div
+        p.fw-container Remove sides which are not necessary.
+        h4 left and right
+        .fw-resizable.fw-copy.fw-example.bar-demo.demo-mid
+          .fw-bar
+            .fw-bar-left
+              .fw-bar-item
+                span left item
+            .fw-bar-right
+              .fw-bar-item
+                span right item
+        h4 left
+        .fw-resizable.fw-copy.fw-example.bar-demo.demo-mid
+          .fw-bar
+            .fw-bar-left
+              .fw-bar-item
+                span left item
+
+
+        h4 center
+        .fw-resizable.fw-copy.fw-example.bar-demo.demo-mid
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item
+                span center item
+
+        h4 right
+        .fw-resizable.fw-copy.fw-example.bar-demo.demo-mid
+          .fw-bar
+            .fw-bar-right
+              .fw-bar-item
+                span right item
+
+      div.fw-container
+
+        .fw-resizable.fw-copy.fw-example.bar-demo.demo-mid
+
+          .fw-bar
+            .fw-bar-center.fw-bar-break
+              .fw-bar-item
+                span center with break
+            .fw-bar-left
+              .fw-bar-item
+                span left item
+            .fw-bar-right
+              .fw-bar-item
+                span right item
+
+
+
+
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-bar {
+              @include fw-bar;
+              .my-bar-left,
+              .my-bar-center,
+              .my-bar-right {
+                @include fw-bar-side;
+              }
+              .my-bar-left {
+                text-align: left;
+              }
+              .my-bar-center {
+                text-align: center;
+              }
+              .my-bar-right {
+                text-align: right;
+              }
+              .my-bar-item {
+                @include fw-bar-item;
+              }
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-bar">
+              <div class="fw-bar-center">
+                <div class="fw-bar-item"><span>center item</span></div>
+                <div class="fw-bar-item"><span>center item</span></div>
+              </div>
+              <div class="fw-bar-left">
+                <div class="fw-bar-item"><span>left item</span></div>
+                <div class="fw-bar-item"><span>left item</span></div>
+              </div>
+              <div class="fw-bar-right">
+                <div class="fw-bar-item"><span>right item</span></div>
+                <div class="fw-bar-item"><span>right item</span></div>
+              </div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-bar">
+              <div class="my-bar-center">
+                <div class="my-bar-item"><span>center item</span></div>
+                <div class="my-bar-item"><span>center item</span></div>
+              </div>
+              <div class="my-bar-left">
+                <div class="my-bar-item"><span>left item</span></div>
+                <div class="my-bar-item"><span>left item</span></div>
+              </div>
+              <div class="my-bar-right">
+                <div class="my-bar-item"><span>right item</span></div>
+                <div class="my-bar-item"><span>right item</span></div>
+              </div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-bar {
+              @include fw-bar;
+              .my-bar-left,
+              .my-bar-center,
+              .my-bar-right {
+                @include fw-bar-side;
+              }
+              .my-bar-left {
+                text-align: left;
+              }
+              .my-bar-center {
+                text-align: center;
+              }
+              .my-bar-right {
+                text-align: right;
+              }
+              .my-bar-item {
+                @include fw-bar-item;
+              }
+
+              // optional - break sections for smaller devices
+              @include fw-media(md){
+                .my-bar-left,
+                .my-bar-center,
+                .my-bar-right {
+                  display: block;
+                  text-align: left;
+                }
+              }
+
+              // optional - vertical align items
+              .my-bar-left {
+                &, &.my-bar-item {
+                  vetical-align: top; // top | middle | bottom
+                }
+              }
+
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-bar">
+              <div class="fw-bar-center">
+                <div class="fw-bar-item"><span>center item</span></div>
+                <div class="fw-bar-item"><span>center item</span></div>
+              </div>
+              <div class="fw-bar-left">
+                <div class="fw-bar-item"><span>left item</span></div>
+                <div class="fw-bar-item"><span>left item</span></div>
+              </div>
+              <div class="fw-bar-right">
+                <div class="fw-bar-item"><span>right item</span></div>
+                <div class="fw-bar-item"><span>right item</span></div>
+              </div>
+            </div>
+
+
+</splitSection>
+
+
+
+<splitSection output="output/bar_section.scss">
+
+.sec-bar {
+  .bar-demo {
+    .fw-bar-item {
+      //- background: red;
+      background: fw-color(bluegrey, 50);
+      color: fw-color(bluegrey, 800);
+      @include fw-size-base;
+      @include fw-size(md);
+    }
+  }
+  .bar-demo-without-size {
+    .fw-bar-item {
+      //- background: red;
+      background: fw-color(bluegrey, 50);
+      color: fw-color(bluegrey, 800);
+    }
+  }
+  .demo-top {
+    .fw-bar {
+      border-top: solid 2px #444;
+      > * {
+        &,
+        .fw-bar-item {
+          vertical-align: top;
+        }
+      }
+    }
+
+  }
+  .demo-mid {
+    .fw-bar {
+      border: solid #444;
+      border-width: 2px 0;
+      > * {
+        &,
+        .fw-bar-item {
+          vertical-align: middle;
+        }
+      }
+    }
+
+  }
+  .demo-bot {
+    .fw-bar {
+      border-bottom: solid 2px #444;
+      > * {
+        &,
+        .fw-bar-item {
+          vertical-align: bottom;
+        }
+      }
+    }
+
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/bar_semantic.scss">
+
+@mixin fw-bar(){
+  display: block;
+  font-size: 0; // clear gaps
+}
+
+@mixin fw-bar-side {
+  display: inline-block;
+  width: 100%;
+  margin-right: -100%;
+  vertical-align: middle;
+  font-size: 16px; // restore font, with px fallback
+  font-size: 1rem;
+}
+
+@mixin fw-bar-item {
+  position: relative;
+  z-index: 2; // fix items z-order
+  display: inline-block;
+  vertical-align: middle;
+}
+
+</splitSection>
+
+
+<splitSection output="output/bar_selectors.scss">
+
+.fw-bar {
+  @include fw-bar;
+  .fw-bar-left,
+  .fw-bar-center,
+  .fw-bar-right {
+    @include fw-bar-side;
+  }
+  .fw-bar-left {
+    text-align: left;
+  }
+  .fw-bar-center {
+    text-align: center;
+  }
+  .fw-bar-right {
+    text-align: right;
+  }
+  .fw-bar-break {
+    display: block;
+  }
+  .fw-bar-item {
+    @include fw-bar-item;
+  }
+
+  @include fw-media(md){
+    .fw-bar-left,
+    .fw-bar-center,
+    .fw-bar-right {
+      display: block;
+      text-align: left;
+    }
+  }
+}
+
+</splitSection>

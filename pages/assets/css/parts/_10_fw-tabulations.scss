@@ -1,0 +1,117 @@
+
+.fw-tabulators {
+  // background: red;
+  border-bottom: solid 1px rgba(0,0,0,0.06);
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+  // background: red;
+  @include fw-clearfix;
+  > * {
+    display: inline-block;
+    margin-right: 25px;
+    @include fw-scale((
+      margin-right: (10px, 30px)
+    ));
+    box-sizing: border-box;
+    // color: #08c;
+    color: #888;
+    cursor: pointer;
+    // padding: 5px 10px;
+    // background: red;
+    padding: 15px 0 5px 0;
+    vertical-align: bottom;
+    transition: all 0.2s;
+    // border: solid 1px transparent;
+    // border-radius: 4px;
+    margin-bottom: -1px;
+    font-size: 15px;
+    border-bottom: solid 1px transparent;
+    &:hover:not(.active) {
+      border-color: rgba(0,0,0,0.2);
+      // text-decoration: underline;
+    }
+    &.active,
+    &:hover:not(.active){
+      padding-bottom: 7px;
+      padding-top: 13px;
+      color: #444;
+    }
+    &.active {
+      color: #000;
+      // font-weight: bold;
+      border-bottom: solid 1px black;
+      // transition: all 0s;
+      // border-top: solid 1px #eee;
+      // background: rgba(0,0,0,0.04);
+      // background: color()
+    }
+  }
+  @include fw-media(md){
+    // border-radius: 5px;
+    // border: solid 1px rgba(0,0,0,0.15);
+    // overflow: hidden;
+    > * {
+      // border-bottom: solid 1px rgba(0,0,0,0.1);
+      // margin: 5px;
+      width: 50%;
+      float: left;
+      margin: 0;
+      border: solid 1px rgba(0,0,0,0.1);
+      padding: 5px 0;
+      // display: block;
+      text-align: center;
+      font-size: 13px;
+      transition: all 0.05s;
+      &.active,
+      &:hover:not(.active){
+        color: #000;
+        // border-bottom: none;
+        padding: 5px 0;
+        background: rgba(0,0,0,0.025);
+        border-color: rgba(0,0,0,0.15);
+      }
+      &.active {
+        // background: #5FB7EC;
+        // background: #9A9FAB;
+        // color: #fff;
+        background: rgba(0,0,0,0.045);
+        // border-color: transparent;
+        // font-weight: bold;
+      }
+    }
+  }
+  @include fw-media(xs){
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+.fw-tabs {
+  // margin-top: 30px;
+  margin-bottom: 2rem;
+  > * {
+    // display: block;
+    // border: solid 1px red;
+    padding-top: 1rem;
+    // transition: all 0.5s;
+    width: 100%;
+    // background: rgba(0,0,0,0.2);
+    @include fw-clearfix;
+    &.active {
+      // display: block;
+      // outline: solid 5px blue;
+      opacity: 1;
+      // background: transparent;
+    }
+    &.hidden {
+      // display: none;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: none;
+      display: none;
+    }
+  }
+}

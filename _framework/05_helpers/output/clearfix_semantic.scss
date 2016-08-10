@@ -1,0 +1,15 @@
+%fw-clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin fw-clearfix(){
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

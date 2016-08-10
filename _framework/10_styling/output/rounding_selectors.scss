@@ -1,0 +1,23 @@
+.fw {
+  &-ellipse {
+    border-radius: 100%;
+  }
+  &-round {
+    border-radius: 100em;
+  }
+  &-rounded {
+    border-radius: 0 5px 0 5px;
+  }
+  &-rounded-sm {
+    border-radius: $fw-rounded-sm;
+  }
+  &-rounded-md {
+    border-radius: $fw-rounded-md;
+  }
+  &-rounded-lg {
+    border-radius: $fw-rounded-lg;
+  }
+  &-rounded-xl {
+    border-radius: $fw-rounded-xl;
+  }
+}

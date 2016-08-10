@@ -1,0 +1,65 @@
+- require('jade').filters.code = function( block ) {
+- return block.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/#/g, '&#35;').replace(/\\/g, '\\\\');
+- }
+
+
+extends ./_layout
+
+block title
+  title Documentation - Csstetic
+
+//- block content
+//-   p Hello
+
+
+
+block append content
+  aside.fw-sidebar
+    label.se-checkbox.check-toggle-sidebar
+      input(type='checkbox')
+      span.label<i class="icon ionicons ion-navicon-round"></i>
+    .fw-inner
+      .sidebar-header
+        .fw-back-to-home
+          a(href="../")<span class="ion-ios-arrow-thin-left icon"></span> Home
+      .fw-sidebar-menu
+
+      //- .fw-logo
+      //-   .hexagon-out
+      //-     .hexagon-in
+      //-     p.label cssfw
+        //- h5.subtitle CSS Framework
+      //- .fw-switch
+      //-   span.lang-scss.active scss
+      //-   span.lang-css css
+      .sidebar-footer
+        label.se-checkbox.check-expand-menu
+          input(type='checkbox')
+          span.label<i class="icon ionicons ion-checkmark"></i> Expand menu
+
+
+  .fw-content
+    .fw-inner
+      .dc-topbar
+        .dc-section-info.isHidden
+          span
+
+
+      .fw-group(data-name='Getting started')
+        include ../_framework/gettingStarted
+
+      .fw-group(data-name='Elements')
+        include ../_framework/elements
+
+      .fw-group(data-name='Styling')
+        include ../_framework/styling
+
+      .fw-group(data-name='Layout')
+        include ../_framework/layouts
+
+      .fw-group(data-name='Helpers')
+        include ../_framework/helpers
+
+      .fw-group(data-name='Functions')
+        include ../_framework/functions
+

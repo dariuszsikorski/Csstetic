@@ -1,0 +1,1295 @@
+section.sec-bar
+    h3 Bar
+    h5 Layout divided into side sections.<br>Height is always adjusted to fit the items.
+
+
+    .fw-tabulators
+      span Example
+      span Vertical align
+      span Selected sides
+      span Breaking sections
+
+
+    .fw-tabs
+      div.fw-container
+        //- p content 1
+
+        .fw-resizable.fw-copy.bar-demo.fw-example
+          //- iframe(src='../demos/bar_demo.html')
+
+
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item
+                span center item
+              .fw-bar-item
+                span center item
+            .fw-bar-left
+              .fw-bar-item
+                span left item
+              .fw-bar-item
+                span left item
+            .fw-bar-right
+              .fw-bar-item
+                span right item
+              .fw-bar-item
+                span right item
+
+        .fw-resizable.fw-copy.fw-example.bar-demo-without-size.demo-mid
+          //- iframe(src='../demos/bar_demo.html')
+
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item.fw-size-xxl
+                span center item
+            .fw-bar-left
+              .fw-bar-item.fw-size-sm
+                span left item
+            .fw-bar-right
+              .fw-bar-item.fw-size-sm
+                span right item
+
+      div.fw-container
+
+        .fw-resizable.fw-copy.fw-example.bar-demo-without-size.demo-top
+          //- iframe(src='../demos/bar_demo.html')
+
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item.fw-size-lg
+                span top
+            .fw-bar-left
+              .fw-bar-item.fw-size-xxl
+                span top
+            .fw-bar-right
+              .fw-bar-item.fw-size-xs
+                span top
+
+        .fw-resizable.fw-copy.fw-example.bar-demo-without-size.demo-mid
+          //- iframe(src='../demos/bar_demo.html')
+
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item.fw-size-lg
+                span middle
+            .fw-bar-left
+              .fw-bar-item.fw-size-xxl
+                span middle
+            .fw-bar-right
+              .fw-bar-item.fw-size-xs
+                span middle
+
+        .fw-resizable.fw-copy.fw-example.bar-demo-without-size.demo-bot
+          //- iframe(src='../demos/bar_demo.html')
+
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item.fw-size-lg
+                span bottom
+            .fw-bar-left
+              .fw-bar-item.fw-size-xxl
+                span bottom
+            .fw-bar-right
+              .fw-bar-item.fw-size-xs
+                span bottom
+
+      div
+        p.fw-container Remove sides which are not necessary.
+        h4 left and right
+        .fw-resizable.fw-copy.fw-example.bar-demo.demo-mid
+          .fw-bar
+            .fw-bar-left
+              .fw-bar-item
+                span left item
+            .fw-bar-right
+              .fw-bar-item
+                span right item
+        h4 left
+        .fw-resizable.fw-copy.fw-example.bar-demo.demo-mid
+          .fw-bar
+            .fw-bar-left
+              .fw-bar-item
+                span left item
+
+
+        h4 center
+        .fw-resizable.fw-copy.fw-example.bar-demo.demo-mid
+          .fw-bar
+            .fw-bar-center
+              .fw-bar-item
+                span center item
+
+        h4 right
+        .fw-resizable.fw-copy.fw-example.bar-demo.demo-mid
+          .fw-bar
+            .fw-bar-right
+              .fw-bar-item
+                span right item
+
+      div.fw-container
+
+        .fw-resizable.fw-copy.fw-example.bar-demo.demo-mid
+
+          .fw-bar
+            .fw-bar-center.fw-bar-break
+              .fw-bar-item
+                span center with break
+            .fw-bar-left
+              .fw-bar-item
+                span left item
+            .fw-bar-right
+              .fw-bar-item
+                span right item
+
+
+
+
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-bar {
+              @include fw-bar;
+              .my-bar-left,
+              .my-bar-center,
+              .my-bar-right {
+                @include fw-bar-side;
+              }
+              .my-bar-left {
+                text-align: left;
+              }
+              .my-bar-center {
+                text-align: center;
+              }
+              .my-bar-right {
+                text-align: right;
+              }
+              .my-bar-item {
+                @include fw-bar-item;
+              }
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-bar">
+              <div class="fw-bar-center">
+                <div class="fw-bar-item"><span>center item</span></div>
+                <div class="fw-bar-item"><span>center item</span></div>
+              </div>
+              <div class="fw-bar-left">
+                <div class="fw-bar-item"><span>left item</span></div>
+                <div class="fw-bar-item"><span>left item</span></div>
+              </div>
+              <div class="fw-bar-right">
+                <div class="fw-bar-item"><span>right item</span></div>
+                <div class="fw-bar-item"><span>right item</span></div>
+              </div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-bar">
+              <div class="my-bar-center">
+                <div class="my-bar-item"><span>center item</span></div>
+                <div class="my-bar-item"><span>center item</span></div>
+              </div>
+              <div class="my-bar-left">
+                <div class="my-bar-item"><span>left item</span></div>
+                <div class="my-bar-item"><span>left item</span></div>
+              </div>
+              <div class="my-bar-right">
+                <div class="my-bar-item"><span>right item</span></div>
+                <div class="my-bar-item"><span>right item</span></div>
+              </div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-bar {
+              @include fw-bar;
+              .my-bar-left,
+              .my-bar-center,
+              .my-bar-right {
+                @include fw-bar-side;
+              }
+              .my-bar-left {
+                text-align: left;
+              }
+              .my-bar-center {
+                text-align: center;
+              }
+              .my-bar-right {
+                text-align: right;
+              }
+              .my-bar-item {
+                @include fw-bar-item;
+              }
+
+              // optional - break sections for smaller devices
+              @include fw-media(md){
+                .my-bar-left,
+                .my-bar-center,
+                .my-bar-right {
+                  display: block;
+                  text-align: left;
+                }
+              }
+
+              // optional - vertical align items
+              .my-bar-left {
+                &, &.my-bar-item {
+                  vetical-align: top; // top | middle | bottom
+                }
+              }
+
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-bar">
+              <div class="fw-bar-center">
+                <div class="fw-bar-item"><span>center item</span></div>
+                <div class="fw-bar-item"><span>center item</span></div>
+              </div>
+              <div class="fw-bar-left">
+                <div class="fw-bar-item"><span>left item</span></div>
+                <div class="fw-bar-item"><span>left item</span></div>
+              </div>
+              <div class="fw-bar-right">
+                <div class="fw-bar-item"><span>right item</span></div>
+                <div class="fw-bar-item"><span>right item</span></div>
+              </div>
+            </div>
+section.sec-fillSpace
+    h3 Fill space
+    h5 Create container which fills remaining width After or Before element.
+
+
+    .fw-tabulators
+      span Fill space demo
+      span Demo without fill space
+
+    .fw-tabs
+      div.fw-container
+        //- p content 1
+
+        p Please note this demo uses no Javascript.
+
+        .fw-example.fw-copy.demo-fillspace
+          //- iframe(src='../demos/fillSpace_demo.html')
+          .fw-space
+            .fw-space-left
+              .demo-block-left before fill space
+            .fw-space-right
+              .demo-block-right after fill space
+            .fw-space-fill
+              p.fw-text-sm <b>This block wil always fill remaining space between elements.</b> Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+        br
+        br
+        .fw-resizable.fw-example.fw-copy.demo-fillspace.demo-space-2
+          //- iframe(src='../demos/fillSpace_demo.html')
+          .fw-space
+            .fw-space-left
+              .demo-block-left before fill space
+
+            .fw-space-fill
+              p This input text will stretch to remaining space.
+              input(type="text" placeholder="input text")
+
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-example.fw-copy.demo-fillspace.demo-space-2
+          .demo-block-left before content
+          p This input text will stretch to remaining space.
+          input(type="text" placeholder="input text")
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-space {
+              @include fw-space;
+              .my-space-left { @include fw-space-left; }
+              .my-space-right { @include fw-space-right; }
+              .my-space-fill { @include fw-space-fill; }
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-space">
+              <div class="fw-space-left">left content</div>
+              <div class="fw-space-right">right content</div>
+              <div class="fw-space-fill">fill space</div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-space">
+              <div class="my-space-left">left content</div>
+              <div class="my-space-right">right content</div>
+              <div class="my-space-fill">fill space</div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-space {
+              @include fw-space;
+              .my-space-left { @include fw-space-left; }
+              .my-space-right { @include fw-space-right; }
+              .my-space-fill { @include fw-space-fill; }
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-space">
+              <div class="fw-space-left">left content</div>
+              <div class="fw-space-right">right content</div>
+              <div class="fw-space-fill">fill space</div>
+            </div>
+section.sec-gridSystem
+    h3 Grid
+    h5 Slice block into rows, then into responsive columns.<br>Very useful for building basement for layouts.
+
+
+    .fw-tabulators
+      span Grid demo
+      span Responsive grid
+      span Responsive grid & tiles
+    .fw-tabs
+      div
+        .fw-resizable.fw-copy.c-elements.fw-example
+          .fw-grid
+            .fw-grid-row
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+              .fw-col-1 col-1
+            .fw-grid-row
+              .fw-col-2 col-2
+              .fw-col-2 col-2
+              .fw-col-2 col-2
+              .fw-col-2 col-2
+              .fw-col-2 col-2
+              .fw-col-2 col-2
+            .fw-grid-row
+              .fw-col-3 col-3
+              .fw-col-3 col-3
+              .fw-col-3 col-3
+              .fw-col-3 col-3
+            .fw-grid-row
+              .fw-col-4 col-4
+              .fw-col-4 col-4
+              .fw-col-4 col-4
+            .fw-grid-row
+              .fw-col-6 col-6
+              .fw-col-6 col-6
+
+      div
+        p.fw-container Resize the demo
+        //- p content 2
+        .fw-resizable.fw-copy
+          iframe(src='../demos/responsive_grid_demo.html')
+      div
+        p.fw-container Resize the demo
+        //- p content 2
+        .fw-resizable.fw-copy
+          iframe(src='../demos/responsive_grid_tiles_demo.html')
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            $my-grid: (
+              columns: 12,
+              gridWidth: 100%
+            );
+            .my-grid {
+              @include fw-generate-grid($my-grid);
+            }
+            .my-grid-row {
+              @include fw-grid-row($my-grid);
+            }
+            .my-grid-col {
+              @include fw-column-base($my-grid);
+            }
+            .my-col-6 {
+              @include fw-generate-column(6, $my-grid);
+            }
+            .my-col-12 {
+              @include fw-generate-column(12, $my-grid);
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-grid">
+              <div class="fw-grid-row">
+                <div class="fw-col-6">col-6</div>
+                <div class="fw-col-6">col-6</div>
+              </div>
+              <div class="fw-grid-row">
+                <div class="fw-col-4">col-4</div>
+                <div class="fw-col-4">col-4</div>
+                <div class="fw-col-4">col-4</div>
+              </div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-grid">
+              <div class="my-grid-row">
+                <div class="my-grid-col my-col-6 my-col-md-12">col-6</div>
+                <div class="my-grid-col my-col-6 my-col-md-12">col-6</div>
+              </div>
+              <div class="my-grid-row">
+                <div class="my-grid-col my-col-4 my-col-md-6">col-4</div>
+                <div class="my-grid-col my-col-4 my-col-md-6">col-4</div>
+                <div class="my-grid-col my-col-4 my-col-md-6">col-4</div>
+              </div>
+            </div>
+        .fw-code.scss
+          :code
+            // define default grid
+            $my-grid: (
+              // grid size (pick 2 of 3 arguments below, third argument will be calculated):
+              columns: 12,           // I   [full number]
+              gridWidth: 100%,       // II  [px, %, 4/5]
+              // columnWidth: 25%,   // III [px, %, 4/5]
+
+              // additional options (not required):
+              spacingX: 10px, // [px]
+              spacingY: 10px  // [px]
+            );
+
+            // generate style for default grid
+            .my-grid {
+              @include fw-generate-grid($my-grid);
+            }
+
+            // generate style for default rows
+            .my-grid-row {
+              @include fw-grid-row($my-grid);
+            }
+
+            // generate base style for columns
+            .my-grid-col {
+              @include fw-column-base($my-grid);
+            }
+
+            // single column sizing
+            .my-col {
+              @include fw-generate-column(6, $my-grid); // (6/12 = 50%)
+            }
+
+            // or multi column sizing
+            .my-col {
+              // generate my-col-1 ... 12
+              @for $col from 1 through map-get($my-grid, columns) {
+                &-#{$col} {
+                  @include fw-generate-column($col, $my-grid);
+                }
+              }
+            }
+
+
+
+            // optional
+            // define grid for medium devices
+            $my-grid-md: (
+              columns: 12,           // [full number]
+              gridWidth: 100%,       // [px, %, 4/5]
+              spacingX: 0, // [px]
+              spacingY: 0  // [px]
+            );
+
+            @include fw-media(md){
+
+              // generate my-col-md-1 ... 12
+              .my-col-md {
+                @for $col from 1 through map-get($my-grid-md, columns) {
+                  &-#{$col} {
+                    @include fw-generate-column($col, $my-grid-md);
+                  }
+                }
+              }
+
+              // generate base style for medium columns
+              .my-grid-col { @include fw-column-base($my-grid-md); }
+
+              // generate style for grid on medium devices
+              .my-grid { @include fw-generate-grid($my-grid-md); }
+
+              // generate style for row on medium devices
+              .my-grid-row { @include fw-grid-row($my-grid-md); }
+            }
+
+
+      div.fw-container
+        p <b>Column sizing classes:</b><br>
+          | <b>default</b> fw-col-1 ... 12 (1 = 1/12), (12 = 12/12 = 100%)
+        p <b>Column size for smaller devices:</b><br>
+          | <b>extra large</b> fw-col-xl-1 ... 12<br>
+          | <b>large</b> fw-col-lg-1 ... 12<br>
+          | <b>medium</b> fw-col-md-1 ... 12<br>
+          | <b>small</b> fw-col-sm-1 ... 12<br>
+          | <b>extra small</b> fw-col-xs-1 ... 12<br>
+        .fw-code
+          :code
+            <div class="fw-grid">
+              <div class="fw-grid-row">
+                <div class="fw-col-6 fw-col-md-12">col</div>
+                <div class="fw-col-6 fw-col-md-12">col</div>
+                <div class="fw-col-6 fw-col-md-12">col</div>
+              </div>
+              <div class="fw-grid-row">
+                <div class="fw-col-4 fw-col-md-6 fw-col-sm-12">col</div>
+                <div class="fw-col-4 fw-col-md-6 fw-col-sm-12">col</div>
+                <div class="fw-col-4 fw-col-md-6 fw-col-sm-12">col</div>
+              </div>
+            </div>
+section.sec-justifiedBar
+    h3 Justified bar
+    h5 Use text justify to create bar of equal-spaced elements.
+
+
+    .fw-tabulators
+      span Example
+
+    .fw-tabs
+      div.fw-container
+
+        .fw-resizable.fw-copy.c-elements.demo-justbar.fw-example
+
+          .fw-justify
+            .fw-just-item.fw-bg-bluegrey-50 item 1
+            .fw-just-item.fw-bg-bluegrey-50 item 2
+            .fw-just-item.fw-bg-bluegrey-50 item 3
+            .fw-just-item.fw-bg-bluegrey-50 item 4
+
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-justify {
+               @include fw-justified;
+              .my-just-item {
+                @include fw-just-item;
+                vertical-align: middle;
+              }
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-justify">
+              <div class="fw-just-item">item 1</div>
+              <div class="fw-just-item">item 2</div>
+              <div class="fw-just-item">item 3</div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-justify">
+              <div class="my-just-item">item 1</div>
+              <div class="my-just-item">item 2</div>
+              <div class="my-just-item">item 3</div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-justify {
+               @include fw-justified;
+              .my-just-item {
+                @include fw-just-item;
+                vertical-align: middle;
+              }
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-justify">
+              <div class="fw-just-item">item 1</div>
+              <div class="fw-just-item">item 2</div>
+              <div class="fw-just-item">item 3</div>
+            </div>
+section.sec-list
+    h3 List
+    h5 Convert elements to list of items with display block.
+
+
+    .fw-tabulators
+      span Demo with list
+      span Demo without list
+
+    .fw-tabs
+      div.fw-container.demo-list
+        //- p content 1
+
+        .fw-resizable.fw-copy.fw-example
+          .fw-list
+            a.fw-list-item(href="#") item 1
+            a.fw-list-item(href="#") item 2
+            a.fw-list-item(href="#") item 3
+            a.fw-list-item(href="#") item 4
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.fw-example
+          a(href="#") item 1
+          a(href="#") item 2
+          a(href="#") item 3
+          a(href="#") item 4
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-list {
+              @include fw-list;
+              .my-list-item {
+                @include fw-list-item;
+              }
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-list">
+              <span class="fw-list-item">item 1</span>
+              <span class="fw-list-item">item 2</span>
+              <span class="fw-list-item">item 3</span>
+              <span class="fw-list-item">item 4</span>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-list">
+              <span class="my-list-item">item 1</span>
+              <span class="my-list-item">item 2</span>
+              <span class="my-list-item">item 3</span>
+              <span class="my-list-item">item 4</span>
+            </div>
+        .fw-code.scss
+          :code
+            .my-list {
+              @include fw-list;
+              .my-list-item {
+                @include fw-list-item;
+              }
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-list">
+              <span class="fw-list-item">item 1</span>
+              <span class="fw-list-item">item 2</span>
+              <span class="fw-list-item">item 3</span>
+              <span class="fw-list-item">item 4</span>
+            </div>
+section.sec-pile
+    h3 Pile of items
+
+    .fw-tabulators
+      span Example
+      span Vertical & Horizontal align
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.line-top-bottom
+            .fw-pile-item.fourth <span>pile item</span>
+            .fw-pile-item.third <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.first <span>pile item</span>
+
+      div
+
+        h4 bottom
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-bottom.line-bottom
+            .fw-pile-item.first <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.third <span>pile item</span>
+            .fw-pile-item.fourth <span>pile item</span>
+
+        h4 middle
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-middle.line-top-bottom
+            .fw-pile-item.first <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.third <span>pile item</span>
+            .fw-pile-item.fourth <span>pile item</span>
+
+        h4 top
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-top.line-top
+            .fw-pile-item.first <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.third <span>pile item</span>
+            .fw-pile-item.fourth <span>pile item</span>
+
+        h4 left
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-left.line-left
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+
+        h4 center
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-center.line-left-right
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+
+        h4 right
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-right.line-right
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements
+          //- iframe(src='../demos/pile_demo.html')
+          p Paragraph pile
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-pile {
+              @include fw-pile;
+              .my-pile-item {
+                @include fw-pile-item;
+              }
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-pile">
+              <div class="fw-pile-item"><span>pile item</span></div>
+              <div class="fw-pile-item"><span>pile item</span></div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-pile">
+              <div class="my-pile-item"><span>pile item</span></div>
+              <div class="my-pile-item"><span>pile item</span></div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-pile {
+              @include fw-pile;
+              text-align: right; // optional: left | center | right
+              .my-pile-item {
+                @include fw-pile-item;
+                vertical-align: middle; // optional: top | middle | bottom
+              }
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-pile">
+              <div class="fw-pile-item"><span>pile item</span></div>
+              <div class="fw-pile-item"><span>pile item</span></div>
+            </div>
+
+            <!-- vertical align -->
+            <div class="fw-pile fw-pile-top">
+            <div class="fw-pile fw-pile-middle">
+            <div class="fw-pile fw-pile-bottom">
+
+            <!-- horizontal align -->
+            <div class="fw-pile fw-pile-left">
+            <div class="fw-pile fw-pile-center">
+            <div class="fw-pile fw-pile-right">
+
+            <!-- vertical & horizontal align -->
+            <div class="fw-pile fw-pile-center fw-pile-middle">
+section.sec-position
+    h3 Position
+    h5 Set position of the element relatively to it's parent.<br>Element may be placed in the corner, centered or on the edge of parent.
+
+
+    .fw-tabulators
+      span Inside
+      span On edge
+      span Outside
+      span Custom
+
+    .fw-tabs
+      div
+
+        h4 inside:
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container
+          .fw-relative
+
+            .fw-pos-top-left top-left
+            .fw-pos-left left
+            .fw-pos-bottom-left bottom-left
+            .fw-pos-top top
+            .fw-pos-center center
+            .fw-pos-bottom bottom
+            .fw-pos-top-right top-right
+            .fw-pos-right right
+            .fw-pos-bottom-right bottom-right
+
+        .fw-separator
+          span Positions
+          p.fw-container
+            | top-left,
+            | left,
+            | bottom-left,
+            | top,
+            | center,
+            | bottom,
+            | top-right,
+            | right,
+            | bottom-right
+        .fw-separator
+          span Semantic
+        p.fw-container Please note that positioning always require "position: relative" on parent element.
+        .fw-code
+          :code
+            <div class="my-element">
+              <div class="positioned-item">item</item>
+            </div>
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right);
+              }
+            }
+
+
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-relative">
+              <div class="fw-pos-top-right">item</item>
+            </div>
+
+
+      div
+
+        h4 on edge:
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container
+          .fw-relative
+
+            .fw-pos-top-left-edge top-left-edge
+            .fw-pos-left-edge left-edge
+            .fw-pos-bottom-left-edge bottom-left-edge
+            .fw-pos-top-edge top-edge
+            .fw-pos-bottom-edge bottom-edge
+            .fw-pos-top-right-edge top-right-edge
+            .fw-pos-right-edge right-edge
+            .fw-pos-bottom-right-edge bottom-right-edge
+
+        .fw-separator
+          span Positions
+          p.fw-container
+            | top-left-edge,
+            | left-edge,
+            | bottom-left-edge,
+            | top-edge,
+            | bottom-edge,
+            | top-right-edge,
+            | right-edge,
+            | bottom-right-edge
+        .fw-separator
+          span Semantic
+        .fw-code
+          :code
+            <div class="my-element">
+              <div class="positioned-item">item</item>
+            </div>
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right, edge);
+              }
+            }
+
+
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-relative">
+              <div class="fw-pos-top-right-edge">item</item>
+            </div>
+
+      div
+
+        h4 outside:
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container
+          .fw-relative
+
+            .fw-pos-top-left-out top-left-out
+            .fw-pos-left-out left-out
+            .fw-pos-bottom-left-out bottom-left-out
+            .fw-pos-top-out top-out
+            .fw-pos-bottom-out bottom-out
+            .fw-pos-top-right-out top-right-out
+            .fw-pos-right-out right-out
+            .fw-pos-bottom-right-out bottom-right-out
+        br
+        .fw-separator
+          span Positions
+          p.fw-container
+            | top-left-out,
+            | left-out,
+            | bottom-left-out,
+            | top-out,
+            | bottom-out,
+            | top-right-out,
+            | right-out,
+            | bottom-right-out
+        .fw-separator
+          span Semantic
+        .fw-code
+          :code
+            <div class="my-element">
+              <div class="positioned-item">item</item>
+            </div>
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right, out);
+              }
+            }
+
+
+
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-relative">
+              <div class="fw-pos-top-right-out">item</item>
+            </div>
+
+      div
+
+        h4 custom
+        p.fw-container Create custom offset of positioned item by using css <b>translate X and Y</b>.
+
+        .fw-separator
+          span Example
+
+        .fw-resizable.fw-example.fw-copy.demo-position.fw-container.c-visible
+          .fw-relative
+
+            .fw-pos-top-right(style="transform: translateX(-50%) translateY(100%); -webkit-transform: translateX(-50%) translateY(100%)") Custom offset
+
+        p.fw-container This will move item <b>50%</b> to the <b>left</b> and <b>100%</b> <b>from top</b> (of it's own width and height) from <b>top-right</b> position.<br> You can customize all positions listed in "Inside" Tab.
+
+        .fw-separator
+          span or Semantic
+        .fw-code.scss
+          :code
+            .my-element {
+              position: relative;
+              .positioned-item {
+                @include fw-position(top-right);
+                transform: translateX(-50%) translateY(100%);
+                -webkit-transform: translateX(-50%) translateY(100%);
+              }
+            }
+        p.fw-container Please note that for old browsers you may also include prefixed translations such as:<br>
+          | <b>-webkit-</b>transform: ... (Chrome, newer versions of Opera.)<br>
+          | <b>-moz-</b>transform: ... (Firefox)<br>
+          | <b>-o-</b>transform: ... (Old versions of Opera)<br>
+          | <b>-ms-</b>transform: ... (Internet Explorer)
+section.sec-table
+    h3 Table
+    h5 Use table rows and columns to build equal height blocks,<br>present data or vertically align content.
+
+
+    .fw-tabulators
+      span Table demo
+      span Vertical align content
+
+    .fw-tabs
+      div
+        //- p content 1
+        h4 simple table
+        .fw-resizable.fw-copy.c-elements.demo-tables.fw-example
+          .fw-table
+            .fw-table-row
+              .fw-table-col column
+              .fw-table-col column
+              .fw-table-col column
+
+        h4 nested tables
+        .fw-resizable.fw-copy.c-elements.demo-tables.fw-example
+
+          .fw-table
+            .fw-table-row
+
+              .fw-table
+                .fw-table-row
+                  .fw-table-col column
+                  .fw-table-col column
+                  .fw-table-col column
+                  .fw-table-col column
+            .fw-table-row
+
+              .fw-table
+                .fw-table-row
+                  .fw-table-col column
+                  .fw-table-col column
+                  .fw-table-col column
+            .fw-table-row
+
+              .fw-table
+                .fw-table-row
+                  .fw-table-col column
+                  .fw-table-col column
+
+      div
+        //- p content 1
+        .fw-resizable.fw-copy.c-elements.demo-tables.fw-example.demo-vtable
+          .fw-table
+            .fw-table-row
+              .fw-table-col.fw-table-top content top
+              .fw-table-col.fw-table-middle content middle
+              .fw-table-col.fw-table-bottom content bottom
+
+          //- iframe(src='../demos/table_demo.html')
+          //- .fw-table
+          //-   .fw-table-row.h-60
+          //-     .fw-table-col
+          //-       .fw-table
+          //-         .fw-table-row
+          //-           .fw-table-col.w-40
+          //-             .fw-table
+          //-               .fw-table-row.h-60
+          //-                 .fw-table-col.block
+          //-               .fw-table-col.h-40
+          //-                 .fw-table
+          //-                   .fw-table-row
+          //-                     .fw-table-col.w-60.block
+          //-                     .fw-table-col.w-40
+          //-                       .fw-table
+          //-                         .fw-table-row.h-40
+          //-                           .fw-table-col
+          //-                             .fw-table
+          //-                               .fw-table-row
+          //-                                 .fw-table-col.w-60.block
+          //-                                 .fw-table-col.block
+
+          //-                         .fw-table-row.h-60
+          //-                           .fw-table-col.block
+          //-           .fw-table-col.w-60.block
+          //-   .fw-table-row.h-40
+          //-     .fw-table-col.block
+
+      div
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements
+          //- iframe(src='../demos/table_demo.html')
+          p Paragraph table
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+      span Vertical align
+      span Nesting tables
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-table {
+              @include fw-table;
+            }
+            .my-table-row {
+              @include fw-table-row;
+            }
+            .my-table-col {
+              @include fw-table-column;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-table">
+              <div class="fw-table-row">
+                <div class="fw-table-col">column</div>
+                <div class="fw-table-col">column</div>
+                <div class="fw-table-col">column</div>
+              </div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-table">
+              <div class="my-table-row">
+                <div class="my-table-col">column</div>
+                <div class="my-table-col">column</div>
+                <div class="my-table-col">column</div>
+              </div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-table {
+              @include fw-table;
+            }
+            .my-table-row {
+              @include fw-table-row;
+            }
+            .my-table-col {
+              @include fw-table-column;
+
+              // optional:
+              vertical-align: middle; // top | middle | bottom
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-table">
+              <div class="fw-table-row">
+                <div class="fw-table-col">column</div>
+                <div class="fw-table-col">column</div>
+                <div class="fw-table-col">column</div>
+              </div>
+            </div>
+      div.fw-container
+        h4 Classic align
+        .fw-code
+          :code
+            class="fw-table-col fw-table-top"
+            class="fw-table-col fw-table-middle"
+            class="fw-table-col fw-table-bottom"
+
+        h4 Semantic align
+        .fw-code
+          :code
+            .my-table-col {
+              @include fw-table-column;
+              vertical-align: middle; // top | middle | bottom
+            }
+      div.fw-container
+        .fw-code
+          :code
+            // first table
+            <div class="fw-table">
+              <div class="fw-table-row">
+                <div class="fw-table-col">
+
+                  // nested table
+                  <div class="fw-table">
+                    <div class="fw-table-row">
+                      <div class="fw-table-col">column</div>
+                      <div class="fw-table-col">column</div>
+                    </div>
+                    <div class="fw-table-row">
+                      <div class="fw-table-col">column</div>
+                      <div class="fw-table-col">column</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+        p Each table has to be nested in following pattern: <b>table</b> > <b>row</b> > <b>column</b> > <b>table</b> > <b>row</b> ...<br>Browsers such as Chrome and Firefox work properly with simpler: <b>table</b> > <b>column</b> > <b>table</b> > <b>column</b> ... patterns, but since Internet Explorer(10-) has problems inheriting heights, it's better to use w3c specified <b>table</b> > <b>row</b> > <b>column</b> pattern.
+
+        p Please not that css has no "colspan" property. Each row has to contain same number of columns, unless you nest another table inside a column.

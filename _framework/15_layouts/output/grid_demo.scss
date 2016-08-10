@@ -1,0 +1,52 @@
+.demo-responsive {
+    .fw-grid {
+      outline: solid 2px #333;
+    }
+    .fw-grid-row {
+      > * {
+        border: solid 1px #ddd;
+        padding: 10px 0;
+
+        //- color: #fff;
+        background: #fff;
+        text-align: center;
+        //- @include fw-ellipsis;
+        //- font-weight: bold;
+        padding: 20px 0;
+      }
+    }
+  }
+  .demo-tiles {
+    p {
+      margin: 0;
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .fw-tile-content {
+      border: solid 2px #94DDE8;
+      background: #fff;
+    }
+    .fw-tile {
+      cursor: pointer;
+      &,& * {transition: all 0.33s;}
+    }
+    .fw-tile-content {
+      background: rgba(0,0,0,0);
+      color: #fff;
+      border: none;
+      &.dimmed {
+        background: rgba(35,45,50,0.5);
+      }
+      &:hover {
+        background: rgba(35,45,50,0.7);
+      }
+    }
+
+
+  }

@@ -1,0 +1,147 @@
+
+
+<splitSection output="output/installation_section.jade">
+
+  section.sec-installation
+    h3 Installation
+    //- h5 Component<br>description.
+
+
+    .fw-tabulators
+      span Classic
+      span Semantic
+
+    .fw-tabs
+      div.fw-container
+        .install-step
+          .step-left
+            span.step-number 1
+          .step-right
+            p.step-description Get the Classic version from <a href="../#get">Get it section</a>.<br> You may stop here because .zip file contains ready to use html template.
+        .fw-separator
+          span optional:
+        .install-step
+          .step-left
+            span.step-number 2
+          .step-right
+            p.step-description After downloading and unzipping the file - copy <b>csstetic.css</b> to your project folder.
+        .install-step
+          .step-left
+            span.step-number 3
+          .step-right
+            p.step-description Link to stylesheet by pasting following code in <b>HEAD</b> of your html file.
+          br
+          .fw-code
+            :code
+              <link rel="stylesheet" href="./style/csstetic.css">
+
+      div.fw-container.semantic-steps
+        .install-step
+          .step-left
+            span.step-number 1
+          .step-right
+            p.step-description Get the Semantic version from <a href="../#get">Get it section</a>.<br> You may stop here because .zip file contains ready to use html and scss template.
+        .fw-separator
+          span optional:
+        .install-step
+          .step-left
+            span.step-number 2
+          .step-right
+            p.step-description After downloading and unzipping the file - copy <b>_csstetic-semantic.scss</b> to your project folder.<br>If you want to build your own - classic version, also copy the <b>csstetic.scss</b> file.
+        .install-step
+          .step-left
+            span.step-number 3
+          .step-right
+            p.step-description Import scss files your <b>style.scss</b> file.
+          br
+          .fw-code.scss
+            :code
+              @import "./_csstetic-semantic.scss";
+              @import "./csstetic.scss"; // optional (classic version)
+
+        .install-step
+          .step-left
+            span.step-number 4
+          .step-right
+            p.step-description Compile <b>style.scss</b> file by using <a href="https://www.ostraining.com/blog/coding/compiling-tools/">Sass Compiler</a> of your choice.
+
+        .install-step
+          .step-left
+            span.step-number 5
+          .step-right
+            p.step-description Link to stylesheet by pasting following code in <b>HEAD</b> of your html file.
+          br
+          .fw-code
+            :code
+              <link rel="stylesheet" href="./style/style.css">
+
+
+</splitSection>
+
+
+
+<splitSection output="output/installation_section.scss">
+
+.sec-installation {
+  .fw-code {
+    margin: 0;
+  }
+  .fw-tabulators {
+    > * {
+      font-size: 30px;
+      &.active {
+        //- color: fw-color();
+      }
+    }
+  }
+  .install-step {
+    b {
+      display: inline-block;
+      padding: 2px 8px;
+      background: fw-color(lightblue, 50);
+      border: solid 1px rgba(0,0,0,0.1);
+    }
+    //- background: red;
+    padding: 30px 0;
+    //- border-top: solid 1px red;
+    &:first-child {
+      //- border-top: none;
+    }
+    @include fw-clearfix;
+  }
+  .step-left {
+    //- background: green;
+    float: left;
+  }
+  .step-right {
+    overflow: hidden;
+    //- background: blue;
+    //- padding: 15px 0 0 15px;
+    padding-left: 15px;
+  }
+  .semantic-steps {
+    .step-number {
+      background: fw-color(purple, 300);
+    }
+  }
+  .step-number {
+    color: #fff;
+    background: fw-color(lightblue, 200);
+    display: inline-block;
+    border-radius: 100em;
+    text-align: center;
+    @include old-scale((
+      width: (25px, 35px),
+      line-height: (25px, 35px),
+      height: (25px, 35px),
+      font-size: (15px, 20px)
+    ));
+    //- background: teal;
+  }
+  .step-description {
+    //- background: gray;
+    text-align: left;
+  }
+}
+
+</splitSection>

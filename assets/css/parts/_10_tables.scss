@@ -1,0 +1,18 @@
+// .fw-table {
+//   // background: red;
+//   display: table;
+//   // table-layout: fixed;
+//   width: 100%;
+//   > * {
+//     // rows
+//     display: table-row;
+//     > * {
+//       // cells
+//       display: table-cell;
+//       border-bottom: solid 1px black;
+//       @include old_scale((
+//         padding: (10px, 5px)
+//       ));
+//     }
+//   }
+// }

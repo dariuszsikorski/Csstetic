@@ -1,0 +1,137 @@
+
+
+<splitSection output="output/clearfix_section.jade">
+
+  section
+    h3 Clearfix
+    h5 Restore height to container with floated elements.
+
+    .fw-tabulators
+      span Demo with clearfix
+      span Demo without clearfix
+
+    .fw-tabs
+      .fw-container
+        .fw-example.fw-copy.demo-clearfix
+          .container.clearfixed
+            div floated element
+            div floated element
+            div floated element
+      .fw-container
+        .fw-example.fw-copy.demo-clearfix
+          .container
+            div floated element
+            div floated element
+            div floated element
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+
+      .fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            @include fw-clearfix;
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-clearfix"
+
+      .fw-container
+        .fw-code
+          :code
+            <div class="my-container">
+              <div>floated element</div>
+              <div>floated element</div>
+              <div>floated element</div>
+            </div>
+        .fw-code
+          :code
+            my-container {
+              @include fw-clearfix;
+            }
+
+      .fw-container
+        .fw-code
+          :code
+            <div class="fw-clearfix">
+              <div>floated element</div>
+              <div>floated element</div>
+              <div>floated element</div>
+            </div>
+
+</splitSection>
+
+
+
+<splitSection output="output/clearfix_section.scss">
+
+.demo-clearfix {
+  .container {
+    border: solid 2px #333;
+    padding: 10px;
+    &.clearfixed {
+      @include fw-clearfix;
+    }
+    div {
+      float: left;
+      padding: 7px;
+    }
+  }
+}
+
+</splitSection>
+
+
+
+<splitSection output="output/clearfix_semantic.scss">
+
+%fw-clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin fw-clearfix(){
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+</splitSection>
+
+
+
+<splitSection output="output/clearfix_selectors.scss">
+
+.fw-clearfix {
+  @include fw-clearfix;
+}
+
+</splitSection>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

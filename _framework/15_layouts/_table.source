@@ -1,0 +1,312 @@
+
+
+<splitSection output="output/table_section.jade">
+
+  section.sec-table
+    h3 Table
+    h5 Use table rows and columns to build equal height blocks,<br>present data or vertically align content.
+
+
+    .fw-tabulators
+      span Table demo
+      span Vertical align content
+
+    .fw-tabs
+      div
+        //- p content 1
+        h4 simple table
+        .fw-resizable.fw-copy.c-elements.demo-tables.fw-example
+          .fw-table
+            .fw-table-row
+              .fw-table-col column
+              .fw-table-col column
+              .fw-table-col column
+
+        h4 nested tables
+        .fw-resizable.fw-copy.c-elements.demo-tables.fw-example
+
+          .fw-table
+            .fw-table-row
+
+              .fw-table
+                .fw-table-row
+                  .fw-table-col column
+                  .fw-table-col column
+                  .fw-table-col column
+                  .fw-table-col column
+            .fw-table-row
+
+              .fw-table
+                .fw-table-row
+                  .fw-table-col column
+                  .fw-table-col column
+                  .fw-table-col column
+            .fw-table-row
+
+              .fw-table
+                .fw-table-row
+                  .fw-table-col column
+                  .fw-table-col column
+
+      div
+        //- p content 1
+        .fw-resizable.fw-copy.c-elements.demo-tables.fw-example.demo-vtable
+          .fw-table
+            .fw-table-row
+              .fw-table-col.fw-table-top content top
+              .fw-table-col.fw-table-middle content middle
+              .fw-table-col.fw-table-bottom content bottom
+
+          //- iframe(src='../demos/table_demo.html')
+          //- .fw-table
+          //-   .fw-table-row.h-60
+          //-     .fw-table-col
+          //-       .fw-table
+          //-         .fw-table-row
+          //-           .fw-table-col.w-40
+          //-             .fw-table
+          //-               .fw-table-row.h-60
+          //-                 .fw-table-col.block
+          //-               .fw-table-col.h-40
+          //-                 .fw-table
+          //-                   .fw-table-row
+          //-                     .fw-table-col.w-60.block
+          //-                     .fw-table-col.w-40
+          //-                       .fw-table
+          //-                         .fw-table-row.h-40
+          //-                           .fw-table-col
+          //-                             .fw-table
+          //-                               .fw-table-row
+          //-                                 .fw-table-col.w-60.block
+          //-                                 .fw-table-col.block
+
+          //-                         .fw-table-row.h-60
+          //-                           .fw-table-col.block
+          //-           .fw-table-col.w-60.block
+          //-   .fw-table-row.h-40
+          //-     .fw-table-col.block
+
+      div
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements
+          //- iframe(src='../demos/table_demo.html')
+          p Paragraph table
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+      span Vertical align
+      span Nesting tables
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-table {
+              @include fw-table;
+            }
+            .my-table-row {
+              @include fw-table-row;
+            }
+            .my-table-col {
+              @include fw-table-column;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-table">
+              <div class="fw-table-row">
+                <div class="fw-table-col">column</div>
+                <div class="fw-table-col">column</div>
+                <div class="fw-table-col">column</div>
+              </div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-table">
+              <div class="my-table-row">
+                <div class="my-table-col">column</div>
+                <div class="my-table-col">column</div>
+                <div class="my-table-col">column</div>
+              </div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-table {
+              @include fw-table;
+            }
+            .my-table-row {
+              @include fw-table-row;
+            }
+            .my-table-col {
+              @include fw-table-column;
+
+              // optional:
+              vertical-align: middle; // top | middle | bottom
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-table">
+              <div class="fw-table-row">
+                <div class="fw-table-col">column</div>
+                <div class="fw-table-col">column</div>
+                <div class="fw-table-col">column</div>
+              </div>
+            </div>
+      div.fw-container
+        h4 Classic align
+        .fw-code
+          :code
+            class="fw-table-col fw-table-top"
+            class="fw-table-col fw-table-middle"
+            class="fw-table-col fw-table-bottom"
+
+        h4 Semantic align
+        .fw-code
+          :code
+            .my-table-col {
+              @include fw-table-column;
+              vertical-align: middle; // top | middle | bottom
+            }
+      div.fw-container
+        .fw-code
+          :code
+            // first table
+            <div class="fw-table">
+              <div class="fw-table-row">
+                <div class="fw-table-col">
+
+                  // nested table
+                  <div class="fw-table">
+                    <div class="fw-table-row">
+                      <div class="fw-table-col">column</div>
+                      <div class="fw-table-col">column</div>
+                    </div>
+                    <div class="fw-table-row">
+                      <div class="fw-table-col">column</div>
+                      <div class="fw-table-col">column</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+        p Each table has to be nested in following pattern: <b>table</b> > <b>row</b> > <b>column</b> > <b>table</b> > <b>row</b> ...<br>Browsers such as Chrome and Firefox work properly with simpler: <b>table</b> > <b>column</b> > <b>table</b> > <b>column</b> ... patterns, but since Internet Explorer(10-) has problems inheriting heights, it's better to use w3c specified <b>table</b> > <b>row</b> > <b>column</b> pattern.
+
+        p Please not that css has no "colspan" property. Each row has to contain same number of columns, unless you nest another table inside a column.
+
+</splitSection>
+
+
+<splitSection output="output/table_demo.jade">
+
+//- block meta
+//-   link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+//-   link(rel="stylesheet", href="./table_demo.css" id="mainstyle")
+
+//- block title
+//-   title table Demo
+
+//- block content
+//-   .table-demo
+//-     span demo content
+//-     span demo content
+//-     span demo content
+
+</splitSection>
+
+
+<splitSection output="output/table_section.scss">
+
+.sec-table {
+  .demo-vtable {
+    .fw-table {
+      height: 150px;
+    }
+  }
+  .demo-tables {
+    > .fw-table {
+      border: solid 2px #333;
+    }
+    .fw-table-col {
+      padding: 20px 10px;
+      text-align: center;
+      border: solid 1px #ccc;
+    }
+    .fw-table .fw-table {
+
+      //- &, * {
+      //-   outline: solid 1px black;
+      //- }
+    }
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/table_semantic.scss">
+
+@mixin fw-table{
+  display: table;
+  width: 100%;
+  //- height: 100%; // it is very helpful, for nested tables, but unexpected for developers
+  border-collapse: collapse; // allow to add row borders
+  table-layout: fixed; // set equal size for unstyled cells
+  box-sizing: border-box;
+}
+
+@mixin fw-table-row {
+  display: table-row;
+  height: inherit; // fix row height on ie
+  box-sizing: border-box;
+
+}
+
+@mixin fw-table-column {
+  display: table-cell;
+  vertical-align: top;
+  height: inherit; // fix column height on ie
+  box-sizing: border-box;
+}
+
+</splitSection>
+
+
+<splitSection output="output/table_selectors.scss">
+
+
+.fw-table {
+  @include fw-table;
+}
+
+.fw-table-row {
+  @include fw-table-row;
+}
+
+.fw-table-col {
+  @include fw-table-column;
+}
+
+.fw-table-top {
+  vertical-align: top;
+}
+.fw-table-middle {
+  vertical-align: middle;
+}
+.fw-table-bottom {
+  vertical-align: bottom;
+}
+
+
+</splitSection>

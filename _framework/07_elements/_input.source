@@ -1,0 +1,140 @@
+
+
+<splitSection output="output/input_section.jade">
+
+  section.sec-input
+    h3 Input
+    h5 Reset styling on input element, ready to apply custom style.
+
+
+    .fw-tabulators
+      span Input demo
+      span Browser default
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        h4 Unstyled input
+        .fw-copy.fw-example
+          input.fw-input(type="text" placeholder="type text")
+
+        h4 Custom styling
+        .fw-example.fw-copy.c-elements
+          input.fw-input.fw-bg-bluegrey-50.fw-size-xxl.fw-rounded-md.fw-txt-black(type="text" placeholder="Non semantic input")
+          input.demo-input(type="text" placeholder="Semantic (see code)")
+
+      div.fw-container
+        //- p content 2
+        .fw-copy.fw-example
+          input(type="text" placeholder="type text")
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-input {
+              @include fw-input;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-input"
+
+      div.fw-container
+        .fw-code
+          :code
+            <input class="my-input" placeholder="placeholder text">
+        .fw-code.scss
+          :code
+            .my-input {
+              @include fw-input;
+
+              // optional, custom styling
+              @include fw-size-base;
+              @include fw-size(xxl);
+              border-radius: $fw-rounded-md;
+              background-color: fw-color(grey, 100);
+              color: fw-color(black);
+            }
+
+      div
+        .fw-code
+          :code
+            <input class="fw-input" placeholder="placeholder text">
+
+        h4 Input with custom styling
+        .fw-code
+          :code
+            <input class="fw-input fw-bg-bluegrey-50 fw-size-xxl fw-rounded-md fw-txt-black" placeholder="placeholder text">
+
+</splitSection>
+
+
+<XXsplitSection output="output/input_demo.jade">
+
+//- block meta
+//-   link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+//-   link(rel="stylesheet", href="./input_demo.css" id="mainstyle")
+
+//- block title
+//-   title input Demo
+
+//- block content
+//-   .input-demo
+//-     span demo content
+//-     span demo content
+//-     span demo content
+
+</splitSection>
+
+
+<splitSection output="output/input_section.scss">
+
+.sec-input {
+  .demo-input {
+    @include fw-input;
+
+    @include fw-size-base;
+    @include fw-size(xxl);
+    border-radius: $fw-rounded-md;
+    background-color: fw-color(bluegrey, 50);
+    //- color: fw-color(bluegrey, 900);
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/input_semantic.scss">
+
+@mixin fw-input{
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/input_selectors.scss">
+
+.fw-input {
+  @include fw-input;
+}
+
+</splitSection>

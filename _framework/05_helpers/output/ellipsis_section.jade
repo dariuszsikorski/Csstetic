@@ -1,0 +1,58 @@
+section.sec-ellipsis
+    h3 Ellipsis
+    h5 Show three dots at the end of the line if paragraph is too long.
+
+
+    .fw-tabulators
+      span Demo with ellipsis
+      span Demo without ellipsis
+
+    .fw-tabs
+      div.fw-container
+        //- p content 1
+
+        .fw-resizable.fw-copy.c-elements.demo-ellipsis
+          //- iframe(src='../demos/ellipsis_demo.html')
+          p.fw-ellipsis Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam accumsan turpis. Phasellus dignissim felis pharetra orci gravida, et egestas mauris venenatis. Phasellus efficitur ligula lorem, eu fermentum nunc commodo at. Duis quis mi nunc. Nunc molestie augue quis felis consequat cursus. Ut accumsan posuere nunc, ut rutrum dolor consectetur et. Nulla malesuada faucibus tincidunt. In lobortis lacus a leo euismod, et mattis turpis sollicitudin. Duis nec erat at augue volutpat tempus.
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements.demo-ellipsis
+          //- iframe(src='../demos/ellipsis_demo.html')
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam accumsan turpis. Phasellus dignissim felis pharetra orci gravida, et egestas mauris venenatis. Phasellus efficitur ligula lorem, eu fermentum nunc commodo at. Duis quis mi nunc. Nunc molestie augue quis felis consequat cursus. Ut accumsan posuere nunc, ut rutrum dolor consectetur et. Nulla malesuada faucibus tincidunt. In lobortis lacus a leo euismod, et mattis turpis sollicitudin. Duis nec erat at augue volutpat tempus.
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-paragraph {
+              @include fw-ellipsis;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-ellipsis"
+
+      div.fw-container
+        .fw-code
+          :code
+            <p class="my-paragraph">Hello!</p>
+        .fw-code.scss
+          :code
+            .my-paragraph {
+              @include fw-ellipsis;
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <p class="fw-ellipsis">Hello!</p>

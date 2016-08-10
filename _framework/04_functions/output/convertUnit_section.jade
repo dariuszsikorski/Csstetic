@@ -1,0 +1,56 @@
+section.sec-convertUnit
+    h3 Convert Unit
+    h5 Convert css size units.<br>Some conversions are relative to browser defaults such as 16px for font-size.
+
+
+
+    <br><br>
+    .fw-resizable.fw-example.fw-copy.c-elements.demo-converts
+      //- iframe(src='../demos/convertUnit_demo.html')
+
+
+      p.fw-ellipsis.px-px <b>10px to [px]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-em <b>11px to [em]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-ex <b>12px to [ex]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-ch <b>13px to [ch]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-rem <b>14px to [rem]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-vw <b>15px to [vw]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-vh <b>16px to [vh]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-vmin <b>17px to [vmin]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-vmax <b>18px to [vmax]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-proc <b>19px to [%]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-cm <b>20px to [cm]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-mm <b>21px to [mm]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-in <b>22px to [in]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-pt <b>23px to [pt]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+      p.fw-ellipsis.px-pc <b>24px to [pc]</b> Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla ornare commodo. Ut suscipit aliquet quam, ut sodales enim aliquet vel.
+
+    .fw-separator
+      span Units
+    .fw-container
+      P px,
+        | em,
+        | ex,
+        | ch,
+        | rem,
+        | vw,
+        | vh,
+        | vmin,
+        | vmax,
+        | %,
+        | cm,
+        | mm,
+        | in,
+        | pt,
+        | pc
+
+
+    .fw-separator
+      span Semantic usage
+
+    .fw-code.scss
+      :code
+        .my-element {
+          font-size: fw-convert(2rem, px); // returns 32px
+        }
+    p syntax: fw-convert(<b> input value </b>, <b> output unit </b>);

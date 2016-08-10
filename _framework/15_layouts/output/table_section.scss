@@ -1,0 +1,23 @@
+.sec-table {
+  .demo-vtable {
+    .fw-table {
+      height: 150px;
+    }
+  }
+  .demo-tables {
+    > .fw-table {
+      border: solid 2px #333;
+    }
+    .fw-table-col {
+      padding: 20px 10px;
+      text-align: center;
+      border: solid 1px #ccc;
+    }
+    .fw-table .fw-table {
+
+      //- &, * {
+      //-   outline: solid 1px black;
+      //- }
+    }
+  }
+}

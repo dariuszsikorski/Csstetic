@@ -1,0 +1,10 @@
+.fw-justify {
+   @include fw-justified;
+
+  .fw-just-item {
+    @include fw-just-item;
+    vertical-align: middle;
+    @include fw-size-base;
+    @include fw-size(md);
+  }
+}

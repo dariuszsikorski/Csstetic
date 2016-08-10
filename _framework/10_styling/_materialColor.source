@@ -1,0 +1,845 @@
+
+
+<splitSection output="output/material_section.jade">
+
+  section.sec-material
+    h3 Material Color
+    h5 Set color based on material design palette.
+
+
+
+
+    .fw-tabulators
+      span Background color
+      span Text color
+
+    .fw-tabs
+      div
+        //- p content 1
+
+
+
+        h4 available colors
+        .fw-example.demo-background-2.fw-copy.c-elements
+          .fw-bg-red red
+          .fw-bg-pink pink
+          .fw-bg-purple purple
+          .fw-bg-deeppurple deeppurple
+          .fw-bg-indigo indigo
+          .fw-bg-blue blue
+          .fw-bg-lightblue lightblue
+          .fw-bg-cyan cyan
+          .fw-bg-teal teal
+          .fw-bg-green green
+          .fw-bg-lightgreen lightgreen
+          .fw-bg-lime lime
+          .fw-bg-yellow yellow
+          .fw-bg-amber amber
+          .fw-bg-orange orange
+          .fw-bg-deeporange deeporange
+          .fw-bg-brown brown
+          .fw-bg-grey grey
+          .fw-bg-bluegrey bluegrey
+          .fw-bg-black black
+          .fw-bg-white white
+
+        h4 example: purple shades
+        .fw-example.demo-background-2.fw-copy.c-elements
+          .fw-bg-deeppurple-50 50
+          .fw-bg-deeppurple-100 100
+          .fw-bg-deeppurple-200 200
+          .fw-bg-deeppurple-300 300
+          .fw-bg-deeppurple-400 400
+          .fw-bg-deeppurple-500 500
+          .fw-bg-deeppurple-600 600
+          .fw-bg-deeppurple-700 700
+          .fw-bg-deeppurple-800 800
+          .fw-bg-deeppurple-900 900
+          .fw-bg-deeppurple-A100 A100
+          .fw-bg-deeppurple-A200 A200
+          .fw-bg-deeppurple-A400 A400
+          .fw-bg-deeppurple-A700 A700
+
+
+
+        h4 available shades
+        .fw-example.demo-background
+
+          .fw-bg-red-50 50
+          .fw-bg-red-100 100
+          .fw-bg-red-200 200
+          .fw-bg-red-300 300
+          .fw-bg-red-400 400
+          .fw-bg-red-500 500
+          .fw-bg-red-600 600
+          .fw-bg-red-700 700
+          .fw-bg-red-800 800
+          .fw-bg-red-900 900
+          .fw-bg-red-A100 A100
+          .fw-bg-red-A200 A200
+          .fw-bg-red-A400 A400
+          .fw-bg-red-A700 A700
+
+          .fw-bg-pink-50 50
+          .fw-bg-pink-100 100
+          .fw-bg-pink-200 200
+          .fw-bg-pink-300 300
+          .fw-bg-pink-400 400
+          .fw-bg-pink-500 500
+          .fw-bg-pink-600 600
+          .fw-bg-pink-700 700
+          .fw-bg-pink-800 800
+          .fw-bg-pink-900 900
+          .fw-bg-pink-A100 A100
+          .fw-bg-pink-A200 A200
+          .fw-bg-pink-A400 A400
+          .fw-bg-pink-A700 A700
+
+          .fw-bg-purple-50 50
+          .fw-bg-purple-100 100
+          .fw-bg-purple-200 200
+          .fw-bg-purple-300 300
+          .fw-bg-purple-400 400
+          .fw-bg-purple-500 500
+          .fw-bg-purple-600 600
+          .fw-bg-purple-700 700
+          .fw-bg-purple-800 800
+          .fw-bg-purple-900 900
+          .fw-bg-purple-A100 A100
+          .fw-bg-purple-A200 A200
+          .fw-bg-purple-A400 A400
+          .fw-bg-purple-A700 A700
+
+          .fw-bg-deeppurple-50 50
+          .fw-bg-deeppurple-100 100
+          .fw-bg-deeppurple-200 200
+          .fw-bg-deeppurple-300 300
+          .fw-bg-deeppurple-400 400
+          .fw-bg-deeppurple-500 500
+          .fw-bg-deeppurple-600 600
+          .fw-bg-deeppurple-700 700
+          .fw-bg-deeppurple-800 800
+          .fw-bg-deeppurple-900 900
+          .fw-bg-deeppurple-A100 A100
+          .fw-bg-deeppurple-A200 A200
+          .fw-bg-deeppurple-A400 A400
+          .fw-bg-deeppurple-A700 A700
+
+          .fw-bg-indigo-50 50
+          .fw-bg-indigo-100 100
+          .fw-bg-indigo-200 200
+          .fw-bg-indigo-300 300
+          .fw-bg-indigo-400 400
+          .fw-bg-indigo-500 500
+          .fw-bg-indigo-600 600
+          .fw-bg-indigo-700 700
+          .fw-bg-indigo-800 800
+          .fw-bg-indigo-900 900
+          .fw-bg-indigo-A100 A100
+          .fw-bg-indigo-A200 A200
+          .fw-bg-indigo-A400 A400
+          .fw-bg-indigo-A700 A700
+
+          .fw-bg-blue-50 50
+          .fw-bg-blue-100 100
+          .fw-bg-blue-200 200
+          .fw-bg-blue-300 300
+          .fw-bg-blue-400 400
+          .fw-bg-blue-500 500
+          .fw-bg-blue-600 600
+          .fw-bg-blue-700 700
+          .fw-bg-blue-800 800
+          .fw-bg-blue-900 900
+          .fw-bg-blue-A100 A100
+          .fw-bg-blue-A200 A200
+          .fw-bg-blue-A400 A400
+          .fw-bg-blue-A700 A700
+
+          .fw-bg-lightblue-50 50
+          .fw-bg-lightblue-100 100
+          .fw-bg-lightblue-200 200
+          .fw-bg-lightblue-300 300
+          .fw-bg-lightblue-400 400
+          .fw-bg-lightblue-500 500
+          .fw-bg-lightblue-600 600
+          .fw-bg-lightblue-700 700
+          .fw-bg-lightblue-800 800
+          .fw-bg-lightblue-900 900
+          .fw-bg-lightblue-A100 A100
+          .fw-bg-lightblue-A200 A200
+          .fw-bg-lightblue-A400 A400
+          .fw-bg-lightblue-A700 A700
+
+          .fw-bg-cyan-50 50
+          .fw-bg-cyan-100 100
+          .fw-bg-cyan-200 200
+          .fw-bg-cyan-300 300
+          .fw-bg-cyan-400 400
+          .fw-bg-cyan-500 500
+          .fw-bg-cyan-600 600
+          .fw-bg-cyan-700 700
+          .fw-bg-cyan-800 800
+          .fw-bg-cyan-900 900
+          .fw-bg-cyan-A100 A100
+          .fw-bg-cyan-A200 A200
+          .fw-bg-cyan-A400 A400
+          .fw-bg-cyan-A700 A700
+
+          .fw-bg-teal-50 50
+          .fw-bg-teal-100 100
+          .fw-bg-teal-200 200
+          .fw-bg-teal-300 300
+          .fw-bg-teal-400 400
+          .fw-bg-teal-500 500
+          .fw-bg-teal-600 600
+          .fw-bg-teal-700 700
+          .fw-bg-teal-800 800
+          .fw-bg-teal-900 900
+          .fw-bg-teal-A100 A100
+          .fw-bg-teal-A200 A200
+          .fw-bg-teal-A400 A400
+          .fw-bg-teal-A700 A700
+
+          .fw-bg-green-50 50
+          .fw-bg-green-100 100
+          .fw-bg-green-200 200
+          .fw-bg-green-300 300
+          .fw-bg-green-400 400
+          .fw-bg-green-500 500
+          .fw-bg-green-600 600
+          .fw-bg-green-700 700
+          .fw-bg-green-800 800
+          .fw-bg-green-900 900
+          .fw-bg-green-A100 A100
+          .fw-bg-green-A200 A200
+          .fw-bg-green-A400 A400
+          .fw-bg-green-A700 A700
+
+          .fw-bg-lightgreen-50 50
+          .fw-bg-lightgreen-100 100
+          .fw-bg-lightgreen-200 200
+          .fw-bg-lightgreen-300 300
+          .fw-bg-lightgreen-400 400
+          .fw-bg-lightgreen-500 500
+          .fw-bg-lightgreen-600 600
+          .fw-bg-lightgreen-700 700
+          .fw-bg-lightgreen-800 800
+          .fw-bg-lightgreen-900 900
+          .fw-bg-lightgreen-A100 A100
+          .fw-bg-lightgreen-A200 A200
+          .fw-bg-lightgreen-A400 A400
+          .fw-bg-lightgreen-A700 A700
+
+          .fw-bg-lime-50 50
+          .fw-bg-lime-100 100
+          .fw-bg-lime-200 200
+          .fw-bg-lime-300 300
+          .fw-bg-lime-400 400
+          .fw-bg-lime-500 500
+          .fw-bg-lime-600 600
+          .fw-bg-lime-700 700
+          .fw-bg-lime-800 800
+          .fw-bg-lime-900 900
+          .fw-bg-lime-A100 A100
+          .fw-bg-lime-A200 A200
+          .fw-bg-lime-A400 A400
+          .fw-bg-lime-A700 A700
+
+          .fw-bg-yellow-50 50
+          .fw-bg-yellow-100 100
+          .fw-bg-yellow-200 200
+          .fw-bg-yellow-300 300
+          .fw-bg-yellow-400 400
+          .fw-bg-yellow-500 500
+          .fw-bg-yellow-600 600
+          .fw-bg-yellow-700 700
+          .fw-bg-yellow-800 800
+          .fw-bg-yellow-900 900
+          .fw-bg-yellow-A100 A100
+          .fw-bg-yellow-A200 A200
+          .fw-bg-yellow-A400 A400
+          .fw-bg-yellow-A700 A700
+
+          .fw-bg-amber-50 50
+          .fw-bg-amber-100 100
+          .fw-bg-amber-200 200
+          .fw-bg-amber-300 300
+          .fw-bg-amber-400 400
+          .fw-bg-amber-500 500
+          .fw-bg-amber-600 600
+          .fw-bg-amber-700 700
+          .fw-bg-amber-800 800
+          .fw-bg-amber-900 900
+          .fw-bg-amber-A100 A100
+          .fw-bg-amber-A200 A200
+          .fw-bg-amber-A400 A400
+          .fw-bg-amber-A700 A700
+
+          .fw-bg-orange-50 50
+          .fw-bg-orange-100 100
+          .fw-bg-orange-200 200
+          .fw-bg-orange-300 300
+          .fw-bg-orange-400 400
+          .fw-bg-orange-500 500
+          .fw-bg-orange-600 600
+          .fw-bg-orange-700 700
+          .fw-bg-orange-800 800
+          .fw-bg-orange-900 900
+          .fw-bg-orange-A100 A100
+          .fw-bg-orange-A200 A200
+          .fw-bg-orange-A400 A400
+          .fw-bg-orange-A700 A700
+
+          .fw-bg-deeporange-50 50
+          .fw-bg-deeporange-100 100
+          .fw-bg-deeporange-200 200
+          .fw-bg-deeporange-300 300
+          .fw-bg-deeporange-400 400
+          .fw-bg-deeporange-500 500
+          .fw-bg-deeporange-600 600
+          .fw-bg-deeporange-700 700
+          .fw-bg-deeporange-800 800
+          .fw-bg-deeporange-900 900
+          .fw-bg-deeporange-A100 A100
+          .fw-bg-deeporange-A200 A200
+          .fw-bg-deeporange-A400 A400
+          .fw-bg-deeporange-A700 A700
+
+          .fw-bg-brown-50 50
+          .fw-bg-brown-100 100
+          .fw-bg-brown-200 200
+          .fw-bg-brown-300 300
+          .fw-bg-brown-400 400
+          .fw-bg-brown-500 500
+          .fw-bg-brown-600 600
+          .fw-bg-brown-700 700
+          .fw-bg-brown-800 800
+          .fw-bg-brown-900 900
+
+          .fw-bg-grey-50 50
+          .fw-bg-grey-100 100
+          .fw-bg-grey-200 200
+          .fw-bg-grey-300 300
+          .fw-bg-grey-400 400
+          .fw-bg-grey-500 500
+          .fw-bg-grey-600 600
+          .fw-bg-grey-700 700
+          .fw-bg-grey-800 800
+          .fw-bg-grey-900 900
+
+          .fw-bg-bluegrey-50 50
+          .fw-bg-bluegrey-100 100
+          .fw-bg-bluegrey-200 200
+          .fw-bg-bluegrey-300 300
+          .fw-bg-bluegrey-400 400
+          .fw-bg-bluegrey-500 500
+          .fw-bg-bluegrey-600 600
+          .fw-bg-bluegrey-700 700
+          .fw-bg-bluegrey-800 800
+          .fw-bg-bluegrey-900 900
+
+          .fw-bg-black-500 500
+
+          .fw-bg-white-500 500
+
+      div
+        .fw-copy.c-elements.demo-text.fw-example
+          .fw-txt-indigo-50 indigo 50 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-100 indigo 100 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-200 indigo 200 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-300 indigo 300 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-400 indigo 400 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-500 indigo 500 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-600 indigo 600 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-700 indigo 700 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-800 indigo 800 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+          .fw-txt-indigo-900 indigo 900 Quo modo autem philosophus loquitur? Iam id ipsum absurdum, maximum malum neglegi.
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-element {
+              background: fw-color(deeppurple, 800);
+              color: fw-color(indigo, A100);
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-txt-indigo-A100 fw-bg-deeppurple-900"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-element">Hello!</span>
+        .fw-code.scss
+          :code
+            .my-element {
+              background: fw-color(deeppurple, 800);
+              color: fw-color(indigo, A100);
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="fw-txt-indigo-A100 fw-bg-deeppurple-900">Hello!</span>
+
+
+</splitSection>
+
+
+
+
+
+
+<splitSection output="output/material_section.scss">
+
+.sec-material {
+  .demo-background,
+  .demo-background-2 {
+    > * {
+      padding: 10px 20px;
+      box-sizing: border-box;
+      float: left;
+      color: #fff;
+    }
+    .fw-bg-white,
+    .fw-bg-white-500 {
+      outline: solid 2px #ddd;
+      color: #000;
+    }
+  }
+  .demo-background-2 {
+    > * {
+      width: (100/10) * 1%;
+    }
+  }
+  .demo-background {
+    overflow: hidden;
+    > * {
+      width: (100/14) * 1%;
+    }
+  }
+  .demo-text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    font-size: 17px;
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/material_semantic.scss">
+
+
+// a map of Material Ui Colors
+// https://www.google.com/design/spec/style/color.html
+
+// available colors:
+// red, pink, purple, deeppurple, indigo, blue, lightblue,
+// cyan, teal, green, lightgreen, lime, yellow, amber,
+// orange, deeporange, brown, grey, bluegrey
+// + extra colors: black, white only available in shade 500 which is #000 & #fff
+
+// shade 500 is default color for material colors
+
+// available shades:
+// A-shades are not available in last 3 material colors
+
+// 50
+// 100
+// 200
+// 300
+// 400
+// 500
+// 600
+// 700
+// 800
+// 900
+// A100
+// A200
+// A400
+// A700
+
+$fw-material-colors: (
+  red: (
+    50: #ffebee,
+    100: #ffcdd2,
+    200: #ef9a9a,
+    300: #e57373,
+    400: #ef5350,
+    500: #f44336,
+    600: #e53935,
+    700: #d32f2f,
+    800: #c62828,
+    900: #b71c1c,
+    A100: #ff8a80,
+    A200: #ff5252,
+    A400: #ff1744,
+    A700: #d50000
+  ),
+  pink: (
+    50: #FCE4EC,
+    100: #F8BBD0,
+    200: #F48FB1,
+    300: #F06292,
+    400: #EC407A,
+    500: #E91E63,
+    600: #D81B60,
+    700: #C2185B,
+    800: #AD1457,
+    900: #880E4F,
+    A100: #FF80AB,
+    A200: #FF4081,
+    A400: #F50057,
+    A700: #C51162
+  ),
+  purple: (
+    50: #F3E5F5,
+    100: #E1BEE7,
+    200: #CE93D8,
+    300: #BA68C8,
+    400: #AB47BC,
+    500: #9C27B0,
+    600: #8E24AA,
+    700: #7B1FA2,
+    800: #6A1B9A,
+    900: #4A148C,
+    A100: #EA80FC,
+    A200: #E040FB,
+    A400: #D500F9,
+    A700: #AA00FF
+  ),
+  deeppurple: (
+    50: #EDE7F6,
+    100: #D1C4E9,
+    200: #B39DDB,
+    300: #9575CD,
+    400: #7E57C2,
+    500: #673AB7,
+    600: #5E35B1,
+    700: #512DA8,
+    800: #4527A0,
+    900: #311B92,
+    A100: #B388FF,
+    A200: #7C4DFF,
+    A400: #651FFF,
+    A700: #6200EA
+  ),
+  indigo: (
+    50: #E8EAF6,
+    100: #C5CAE9,
+    200: #9FA8DA,
+    300: #7986CB,
+    400: #5C6BC0,
+    500: #3F51B5,
+    600: #3949AB,
+    700: #303F9F,
+    800: #283593,
+    900: #1A237E,
+    A100: #8C9EFF,
+    A200: #536DFE,
+    A400: #3D5AFE,
+    A700: #304FFE
+  ),
+  blue: (
+    50: #E3F2FD,
+    100: #BBDEFB,
+    200: #90CAF9,
+    300: #64B5F6,
+    400: #42A5F5,
+    500: #2196F3,
+    600: #1E88E5,
+    700: #1976D2,
+    800: #1565C0,
+    900: #0D47A1,
+    A100: #82B1FF,
+    A200: #448AFF,
+    A400: #2979FF,
+    A700: #2962FF
+  ),
+  lightblue: (
+    50: #E1F5FE,
+    100: #B3E5FC,
+    200: #81D4FA,
+    300: #4FC3F7,
+    400: #29B6F6,
+    500: #03A9F4,
+    600: #039BE5,
+    700: #0288D1,
+    800: #0277BD,
+    900: #01579B,
+    A100: #80D8FF,
+    A200: #40C4FF,
+    A400: #00B0FF,
+    A700: #0091EA
+  ),
+  cyan: (
+    50: #E0F7FA,
+    100: #B2EBF2,
+    200: #80DEEA,
+    300: #4DD0E1,
+    400: #26C6DA,
+    500: #00BCD4,
+    600: #00ACC1,
+    700: #0097A7,
+    800: #00838F,
+    900: #006064,
+    A100: #84FFFF,
+    A200: #18FFFF,
+    A400: #00E5FF,
+    A700: #00B8D4
+  ),
+  teal: (
+    50: #E0F2F1,
+    100: #B2DFDB,
+    200: #80CBC4,
+    300: #4DB6AC,
+    400: #26A69A,
+    500: #009688,
+    600: #00897B,
+    700: #00796B,
+    800: #00695C,
+    900: #004D40,
+    A100: #A7FFEB,
+    A200: #64FFDA,
+    A400: #1DE9B6,
+    A700: #00BFA5
+  ),
+  green: (
+    50: #E8F5E9,
+    100: #C8E6C9,
+    200: #A5D6A7,
+    300: #81C784,
+    400: #66BB6A,
+    500: #4CAF50,
+    600: #43A047,
+    700: #388E3C,
+    800: #2E7D32,
+    900: #1B5E20,
+    A100: #B9F6CA,
+    A200: #69F0AE,
+    A400: #00E676,
+    A700: #00C853
+  ),
+  lightgreen: (
+    50: #F1F8E9,
+    100: #DCEDC8,
+    200: #C5E1A5,
+    300: #AED581,
+    400: #9CCC65,
+    500: #8BC34A,
+    600: #7CB342,
+    700: #689F38,
+    800: #558B2F,
+    900: #33691E,
+    A100: #CCFF90,
+    A200: #B2FF59,
+    A400: #76FF03,
+    A700: #64DD17
+  ),
+  lime: (
+    50: #F9FBE7,
+    100: #F0F4C3,
+    200: #E6EE9C,
+    300: #DCE775,
+    400: #D4E157,
+    500: #CDDC39,
+    600: #C0CA33,
+    700: #AFB42B,
+    800: #9E9D24,
+    900: #827717,
+    A100: #F4FF81,
+    A200: #EEFF41,
+    A400: #C6FF00,
+    A700: #AEEA00
+  ),
+  yellow: (
+    50: #FFFDE7,
+    100: #FFF9C4,
+    200: #FFF59D,
+    300: #FFF176,
+    400: #FFEE58,
+    500: #FFEB3B,
+    600: #FDD835,
+    700: #FBC02D,
+    800: #F9A825,
+    900: #F57F17,
+    A100: #FFFF8D,
+    A200: #FFFF00,
+    A400: #FFEA00,
+    A700: #FFD600
+  ),
+  amber: (
+    50: #FFF8E1,
+    100: #FFECB3,
+    200: #FFE082,
+    300: #FFD54F,
+    400: #FFCA28,
+    500: #FFC107,
+    600: #FFB300,
+    700: #FFA000,
+    800: #FF8F00,
+    900: #FF6F00,
+    A100: #FFE57F,
+    A200: #FFD740,
+    A400: #FFC400,
+    A700: #FFAB00
+  ),
+  orange: (
+    50: #FFF3E0,
+    100: #FFE0B2,
+    200: #FFCC80,
+    300: #FFB74D,
+    400: #FFA726,
+    500: #FF9800,
+    600: #FB8C00,
+    700: #F57C00,
+    800: #EF6C00,
+    900: #E65100,
+    A100: #FFD180,
+    A200: #FFAB40,
+    A400: #FF9100,
+    A700: #FF6D00
+  ),
+  deeporange: (
+    50: #FBE9E7,
+    100: #FFCCBC,
+    200: #FFAB91,
+    300: #FF8A65,
+    400: #FF7043,
+    500: #FF5722,
+    600: #F4511E,
+    700: #E64A19,
+    800: #D84315,
+    900: #BF360C,
+    A100: #FF9E80,
+    A200: #FF6E40,
+    A400: #FF3D00,
+    A700: #DD2C00
+  ),
+  brown: (
+    50: #EFEBE9,
+    100: #D7CCC8,
+    200: #BCAAA4,
+    300: #A1887F,
+    400: #8D6E63,
+    500: #795548,
+    600: #6D4C41,
+    700: #5D4037,
+    800: #4E342E,
+    900: #3E2723
+  ),
+  grey: (
+    50: #FAFAFA,
+    100: #F5F5F5,
+    200: #EEEEEE,
+    300: #E0E0E0,
+    400: #BDBDBD,
+    500: #9E9E9E,
+    600: #757575,
+    700: #616161,
+    800: #424242,
+    900: #212121
+  ),
+  bluegrey: (
+    50: #ECEFF1,
+    100: #CFD8DC,
+    200: #B0BEC5,
+    300: #90A4AE,
+    400: #78909C,
+    500: #607D8B,
+    600: #546E7A,
+    700: #455A64,
+    800: #37474F,
+    900: #263238
+  ),
+  black: (
+    500: #000000
+  ),
+  white: (
+    500: #ffffff
+  )
+);
+
+
+
+
+// Fetch nested keys
+@function fw-map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+
+// function for easy retreiving colors from MaterialUi Color Map
+@function fw-color(
+  $name: null,
+  $shade: 500
+){
+  @if ( $name == white ) or ( $name == black ) { $shade: 500 }
+  @return fw-map-deep-get($fw-material-colors, $name, $shade);
+}
+
+</splitSection>
+
+
+<splitSection output="output/material_selectors.scss">
+
+
+
+// selectors for background color
+.fw-bg {
+  // @each $KEY, $VALUE in $MAP
+  @each $color, $colorShades in $fw-material-colors {
+    // for each color
+    &-#{$color} {
+      @each $shade, $shadeValue in $colorShades {
+        // for each shade
+        &-#{$shade} {
+          background-color: fw-color($color, $shade);
+        }
+        @if $shade == 500 {
+          background-color: fw-color($color, $shade);
+        }
+      }
+    }
+  }
+}
+
+
+// selectors for text color
+.fw {
+  // @each $KEY, $VALUE in $MAP
+  @each $color, $colorShades in $fw-material-colors {
+    // for each color
+    &-txt-#{$color} {
+      @each $shade, $shadeValue in $colorShades {
+        // for each shade
+        &-#{$shade} {
+          color: fw-color($color, $shade);
+        }
+        @if $shade == 500 {
+          color: fw-color($color, $shade);
+        }
+      }
+    }
+  }
+}
+
+</splitSection>

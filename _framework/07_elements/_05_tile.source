@@ -1,0 +1,331 @@
+
+
+<splitSection output="output/atile_section.jade">
+
+  section.sec-tile
+    h3 Tiles
+    h5 Create a rectangle of proportional size.<br>Tiles can be used to make responsive metro-style layouts,<br>image thumbnails or galleries.
+
+
+    .fw-tabulators
+      span Colors
+      span Wireframe
+      span Photos
+      span Heights
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        .fw-resizable.fw-copy.tile-demo.tile-demo-photo
+          .fw-tile.fw-tile-2.fw-bg-bluegrey-100(style="max-width: 25%;")
+            .fw-tile-content
+              p Do your <b>best</b>
+          .fw-tile.fw-tile-050.fw-bg-bluegrey-600(style="max-width: 50%;")
+            .fw-tile-content.dimmed
+              p.fw-pos-top-left Live, learn, <b>love</b>
+          .fw-tile.fw-bg-bluegrey-900(style="max-width: 25%;")
+            .fw-tile-content
+              p Don’t regret <b>decisions</b>
+          .fw-tile.fw-bg-bluegrey-200(style="max-width: 25%;")
+            .fw-tile-content
+              .fw-tile.fw-pos-bottom-left.fw-bg-bluegrey-100(style="max-width: 30%; min-width: 40px")
+              p Don’t just <b>think</b>
+          .fw-tile.fw-bg-bluegrey-100(style="max-width: 25%;")
+            .fw-tile-content
+              p <b>Read</b> something new
+          .fw-tile.fw-tile-050.fw-bg-teal(style="max-width: 25%;")
+            .fw-tile-content
+              p Dream, <b>believe</b>
+          .fw-tile.fw-tile-050.fw-bg-deeppurple-600(style="max-width: 25%;")
+            .fw-tile-content
+              p Life is <b>awesome</b>
+
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.tile-demo
+          .fw-tile.fw-tile-2(style="max-width: 25%;")
+            .fw-tile-content
+              p height 200%<br>max-width: 25%
+          .fw-tile.fw-tile-050(style="max-width: 50%;")
+            .fw-tile-content
+              p height: 50%<br>max-width: 50%
+          .fw-tile(style="max-width: 25%;")
+            .fw-tile-content
+              p height: 100%<br>max-width: 25%
+          .fw-tile(style="max-width: 25%;")
+            .fw-tile-content
+              p height: 100%<br>max-width: 25%
+          .fw-tile(style="max-width: 25%;")
+            .fw-tile-content
+              p height: 100%<br>max-width: 25%
+          .fw-tile.fw-tile-050(style="max-width: 25%;")
+            .fw-tile-content
+              p height: 50%<br>max-width: 25%
+          .fw-tile.fw-tile-050(style="max-width: 25%;")
+            .fw-tile-content
+              p height: 50%<br>max-width: 25%
+      div
+        //- p content 1
+
+        .fw-resizable.fw-copy.tile-demo.tile-demo-photo
+          .fw-tile.fw-tile-2(style="max-width: 25%; background-image: url(https://static.pexels.com/photos/7529/pexels-photo-large.jpeg)")
+            .fw-tile-content
+              p Do your <b>best</b>
+          .fw-tile.fw-tile-050(style="max-width: 50%; background-image: url(https://static.pexels.com/photos/36367/pexels-photo-large.jpg)")
+            .fw-tile-content.dimmed
+              p.fw-pos-top-left Live, learn, <b>love</b>
+          .fw-tile.fw-bg-bluegrey-900(style="max-width: 25%;")
+            .fw-tile-content
+              p Don’t regret <b>decisions</b>
+          .fw-tile.fw-bg-bluegrey-200(style="max-width: 25%;")
+            .fw-tile-content
+              .fw-tile.fw-pos-bottom-left(style="max-width: 30%; min-width: 40px; background-image: url(https://static.pexels.com/photos/4952/sky-beach-vacation-summer-medium.jpeg)")
+              p Don’t just <b>think</b>
+          .fw-tile(style="max-width: 25%; background-image: url(https://static.pexels.com/photos/26521/pexels-photo-large.jpg)")
+            .fw-tile-content
+              p <b>Read</b> something new
+          .fw-tile.fw-tile-050(style="max-width: 25%; background-image: url(https://static.pexels.com/photos/54536/pexels-photo-54536.jpeg)")
+            .fw-tile-content
+              p Dream, <b>believe</b>
+          .fw-tile.fw-tile-050.fw-bg-deeppurple-600(style="max-width: 25%; background-image: url()")
+            .fw-tile-content
+              p Life is <b>awesome</b>
+
+      div.fw-container
+        .fw-resizable.fw-copy.tile-demo
+          .fw-tile.fw-tile-025(style="max-width: 25%;")
+            .fw-tile-content
+              p height 25%
+          .fw-tile.fw-tile-050(style="max-width: 25%;")
+            .fw-tile-content
+              p height 50%
+          .fw-tile.fw-tile-075(style="max-width: 25%;")
+            .fw-tile-content
+              p height 75%
+          .fw-tile.fw-tile-100(style="max-width: 25%;")
+            .fw-tile-content
+              p height 125%
+          .fw-tile.fw-tile-125(style="max-width: 25%;")
+            .fw-tile-content
+              p height 150%
+          .fw-tile.fw-tile-150(style="max-width: 25%;")
+            .fw-tile-content
+              p height 175%
+          .fw-tile.fw-tile-175(style="max-width: 25%;")
+            .fw-tile-content
+              p height 175%
+          .fw-tile.fw-tile-200(style="max-width: 25%;")
+            .fw-tile-content
+              p height 200%
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-tile {
+              @include fw-tile;
+              @include fw-tile-height(3/4); // or (75%)
+              max-width: 25%; // optional
+            }
+            .my-tile-content {
+              @include fw-tile-content;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-tile fw-tile-075">
+              <div class="fw-tile-content">content...</div>
+            </div>
+        .fw-separator
+          span Classic heights
+        p .fw-tile<b>-1</b> - 100% (step is every 100%)&nbsp; &nbsp; ... &nbsp; &nbsp;up to .fw-tile<b>-4</b> - 400%<br><br>.fw-tile<b>-025</b> - 25% (step is every 25%)&nbsp; &nbsp; ... &nbsp; &nbsp;up to .fw-tile<b>-400</b> - 400%
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-tile">
+              <div class="my-tile-content">content...</div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-tile {
+              @include fw-tile;
+              @include fw-tile-height(3/4); // or (75%)
+              max-width: 25%; // optional
+            }
+            .my-tile-content {
+              @include fw-tile-content;
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-tile fw-tile-075">
+              <div class="fw-tile-content">content...</div>
+            </div>
+
+
+</splitSection>
+
+
+<splitSection output="output/atile_demo.jade">
+
+//- block meta
+//-   link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+//-   link(rel="stylesheet", href="./tile_demo.css" id="mainstyle")
+
+//- block title
+//-   title tile Demo
+
+//- block content
+//-   .tile-demo
+//-     span demo content
+//-     span demo content
+//-     span demo content
+
+</splitSection>
+
+
+<splitSection output="output/atile_section.scss">
+
+.sec-tile {
+  .tile-demo {
+    @include old-clearfix;
+    .fw-tile {
+      float: left;
+      overflow: hidden;
+      p {
+        margin: 0;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        text-align: center;
+        @include old-media(sm){
+          display: none;
+        }
+      }
+    }
+    .fw-tile-content {
+      border: solid 2px #94DDE8;
+      background: #fff;
+    }
+  }
+  .tile-demo-photo {
+    .fw-tile {
+      cursor: pointer;
+      &,& * {transition: all 0.33s;}
+    }
+    .fw-tile-content {
+      background: rgba(0,0,0,0);
+      color: #fff;
+      border: none;
+      &.dimmed {
+        background: rgba(35,45,50,0.2);
+      }
+      &:hover {
+        background: rgba(35,45,50,0.7);
+      }
+    }
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/atile_semantic.scss">
+
+@mixin fw-tile {
+  position: relative;
+  display: inline-block;
+  vertical-align: top; // remove spacing
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  box-sizing: border-box;
+  &:after {
+    display: block;
+    content: "";
+  }
+}
+
+@mixin fw-tile-height(
+  $height: 100%
+){
+  // check unit types
+  @if type-of($height) != number {
+    @error "tile width must be a number";
+  }
+
+  // convert unitless number (proportion) to percent
+  @if unitless($height) {
+    $height: $height * 100%;
+  }
+
+  // define tile size;
+  &:after {
+    padding-bottom: $height;
+    padding-top: 1px; // subpixel rendering fix when combined with grid
+  }
+
+}
+
+@mixin fw-tile-content(){
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+
+</splitSection>
+
+
+<splitSection output="output/atile_selectors.scss">
+
+.fw-tile {
+  @include fw-tile;
+}
+
+.fw-tile-content {
+  @include fw-tile-content;
+}
+
+.fw-tile {
+  &,
+  &-1 { @include fw-tile-height(1); }
+  &-2 { @include fw-tile-height(2); }
+  &-3 { @include fw-tile-height(3); }
+  &-4 { @include fw-tile-height(4); }
+  &-025 { @include fw-tile-height(25%); }
+  &-050 { @include fw-tile-height(50%); }
+  &-075 { @include fw-tile-height(75%); }
+  &-100 { @include fw-tile-height(100%); }
+  &-125 { @include fw-tile-height(125%); }
+  &-150 { @include fw-tile-height(150%); }
+  &-175 { @include fw-tile-height(175%); }
+  &-200 { @include fw-tile-height(200%); }
+  &-225 { @include fw-tile-height(225%); }
+  &-250 { @include fw-tile-height(250%); }
+  &-275 { @include fw-tile-height(275%); }
+  &-300 { @include fw-tile-height(300%); }
+  &-325 { @include fw-tile-height(325%); }
+  &-350 { @include fw-tile-height(350%); }
+  &-375 { @include fw-tile-height(375%); }
+  &-400 { @include fw-tile-height(400%); }
+}
+
+</splitSection>

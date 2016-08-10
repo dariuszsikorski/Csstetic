@@ -1,0 +1,32 @@
+.fw-bar {
+  @include fw-bar;
+  .fw-bar-left,
+  .fw-bar-center,
+  .fw-bar-right {
+    @include fw-bar-side;
+  }
+  .fw-bar-left {
+    text-align: left;
+  }
+  .fw-bar-center {
+    text-align: center;
+  }
+  .fw-bar-right {
+    text-align: right;
+  }
+  .fw-bar-break {
+    display: block;
+  }
+  .fw-bar-item {
+    @include fw-bar-item;
+  }
+
+  @include fw-media(md){
+    .fw-bar-left,
+    .fw-bar-center,
+    .fw-bar-right {
+      display: block;
+      text-align: left;
+    }
+  }
+}

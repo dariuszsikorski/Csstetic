@@ -1,0 +1,110 @@
+
+
+<splitSection output="output/myComponent_section.jade">
+
+  section.sec-myComponent
+    h3 myComponent
+    h5 Component<br>description.
+
+
+    .fw-tabulators
+      span Demo with myComponent
+      span Demo without myComponent
+
+    .fw-tabs
+      div.fw-container
+        //- p content 1
+
+        .fw-resizable.fw-copy.c-elements
+          //- iframe(src='../demos/myComponent_demo.html')
+          p.fw-myComponent Paragraph as myComponent
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements
+          //- iframe(src='../demos/myComponent_demo.html')
+          p Paragraph myComponent
+
+
+    .fw-tabulators
+      span Usage
+      span Semantic usage
+      span Classic usage
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span usage:
+        .fw-code.scss
+          :code
+            .my-myComponent {
+              @include fw-myComponent;
+            }
+        .fw-separator
+          span or:
+        .fw-code
+          :code
+            class="fw-myComponent"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-myComponent">Hello!</span>
+        .fw-code.scss
+          :code
+            .my-myComponent {
+              @include fw-myComponent;
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="fw-myComponent">Hello!</span>
+
+
+</splitSection>
+
+
+<splitSection output="output/myComponent_demo.jade">
+
+//- block meta
+//-   link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+//-   link(rel="stylesheet", href="./myComponent_demo.css" id="mainstyle")
+
+//- block title
+//-   title myComponent Demo
+
+//- block content
+//-   .myComponent-demo
+//-     span demo content
+//-     span demo content
+//-     span demo content
+
+</splitSection>
+
+
+<splitSection output="output/myComponent_section.scss">
+
+.sec-myComponent {
+  // ...
+}
+
+</splitSection>
+
+
+<splitSection output="output/myComponent_semantic.scss">
+
+@mixin fw-myComponent(){
+  // ...
+}
+
+</splitSection>
+
+
+<splitSection output="output/myComponent_selectors.scss">
+
+.fw-myComponent {
+  @include fw-myComponent;
+}
+
+</splitSection>

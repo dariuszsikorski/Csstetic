@@ -1,0 +1,36 @@
+.sec-elementSize {
+  .demo-elsize1 {
+    background: #fff;
+    span {
+      //- border: solid 2px #94DDE8;
+      margin-right: 5px+2px+2px;
+      outline: solid 2px #333;
+    }
+  }
+  .custom-prop-1,
+  .custom-prop-2,
+  .custom-prop-3,
+  .custom-prop-4,
+  .custom-prop-5,
+  .custom-prop-6 {
+    @include fw-size-base;
+  }
+  .custom-prop-1 {
+    @include fw-size(50px, no-responsive, 0);
+  }
+  .custom-prop-2 {
+    @include fw-size(50px, no-responsive, 0.25);
+  }
+  .custom-prop-3 {
+    @include fw-size(50px, no-responsive, 0.5);
+  }
+  .custom-prop-4 {
+    @include fw-size(50px, no-responsive, 0.75);
+  }
+  .custom-prop-5 {
+    @include fw-size(50px, no-responsive, 1);
+  }
+  .custom-prop-6 {
+    @include fw-size(50px, no-responsive, 2);
+  }
+}

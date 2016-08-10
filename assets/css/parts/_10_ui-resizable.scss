@@ -1,0 +1,232 @@
+.ui-resizable-resizing {
+
+  .ui-resizable-se,
+  .ui-resizable-e {
+    width: 23px !important;
+    height: 23px !important;
+    opacity: 1 !important;
+  }
+}
+
+.fw-resizable:hover,
+.ui-resizable-resizing {
+  outline: solid 1px rgba(#12a5ff, 0.3) !important;
+  background: rgba(#e7f6ff, 0.3);
+  .ui-resizable-se,
+  .ui-resizable-e {
+    background: $controlButtons !important;
+  }
+}
+
+
+// .ui-resizable-resizing {
+//   .ui-resizable-se,
+//   .ui-resizable-e {
+//     opacity: 1 !important;
+//     background: rgba(114, 119, 142, 0.8) !important;
+//   }
+//   outline: dashed 1px rgba(0,0,0,0.15);
+// }
+
+.fw {
+  &-resizable {
+    margin: auto;
+    margin-bottom: 15px;
+    min-width: 200px;
+    width: 100%;
+    outline: solid 1px rgba(0,0,0,0.075);
+    display: none;
+    &:hover {
+      .ui-resizable-se,
+      .ui-resizable-e {
+        width: 19px;
+        height: 19px;
+        opacity: 1;
+      }
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      pointer-events: none;
+      &:before {
+        display: block;
+        width: 500px;
+        height: 100px;
+        // background: red;
+        content: "";
+      }
+    }
+    // .ui-resizable-e {
+    //   display: none !important;
+    // }
+    .ui-resizable-se,
+    .ui-resizable-e {
+      background: darken(#f0f1f5, 8%);
+      opacity: 0.75;
+      @include old_media(xl){
+        opacity: 1;
+      }
+      border: solid 2.5px white;
+
+      border-radius: 100px;
+      width: 16px;
+      height: 16px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.25), 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 8px 5px rgba(255, 255, 255, 0.1);
+      transition: all 0.25s;
+      transform: translateX(50%) translateY(50%);
+      -webkit-transform: translateX(50%) translateY(50%);
+      bottom: 15px;
+      right: 0;
+      &:hover {
+        width: 23px;
+        height: 23px;
+        opacity: 1;
+      }
+    }
+    .ui-resizable-e {
+      top: 50%;
+      transform: translateX(50%) translateY(-50%);
+      -webkit-transform: translateX(50%) translateY(-50%);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$resizable-width: 10px;
+
+
+// .ui-resizable-resizing {
+//   .ui-resizable-se,
+//   .ui-resizable-e {
+//     opacity: 1 !important;
+//     background: rgba(114, 119, 142, 0.8) !important;
+//   }
+//   outline: dashed 1px rgba(0,0,0,0.15);
+// }
+
+// .fw {
+//   &-resizable {
+//     margin: auto;
+//     min-width: 100px;
+//     width: 100%;
+//     // padding-right: $resizable-width + 10px;
+//     &:hover {
+//       outline: solid 1px rgba(#12a5ff, 0.2);
+//       background: rgba(#e7f6ff, 0.3);
+//       .ui-resizable-se,
+//       .ui-resizable-e {
+//         // width: 19px;
+//         // height: 19px;
+//         opacity: 1;
+//       }
+//     }
+//     iframe {
+//       border: none;
+//       width: 100%;
+//       pointer-events: none;
+//       // &:before {
+//       //   display: block;
+//       //   width: 500px;
+//       //   height: 100px;
+//       //   // background: red;
+//       //   content: "";
+//       // }
+//     }
+//     // .ui-resizable-e {
+//     //   display: none !important;
+//     // }
+//     .ui-resizable-se,
+//     .ui-resizable-e {
+//       // opacity: 0;
+//       @include old_media(xl){
+//         // opacity: 1;
+//       }
+//       // border: solid 2.5px white;
+//       // background: $controlButtons;
+//       // border-radius: 100px;
+//       // width: 16px;
+//       // height: 16px;
+//       // box-shadow: 0 3px 12px rgba(0,0,0,0.25), 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 8px 5px rgba(255, 255, 255, 0.1);
+//       transition: all 0.25s;
+//       // transform: translateX(40%) translateY(40%);
+//       // -webkit-transform: translateX(40%) translateY(50%);
+//       // bottom: 15px;
+//       // background: black;
+//       opacity: 0.33;
+//       margin: 5px 0;
+//       // margin-top: 15px;
+//       border-radius: 100px;
+//       background: rgba(114, 119, 142, 0.6);
+//       right: $resizable-width*(-1);
+//       width: $resizable-width;
+//       top: -5px;
+
+
+// //       border: solid 2.5px white;
+// //       background: $controlButtons;
+// //       border-radius: 100px;
+// //       width: 16px;
+// //       height: 16px;
+// //       box-shadow: 0 3px 12px rgba(0,0,0,0.25), 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 8px 5px rgba(255, 255, 255, 0.1);
+// //       transition: all 0.25s;
+// //       transform: translateX(40%) translateY(40%);
+// //       -webkit-transform: translateX(40%) translateY(50%);
+// //       bottom: 15px;
+// //       right: 0;
+// //       &:hover {
+// //         width: 23px;
+// //         height: 23px;
+// //         opacity: 1;
+// //       }
+
+
+
+
+//       &:hover {
+//         // width: 23px;
+//         // height: 23px;
+//         // opacity: 0.8;
+//       }
+//     }
+//     .ui-resizable-e {
+//       // top: 50%;
+//       // transform: translateX(40%) translateY(-50%);
+//     }
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+

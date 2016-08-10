@@ -1,0 +1,100 @@
+$fw-text-smallest: 12px;
+$fw-text-growth-mobile: 1.4;
+
+$fw-text-line-smallest: 1.4;
+$fw-text-growth-line-mobile: 0.1;
+
+$fw-text-growth-desktop: 1.6;
+$fw-text-growth-line-desktop: 0;
+
+$fw-text-presets: (xxs, xs, sm, md, lg, xl, xxl, xxxl, hg);
+
+@function fw-geometric-sequence-an(
+  $begin: null,
+  $ratio: null,
+  $nth: null
+){
+  $result: $begin;
+  @for $i from 1 through $nth {
+    @if $i > 1 {
+      $result: $result * $ratio;
+    }
+  }
+  @return $result;
+}
+
+// .test-geometry {
+//   nth: fw-geometric-sequence-an(1, 1.5, 5);
+//   // expected results for start: 1, ratio: 1.5.
+//   // 1, 1.5, 2.25, 3.375, 5.0625, 7.59375, 11.390625...
+// }
+
+@function fw-text-ratio(
+  $size: null,
+  $ratio: null
+){
+  $growth: 0;
+  // $unit: type-of(1 + unit($fw-text-smallest));
+  @if $size > 1 {
+    $growth: fw-geometric-sequence-an(1, $ratio, $size);
+  }
+  $result: $fw-text-smallest + $growth;
+  @return $result;
+}
+
+@function fw-text-line-ratio(
+  $size: null,
+  $ratio: null
+){
+  $growth: 0;
+  // $unit: type-of(1 + unit($fw-text-smallest));
+  @if $size > 1 {
+    $growth: fw-geometric-sequence-an(1, $ratio, $size);
+  }
+  $result: $fw-text-line-smallest + $growth;
+  @return $result;
+}
+
+
+@mixin fw-text(
+  $size: null
+){
+  @if type-of($size) == string {
+    $size: index($fw-text-presets, $size);
+  }
+
+  $font-begin: fw-text-ratio($size, $fw-text-growth-mobile);
+  $font-end: fw-text-ratio($size, $fw-text-growth-desktop);
+  $line-begin: fw-text-line-ratio($size, $fw-text-growth-line-mobile);
+  $line-end: fw-text-line-ratio($size, $fw-text-growth-line-desktop);
+
+  // scale font-size andline-height
+  @if $font-begin != $font-end and $line-begin != $line-end {
+    @include fw-scale((
+      font-size: ($font-begin, $font-end),
+      line-height: ($line-begin, $line-end)
+    ));
+  }
+
+  // scale only font-size
+  @if $font-begin != $font-end and $line-begin == $line-end {
+    @include fw-scale((
+      font-size: ($font-begin, $font-end)
+    ));
+    line-height: $line-begin;
+  }
+
+  // scale only line-height
+  @if $font-begin == $font-end and $line-begin != $line-end {
+    font-size: $font-begin;
+    @include fw-scale((
+      line-height: ($line-begin, $line-end)
+    ));
+  }
+
+  // nothing to scale
+  @if $font-begin == $font-end and $line-begin == $line-end {
+    font-size: $font-begin;
+    line-height: $line-begin;
+  }
+}

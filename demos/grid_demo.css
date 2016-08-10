@@ -1,0 +1,49 @@
+.demo-responsive .fw-grid {
+  outline: solid 2px #333;
+}
+
+.demo-responsive .fw-grid-row > * {
+  border: solid 1px #ddd;
+  padding: 10px 0;
+  background: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.demo-tiles p {
+  margin: 0;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.demo-tiles .fw-tile-content {
+  border: solid 2px #94DDE8;
+  background: #fff;
+}
+
+.demo-tiles .fw-tile {
+  cursor: pointer;
+}
+
+.demo-tiles .fw-tile, .demo-tiles .fw-tile * {
+  transition: all 0.33s;
+}
+
+.demo-tiles .fw-tile-content {
+  background: transparent;
+  color: #fff;
+  border: none;
+}
+
+.demo-tiles .fw-tile-content.dimmed {
+  background: rgba(35, 45, 50, 0.5);
+}
+
+.demo-tiles .fw-tile-content:hover {
+  background: rgba(35, 45, 50, 0.7);
+}

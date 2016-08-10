@@ -1,0 +1,72 @@
+section.sec-text
+    h3 Text (size)
+    h5 Determines size of the text depending on window width.<br>This utility also comes with a set of presets.
+
+
+
+    .fw-tabulators
+      span Demo with text
+      span Demo without text
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        .fw-resizable.fw-copy
+          iframe(src='../demos/text_demo.html')
+          //- p.fw-text Paragraph as text
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable
+          //- iframe(src='../demos/text_demo.html')
+          .text-demo
+            p XXS Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p XS Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p SM Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p MD Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p LG Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p XL Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p XXL Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p XXXL Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+            p HG Cras semper metus metus, quis scelerisque leo dapibus et. Vestibulum auctor quam vel tellus tincidunt condimentum. Praesent metus ante, vestibulum in eleifend vel, tristique in eros. Ut non vehicula nisi, et cursus tortor. Morbi viverra at leo in ultricies. Vivamus nec massa metus. Fusce ac turpis metus.
+
+
+    .fw-tabulators
+      span Short Usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Size presets
+        p xxs, xs, sm, md, lg, xl, xxl, xxxl, hg
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-text {
+              @include fw-text(md);
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-text-md"
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="my-text">Hello!</span>
+        .fw-code.scss
+          :code
+            .my-text {
+              @include fw-text(md);
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <span class="fw-text-md">Hello!</span>
+    p You can also use <a href="#scale-properties">Scale Properties</a> to create scalable text of custom size.

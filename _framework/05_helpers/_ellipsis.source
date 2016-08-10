@@ -1,0 +1,119 @@
+
+
+<splitSection output="output/ellipsis_section.jade">
+
+  section.sec-ellipsis
+    h3 Ellipsis
+    h5 Show three dots at the end of the line if paragraph is too long.
+
+
+    .fw-tabulators
+      span Demo with ellipsis
+      span Demo without ellipsis
+
+    .fw-tabs
+      div.fw-container
+        //- p content 1
+
+        .fw-resizable.fw-copy.c-elements.demo-ellipsis
+          //- iframe(src='../demos/ellipsis_demo.html')
+          p.fw-ellipsis Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam accumsan turpis. Phasellus dignissim felis pharetra orci gravida, et egestas mauris venenatis. Phasellus efficitur ligula lorem, eu fermentum nunc commodo at. Duis quis mi nunc. Nunc molestie augue quis felis consequat cursus. Ut accumsan posuere nunc, ut rutrum dolor consectetur et. Nulla malesuada faucibus tincidunt. In lobortis lacus a leo euismod, et mattis turpis sollicitudin. Duis nec erat at augue volutpat tempus.
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements.demo-ellipsis
+          //- iframe(src='../demos/ellipsis_demo.html')
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam accumsan turpis. Phasellus dignissim felis pharetra orci gravida, et egestas mauris venenatis. Phasellus efficitur ligula lorem, eu fermentum nunc commodo at. Duis quis mi nunc. Nunc molestie augue quis felis consequat cursus. Ut accumsan posuere nunc, ut rutrum dolor consectetur et. Nulla malesuada faucibus tincidunt. In lobortis lacus a leo euismod, et mattis turpis sollicitudin. Duis nec erat at augue volutpat tempus.
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-paragraph {
+              @include fw-ellipsis;
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            class="fw-ellipsis"
+
+      div.fw-container
+        .fw-code
+          :code
+            <p class="my-paragraph">Hello!</p>
+        .fw-code.scss
+          :code
+            .my-paragraph {
+              @include fw-ellipsis;
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <p class="fw-ellipsis">Hello!</p>
+
+
+</splitSection>
+
+
+<splitSection output="output/ellipsis_demo.jade">
+
+//- block meta
+//-   link(rel="stylesheet", href="../assets/css/demos/demo.css" id="mainstyle")
+//-   link(rel="stylesheet", href="./ellipsis_demo.css" id="mainstyle")
+
+//- block title
+//-   title ellipsis Demo
+
+//- block content
+//-   .ellipsis-demo
+//-     span demo content
+//-     span demo content
+//-     span demo content
+
+</splitSection>
+
+
+<splitSection output="output/ellipsis_section.scss">
+
+.sec-ellipsis {
+  .demo-ellipsis {
+    background: #fff;
+    padding: 10px 35px;
+    box-sizing: border-box;
+    font-size: 25px;
+    color: #333;
+  }
+}
+
+</splitSection>
+
+
+<splitSection output="output/ellipsis_semantic.scss">
+
+@mixin fw-ellipsis {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+</splitSection>
+
+
+<splitSection output="output/ellipsis_selectors.scss">
+
+.fw-ellipsis {
+  @include fw-ellipsis;
+}
+
+</splitSection>

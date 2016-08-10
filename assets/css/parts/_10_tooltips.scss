@@ -1,0 +1,33 @@
+
+
+.tooltipster-default {
+  border-radius: 3px;
+  border: 2px solid #FFF;
+  background: $controlButtons;
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2),0 1px 5px rgba(0, 0, 0, 0.1);
+  .tooltipster-content {
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 8px 18px;
+    cursor: pointer;
+    &:hover {
+      background: lighten($controlButtons, 5%);
+    }
+  }
+}
+
+
+
+
+.tooltipster-light {
+  background: #4A546A;
+  color: #fff;
+  border: none;
+  box-shadow: none;
+  .tooltipster-content {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}

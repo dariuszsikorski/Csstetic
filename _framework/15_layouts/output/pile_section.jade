@@ -1,0 +1,140 @@
+section.sec-pile
+    h3 Pile of items
+
+    .fw-tabulators
+      span Example
+      span Vertical & Horizontal align
+
+    .fw-tabs
+      div
+        //- p content 1
+
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.line-top-bottom
+            .fw-pile-item.fourth <span>pile item</span>
+            .fw-pile-item.third <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.first <span>pile item</span>
+
+      div
+
+        h4 bottom
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-bottom.line-bottom
+            .fw-pile-item.first <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.third <span>pile item</span>
+            .fw-pile-item.fourth <span>pile item</span>
+
+        h4 middle
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-middle.line-top-bottom
+            .fw-pile-item.first <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.third <span>pile item</span>
+            .fw-pile-item.fourth <span>pile item</span>
+
+        h4 top
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-top.line-top
+            .fw-pile-item.first <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.third <span>pile item</span>
+            .fw-pile-item.fourth <span>pile item</span>
+
+        h4 left
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-left.line-left
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+
+        h4 center
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-center.line-left-right
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+
+        h4 right
+        .fw-copy.fw-example.demo-pile
+          .fw-pile.fw-pile-right.line-right
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+            .fw-pile-item.second <span>pile item</span>
+
+
+      div.fw-container
+        //- p content 2
+        .fw-resizable.fw-copy.c-elements
+          //- iframe(src='../demos/pile_demo.html')
+          p Paragraph pile
+
+
+    .fw-tabulators
+      span Short usage
+      span Semantic
+      span Classic
+
+    .fw-tabs
+      div.fw-container
+        .fw-separator
+          span Semantic
+        .fw-code.scss
+          :code
+            .my-pile {
+              @include fw-pile;
+              .my-pile-item {
+                @include fw-pile-item;
+              }
+            }
+        .fw-separator
+          span Classic
+        .fw-code
+          :code
+            <div class="fw-pile">
+              <div class="fw-pile-item"><span>pile item</span></div>
+              <div class="fw-pile-item"><span>pile item</span></div>
+            </div>
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="my-pile">
+              <div class="my-pile-item"><span>pile item</span></div>
+              <div class="my-pile-item"><span>pile item</span></div>
+            </div>
+        .fw-code.scss
+          :code
+            .my-pile {
+              @include fw-pile;
+              text-align: right; // optional: left | center | right
+              .my-pile-item {
+                @include fw-pile-item;
+                vertical-align: middle; // optional: top | middle | bottom
+              }
+            }
+
+      div.fw-container
+        .fw-code
+          :code
+            <div class="fw-pile">
+              <div class="fw-pile-item"><span>pile item</span></div>
+              <div class="fw-pile-item"><span>pile item</span></div>
+            </div>
+
+            <!-- vertical align -->
+            <div class="fw-pile fw-pile-top">
+            <div class="fw-pile fw-pile-middle">
+            <div class="fw-pile fw-pile-bottom">
+
+            <!-- horizontal align -->
+            <div class="fw-pile fw-pile-left">
+            <div class="fw-pile fw-pile-center">
+            <div class="fw-pile fw-pile-right">
+
+            <!-- vertical & horizontal align -->
+            <div class="fw-pile fw-pile-center fw-pile-middle">

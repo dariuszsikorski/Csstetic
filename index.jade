@@ -1,0 +1,246 @@
+- require('jade').filters.code = function( block ) {
+- return block.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/#/g, '&#35;').replace(/\\/g, '\\\\');
+- }
+
+
+doctype html
+html.page-intro(lang='en-us')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Csstetic - Semantic framework for front-end ui developers
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+    link(href='./pages/assets/css/style.css', rel='stylesheet')
+  body
+
+    nav.mainbar
+      .mainbar-wrap
+        .mainbar-center
+          //- .mainbar-item
+          //-   a(href="./demonstration/fbredesign.html") Demos
+          .mainbar-item
+            a.intro-link Intro
+          .mainbar-item
+            a.getit-link Get it
+          .mainbar-item
+            a.docs-link(href="./docs") Docs <span class="ion-ios-arrow-thin-right icon"></span>
+          //- .mainbar-item
+          //-   a(href="/docs") Docs <span class="ion-chevron-right">
+        //- .mainbar-left
+        //-   .mainbar-item
+        //-     span left item
+        //-   .mainbar-item
+        //-     span left item
+        .mainbar-right
+          .mainbar-item
+            span <a href="https://twitter.com/antraxis"><i class="fa fa-twitter fw-text-xxl" style="color: rgba(0, 159, 255, 0.3)"></i></a>
+          //- .mainbar-item
+            //- a(href="/docs") Docs <span class="ion-chevron-right">
+
+
+    section.header
+      .branding
+        h1 Csstetic
+        h2 Semantic framework for front-end ui developers.<br><small>Build websites & components with clear html code.</small>
+
+
+      //- p Vivamus sit amet dolor vitae nisl ultricies sagittis. Maecenas fringilla ligula eu tempus aliquam. Pellentesque non dictum arcu, at fermentum nibh. Donec libero velit, venenatis eget vehicula vitae, aliquet nec mi. Cras erat diam, rutrum nec suscipit sit amet, gravida vel lorem. Morbi eros eros, eleifend ornare lorem id, ullamcorper auctor lectus. Suspendisse rhoncus, nisi at commodo feugiat, eros enim accumsan mi, ac dignissim felis diam tincidunt felis.
+    section.description
+      h3.hidden Description
+      .content
+        .subsection
+          p Csstetic is a set of code snippets which joined together solve common <a href="https://en.wikipedia.org/wiki/User_interface">ui design</a> tasks. It does not "reset" or overwrite project's styling, that makes it easy to use with any existing framework or as a standalone tool. For rapid prototyping <strong>Classic</strong> <i><small>(precompiled css)</small></i> version should be enough, while <strong>Semantic</strong> <i><small>(scss mixins)</small></i> may require two more clicks and results in clean <i><small>(semantic)</small></i> html code. In fact - Both versions can be used together.
+
+
+
+    section.comparison
+      .content
+        h3 Comparison
+        .difference-paragraph
+          p <strong>Classic</strong> version uses simmilar syntax to other common css frameworks:
+
+          code
+            :code
+              <span class="fw-button fw-size-md fw-bg-red">button</span>
+
+          p <strong>Semantic</strong> version moves all the styling back to scss file:
+          pre
+            code
+              :code
+                Html:
+                <span>button</span>
+
+                Scss:
+                span {
+                  @include fw-button;
+                  @include fw-size-base;
+                  @include fw-size(md);
+                  background: fw-color(red);
+                }
+        .comparison-table
+          .row
+            .col
+            .col
+              p Classic
+            .col
+              p Semantic
+            .col
+              p Description
+          .row
+            .col
+              p Price
+            .col
+              p Free
+            .col
+              p <small>$</small>19
+            .col
+              p Classic version is one variant of compiled Csstetic, all the goodies available through mixins and functions come with Semantic version.
+          .row
+            .col
+              p File size
+            .col
+              p 50kB
+            .col
+              p 0+ kB
+            .col
+              p 50kb is the file size for csstetic.css file containing ready to use copy & paste components. Semantic version (0+ kB _csstetic.scss) adds only this code, which has been truly used in your project.
+          .row
+            .col
+              p Selectors
+            .col
+              p predefined
+            .col
+              p custom
+            .col
+              p Classic is better for rapid development, because of precompiled class="fw-..." selectors, while Semantic allows you to create custom selectors like class="music-player", then compiling it.
+          .row
+            .col
+              p Difficulty
+            .col
+              p easy
+            .col
+              p medium
+            .col
+              p In fact, both versions come with ready to copy & paste cody snippets, but since Semantic version requires using .scss files instead of .css, it has been marked as medium.
+          .row
+            .col
+              p Responsiveness
+            .col
+              p partially
+            .col
+              p fully
+            .col
+              p Classic version is prepared for most common use cases for each device size but advanced features such as fw-scale(...); or fw-media(tablet){...}; wouldn't be possible without goodness of scss language.
+          .row
+            .col
+              p Customizable
+            .col
+              p medium
+            .col
+              p high
+            .col
+              p While building layout with class="feature-1 feature-2" is quick and easy, sometimes you may need to customize the feature through options available in .scss mixins and by adding custom css properties.
+          .row
+            .col
+              p Semantic html
+            .col
+              p no
+            .col
+              p yes
+            .col
+              p That's where "Semantic" name comes from - all features can be packed in one html class="my-button" or even target entire &lt;button&gt; tag without touching the html file, leaving the code as clear as possible.
+          .row
+            .col
+              p License
+            .col
+              p <a href="./license-classic.html">CC4 License</a>
+            .col
+              p <a href="license-semantic.html">Custom License</a>
+            .col
+              p Both versions give you as much freedom as possible in personal and commercial use. However semantic version is paid and has some restrictions. By buying this project you support it's developers and may expect product updates in future.
+
+    section.features
+      .content
+
+        h3 Features
+        .feature-list
+
+          .feature-row
+
+            .feature
+              .feature-left <span class="icon-block"><i class="ionicons ion-social-css3-outline"></i></span>
+              .feature-fill
+                h4 Pure Css
+                p All features are combined in a single file, no javascript dependencies, this makes Csstetic a great basement for creating jQuery, Angular or React components.
+
+
+            .feature
+              .feature-right <span class="icon-block"><i class="material-icons icon">lightbulb_outline</i></span>
+              .feature-fill
+                h4 Best design patterns
+                p While most of code issues can be solved by Googling and reading StackOverflow - this will take your time. Each code snippet is a handpicked design solution. Keeping that in mind - you can focus on primary task.
+          .feature-row
+
+            .feature
+              .feature-left <span class="icon-block"><i class="icon material-icons">devices</i></span>
+              //- <i class="fa fa-internet-explorer"></i>
+              .feature-fill
+                h4 Cross device support
+                p Each device may come with different browser and a different screen size. Csstetic also gives support for IE9+ or Android Chrome. For smaller devices - components will change their size proportionally to screen width.
+
+
+            .feature
+              .feature-right <span class="icon-block"><i class="ionicons ion-speedometer"></i> </span>
+              //- <i class="ionicons ion-waterdrop"></i>
+              .feature-fill
+                h4 Ultra lightweight
+                p Classic version comes with preconfigured features and weights only about 50kB, but Semantic version is truly lightweight - only the features in use will influence resulting file, this may be 10kB or even 1kB.
+
+          .feature-row
+            .feature
+              .feature-left <span class="icon-block"><i class="material-icons icon">playlist_add_check</i></span>
+                //- <span class="icon-block"><i class="ionicons ion-merge"></i></span>
+              .feature-fill
+                h4 Prefixed naming
+                p Csstetic takes adventage of prefixed naming convention, adding 3 characters before each name makes it compatible with any ui framework. However you can use selectors with any <a href="http://getbem.com/introduction/">naming convention</a> through scss mixins.
+
+
+            .feature
+              .feature-right <span class="icon-block"><i class="material-icons icon">code</i></span>
+              //- <i class="ionicons ion-android-textsms"></i> <i class="ionicons ion-ios-gear-outline"></i>
+              .feature-fill
+                h4 Tidy html markup
+                p It's easy to end up styling project with too-many class attributes for one element, especially on prototyping stage. Html markup should stand for document's semantic structure. In semantic version you can move all visual information back to stylesheet file, that's where the name "semantic" come from.
+
+
+    section.discussit.reveal
+      .content
+        h3 Discuss it
+        .button.discuss-btn
+          p.link <a href="./discuss.html"><i class="material-icons">comment</i><span class="ion-ios-arrow-thin-right icon"></span></a>
+
+
+
+    section.getit#get
+      .content
+        h3 Get it
+        .get-versions
+          .get-row
+            .get-col
+              a(href="./download/download-latest.php").button.classic Classic <small>(Css)</small><span class="label">free</span>
+            .get-col
+              a(href="https://gumroad.com/l/OuSa").button.semantic Semantic <small>(Scss)</small><span class="label"><small>$</small>19</span>
+
+          p.install <a href="./docs#installation">Getting started <span class="ion-ios-arrow-thin-right icon"></span></a><br><br><br>
+          p.fw-text-center.fw-block.fw-txt-grey-500 Packages include <strong>press kit</strong> images.
+    section.footer.reveal
+      //- p sdfdgfd
+      h3.hidden Footer
+      .content
+        p &copy;<span class="current-year">2016</span> Csstetic.com <span class="divider">|</span> <a class="author" href="http://prettyminimal.com/">Pretty Minimal</a>
+
+    //- script(src='https://raw.githubusercontent.com/pbakaus/transformie/master/transformie.js', type='text/javascript')
+    script(src='./pages/assets/js/plugins-dist.js', type='text/javascript')
+    script(src='./pages/assets/js/scripts-dist.js', type='text/javascript')
+    include ./stats.jade

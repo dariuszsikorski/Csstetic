@@ -1,0 +1,98 @@
+$pageWidth: 1200px;
+$subsection: 700px;
+html, body {
+  height: 100%;
+}
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+a {
+  text-decoration: none;
+}
+
+.mainbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  .active {
+    border-bottom: 2px solid black;
+  }
+  a {
+    transition: all 0.25s;
+    border-bottom: transparent solid 2px;
+  }
+  a:hover {
+    border-color: black;
+  }
+  .icon {
+    // position: relative;
+    top: 3px;
+    // transform: translateY(-50%);
+    position: relative;
+    line-height: 1em;
+    // margin: 0 5px;
+    font-size: 1.2em;
+    // font-weight: bold;
+  }
+  @include fw-scale((
+    padding-top: (20px, 40px)
+  ));
+  a {
+    @include fw-text(xl);
+  }
+  .mainbar-wrap {
+    max-width: 1030px;
+    // background: red;
+    margin: auto;
+  }
+  @include fw-bar;
+  .mainbar-left,
+  .mainbar-center,
+  .mainbar-right {
+    @include fw-bar-side;
+  }
+  .mainbar-right {
+    a {
+      border: none;
+      &:hover {
+        border: none;
+      }
+    }
+  }
+  .mainbar-left { text-align: left; }
+  .mainbar-center { text-align: center; }
+  .mainbar-right { text-align: right; }
+  .mainbar-item {
+    @include fw-bar-item;
+    @include fw-scale((
+      margin: (0 10px, 0 30px)
+    ));
+  }
+
+  // optional - break sections for smaller devices
+  // @include fw-media(md){
+  //   .mainbar-left,
+  //   .mainbar-center,
+  //   .mainbar-right {
+  //     display: block;
+  //     text-align: left;
+  //   }
+  // }
+
+  // optional - vertical align items
+  .mainbar-left {
+    &, &.mainbar-item {
+      vetical-align: top; // top | middle | bottom
+    }
+  }
+
+}
+
+
+

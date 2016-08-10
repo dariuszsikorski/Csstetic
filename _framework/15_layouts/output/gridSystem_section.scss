@@ -1,0 +1,20 @@
+.sec-gridSystem {
+  .fw-grid {
+    outline: solid 2px #333;
+    //- // padding: 20px;
+    //- background: #546e7a;
+  }
+  .fw-grid-row {
+    > * {
+      border: solid 1px #ddd;
+      padding: 10px 0;
+
+      //- color: #fff;
+      background: #fff;
+      text-align: center;
+      @include fw-ellipsis;
+      //- font-weight: bold;
+      //- padding: 20px 0;
+    }
+  }
+}
