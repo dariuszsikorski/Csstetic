@@ -30,8 +30,8 @@ Feel free to let me know if you use this project and appreciated it.
 - *demos* - demonstration files used as resizable iframes in docs
 - *dist* - ready to use version of framework
 - *docs* - html documentation files
-- *example* - unfinished example of framework use
-- *pages/assets* - css and js assets of website
+- *example* - unfinished example of framework usage
+- *pages/assets* - css and js assets for website
 
 ## Copyright and license
 
