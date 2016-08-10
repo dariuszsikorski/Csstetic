@@ -3,6 +3,10 @@ Semantic framework for front-end ui developers.
 
 Build websites & components with clear html code.
 
+[homepage](http://prettyminimal.com/csstetic/)
+[download](https://github.com/dariuszsikorski/csstetic/tree/master/dist)
+[installation](http://prettyminimal.com/csstetic/docs/#installation)
+
 ## What's this?
 
 This is source code of csstetic framework which I developed
