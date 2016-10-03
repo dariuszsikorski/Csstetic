@@ -7,6 +7,12 @@ Build websites & components with clear html code.
 - [download](https://github.com/dariuszsikorski/csstetic/tree/master/dist)
 - [installation](http://prettyminimal.com/csstetic/docs/#installation)
 
+## Installation
+[Download](https://github.com/dariuszsikorski/Csstetic/tree/master/dist)
+### Classic
+    <link href="style/csstetic.css" rel="stylesheet">
+### Semantic
+    @import "style/_csstetic-semantic";
 ## What's this?
 
 This is source code of csstetic framework which I developed
@@ -28,7 +34,7 @@ Feel free to let me know if you use this project and appreciated it.
 - *_helpers* - helpful files during development
 - *assets* - csstetic website assets
 - *demos* - demonstration files used as resizable iframes in docs
-- *dist* - ready to use version of framework
+- *dist* - download compiled files
 - *docs* - html documentation files
 - *example* - unfinished example of framework usage
 - *pages/assets* - css and js assets for website
