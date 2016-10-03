@@ -7,19 +7,20 @@ Build websites & components with clear html code.
 - [download](https://github.com/dariuszsikorski/csstetic/tree/master/dist)
 - [installation](http://prettyminimal.com/csstetic/docs/#installation)
 
+## What's this?
+
+In simple words - it's a css framework like bootstrap and is intended
+to be used with sass / css style. Made to leave html code as clean as possible.
+
+This is source code of csstetic framework which I developed
+as a personal project and now share it for public usage.
+
 ## Installation
 [Download](https://github.com/dariuszsikorski/Csstetic/tree/master/dist)
 ### Classic
     <link href="style/csstetic.css" rel="stylesheet">
 ### Semantic
     @import "style/_csstetic-semantic";
-## What's this?
-
-This is source code of csstetic framework which I developed
-as a personal project and now share it for public usage.
-
-In simple words - it's a stylesheet like bootstrap and is intended
-to be used as sass mixins, leaving html code as clean as possible.
 
 ## Contribution
 
