@@ -37,5 +37,3 @@ Feel free to let me know if you use this project and appreciated it.
 
 Code and documentation copyright 2014-2016 Dariusz Sikorski & authors of used plugins.
 
-Code released under the [MIT license](https://github.com/dariuszsikorski/csstetic/blob/master/LICENSE) (same as Bootstrap or jQuery).
-Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/legalcode).
