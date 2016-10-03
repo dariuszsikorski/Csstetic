@@ -37,3 +37,4 @@ Feel free to let me know if you use this project and appreciated it.
 
 Code and documentation copyright 2014-2016 Dariusz Sikorski & authors of used plugins.
 
+Code released under the MIT license (same as Bootstrap or jQuery). See LICENSE.md file.
