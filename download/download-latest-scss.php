@@ -5,6 +5,6 @@
   fwrite($f, $current_count + 1);
   fclose($f);
 
-  header("Location: https://github.com/dariuszsikorski/Csstetic/raw/master/dist/");
+  header("Location: https://github.com/dariuszsikorski/Csstetic/raw/master/dist/csstetic-semantic.zip");
 
  ?>
